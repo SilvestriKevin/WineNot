@@ -135,16 +135,100 @@ body {
     margin-left: 12em;
     padding-top: 2em;
 }
+
+/* WINE */
+
+#container_wine {
+    margin-top: 2em;
+    width: 80%;
+    margin-left: 10%;
+}
+
+
+#img_description_wine{
+    display: inline-block;
+}
+
+#wine_img {
+    height: 25em;
+    width: auto;
+}
+
+#wine_description {
+    float: right;
+    text-align: center;
+    width: 60%;
+    margin-right: 10%;
+    padding-top: 5em;
+}
+
 /* WINE PREVIEW */
 
+#wine_preview {
+    margin-top: 2em;
+}
+
+#wine_preview li {
+    list-style-type: none;
+    display: inline-block;
+    width: 33%;
+}
+
+#wine_preview li:first-child{
+    background-color: azure;
+}
+
+#wine_preview li:last-child{
+    background-color:beige;
+}
+
+#wine_preview li img {
+    height: 18em;
+    margin-left: 10%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+#wine_preview li img:hover {
+    height: 22em;
+    transition: 0.3s;
+}
+
+.preview_wine_description {
+    padding-top: 20%;
+    width: 50%;
+    float: right;
+}
+.preview_wine_description a {
+    margin-top: 4em !important;
+    text-align: center;
+    clear: both;
+}
 
 
+#short_description {
+    margin-top: 2em;
+}
 
+#short_description h2 {
+    font-family: 'Dancing Script',sans-serif;
+    font-size: 3em;
+}
 
+#short_description h2, #short_description p {
+    text-align: center;
+}
 
+#short_description p {
+    margin-top: 1em;
+    width: 60%;
+    margin-left: 20%;
+}
 /* HISTORY PREVIEW */
 
-
+#history_preview {
+    background-image: url("../img/background-storia.jpg");
+}
 
 
 /*PAGINA VINO*/
