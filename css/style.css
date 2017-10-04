@@ -5,7 +5,7 @@
 
 
 
-/* GENERAL */
+/* ----------------------------------------------------- GENERAL ----------------------------------------------------------*/
 
 * {
     margin: 0;
@@ -32,7 +32,7 @@ body {
 
 #header a, #footer a{
     color: #fff;
-    font-size: 1.05em;
+    font-size: 1.2em;
     text-decoration: none;
 }
 
@@ -49,7 +49,7 @@ body {
     
 }
 
-/*HEADER*/
+/*-----------------------------------------------------------HEADER*---------------------------------------------------------*/
 
 
 #header {
@@ -71,7 +71,7 @@ body {
     display: none;
 }
 
-/*FOOTER*/
+/*------------------------------------------------------------FOOTER------------------------------------------------------*/
 
 
 #footer { 
@@ -90,7 +90,7 @@ body {
 }
 
 #footer li a {
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
 
 #footer li a:hover {
@@ -99,7 +99,8 @@ body {
 
 
 
-/*HOME*/
+/*-------------------------------------------------------------HOME----------------------------------------------------------*/
+
 #header, #presentation,#wine_preview,#history_preview, #footer{
     display: block;
 }
@@ -115,6 +116,7 @@ body {
     height: 25em;
     max-height: 100%;
     width: 100%;
+    box-shadow: 0em -0.15em 2em rgba(41, 51, 57, .5);
 }
 
 
@@ -125,15 +127,15 @@ body {
 #presentation h1 {
     font-family: 'Dancing Script',sans-serif;
     font-size: 4em;
-    margin-left: 4em;
+    margin-left: 3.5em;
     padding-top: 0.8em;
 }
 
 #presentation p {
     font-size: 1.5em;
     font-weight: 100;
-    margin-left: 12em;
-    padding-top: 2em;
+    margin-left: 9em;
+    padding-top: 1em;
 }
 
 /* WINE */
@@ -165,32 +167,40 @@ body {
 /* WINE PREVIEW */
 
 #wine_preview {
-    margin-top: 2em;
 }
 
-#wine_preview li {
-    list-style-type: none;
+#wine_preview .preview_wine {
     display: inline-block;
     width: 33%;
+    border: 0.02em solid #F5F5DC;
 }
 
-#wine_preview li:first-child{
-    background-color: azure;
-}
-
-#wine_preview li:last-child{
-    background-color:beige;
-}
-
-#wine_preview li img {
+#wine_preview .preview_wine img {
     height: 18em;
     margin-left: 10%;
     padding-top: 10%;
     padding-bottom: 10%;
 }
 
-#wine_preview li img:hover {
-    height: 22em;
+
+#wine_preview:hover .preview_wine img,
+#wine_preview:focus .preview_wine img {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+#wine_preview .preview_wine:first-child{
+    background-color: azure;
+    margin-left: 0.25em;
+}
+
+#wine_preview .preview_wine:last-child{
+    background-color:beige;
+}
+
+#wine_preview:hover .preview_wine_description,
+#wine_preview:focus .preview_wine_description {
+    transform: scale(1.1);
     transition: 0.3s;
 }
 
@@ -199,12 +209,21 @@ body {
     width: 50%;
     float: right;
 }
-.preview_wine_description a {
-    margin-top: 4em !important;
-    text-align: center;
-    clear: both;
+
+.preview_wine_description h3 {
+    padding-bottom: 0.5em;
 }
 
+.preview_wine_description a {
+    text-align: center;
+    clear: both;
+    color: grey;
+}
+
+.preview_wine_description a:hover {
+    border-bottom: 0.075em solid gray;
+    transition: 0.4s;
+}
 
 #short_description {
     margin-top: 2em;
@@ -223,15 +242,40 @@ body {
     margin-top: 1em;
     width: 60%;
     margin-left: 20%;
+    margin-bottom: 4em;
 }
+
 /* HISTORY PREVIEW */
 
 #history_preview {
     background-image: url("../img/background-storia.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100%;
+    background-color: black;
+    background-position: center;
+    height: 20em;
+}
+
+#history_preview h4 {
+    margin-left: 61%;
+    color: #fff;
+    padding-top: 0.5em;
+    font-family: 'Dancing Script',sans-serif;
+    font-size: 2.3em;
+}
+
+#history_preview p{
+    color: #fff;
+    width: 50%;
+    margin-left: 40%;
+    margin-top: 2.2em;
+    text-align: center;
+    padding-bottom: 3em;
 }
 
 
-/*PAGINA VINO*/
+/*-------------------------------------------------------------PAGINA VINO---------------------------------------------------*/
 
 
 
@@ -244,7 +288,7 @@ body {
 
 
 
-/*STORIA*/
+/*---------------------------------------------------STORIA---------------------------------------------------*/
 
 
 
@@ -257,7 +301,7 @@ body {
 
 
 
-/*CONTATTI*/
+/*---------------------------------------------------CONTATTI---------------------------------------------------*/
 
 
 
@@ -269,7 +313,7 @@ body {
 
 
 
-/*ANNATA*/
+/*---------------------------------------------------ANNATA---------------------------------------------------*/
 
 
 
