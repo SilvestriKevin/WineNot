@@ -180,14 +180,20 @@ body {
     margin-left: 10%;
     padding-top: 10%;
     padding-bottom: 10%;
+    -webkit-transform: scale(1.00);
+	-ms-transform: scale(1.00);
+	transform: scale(1.00);
 }
 
 
-#wine_preview:hover .preview_wine img,
-#wine_preview:focus .preview_wine img {
-    transform: scale(1.1);
-    transition: 0.3s;
+#wine_preview img:hover {
+     -webkit-transform: scale(1.20);
+	-ms-transform: scale(1.20);
+	transform: scale(1.20);
+    transition: transform 0.5s;
 }
+
+
 
 #wine_preview .preview_wine:first-child{
     background-color: azure;
@@ -198,11 +204,7 @@ body {
     background-color:beige;
 }
 
-#wine_preview:hover .preview_wine_description,
-#wine_preview:focus .preview_wine_description {
-    transform: scale(1.1);
-    transition: 0.3s;
-}
+
 
 .preview_wine_description {
     padding-top: 20%;
