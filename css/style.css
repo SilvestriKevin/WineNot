@@ -1,0 +1,147 @@
+/*
+    Bordeaux: #891826
+    LISTE: list-style-type: none;
+*/
+
+
+
+/* GENERAL */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    font-family: Verdana, Arial, Helvetica sans-serif;
+    max-width: 100%;
+    margin: auto;
+    font-size: 1em;
+}
+
+
+/* HEADER & FOOTER */
+
+#header,#footer {
+    background-color: #5F021F;
+    color: #fff;  
+    height: 4em;
+}
+
+
+#header a, #footer a{
+    color: #fff;
+    font-size: 1.05em;
+    text-decoration: none;
+}
+
+#header li, #footer li {
+    display: inline-block;
+    margin-right: 1.2em;
+}
+
+#header li a:hover,#footer li a:hover{
+    border-bottom: 0.075em solid #fff;
+    transition: 0.3s;
+    margin: 0em !important;
+    padding-bottom: 0.25em;
+    
+}
+
+/*HEADER*/
+
+
+#header {
+    box-shadow: 0 0.15em 0.7em rgba(41, 51, 57, .5);
+}
+
+#header ul {
+    float: right;
+    margin: 1em 2em 1em 0em;
+}
+
+
+/*FOOTER*/
+
+
+#footer { 
+    box-shadow: 0em -0.15em 0.7em rgba(41, 51, 57, .5);
+}
+
+#footer ul {
+    text-align: center;
+    margin: 1em;
+    padding-top: 1em;
+    list-style-type: none;
+}
+
+#footer li {
+    display: inline-block;
+}
+
+#footer li a {
+    font-size: 0.8em;
+}
+
+#footer li a:hover {
+    border-bottom: 0.05em solid #fff;
+}
+
+/*HOME*/
+
+
+
+
+
+
+
+
+
+
+
+/*PAGINA VINO*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*STORIA*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*CONTATTI*/
+
+
+
+
+
+
+
+
+
+
+
+/*ANNATA*/
+
+
+
+
+
+
