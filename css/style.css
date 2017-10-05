@@ -254,7 +254,7 @@ body {
 
 #short_description p {
     margin-top: 1em;
-    width: 60%;
+    width: 67%;
     color: dimgray;
     margin-left: 20%;
     margin-bottom: 4em;
@@ -272,7 +272,7 @@ body {
     height: 20em;
 }
 
-#history_preview h4 {
+#history_preview h5 {
     margin-left: 61%;
     color: #fff;
     padding-top: 0.5em;
@@ -289,6 +289,38 @@ body {
     padding-bottom: 3em;
     font-style: italic;
     font-weight: 300;
+}
+
+
+/* APPETIZER */
+
+#tasting h4 {
+    margin-top: 1em;
+    font-family: 'Dancing Script',sans-serif;
+    font-size: 3em;
+    color: #5F021F;
+}
+
+#tasting h4:after{
+    display: block;
+    height: 0.03em;
+    background-color: #000;
+    content: " ";
+    width: 7em;
+    margin: 0 auto;
+    margin-top: 0.5em;
+}
+
+#tasting h4, #tasting p {
+    text-align: center;
+}
+
+#tasting p {
+    margin-top: 1em;
+    width: 60%;
+    color: dimgray;
+    margin-left: 20%;
+    margin-bottom: 4em;
 }
 
 
@@ -331,6 +363,38 @@ body {
 
 
 /*---------------------------------------------------ANNATA---------------------------------------------------*/
+
+
+#title_best_annate {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+    font-size: 2em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
