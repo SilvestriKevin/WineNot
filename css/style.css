@@ -366,6 +366,12 @@ body {
 
 /*---------------------------------------------------ANNATA---------------------------------------------------*/
 
+/*TITLE BEST ANNATE*/
+
+#title_best_annate{
+    width: 80%;
+    margin-left: 10%;
+}
 
 #title_best_annate h1{
     margin-top: 1em;
@@ -394,6 +400,8 @@ body {
     letter-spacing: 0.025em;
     font-family: 'Dancing Script',sans-serif;
 }
+
+/*SLOGAN ANNATE*/
 
 #slogan_annate {
     text-align: center;
@@ -430,29 +438,85 @@ body {
     transition: transform 0.5s;
 }
 
+/*DESCRIPTION ANNATA*/
+
+#description_annata{
+    width: 85%;
+    margin-top: 2.5em;
+    margin-left: 7.5%;
+    text-align: center;
+}
+
 #description_annata li{
     list-style-type: none;
 }
 
 #description_annata label {
     font-family: 'Dancing Script',sans-serif;
-    font-size: 2.5em;
+    font-size: 2em;
     color: #5F021F;
     font-weight: 600;
-}
-
-#year_quality{
-    width: 40%;
-    display: block;
-}
-
-#year_description {
-    width: 60%;
+    width: 100%;
 }
 
 #description_annata div{
     display: inline-block;
 }
+
+#year_quality{
+    width: 35%;
+    float: left;
+}
+
+#year_quality li{
+    display: block;
+}
+
+#year_quality p, #year_description p{
+    padding-top: 0.4em;
+}
+
+#year_description{
+    width: 65%;
+}
+
+
+/*LIST WINES YEAR*/
+
+#list_wines_year{
+    width: 90%;
+    margin-top: 4em;
+    margin-left: 5%;
+}
+
+#list_wines_year h2{
+    margin-bottom: 1em;
+}
+
+#list_wines_year ul{
+    margin-bottom: 2.5em;
+}
+
+#list_wines_year h3{
+    font-size: 1.05em;
+}
+
+#list_wines_year img{
+    height: 16em;
+}
+
+#list_wines_year li{
+    display: inline-block;
+    width: 25%;
+}
+
+.specific_wine li {
+    display: block !important;
+    width: 100% !important;
+}
+
+
+
 
 
 

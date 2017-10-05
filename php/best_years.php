@@ -43,24 +43,24 @@ else $sql.="(SELECT MAX(anno) FROM annate WHERE migliore=1)";
 $result=mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)!=0){
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $description_annata.="<div id='year_quality'><li><label>Anno: </label><p>".$row['anno']."</p></li>";
+    $description_annata.="<div id='year_quality'><li><label>Anno </label><p>".$row['anno']."</p></li>";
     
-    $description_annata.="<li><label>Qualit&agrave;: </label><p>".$row['qualita']."</p></li></div>";
+    $description_annata.="<li><label>Qualit&agrave; </label><p>".$row['qualita']."</p></li></div>";
 
-    $description_annata.="<div id='year_description'><li><label>Descrizione: </label><p>".$row['descrizione']."</p></li></div>";
+    $description_annata.="<div id='year_description'><li><label>Descrizione </label><p>".$row['descrizione']."</p></li></div>";
     //STAMPA I VINI DELL'ANNATA
     $sql = "SELECT vini.* FROM vini WHERE annata='".$row['anno']."'";
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $vini.="<li><div><img alt='' src=''/><ul>";
+            $vini.="<li><div class='specific_wine'><img alt='' src='../img/".$row['foto'].".png'/><ul>";
             $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
             $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
             $vini.="<li><label>Vitigno: </label>".$row['vitigno']."</li>";
             $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
             $vini.="</ul></div></li>";
         }
-    else $vini.="<li><h2>Non sono presenti vini per questa annata.</h2></li>";
+    else $vini.="<li><h3>Non sono presenti vini per questa annata.</h3></li>";
 }
 //se viene manomesso l'URL e l'anno inserito non è tra le annate migliori
 else if(!empty($_GET['year']))$description_annata.="<li><h2>L'annata selezionata non risulta tra le migliori.</h2></li>";
