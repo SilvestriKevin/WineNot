@@ -37,6 +37,7 @@ body {
     text-decoration: none;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    font-weight: 300;
 }
 
 #header li, #footer li {
@@ -46,6 +47,9 @@ body {
 
 #header li a:hover,#footer li a:hover{
     margin: 0em !important;
+    border-bottom: 0.02em solid #fff;
+    padding-bottom: 0.2em;
+    transition: 0.4s;
 }
 
 /*-----------------------------------------------------------HEADER*---------------------------------------------------------*/
@@ -365,11 +369,9 @@ body {
 
 #title_best_annate h1{
     margin-top: 1em;
-    margin-bottom: 1em;
     text-align: center;
     font-size: 2em;
     font-weight: 100;
-    
     letter-spacing: 0.04em;
 }
 
@@ -381,23 +383,36 @@ body {
     width: 15em;
     margin: 0 auto;
     margin-top: 0.5em;
+    margin-bottom: 0.8em;
+}
+
+#title_best_annate p {
+    text-align: center;
+    clear: both;
     margin-bottom: 2em;
+    font-size: 1.7em;
+    letter-spacing: 0.025em;
+    font-family: 'Dancing Script',sans-serif;
 }
 
 #slogan_annate {
     text-align: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)), url(../img/background_annata.jpg);
-    height: 8em;
-    
+    background-image: linear-gradient(rgba(252, 239, 223, 0.53), rgba(252, 239, 223, 0.53)), url(../img/background_annata.jpg);
+    height: 9em;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0em 0em 1.5em rgba(41, 51, 57, .5);
 }
 
 #slogan_annate li {
     margin-top: 1.8em;
     margin-bottom: 1em;
-    font-size: 1.8em;
+    font-size: 1.9em;
     font-family: 'Dancing Script',sans-serif;
     display: inline-block;
     margin-right: 3em;
+    font-weight: 600;
 }
 
 #slogan_annate a {
@@ -405,12 +420,8 @@ body {
     -webkit-transform: scale(1.00);
 	-ms-transform: scale(1.00);
 	transform: scale(1.00);
+    color: black;
 }
-
-/*#slogan_annate a:hover {
-    border-bottom: 0.01em solid black;
-    transition: 0.2s;
-}*/
 
 #slogan_annate li:hover {
     -webkit-transform: scale(1.20);
@@ -419,17 +430,29 @@ body {
     transition: transform 0.5s;
 }
 
+#description_annata li{
+    list-style-type: none;
+}
 
+#description_annata label {
+    font-family: 'Dancing Script',sans-serif;
+    font-size: 2.5em;
+    color: #5F021F;
+    font-weight: 600;
+}
 
+#year_quality{
+    width: 40%;
+    display: block;
+}
 
+#year_description {
+    width: 60%;
+}
 
-
-
-
-
-
-
-
+#description_annata div{
+    display: inline-block;
+}
 
 
 

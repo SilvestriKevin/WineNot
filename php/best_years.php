@@ -43,10 +43,11 @@ else $sql.="(SELECT MAX(anno) FROM annate WHERE migliore=1)";
 $result=mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)!=0){
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $description_annata.="<li><label>Anno: </label>".$row['anno']."</li>";
-    $description_annata.="<li><label>Descrizione: </label>".$row['descrizione']."</li>";
-    $description_annata.="<li><label>Qualit&agrave;: </label>".$row['qualita']."</li>";
+    $description_annata.="<div id='year_quality'><li><label>Anno: </label><p>".$row['anno']."</p></li>";
+    
+    $description_annata.="<li><label>Qualit&agrave;: </label><p>".$row['qualita']."</p></li></div>";
 
+    $description_annata.="<div id='year_description'><li><label>Descrizione: </label><p>".$row['descrizione']."</p></li></div>";
     //STAMPA I VINI DELL'ANNATA
     $sql = "SELECT vini.* FROM vini WHERE annata='".$row['anno']."'";
     $result=mysqli_query($conn,$sql);
