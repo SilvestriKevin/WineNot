@@ -215,6 +215,10 @@ body {
     float: right;
 }
 
+.preview_wine_description div{
+    visibility: hidden;
+}
+
 .preview_wine_description h3 {
     padding-bottom: 0.5em;
 }

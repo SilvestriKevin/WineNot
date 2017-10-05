@@ -55,8 +55,13 @@ function placeHolder(e) {
     e.value = '';
   }
 }
-function pluto(e){
-    document.getElementByTagName('h3').style.display='none';
+
+function hide(object){
+          object.children[1].children[2].style.visibility = 'hidden';
+}
+
+function show(object){
+          object.children[1].children[2].style.visibility = 'visible';
 }
 
 /* Disable*/
