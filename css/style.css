@@ -36,6 +36,7 @@ body {
     font-size: 1.2em;
     text-decoration: none;
     letter-spacing: 0.04em;
+    text-transform: uppercase;
 }
 
 #header li, #footer li {
@@ -45,9 +46,6 @@ body {
 
 #header li a:hover,#footer li a:hover{
     margin: 0em !important;
-    font-weight: 600;
-    
-    
 }
 
 /*-----------------------------------------------------------HEADER*---------------------------------------------------------*/
@@ -365,20 +363,61 @@ body {
 /*---------------------------------------------------ANNATA---------------------------------------------------*/
 
 
-#title_best_annate {
+#title_best_annate h1{
     margin-top: 1em;
     margin-bottom: 1em;
     text-align: center;
     font-size: 2em;
+    font-weight: 100;
+    
+    letter-spacing: 0.04em;
 }
 
+#title_best_annate h1:after{
+    display: block;
+    height: 0.03em;
+    background-color: #000;
+    content: " ";
+    width: 15em;
+    margin: 0 auto;
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+}
 
+#slogan_annate {
+    text-align: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.1)), url(../img/background_annata.jpg);
+    height: 8em;
+    
+}
 
+#slogan_annate li {
+    margin-top: 1.8em;
+    margin-bottom: 1em;
+    font-size: 1.8em;
+    font-family: 'Dancing Script',sans-serif;
+    display: inline-block;
+    margin-right: 3em;
+}
 
+#slogan_annate a {
+    text-decoration: none;
+    -webkit-transform: scale(1.00);
+	-ms-transform: scale(1.00);
+	transform: scale(1.00);
+}
 
+/*#slogan_annate a:hover {
+    border-bottom: 0.01em solid black;
+    transition: 0.2s;
+}*/
 
-
-
+#slogan_annate li:hover {
+    -webkit-transform: scale(1.20);
+	-ms-transform: scale(1.20);
+	transform: scale(1.20);
+    transition: transform 0.5s;
+}
 
 
 
