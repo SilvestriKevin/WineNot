@@ -28,10 +28,10 @@
     <div id="header">
         <a title='Home' class='' href='../index.php' tabindex='1' acceskey='h'><img id="logo" alt="Logo WineNot" src="../img/logo.png" tabindex='1'/></a>
         <ul>
-            <li><a title='Vini' class='' href='' tabindex='2' acceskey='v'>Vini</a></li>
-            <li><a title='Annate Migliori' class='' href='' tabindex='3' acceskey='a'>Annata</a></li>
-            <li><a title='Storia' class='' href='' tabindex='4' acceskey='s'>Storia</a></li>
-            <li><a title='Contatti' class='' href='' tabindex='5' acceskey='c'>Contatti</a></li>
+            <li><a title='Vini' class='' href='./php/wines.php' tabindex='2' acceskey='v'>Vini</a></li>
+            <li><a title='Annate Migliori' class='' href='./php/best_years.php' tabindex='3' acceskey='a'>Annate Migliori</a></li>
+            <li><a title='Storia' class='' href='./php/story.php' tabindex='4' acceskey='s'>Storia</a></li>
+            <li><a title='Contatti' class='' href='./php/contacts.php' tabindex='5' acceskey='c'>Contatti</a></li>
         </ul>
     </div>
     <div id='breadcrumb'>
@@ -39,19 +39,19 @@
         <a href='../index.php'>Home</a>
         <label> > Login</label>
     </div>
-        <div id="box_center">
-            <!-- FORM BASE L'utente inserisce la sua email (che dovrà corrispondere a quella salvata nel database).-->
-            <form action="../php/recover.php" method="post">
-                <fieldset id="register_fieldset">
-                    <legend>Recupero Password</legend>
-                    <h2>Inserisci la tua email per ricevere la nuova password</h2>
-                    <ul>
+    <div id="box_center">
+        <!-- FORM BASE L'utente inserisce la sua email (che dovrà corrispondere a quella salvata nel database).-->
+        <form action="../php/recover.php" method="post">
+            <fieldset id="register_fieldset">
+                <legend>Recupero Password</legend>
+                <h2>Inserisci la tua email per ricevere la nuova password</h2>
+                <ul>
                     <li><input id="recover_text" type="text" name="email" tabindex="1" />
-                        <input class="search_button" id="recover_submit" type="submit" value="Invia" tabindex="2" accesskey="i"/></li>
+                        <input class="search_button" id="recover_submit" type="submit" value="Invia" tabindex="2" accesskey="i" /></li>
                 </ul>
-                </fieldset>
-            </form>
-        </div>
+            </fieldset>
+        </form>
+    </div>
     <div id='footer'>
         <ul>
             <li><a title='Termini e Condizioni' class='' href='' tabindex='' acceskey=''>Termini e Condizioni</a></li>
