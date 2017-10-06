@@ -351,23 +351,6 @@ body {
 
 
 
-
-
-
-
-
-/*---------------------------------------------------CONTATTI---------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
 /*---------------------------------------------------ANNATA---------------------------------------------------*/
 
 /*TITLE BEST ANNATE*/
@@ -414,7 +397,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    box-shadow: 0em 0em 1.5em rgba(41, 51, 57, .5);
+    box-shadow: 0em 0em 1.5em rgba(97, 106, 111, 0.44);
 }
 
 #slogan_annate li {
@@ -491,14 +474,11 @@ body {
     width: 90%;
     margin-top: 4em;
     margin-left: 5%;
+    margin-bottom: 3em;
 }
 
 #list_wines_year h2{
     margin-bottom: 1em;
-}
-
-#list_wines_year ul{
-    margin-bottom: 2.5em;
 }
 
 #list_wines_year h3{
@@ -514,10 +494,78 @@ body {
     width: 25%;
 }
 
-.specific_wine li {
+.specific_wine li{
     display: block !important;
     width: 100% !important;
 }
+
+/*
+#list_wines_year li{
+    background-color: rgba(247, 247, 247, 0.76);
+}
+*/
+
+.specific_wine ul{
+     margin-left: 5em;
+    margin-top: 0.5em;
+}
+
+.specific_wine img{
+    padding-left: 7.2em;
+    padding-top: 1em;
+}
+
+.specific_wine label{
+    text-transform: uppercase;
+    margin-right: 0.3em;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+
+
+/*---------------------------------------------------CONTATTI---------------------------------------------------*/
+
+#content_contacts_external{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-size: cover;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/backgroung_contacts.png");
+}
+
+#content_contacts{
+    background-color: #fff;
+    width: 60%;
+    margin-left: 20%;
+}
+
+#howto_contacts h1{
+    padding-top: 1em;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 100;
+    letter-spacing: 0.04em;
+}
+
+
+#howto_contacts h1:after{
+    display: block;
+    height: 0.03em;
+    background-color: #000;
+    content: " ";
+    width: 15em;
+    margin: 0 auto;
+    margin-top: 0.5em;
+    margin-bottom: 0.8em;
+}
+
+#howto_contacts fieldset{
+    
+}
+
+
+
 
 
 
