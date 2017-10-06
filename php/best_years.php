@@ -43,11 +43,11 @@ else $sql.="(SELECT MAX(anno) FROM annate WHERE migliore=1)";
 $result=mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)!=0){
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $description_annata.="<div id='year_quality'><li><label>Anno </label><p>".$row['anno']."</p></li>";
+    $description_annata.="<li><div id='year_quality'><ul><li><label>Anno </label><p>".$row['anno']."</p></li>";
     
-    $description_annata.="<li><label>Qualit&agrave; </label><p>".$row['qualita']."</p></li></div>";
+    $description_annata.="<li><label>Qualit&agrave; </label><p>".$row['qualita']."</p></li></ul></div></li>";
 
-    $description_annata.="<div id='year_description'><li><label>Descrizione </label><p>".$row['descrizione']."</p></li></div>";
+    $description_annata.="<li><div id='year_description'><ul><li><label>Descrizione </label><p>".$row['descrizione']."</p></li></ul></div></li>";
     //STAMPA I VINI DELL'ANNATA
     $sql = "SELECT vini.* FROM vini WHERE annata='".$row['anno']."'";
     $result=mysqli_query($conn,$sql);
@@ -71,7 +71,7 @@ else if(!empty($_GET['year']))$description_annata.="<li><h2>L'annata selezionata
 if(!empty($_SESSION['id'])) 
     $stampa = "<li><a title='Area Riservata' class='' href='../php/admin_panel.php' tabindex='' acceskey=''>Area Riservata</a></li>
                <li><a title='Esci dall'Area Riservata class='' href='../index.php?esci=1' tabindex='' accesskey='q'>Esci</a></li>";
-else $stampa = "<li><a title='Area Riservata' class='' href='../php/login.php' tabindex='' acceskey=''>Area Riservata</a></li>";
+else $stampa = "<li><a title='Area Riservata' class='' href='../php/login.php' tabindex='' accesskey=''>Area Riservata</a></li>";
 $pagina = file_get_contents("../html/best_years.html");
 //rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
 $pagina = str_replace("[ANNATE]", $annate, $pagina);
