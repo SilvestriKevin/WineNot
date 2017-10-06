@@ -35,13 +35,14 @@
             <li><a title='Contatti' class='' href='../php/contacts.php' tabindex='5' acceskey='c'>Contatti</a></li>
         </ul>
     </div>
-    <div id="" class="">
+    <div id="search_wines" class="">
         <form action="search.php" method="get">
             <fieldset>
                 <ul>
                     <li><input type="text" maxlength="100" name="search" id="search" title="Testo di ricerca" /></li>
                     <li>
                         <ul>
+                            <li id='order_by'>Ordina per: </li>
                             <li>
                                 <select>
                                     <option>Tutte le annate</option>
@@ -54,7 +55,6 @@
                                 [TIPOLOGIA]
                                 </select>
                             </li>
-                            <li>Ordina per: </li>
                             <li>
                                 <select>
                                     <option>Nome</option>
@@ -66,7 +66,7 @@
                         </ul>
                     </li>
 
-                    <li><input type="submit" class="search_button" value="Cerca" /></li>
+                    <li><input id='go_button' type="submit" class="inv_search_button" value="Cerca" /></li>
                 </ul>
             </fieldset>
         </form>
