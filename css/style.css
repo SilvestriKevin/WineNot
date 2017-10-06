@@ -21,6 +21,14 @@ body {
     letter-spacing: 0.025em;
 }
 
+/* classi che utilizzerà javascript */
+ 
+.hide{
+ 
+    display: none;
+ 
+}
+ 
 
 /* HEADER & FOOTER */
 
@@ -213,10 +221,6 @@ body {
     padding-top: 20%;
     width: 50%;
     float: right;
-}
-
-.preview_wine_description div{
-    visibility: hidden;
 }
 
 .preview_wine_description h3 {
