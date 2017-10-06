@@ -60,7 +60,7 @@ else $vini.="<li><h2>Non sono presenti vini per questa annata.</h2></li>";
 if(!empty($_SESSION['id'])) 
     $stampa = "<li><a title='Area Riservata' class='' href='../php/admin_panel.php' tabindex='' acceskey=''>Area Riservata</a></li>
                <li><a title='Esci dall'Area Riservata class='' href='../index.php?esci=1' tabindex='' accesskey='q'>Esci</a></li>";
-else $stampa = "<li><a title='Area Riservata' class='' href='../php/login.php' tabindex='' acceskey=''>Area Riservata</a></li>";
+else $stampa = "<li><a title='Area Riservata' class='' href='../php/login.php' tabindex='' accesskey=''>Area Riservata</a></li>";
 $pagina = file_get_contents("../html/wines.html");
 //rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
 $pagina = str_replace("[ANNATA]", $annata, $pagina);
