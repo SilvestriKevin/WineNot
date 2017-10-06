@@ -565,9 +565,86 @@ body {
 }
 
 #howto_contacts fieldset{
-    
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 3em;
 }
 
+#howto_contacts legend{
+    text-align: center;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    letter-spacing: 0.06em;
+}
+
+#howto_contacts li{
+    list-style-type: none;
+    margin-left: 9em;
+    margin-bottom: 0.5em;
+}
+
+#object_send{
+    margin-right: 1.7em;
+}
+
+#textarea_form_help{
+    margin-right: 25em;
+    margin-top: 0.5em;
+    width: 53%;
+}
+
+.search_button {
+    float: right;
+    margin-right: 8%;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    padding: 0.4em 0.4em 0.4em 0.4em;
+    border-radius: 0.4em;
+    font-family: 'Lato',Verdana, Arial, Helvetica sans-serif;
+    color: #5F021F;
+    font-size: 0.8em;
+    letter-spacing: 0.03em;
+    background-color: #fff;
+    border: 0.15em solid #5F021F;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.search_button:hover{
+    color: #fff;
+    background-color: #5F021F;
+    transition: 0.7s;
+}
+
+#personal_contacts{
+    margin: 2em 0em 2em 0em;
+    background-color: #393535;
+    color: #fff;
+    padding: 1em 0em 1em 0em;
+    width: 55%;
+    margin-left: 22.5%;
+}
+
+#personal_contacts li{
+    margin-left: 6em !important;
+}
+
+#position_contacts h2{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.3em;
+}
+
+#position_contacts p{
+    text-align: center;
+    margin: 0.5em 0em 0.5em 0em;
+}
+
+#googleMap{
+    margin-left: 5%;
+    width: 90%;
+}
 
 
 
