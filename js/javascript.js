@@ -56,12 +56,15 @@ function placeHolder(e) {
   }
 }
 
+//se l'elemento ha più di una classe usare le righe di codice commentate
 function hide(object){
-          object.children[1].children[2].style.visibility = 'hidden';
+          object.children[1].children[2].setAttribute('class',' hide');
+          //object.children[1].children[2].classList.add('hide');
 }
 
 function show(object){
-          object.children[1].children[2].style.visibility = 'visible';
+          object.children[1].children[2].removeAttribute('class');
+          //object.children[1].children[2].classList.remove('hide');
 }
 
 /* Disable*/
