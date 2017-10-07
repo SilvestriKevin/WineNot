@@ -21,13 +21,6 @@ body {
     letter-spacing: 0.025em;
 }
 
-/* classi che utilizzerà javascript */
- 
-.hide{
- 
-    display: none;
-}
-
 .search_button {
     padding: 0.4em 0.4em 0.4em 0.4em;
     border-radius: 0.4em;
@@ -65,7 +58,32 @@ body {
     background-color: #fff;
     transition: 0.7s;
 }
- 
+
+.specific_wine li {
+    display: block !important;
+    width: 100% !important;
+}
+
+.specific_wine ul {
+    padding: 0.2em 0em 0.2em 0.5em;
+    margin: 0.5em 2em 0em 2em;
+    background-color: rgba(227, 217, 206, 0.79) !important;
+    border: 0.1em solid rgba(227, 217, 206, 0.79);
+    border-radius: 0.4em;
+}
+
+.specific_wine img {
+    padding-left: 7.2em;
+    padding-top: 1em;
+    height: 16em;
+}
+
+.specific_wine label{
+    text-transform: uppercase;
+    margin-right: 0.3em;
+    font-weight: 600;
+    font-size: 0.9em;
+}
 
 /* HEADER & FOOTER */
 
@@ -96,6 +114,15 @@ body {
     padding-bottom: 0.2em;
     transition: 0.4s;
 }
+
+
+/* classi che utilizzerà JAVASCRIPT */
+ 
+.hide{
+ 
+    display: none;
+}
+
 
 /*-----------------------------------------------------------HEADER*---------------------------------------------------------*/
 
@@ -369,9 +396,11 @@ body {
 
 /*-------------------------------------------------------------VINI---------------------------------------------------*/
 
+/*SEARCH_WINES*/
+
 #search_wines fieldset {
     border: none;
-    background-image:  linear-gradient(rgba(237, 224, 224, 0.31), rgba(237, 224, 224, 0.31)),url(../img/background_search.png);
+    background-image:  linear-gradient(rgba(237, 224, 224, 0.55), rgba(237, 224, 224, 0.55)),url(../img/background_search.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -389,12 +418,17 @@ body {
 
 #search {
     height: 2em;
-    width: 30em;
+    width: 25em;
     margin: 0em 4em 0em 4em;
     border-radius: 0.25em;
     border: none;
     box-shadow: 0 0.1em 0.5em 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
     font-size: 1em;
+    padding-right: 2.5em;
+    /*immagine lente ingrandimento*/
+    background-image: url(../img/icon_search.png);
+    background-repeat: no-repeat;
+    background-position:right;
 }
 
 #search_wines select {
@@ -407,6 +441,31 @@ body {
     font-size: 1.2em;
 }
 
+
+/*WINE_RESULTS*/
+
+#wine_results{
+    width: 90%;
+    margin-top: 2em;
+    margin-left: 5%;
+    margin-bottom: 3em;
+}
+
+#wine_results li {
+    display: inline-block;
+    width: 25%;
+    margin-bottom: 2em;
+}
+
+#specific_result li {
+    width: 100% !important;
+    margin-bottom: 0.2em !important;
+    margin-left: 2em;
+}
+
+.specific_wine {
+    background-color: rgba(247, 237, 224, 0.16);
+}
 
 
 /*----------------------------------------------------------PAGINA SPECIFICAVINO----------------------------------------------*/
@@ -435,7 +494,7 @@ body {
     margin-left: 10%;
 }
 
-#title_best_annate h1 {
+#title_best_annate h1, #title_our_wines h1 {
     margin-top: 1em;
     text-align: center;
     font-size: 2em;
@@ -443,7 +502,7 @@ body {
     letter-spacing: 0.04em;
 }
 
-#title_best_annate h1:after {
+#title_best_annate h1:after, #title_our_wines h1:after {
     display: block;
     height: 0.03em;
     background-color: #000;
@@ -560,41 +619,9 @@ body {
     font-size: 1.05em;
 }
 
-#list_wines_year img {
-    height: 16em;
-}
-
 #list_wines_year li {
     display: inline-block;
     width: 25%;
-}
-
-.specific_wine li {
-    display: block !important;
-    width: 100% !important;
-}
-
-/*
-#list_wines_year li{
-    background-color: rgba(247, 247, 247, 0.76);
-}
-*/
-
-.specific_wine ul {
-     margin-left: 5em;
-    margin-top: 0.5em;
-}
-
-.specific_wine img {
-    padding-left: 7.2em;
-    padding-top: 1em;
-}
-
-.specific_wine label {
-    text-transform: uppercase;
-    margin-right: 0.3em;
-    font-weight: 600;
-    font-size: 0.9em;
 }
 
 /*---------------------------------------------------CONTATTI---------------------------------------------------*/
