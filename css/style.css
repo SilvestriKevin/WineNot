@@ -222,18 +222,14 @@ body {
     margin-left: 10%;
 }
 
-
-#img_description_wine{
-    display: inline-block;
-}
-
 #wine_img {
     height: 25em;
     width: auto;
+    display: inline-block;
 }
 
 #wine_description {
-    float: right;
+    display: inline-block;
     text-align: center;
     width: 60%;
     margin-right: 10%;

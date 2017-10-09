@@ -12,6 +12,7 @@ $stampa='';
 $vini='';
 $annata='';
 $tipologia='';
+$improved_search='';
 
 /*
 if(!empty($_COOKIE['error'])){
@@ -24,35 +25,74 @@ if(!empty($_COOKIE['info'])){
 }
 */
 
-//SELECT TIPOLOGIA NEL FORM
-$sql = "SELECT tipologia FROM vini GROUP BY tipologia ORDER BY tipologia";
-$result=mysqli_query($conn,$sql);
-if(mysqli_num_rows($result)!=0)
-    while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-        $tipologia.="<option>".$row['tipologia']."</option>";
-    }
 
 //SELECT ANNATA NEL FORM
 $sql = "SELECT annata FROM vini GROUP BY annata ORDER BY annata";
 $result=mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)!=0)
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-        $annata.="<option>".$row['annata']."</option>";
+        $annata.="<option value='".$row['annata']."'";
+        if(!empty($_GET['annata']) && $_GET['annata']==$row['annata']) $annata.=" selected='selected'";
+        $annata.=">".$row['annata']."</option>";
     }
 
-//STAMPA I VINI DELL'ANNATA
-$sql = "SELECT vini.* FROM vini";
+//SELECT TIPOLOGIA NEL FORM
+$sql = "SELECT tipologia FROM vini GROUP BY tipologia ORDER BY tipologia";
 $result=mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)!=0)
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-        $vini.="<li><div id='specific_result' class='specific_wine'><img alt='' src='../img/merlot.png'/><ul>";
-        $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
-        $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
-        $vini.="<li><label>Vitigno: </label>".$row['vitigno']."</li>";
-        $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
-        $vini.="</ul></div></li>";
+        $tipologia.="<option value='".$row['tipologia']."'";
+        if(!empty($_GET['tipologia']) && $_GET['tipologia']==$row['tipologia']) $tipologia.=" selected='selected'";
+        $tipologia.=">".$row['tipologia']."</option>";
     }
-else $vini.="<li><h2>Non sono presenti vini per questa annata.</h2></li>";
+
+//STAMPA I VINI SECONDO I PARAMETRI DI RICERCA
+if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine'])){
+    
+    /*if(!empty($_GET['search'])){
+        chiamo la funzione in lib.php che controlla il testo inserito. (controllare ricerca su homie)
+        $search=$_GET['search'];
+    }*/
+
+    if($_GET['annata']!='All') $improved_search.=" WHERE annata='".$_GET['annata']."'";
+    
+    if($_GET['tipologia']!='All'){
+        if(!empty($improved_search)) $improved_search.=" AND tipologia='".$_GET['tipologia']."'";
+        else $improved_search.=" WHERE tipologia='".$_GET['tipologia']."'";
+    }
+    
+    $improved_search.=" ORDER BY ".$_GET['ordine'];
+    
+    
+    //STAMPA I VINI 
+    $sql = "SELECT vini.* FROM vini".$improved_search;
+    $result=mysqli_query($conn,$sql);
+    if(mysqli_num_rows($result)!=0)
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            $vini.="<li><a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''><div id='specific_result' class='specific_wine'><img alt='' src='../img/".$row['foto'].".png'/><ul>";
+            $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
+            $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
+            $vini.="<li><label>Vitigno: </label>".$row['vitigno']."</li>";
+            $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
+            $vini.="</ul></div></a></li>";
+        }
+    else $vini.="<li><h2>Non sono presenti vini per questa ricerca. Riprova cambiando i parametri.</h2></li>";
+}
+else {
+    //STAMPA I VINI (QUANDO SI APRE LA PAGINA LA PRIMA VOLTA)
+    $sql = "SELECT vini.* FROM vini";
+    $result=mysqli_query($conn,$sql);
+    if(mysqli_num_rows($result)!=0)
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            $vini.="<li><a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''><div id='specific_result' class='specific_wine'><img alt='' src='../img/".$row['foto'].".png'/><ul>";
+            $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
+            $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
+            $vini.="<li><label>Vitigno: </label>".$row['vitigno']."</li>";
+            $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
+            $vini.="</ul></div></a></li>";
+        }
+    else $vini.="<li><h2>Non sono presenti vini.</h2></li>";
+}
 
 
 //creazione della pagina web
