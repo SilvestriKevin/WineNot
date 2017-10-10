@@ -33,7 +33,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
         else{
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
             $_SESSION['id'] = $row['id'];
-            header("Location: ../index.php");
+            header("Location: ./admin_panel.php");
         }
     }
     else{
