@@ -25,13 +25,21 @@ if(!empty($_GET['id_wine'])){
 
         $descrizione.=$row['descrizione'];
 
+        $informazioni.="<li id='title_details'><label>Dettagli: </label>"."</li>";
+        
         $informazioni.="<li><label>Nome: </label>".$row['nome']."</li>";
         $informazioni.="<li><label>Denominazione: </label>".$row['denominazione']."</li>";
         $informazioni.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
         $informazioni.="<li><label>Vitigno: </label>".$row['vitigno']."</li>";
         $informazioni.="<li><label>Annata: </label>".$row['annata']."</li>";
+        
+        $informazioni.="<li id='title_details'><label>Piatti e Occasioni: </label>"."</li>";
+        
         $informazioni.="<li><label>Abbinamento: </label>".$row['abbinamento']."</li>";
         $informazioni.="<li><label>Degustazione: </label>".$row['degustazione']."</li>";
+        
+        $informazioni.="<li id='title_details'><label>Quantità: </label>"."</li>";
+        
         $informazioni.="<li><label>Formato: </label>".$row['formato']."</li>";
         $informazioni.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
     }

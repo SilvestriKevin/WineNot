@@ -444,7 +444,7 @@ body {
 /*----------------------------------------------------------PAGINA SPECIFICA VINO----------------------------------------------*/
 
 #container_wine {
-    margin-bottom: 2em;
+    margin-bottom: 13em;
 }
 
 #container_wine div {
@@ -457,17 +457,56 @@ body {
 #wine_img {
     margin-left: 6em;
     margin-top: 1em;
-    height: 30em;
+    height: 34em;
 }
 
 #details_wine {
-    width: 70%;
-    padding-left: 10%;
+    width: 60%;
+    margin-right: 7%;
+    float: right;
+}
+
+#details_wine p {
+    margin: 2em 3em 1em 0em;
+    font-size: 1.1em;
+}
+
+#title_details {
+    font-size: 1.8em !important;
+    color: #5F021F;
+    margin-top: 1.5em;
+    letter-spacing: 0.025em;
+    font-family: 'Dancing Script',sans-serif;
+}
+
+#title_details:after{
+    display: block;
+    height: 0.03em;
+    background-color: #5F021F;
+    content: " ";
+    width: 15em;
+    margin-left: 0em;
+    margin-top: 0.5em;
 }
 
 #details_wine li {
     list-style-type: none;
+    margin-bottom: 0.5em;
+    font-size: 1.1em;
 }
+
+#details_wine label {
+    font-size: 1.1em;
+}
+
+
+
+
+
+
+
+
+
 
 /*---------------------------------------------------STORIA---------------------------------------------------*/
 
