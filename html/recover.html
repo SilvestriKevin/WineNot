@@ -8,6 +8,7 @@
     <link type="text/css" rel="stylesheet" href="../css/print.css" media="print" />
     <link type="text/css" rel="stylesheet" href="../css/screenreader.css" media="speech" />
     <link rel="stylesheet" type="text/css" href="../css/mobile.css" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Lato|Dancing+Script" rel="stylesheet" />
 
     <script type="text/javascript" src="../js/javascript.js"></script>
 
@@ -43,11 +44,12 @@
         <!-- FORM BASE L'utente inserisce la sua email (che dovrà corrispondere a quella salvata nel database).-->
         <form action="../php/recover.php" method="post">
             <fieldset id="register_fieldset">
-                <legend>Recupero Password</legend>
-                <h2>Inserisci la tua email per ricevere la nuova password</h2>
+                <h2>Recupero Password</h2>
                 <ul>
+                    <li><label>Inserisci la tua email per ricevere la nuova password:</label></li>
+                        
                     <li><input id="recover_text" type="text" name="email" tabindex="1" />
-                        <input class="search_button" id="recover_submit" type="submit" value="Invia" tabindex="2" accesskey="i" /></li>
+                    <input id="recover_submit" class="inv_search_button" type="submit" value="Invia" tabindex="2" accesskey="i" /></li>
                 </ul>
             </fieldset>
         </form>

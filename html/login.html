@@ -8,6 +8,7 @@
     <link type="text/css" rel="stylesheet" href="../css/print.css" media="print" />
     <link type="text/css" rel="stylesheet" href="../css/screenreader.css" media="speech" />
     <link rel="stylesheet" type="text/css" href="../css/mobile.css" media="screen" />
+    <link href="https://fonts.googleapis.com/css?family=Lato|Dancing+Script" rel="stylesheet" />
 
     <script type="text/javascript" src="../js/javascript.js"></script>
 
@@ -42,12 +43,12 @@
         <label> > Login</label>
     </div>
 -->
-    <div>
+    <div id="register_div">
         [ERRORE]
         <form action="../php/login.php" method="post">
 
             <fieldset id="register_fieldset">
-                <legend>Accedi</legend>
+                <h2>Accedi</h2>
                 <ul>
                     <li><label>Username:</label>
                         <input type="text" maxlength="100" name="username" id="username" title="username" tabindex='1' accesskey='u' /></li>
@@ -56,7 +57,9 @@
                     <li id='err_pwd'></li>
                     <li>
                         <a id="box_center_recover" href="../html/recover.html" title="Hai dimenticato la password?" tabindex='4' accesskey='f'>Hai dimenticato la password?</a>
-                        <input type="submit" class="search_button" name="login" value="Entra" tabindex='3' accesskey='g' />
+                    </li>
+                    <li>
+                        <input id="login_button" type="submit" class="inv_search_button" name="login" value="Entra" tabindex='3' accesskey='g' />
                     </li>
                 </ul>
             </fieldset>
