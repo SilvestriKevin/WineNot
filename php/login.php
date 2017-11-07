@@ -23,7 +23,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
     if(!empty($username) && !empty($password)){
 
         $sql = "SELECT id_user AS id FROM utenti
-	WHERE username='".$username."'  and password=MD5('".$password."')";
+	WHERE username='".escapingText($username)."'  and password=MD5('".escapingText($password)."')";
         $result = mysqli_query($conn, $sql);
 
         if(mysqli_num_rows($result) == 0){
