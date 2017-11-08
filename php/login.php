@@ -13,7 +13,7 @@ if(isset($_SESSION['id'])) header("Location: ../index.php");
 $stampa='';
 
 if(!empty($_COOKIE['error'])){
-    $stampa.="<h1 id='gonna_delete_user'>".$_COOKIE['error']."</h1>";
+    $stampa.="<h2 id='gonna_delete_user'>".$_COOKIE['error']."</h2>";
     setcookie('error',null);
 }
 
