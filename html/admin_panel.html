@@ -34,25 +34,31 @@
     <div id="admin_content">
         <div id="horizontal_menu">
             <ul>
-                <li><a title='' class='' href='' tabindex='' accesskey=''>Gestione Vini</a></li>
+                <li><a title='' class='' href='admin_panel.php' tabindex='' accesskey=''>Gestione Vini</a></li>
                 <li><a title='' class='' href='' tabindex='' accesskey=''>Gestione Annate</a></li>
-                <li><a title='' class='' href='' tabindex='' accesskey=''>Cestino</a></li>
+                <li><a title='' class='' href='admin_panel.php?section=garbage' tabindex='' accesskey=''>Cestino</a></li>
                 <li><a title='' class='' href='' tabindex='' accesskey=''>Dati Profilo</a></li>
             </ul>
         </div>
-    
-    <div>
-        <ul id="wines_list">
-            <li><ul id="wines_header">
-                <li>Denominazione</li>
-                <li>Tipologia</li>
-                <li>Annata</li>
-                <li class='modify_column'>Modifica</li>
-                <li class='remove_column'>Cestina</li>
-                </ul></li>
-            [VINI]
-        </ul>
-    </div>
+
+        <div>
+            <ul id="wines_list">
+                <form action="admin_panel.php" method="get">
+                    [INFO/ERRORE]
+                    <li>
+                        <ul id="wines_header">
+                            <li>Denominazione</li>
+                            <li>Tipologia</li>
+                            <li>Annata</li>
+                            <li class='modify_column'>Modifica</li>
+                            <li class='remove_column'>Cestina</li>
+                        </ul>
+                    </li>
+                    [VINI]
+                </form>
+            </ul>
+
+        </div>
     </div>
 </body>
 
