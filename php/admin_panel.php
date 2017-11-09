@@ -17,20 +17,14 @@ $sql = "SELECT vini.* FROM vini";
 $result=mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)!=0)
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-        $vini.="<li><div id='specific_result' class='specific_wine'><img alt='' src='../img/".$row['foto'].".png'/>";
-        $vini.="<ul>";
-        $vini.="<li><a title='Modifica vino' class='' href='./modify_wine.php' tabindex='' accesskey=''>Modifica</a></li>";
-        $vini.="<li><a title='Elimina vino' class='' href='./delete_wine.php' tabindex='' accesskey=''>Elimina</a></li>";
-        $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
-        $vini.="<li><label>Denominazione: </label>".$row['denominazione']."</li>";
-        $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
-        $vini.="<li><label>Vitigno: </label>".$row['vitigno']."</li>";
-        $vini.="<li><label>Annata: </label>".$row['annata']."</li>";
-        $vini.="<li><label>Abbinamento: </label>".$row['abbinamento']."</li>";
-        $vini.="<li><label>Degustazione: </label>".$row['degustazione']."</li>";
-        $vini.="<li><label>Formato: </label>".$row['formato']."</li>";
-        $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
-        $vini.="</ul></div></li>";
+        $vini.="<li>";
+        $vini.="<ul class='wines_row'>";
+        $vini.="<li>".$row['denominazione']."</li>";
+        $vini.="<li>".$row['tipologia']."</li>";
+        $vini.="<li>".$row['annata']."</li>";
+        $vini.="<li class='modify_column'><a title='Modifica vino' class='' href='./modify_wine.php' tabindex='' accesskey=''>Modifica</a></li>";
+        $vini.="<li class='remove_column'><a title='Elimina vino' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></li>";
+        $vini.="</ul></li>";
     }
 else $vini.="<li><h2>Non sono presenti vini.</h2></li>";
 

@@ -90,7 +90,7 @@ body {
     font-weight: 300;
 }
 
-#header a, #footer a{
+#header a, #footer a,#horizontal_menu a{
     color: rgba(226, 211, 201, 0.71);
     text-decoration: none;
     letter-spacing: 0.04em;
@@ -105,7 +105,7 @@ body {
     color: #fff;
 }
 
-#header li a:hover,#footer li a:hover{
+#header li a:hover,#footer li a:hover, #horizontal_menu a:hover {
     margin: 0em !important;
     color: #fff;
     /*
@@ -992,4 +992,60 @@ body {
 
 
 
+/*
+    ADMIN PANEL
+*/
 
+#admin_content {
+    border:1.5px solid;
+    min-height: 30em;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 3em;
+}
+
+#horizontal_menu {
+    background-color: #5F021F;
+    width: 100%;
+}
+
+#horizontal_menu li,#wines_header li,
+.wines_row li {
+    display: inline-block;
+    text-align: center;
+}
+
+#wines_header {
+    background-color: #777777;
+    color:#fff;
+}
+
+#horizontal_menu ul {
+    padding: 0.4em 2em;
+}
+
+#wines_list li{
+    list-style-type: none;
+}
+
+
+#wines_list {
+    width: 90%;
+    margin: 1em 5%;
+}
+
+#wines_header li,.wines_row li{
+    width:25%;
+}
+
+.modify_column,.remove_column {
+    width: 12.5%!important;
+}
+
+.wines_row li {
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    margin-right: -1px; /* margine negativo compensa spazio occupato da border*/
+    margin-bottom: -1px;
+    
+}
