@@ -1,14 +1,8 @@
 <?php
-function reindirizza($paginainterna=0) 
-{
-    $location='Location: ./index.php';
-    if($paginainterna) $location.='?$paginainterna';
-    header($location);
-    exit;
-}
 
 //funzione che crea una password random
-function random($lunghezza=12){
+function random($lunghezza=12)
+{
     $caratteri_disponibili ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
     $codice = "";
     for($i = 0; $i<$lunghezza; $i++){
@@ -17,24 +11,7 @@ function random($lunghezza=12){
     return $codice;
 }
 
-//fa la differenza tra date e ritorna true se la prima data e' minore/uguale alla seconda, false altrimenti
-function datediff($prima_data, $seconda_data)
-{
-    $prima_data = strtotime($prima_data);
-    $seconda_data = strtotime($seconda_data); 
-    if ($prima_data <= $seconda_data) return true;
-    else return false;
-}
-
-//funzione ritorna true se la persona è maggiorenne rispetto alla data attuale, false altrimenti
-function Adult($data){
-    $data_attuale=date("Y-m-d"); 
-    $newdate = strtotime ( '-18 year' , strtotime ( $data_attuale ) ) ; // facciamo l'operazione
-    $newdate = date ( 'Y-m-d' , $newdate ); //trasformiamo la data nel formato accettato dal db YYYY-MM-DD
-    return datediff($data, $newdate);
-}
-
-function EntityAccentedVowels($stringa)
+function entityAccentedVowels($stringa)
 {
     $stringa = str_replace ('à', '&agrave;', $stringa);
     $stringa = str_replace ('é', '&eacute;', $stringa);
@@ -80,12 +57,15 @@ function cleanInput($input)
 }
 
 //toglie le parentesi triangolari per evitare injection code nei campi testuali dei form
-function controlText($string){
+function controlText($string)
+{
     $string = str_replace(array('<','>'),' ',$string);
     return $string;
-                 }
+}
+
 //funzione per fare l'escaping degli apici negli input testuali che sono sensibili ad injection code
-function escapingText($string){
+function escapingText($string)
+{
     $string = str_replace("'","\'",$string);
     return $string;
 }

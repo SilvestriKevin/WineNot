@@ -8,7 +8,6 @@ include_once("../include/config.php");
 //inclusione file per funzioni ausiliarie
 include_once("../include/lib.php");
 
-$stampa='';
 $error='';
 $info='';
 
@@ -86,14 +85,9 @@ if(!empty($_POST['email']) ){
 
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
-if(!empty($_SESSION['id'])) 
-    $stampa = "<li><a title='Area Riservata' class='' href='../php/admin_panel.php' tabindex='' acceskey=''>Area Riservata</a></li>
-               <li><a title='Esci dall'Area Riservata class='' href='../index.php?esci=1' tabindex='' accesskey='q'>Esci</a></li>";
-else $stampa = "<li><a title='Area Riservata' class='' href='../php/login.php' tabindex='' acceskey=''>Area Riservata</a></li>";
 $pagina = file_get_contents("../html/contacts.html");
 //rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
 $pagina = str_replace("[ERRORE]", $error, $pagina);
-$pagina = str_replace("[INFO]", $info, $pagina);
-echo str_replace("[AREA_RISERVATA]", $stampa, $pagina);
+echo str_replace("[INFO]", $info, $pagina);
 mysqli_close($conn);
 ?>

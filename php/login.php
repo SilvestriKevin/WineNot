@@ -8,7 +8,7 @@ include_once("../include/config.php");
 //inclusione file per funzioni ausiliarie
 include_once("../include/lib.php");
 
-if(isset($_SESSION['id'])) header("Location: ../index.php");
+if(isset($_SESSION['id'])) header("Location: admin_panel.php");
 
 $stampa='';
 

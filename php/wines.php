@@ -8,7 +8,6 @@ include_once("../include/config.php");
 //inclusione file per funzioni ausiliarie
 include_once("../include/lib.php");
 
-$stampa='';
 $vini='';
 $annata='';
 $tipologia='';
@@ -37,47 +36,53 @@ if(mysqli_num_rows($result)!=0)
     }
 
 //SELECT TIPOLOGIA NEL FORM
-$sql = "SELECT tipologia FROM vini GROUP BY tipologia ORDER BY tipologia";
+/*$sql = "SELECT tipologia FROM vini GROUP BY tipologia ORDER BY tipologia";
 $result=mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)!=0)
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
         $tipologia.="<option value='".$row['tipologia']."'";
         if(!empty($_GET['tipologia']) && $_GET['tipologia']==$row['tipologia']) $tipologia.=" selected='selected'";
         $tipologia.=">".$row['tipologia']."</option>";
-    }
-
+    }*/
+$array_tipologie=array('bianco','rosso','ros&egrave;');
+$num_elementi=count($array_tipologie);
+for($i=0 ; $i<$num_elementi ; $i++){
+    $tipologia.="<option value='".$array_tipologie[$i]."'";
+    if(!empty($_GET['tipologia']) && entityAccentedVowels($_GET['tipologia'])==$array_tipologie[$i]) $tipologia.=" selected='selected'";
+    $tipologia.=">".$array_tipologie[$i]."</option>";
+}
 
 $text_search = '';
-        
+
 
 //STAMPA I VINI SECONDO I PARAMETRI DI RICERCA
 if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine'])){
-    
+
     if(!empty($_GET['search'])){
         //chiamo la funzione in lib.php che controlla il testo inserito. (controllare ricerca su homie)
-        
+
         // rendo tutto in minuscolo
         $search = strtolower($_GET['search']);
-        
+
         // pulisco la stringa
         $search = cleanInput($search);
-        
+
         $counter=0;
         $text_search = " WHERE ";
         while(!empty($search[$counter])) {
-            
+
             if($counter>0) {
                 $text_search.=" OR ";
             }
-            
+
             $text_search.= "vini.nome LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.vitigno LIKE '%".$search[$counter]."%' OR vini.gradazione LIKE '%".$search[$counter]."%'";
-           
+
             $counter++;
         }
     }
-    
-    
-    
+
+
+
     if($_GET['annata']!='All') {
         if(!empty($_GET['search'])) {
             $improved_search.=" AND annata='".$_GET['annata']."'";
@@ -85,16 +90,16 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
             $improved_search.=" WHERE annata='".$_GET['annata']."'";
         }
     }
-    
+
     if($_GET['tipologia']!='All'){
         if(!empty($improved_search)) $improved_search.=" AND tipologia='".$_GET['tipologia']."'";
-        //else $improved_search.=" WHERE tipologia='".$_GET['tipologia']."'";
+        else $improved_search.=" WHERE tipologia='".$_GET['tipologia']."'";
     }
-    
+
 
     //STAMPA I VINI 
     $sql = "SELECT vini.nome, vini.tipologia,vini.vitigno,vini.gradazione,vini.foto, vini.id_wine FROM vini ".$text_search.$improved_search." ORDER BY ".$_GET['ordine'];
-    
+
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
@@ -105,7 +110,7 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
             $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
             $vini.="</ul></div></a></li>";
         }
-    else $vini.="<li><h2>".$sql."Non sono presenti vini per questa ricerca. Riprova cambiando i parametri.</h2></li>";
+    else $vini.="<li><h2>Non sono presenti vini per questa ricerca. Riprova cambiando i parametri.</h2></li>";
 }
 else {
     //STAMPA I VINI (QUANDO SI APRE LA PAGINA LA PRIMA VOLTA)
@@ -126,15 +131,10 @@ else {
 
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
-if(!empty($_SESSION['id'])) 
-    $stampa = "<li><a title='Area Riservata' class='' href='../php/admin_panel.php' tabindex='' acceskey=''>Area Riservata</a></li>
-               <li><a title='Esci dall'Area Riservata class='' href='../index.php?esci=1' tabindex='' accesskey='q'>Esci</a></li>";
-else $stampa = "<li><a title='Area Riservata' class='' href='../php/login.php' tabindex='' accesskey=''>Area Riservata</a></li>";
 $pagina = file_get_contents("../html/wines.html");
 //rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
 $pagina = str_replace("[ANNATA]", $annata, $pagina);
 $pagina = str_replace("[TIPOLOGIA]", $tipologia, $pagina);
-$pagina = str_replace("[VINI]", $vini, $pagina);
-echo str_replace("[AREA_RISERVATA]", $stampa, $pagina);
+echo str_replace("[VINI]", $vini, $pagina);
 mysqli_close($conn);
 ?>
