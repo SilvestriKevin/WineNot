@@ -1,2 +1,6 @@
-ErrorDocument 404 /WineNot/php/404.php
+ErrorDocument 404 /WineNot/html/404.html
 AddType application/x-httpd-php .html .htm
+
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ^(.*)/admin$ http://localhost/WineNot/php/login.php [R=301,L]
