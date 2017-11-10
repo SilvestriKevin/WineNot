@@ -44,7 +44,7 @@ if(mysqli_num_rows($result)!=0)
         if(!empty($_GET['tipologia']) && $_GET['tipologia']==$row['tipologia']) $tipologia.=" selected='selected'";
         $tipologia.=">".$row['tipologia']."</option>";
     }*/
-$array_tipologie=array('bianco','rosso','ros&egrave;');
+$array_tipologie=array('bianco','rosso','nero','ros&egrave;');
 $num_elementi=count($array_tipologie);
 for($i=0 ; $i<$num_elementi ; $i++){
     $tipologia.="<option value='".$array_tipologie[$i]."'";
