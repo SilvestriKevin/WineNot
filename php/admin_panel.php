@@ -103,9 +103,9 @@ else{
         }   
         else{
             $num_elem = count($wines);
-            $sql="UPDATE vini SET cestino = 1 WHERE id_wine ='";
+            $sql="UPDATE vini SET cestino = 1 WHERE id_wine = '";
             for($i=0 ; $i<$num_elem ; $i++){
-                if($i!=0) $sql.="' or '";
+                if($i!=0) $sql.="' OR id_wine = '";
                 $sql.=$wines[$i];
             }
             $sql.="'";
