@@ -8,22 +8,30 @@ include_once("../include/config.php");
 //inclusione file per funzioni ausiliarie
 include_once("../include/lib.php");
 
-if(isset($_SESSION['id'])) header("Location: admin_panel.php");
+//per uscire dal pannello d'amministrazione
+if(!empty($_SESSION['id']) && !empty($_GET['esci']) && $_GET['esci']==1){
+    unset($_SESSION['id']);
+    header('Location: ../index.html');
+}
+else if(!empty($_SESSION['id'])) header("Location: admin_panel.php");
+
 
 $stampa='';
 
+//per stampare messaggi d'errore
 if(!empty($_COOKIE['error'])){
     $stampa.="<h2 id='gonna_delete_user'>".$_COOKIE['error']."</h2>";
     setcookie('error',null);
 }
 
+//controllo dell'username e password
 if(isset($_POST['username']) && isset($_POST['password'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
     if(!empty($username) && !empty($password)){
 
         $sql = "SELECT id_user AS id FROM utenti
-	WHERE username='".escapingText($username)."'  and password=MD5('".escapingText($password)."')";
+	WHERE username='".escapingText($username)."' AND password=MD5('".escapingText($password)."')";
         $result = mysqli_query($conn, $sql);
 
         if(mysqli_num_rows($result) == 0){

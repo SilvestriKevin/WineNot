@@ -52,12 +52,12 @@ if(mysqli_num_rows($result)!=0){
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $vini.="<li><div class='specific_wine'><img alt='' src='../img/".$row['foto'].".png'/><ul>";
+            $vini.="<li><a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''><div class='specific_wine'><img alt='' src='../img/".$row['foto'].".png'/><ul>";
             $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
             $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
             $vini.="<li><label>Vitigno: </label>".$row['vitigno']."</li>";
             $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
-            $vini.="</ul></div></li>";
+            $vini.="</ul></div></a></li>";
         }
     else $vini.="<li><h3>Non sono presenti vini per questa annata.</h3></li>";
 }
