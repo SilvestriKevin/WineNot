@@ -22,90 +22,104 @@ if(!empty($_COOKIE['error'])){
     setcookie('error',null);
 }
 
-if((isset($_GET['section']) && $_GET['section']=='garbage') or isset($_GET['delete_finally_selected']) or isset($_GET['restore_selected'])){
-    if(isset($_GET['delete_finally_selected'])){
+if(isset($_GET['section'])) $section = $_GET['section'];
+else if(isset($_POST['section'])) $section = $_POST['section'];
 
-        $wines = isset($_GET['wines']) ? $_GET['wines'] : array();
-        if (!count($wines)) {
-            setcookie('error',"Selezionare almeno un elemento");
-            header("Location: admin_panel.php?section=garbage");
-        }   
-        else{
-            $num_elem = count($wines);
-            $sql="DELETE vini WHERE id_wine ='";
-            for($i=0 ; $i<$num_elem ; $i++){
-                if($i!=0) $sql.="' or '";
-                $sql.=$wines[$i];
-            }
-            $sql.="'";
-            $result = mysqli_query($conn,$sql);
-            //controllo la connessione
-            if ($result) {
-                setcookie('info',"Elementi eliminati definitivamente");
-                header("Location: admin_panel.php?section=garbage");
-            }
-            else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare");
-            header("Location: admin_panel.php?section=garbage");
-        }
-    }
-    
-    if(isset($_GET['restore_selected'])){
+if(isset($section)){
+    switch($section){
+        case 'garbage':
+            if(isset($_POST['delete_finally_selected'])){
 
-        $wines = isset($_GET['wines']) ? $_GET['wines'] : array();
-        if (!count($wines)) {
-            setcookie('error',"Selezionare almeno un elemento");
-            header("Location: admin_panel.php?section=garbage");
-        }   
-        else{
-            $num_elem = count($wines);
-            $sql="UPDATE vini SET cestino = 0 WHERE id_wine ='";
-            for($i=0 ; $i<$num_elem ; $i++){
-                if($i!=0) $sql.="' or '";
-                $sql.=$wines[$i];
+                $wines = isset($_POST['wines']) ? $_POST['wines'] : array();
+                if (!count($wines)) {
+                    setcookie('error',"Selezionare almeno un elemento");
+                    header("Location: admin_panel.php?section=garbage");
+                }   
+                else{
+                    $num_elem = count($wines);
+                    $sql="DELETE vini WHERE id_wine ='";
+                    for($i=0 ; $i<$num_elem ; $i++){
+                        if($i!=0) $sql.="' or '";
+                        $sql.=$wines[$i];
+                    }
+                    $sql.="'";
+                    $result = mysqli_query($conn,$sql);
+                    //controllo la connessione
+                    if ($result) {
+                        setcookie('info',"Elementi eliminati definitivamente");
+                        header("Location: admin_panel.php?section=garbage");
+                    }
+                    else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare");
+                    header("Location: admin_panel.php?section=garbage");
+                }
             }
-            $sql.="'";
-            $result = mysqli_query($conn,$sql);
-            //controllo la connessione
-            if ($result) {
-                setcookie('info',"Elementi ripristinati");
-                header("Location: admin_panel.php?section=garbage");
+
+            if(isset($_POST['restore_selected'])){
+
+                $wines = isset($_POST['wines']) ? $_POST['wines'] : array();
+                if (!count($wines)) {
+                    setcookie('error',"Selezionare almeno un elemento");
+                    header("Location: admin_panel.php?section=garbage");
+                }   
+                else{
+                    $num_elem = count($wines);
+                    $sql="UPDATE vini SET cestino = 0 WHERE id_wine ='";
+                    for($i=0 ; $i<$num_elem ; $i++){
+                        if($i!=0) $sql.="' or id_wine = '";
+                        $sql.=$wines[$i];
+                    }
+                    $sql.="'";
+                    $result = mysqli_query($conn,$sql);
+                    //controllo la connessione
+                    if ($result) {
+                        setcookie('info',"Elementi ripristinati");
+                        header("Location: admin_panel.php?section=garbage");
+                    }
+                    else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare");
+                    header("Location: admin_panel.php?section=garbage");
+                }
             }
-            else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare");
-            header("Location: admin_panel.php?section=garbage");
-        }
-    }
-    
-    //STAMPA I VINI (PRESENTI NEL CESTINO)
-    $sql = "SELECT vini.* FROM vini WHERE cestino=1";
-    $result=mysqli_query($conn,$sql);
-        
-    $vini.='<div class="wines_tr" id="wines_header">
+            
+            $vini.='<input type="hidden" name="section" value="garbage" />';
+
+            $vini.='<div><input type="submit" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
+            $vini.='<input type="submit" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
+            $vini.='<input type="submit" name="restore_selected" id="restore_selected" value="Ripristina Selezionati" />';
+            $vini.='<input type="submit" name="delete_finally_selected" id="delete_finally_selected" value="Elimina Selezionati" /></div>';
+
+            //STAMPA I VINI (PRESENTI NEL CESTINO)
+            $sql = "SELECT vini.* FROM vini WHERE cestino=1";
+            $result=mysqli_query($conn,$sql);
+
+            $vini.='<div class="wines_tr" id="wines_header">
                             <div class="wines_td">Selezione</div>
                             <div class="wines_td">Denominazione</div>
                             <div class="wines_td">Tipologia</div>
                             <div class="wines_td">Annata</div>
                             <div class="wines_td modify_column">Elimina</div>
-                        
+
                     </div>';
-    
-    if(mysqli_num_rows($result)!=0)
-        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $vini.="<div class='wines_tr'>";
-            $vini.="<div class ='wines_td'><input type='checkbox' name='wines[]' value='".$row['id_wine']."'></div>";
-            $vini.="<div class ='wines_td'>".$row['denominazione']."</div>";
-            $vini.="<div class ='wines_td'>".$row['tipologia']."</div>";
-            $vini.="<div class ='wines_td'>".$row['annata']."</div>";
-            $vini.="<div class ='wines_td remove_column'><a title='Elimina definitivamente vino' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></div>";
-            $vini.="</div>";
-        }
-    else $vini.="<h2>Non sono presenti vini.</h2>";
 
-    $vini.='<div><input type="submit" name="restore_selected" id="restore_selected" value="Ripristina Selezionati" /><input type="submit" name="delete_finally_selected" id="delete_finally_selected" value="Elimina Selezionati" /></div>';
+            if(mysqli_num_rows($result)!=0)
+                while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                    $vini.="<div class='wines_tr'>";
+                    $vini.="<div class ='wines_td'><input type='checkbox' name='wines[]' value='".$row['id_wine'];
+                    if(isset($_POST['all_selected'])) $vini.="' checked='checked";
+                    $vini.="'></div>";
+                    $vini.="<div class ='wines_td'>".$row['denominazione']."</div>";
+                    $vini.="<div class ='wines_td'>".$row['tipologia']."</div>";
+                    $vini.="<div class ='wines_td'>".$row['annata']."</div>";
+                    $vini.="<div class ='wines_td remove_column'><a title='Elimina definitivamente vino' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></div>";
+                    $vini.="</div>";
+                }
+            else $vini.="<h2>Non sono presenti vini.</h2>";           
+            break;            
+    }
 }
-else{
-    if(isset($_GET['delete_selected'])){
+else {
+    if(isset($_POST['delete_selected'])){
 
-        $wines = isset($_GET['wines']) ? $_GET['wines'] : array();
+        $wines = isset($_POST['wines']) ? $_POST['wines'] : array();
         if (!count($wines)) {
             setcookie('error',"Selezionare almeno un elemento");
             header("Location: admin_panel.php");
@@ -129,24 +143,29 @@ else{
         }
     }
 
+    $vini.='<div><input type="submit" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
+    $vini.='<input type="submit" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
+    $vini.='<input type="submit" name="delete_selected" id="delete_selected" value="Cestina Selezionati" /></div>';
+
     //STAMPA I VINI (QUANDO SI APRE LA PAGINA LA PRIMA VOLTA)
     $sql = "SELECT vini.* FROM vini WHERE cestino=0";
     $result=mysqli_query($conn,$sql);
-    
-     $vini.='<div class="wines_tr" id="wines_header">
+
+    $vini.='<div class="wines_tr" id="wines_header">
                             <div class="wines_td">Selezione</div>
                             <div class="wines_td">Denominazione</div>
                             <div class="wines_td">Tipologia</div>
                             <div class="wines_td">Annata</div>
                             <div class="wines_td modify_column">Modifica</div>
                             <div class="wines_td remove_column">Cestina</div>
-                        
                     </div>';
-    
+
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $vini.="<div class='wines_tr'>";
-            $vini.="<div class ='wines_td'><input type='checkbox' name='wines[]' value='".$row['id_wine']."'></div>";
+            $vini.="<div class ='wines_td'><input type='checkbox' name='wines[]' value='".$row['id_wine'];
+            if(isset($_POST['all_selected'])) $vini.="' checked='checked";
+            $vini.="'></div>";
             $vini.="<div class ='wines_td'>".$row['denominazione']."</div>";
             $vini.="<div class ='wines_td'>".$row['tipologia']."</div>";
             $vini.="<div class ='wines_td'>".$row['annata']."</div>";
@@ -155,8 +174,6 @@ else{
             $vini.="</div>";
         }
     else $vini.="<h2>Non sono presenti vini.</h2>";
-
-    $vini.='<div><input type="submit" name="delete_selected" id="delete_selected" value="Cestina Selezionati" /></div>';
 }
 
 //creazione della pagina web
