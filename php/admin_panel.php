@@ -78,20 +78,29 @@ if((isset($_GET['section']) && $_GET['section']=='garbage') or isset($_GET['dele
     //STAMPA I VINI (PRESENTI NEL CESTINO)
     $sql = "SELECT vini.* FROM vini WHERE cestino=1";
     $result=mysqli_query($conn,$sql);
+        
+    $vini.='<div class="wines_tr" id="wines_header">
+                            <div class="wines_td">Selezione</div>
+                            <div class="wines_td">Denominazione</div>
+                            <div class="wines_td">Tipologia</div>
+                            <div class="wines_td">Annata</div>
+                            <div class="wines_td modify_column">Elimina</div>
+                        
+                    </div>';
+    
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $vini.="<li>";
-            $vini.="<input type='checkbox' name='wines[]' value='".$row['id_wine']."'>";
-            $vini.="<ul class='wines_row'>";
-            $vini.="<li>".$row['denominazione']."</li>";
-            $vini.="<li>".$row['tipologia']."</li>";
-            $vini.="<li>".$row['annata']."</li>";
-            $vini.="<li class='remove_column'><a title='Elimina definitivamente vino' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></li>";
-            $vini.="</ul></li>";
+            $vini.="<div class='wines_tr'>";
+            $vini.="<div class ='wines_td'><input type='checkbox' name='wines[]' value='".$row['id_wine']."'></div>";
+            $vini.="<div class ='wines_td'>".$row['denominazione']."</div>";
+            $vini.="<div class ='wines_td'>".$row['tipologia']."</div>";
+            $vini.="<div class ='wines_td'>".$row['annata']."</div>";
+            $vini.="<div class ='wines_td remove_column'><a title='Elimina definitivamente vino' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></div>";
+            $vini.="</div>";
         }
-    else $vini.="<li><h2>Non sono presenti vini.</h2></li>";
+    else $vini.="<h2>Non sono presenti vini.</h2>";
 
-    $vini.='<li><input type="submit" name="restore_selected" id="restore_selected" value="Ripristina Selezionati" /><input type="submit" name="delete_finally_selected" id="delete_finally_selected" value="Elimina Selezionati" /></li>';
+    $vini.='<div><input type="submit" name="restore_selected" id="restore_selected" value="Ripristina Selezionati" /><input type="submit" name="delete_finally_selected" id="delete_finally_selected" value="Elimina Selezionati" /></div>';
 }
 else{
     if(isset($_GET['delete_selected'])){
@@ -123,6 +132,17 @@ else{
     //STAMPA I VINI (QUANDO SI APRE LA PAGINA LA PRIMA VOLTA)
     $sql = "SELECT vini.* FROM vini WHERE cestino=0";
     $result=mysqli_query($conn,$sql);
+    
+     $vini.='<div class="wines_tr" id="wines_header">
+                            <div class="wines_td">Selezione</div>
+                            <div class="wines_td">Denominazione</div>
+                            <div class="wines_td">Tipologia</div>
+                            <div class="wines_td">Annata</div>
+                            <div class="wines_td modify_column">Modifica</div>
+                            <div class="wines_td remove_column">Cestina</div>
+                        
+                    </div>';
+    
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $vini.="<div class='wines_tr'>";
