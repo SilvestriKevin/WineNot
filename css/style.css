@@ -1114,3 +1114,16 @@ body {
     margin-bottom: -1px;
     
 }
+
+
+.wines_table {
+    display: table;
+}
+.wines_tr {
+    display: table-row;
+    padding: 0.2em;
+}
+
+.wines_td{
+    display: table-cell;
+}

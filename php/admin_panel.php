@@ -125,19 +125,18 @@ else{
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $vini.="<li>";
-            $vini.="<input type='checkbox' name='wines[]' value='".$row['id_wine']."'>";
-            $vini.="<ul class='wines_row'>";
-            $vini.="<li>".$row['denominazione']."</li>";
-            $vini.="<li>".$row['tipologia']."</li>";
-            $vini.="<li>".$row['annata']."</li>";
-            $vini.="<li class='modify_column'><a title='Modifica vino' class='' href='./modify_wine.php' tabindex='' accesskey=''>Modifica</a></li>";
-            $vini.="<li class='remove_column'><a title='Elimina vino' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></li>";
-            $vini.="</ul></li>";
+            $vini.="<div class='wines_tr'>";
+            $vini.="<div class ='wines_td'><input type='checkbox' name='wines[]' value='".$row['id_wine']."'></div>";
+            $vini.="<div class ='wines_td'>".$row['denominazione']."</div>";
+            $vini.="<div class ='wines_td'>".$row['tipologia']."</div>";
+            $vini.="<div class ='wines_td'>".$row['annata']."</div>";
+            $vini.="<div class ='wines_td modify_column'><a title='Modifica vino' class='' href='./modify_wine.php' tabindex='' accesskey=''>Modifica</a></div>";
+            $vini.="<div class ='wines_td remove_column'><a title='Elimina vino' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></div>";
+            $vini.="</div>";
         }
-    else $vini.="<li><h2>Non sono presenti vini.</h2></li>";
+    else $vini.="<h2>Non sono presenti vini.</h2>";
 
-    $vini.='<li><input type="submit" name="delete_selected" id="delete_selected" value="Cestina Selezionati" /></li>';
+    $vini.='<div><input type="submit" name="delete_selected" id="delete_selected" value="Cestina Selezionati" /></div>';
 }
 
 //creazione della pagina web

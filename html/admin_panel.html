@@ -42,21 +42,21 @@
         </div>
 
         <div>
-            <ul id="wines_list">
+            <div id="wines_table">
                 <form action="admin_panel.php" method="get">
                     [INFO/ERRORE]
-                    <li>
-                        <ul id="wines_header">
-                            <li>Denominazione</li>
-                            <li>Tipologia</li>
-                            <li>Annata</li>
-                            <li class='modify_column'>Modifica</li>
-                            <li class='remove_column'>Cestina</li>
-                        </ul>
-                    </li>
+                    <div class="wines_tr" id="wines_header">
+                            <div class="wines_td">Selezione</div>
+                            <div class="wines_td">Denominazione</div>
+                            <div class="wines_td">Tipologia</div>
+                            <div class="wines_td">Annata</div>
+                            <div class="wines_td" class='modify_column'>Modifica</div>
+                            <div class="wines_td" class='remove_column'>Cestina</div>
+                        
+                    </div>
                     [VINI]
                 </form>
-            </ul>
+            </div>
 
         </div>
     </div>
