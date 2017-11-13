@@ -16,6 +16,7 @@ html,
 body {
     font-family: 'Lato',Verdana, Arial, Helvetica sans-serif;
     max-width: 100%;
+    height: 100%;
     margin: auto;
     font-size: 1em;
     letter-spacing: 0.025em;
@@ -70,7 +71,7 @@ body {
 }
 
 .specific_wine img {
-    padding-left: 7.2em;
+    padding-left: 7.8em;
     padding-top: 1em;
     height: 16em;
 }
@@ -81,6 +82,8 @@ body {
     font-weight: 600;
     font-size: 0.9em;
 }
+
+
 
 /* HEADER & FOOTER */
 
@@ -179,10 +182,12 @@ body {
 
 #footer { 
     box-shadow: 0em -0.15em 0.7em rgba(41, 51, 57, .5);
-    
     width: 100%;
     position: relative;
-    bottom: 0;
+    margin: 0em;
+    
+    clear: both;
+    
 }
 
 #footer ul {
@@ -428,7 +433,7 @@ body {
     border: none;
     box-shadow: 0 0.1em 0.5em 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
     font-size: 1em;
-    padding-right: 2.5em;
+    padding-left: 0.5em;
     /*immagine lente ingrandimento
     background-image: url(../img/icon_search.png);
     background-repeat: no-repeat;
@@ -458,6 +463,13 @@ body {
 #wine_results li {
     display: inline-block;
     width: 25%;
+}
+
+#wine_results ul {
+    float: left;
+}
+
+#specific_result ul {
     margin-bottom: 2em;
 }
 
@@ -465,19 +477,18 @@ body {
     width: 100% !important;
     margin-bottom: 0.2em !important;
     margin-left: 2em;
+    color: black;
 }
 
-.specific_wine {
-    /*
-    background-color: rgba(247, 237, 224, 0.16);
-    */
+#specific_result label {
+    color: #5F021F !important;
 }
 
 
 /*----------------------------------------------------------PAGINA SPECIFICA VINO----------------------------------------------*/
 
-#container_wine {
-    margin-bottom: 13em;
+#container_wine h1 {
+    margin-left: 10em;
 }
 
 #container_wine div {
@@ -489,8 +500,7 @@ body {
 
 #wine_img {
     margin-left: 6em;
-    margin-top: 1em;
-    height: 34em;
+    height: 40em;
 }
 
 #details_wine {
@@ -500,8 +510,12 @@ body {
 }
 
 #details_wine p {
-    margin: 2em 3em 1em 0em;
+    text-align: center;
     font-size: 1.1em;
+}
+
+#details_wine ol {
+    margin-bottom: 2.5em;
 }
 
 #title_details {
@@ -530,6 +544,7 @@ body {
 
 #details_wine label {
     font-size: 1.1em;
+    margin-right: 0.3em;
 }
 
 
@@ -540,6 +555,8 @@ body {
 #events_content {
     background-image: url(../img/events_frame.png);
     background-repeat: no-repeat;
+    
+    background-size: contain;
 }
 
 #presentation_events p {
@@ -554,10 +571,10 @@ body {
     margin-left: 45%;
     font-size: 1.2em;
     text-transform: uppercase;
+    color: #a31b46;
 }
 
 #event_preview div {
-    margin-top: 4em;
     height: 20em;
 }
 
@@ -598,20 +615,18 @@ body {
 }
 
 #tasting_tour {
+    margin-top: 4em;
     margin-left: 5em;
     background-image: url(../img/tasting_tour.png);
     background-repeat: no-repeat;
     background-size: contain;
-    background-size: cover;
 }
 
 #san_valenwine {
-    margin-bottom: 2em;
     margin-left: 6%;
     background-image: url(../img/san_valenwine.png);
     background-repeat: no-repeat;
     background-size: contain;
-    background-size: cover;
 }
 
 #ovidio_quote {
@@ -623,31 +638,7 @@ body {
     background-image: url(../img/apperitif_gourmet.png);
     background-repeat: no-repeat;
     background-size: contain;
-    background-size: cover;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*---------------------------------------------------STORIA---------------------------------------------------*/
 
@@ -713,7 +704,7 @@ body {
 }
 
 
-/*---------------------------------------------------ANNATA---------------------------------------------------*/
+/*--------------------------------------------ANNATE MIGLIORI-------------------------------------------------*/
 
 /*TITLE BEST ANNATE*/
 
@@ -731,29 +722,32 @@ body {
     font-family: 'Dancing Script',sans-serif;
 }
 
-/*SLOGAN ANNATE*/
+/*LIST ANNATE*/
 
-#slogan_annate {
+#list_annate {
     text-align: center;
-    background-image: linear-gradient(rgba(252, 239, 223, 0.53), rgba(252, 239, 223, 0.53)), url(../img/background_annata.jpg);
+    background-image: linear-gradient(rgba(252, 239, 223, 0.53), rgba(252, 239, 223, 0.53)), url(../img/background_annata.png);
     height: 9em;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
     box-shadow: 0em 0em 1.5em rgba(97, 106, 111, 0.44);
 }
 
-#slogan_annate li {
+#list_annate ul {
+    margin-left: 8%;
+}
+
+#list_annate li {
     margin-top: 1.8em;
     margin-bottom: 1em;
-    font-size: 1.9em;
+    font-size: 2em;
     font-family: 'Dancing Script',sans-serif;
     display: inline-block;
-    margin-right: 3em;
+    margin-right: 3.5em;
     font-weight: 600;
 }
 
-#slogan_annate a {
+#list_annate a {
     text-decoration: none;
     -webkit-transform: scale(1.00);
 	-ms-transform: scale(1.00);
@@ -761,7 +755,7 @@ body {
     color: black;
 }
 
-#slogan_annate li:hover {
+#list_annate li:hover {
     -webkit-transform: scale(1.20);
 	-ms-transform: scale(1.20);
 	transform: scale(1.20);
@@ -802,8 +796,14 @@ body {
     display: block;
 }
 
-#year_quality p, #year_description p {
+#year_quality p {
     padding-top: 0.4em;
+    font-size: 1.3em;
+}
+
+#year_description p {
+    padding-top: 0.4em;
+    font-size: 1.1em;
 }
 
 #year_description {
@@ -821,7 +821,11 @@ body {
 }
 
 #list_wines_year h2 {
+    padding-top: 1em;
     margin-bottom: 1em;
+    font-size: 2em;
+    text-align: center;
+    font-weight: 100;
 }
 
 #list_wines_year h3 {
@@ -832,6 +836,11 @@ body {
     display: inline-block;
     width: 25%;
 }
+
+#list_wines_year ul {
+    float: left;
+}
+
 
 /*---------------------------------------------------CONTATTI---------------------------------------------------*/
 
@@ -942,10 +951,6 @@ body {
 
 /*-------------------------------------------------ACCEDI----------------------------------------*/
 
-#register_div {
-    margin-bottom: 11.9em;
-}
-
 /*messaggio di errore*/
 #register_div h2, #gonna_delete_user {
     margin-top: 2em;
@@ -1004,12 +1009,6 @@ body {
 
 /*-------------------------------------------------RECUPERO PASSWORD----------------------------------------*/
 
-
-#box_center {
-    margin-bottom: 13.9em;
-}
-
-
 #recover_text {
     width: 17em !important;
     margin-left: 2em !important;
@@ -1018,8 +1017,6 @@ body {
 #recover_submit {
     margin-right: 3em !important;
 }
-
-
 
 
 /*-------------------------------------------------ERROR 404----------------------------------------*/

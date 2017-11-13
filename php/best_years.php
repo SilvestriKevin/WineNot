@@ -52,7 +52,7 @@ if(mysqli_num_rows($result)!=0){
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $vini.="<li><a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''><div class='specific_wine'><img alt='' src='../img/".$row['foto'].".png'/><ul>";
+            $vini.="<li><a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''><div id='specific_result' class='specific_wine'><img alt='' src='../img/".$row['foto'].".png'/><ul>";
             $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
             $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
             $vini.="<li><label>Vitigno: </label>".$row['vitigno']."</li>";
