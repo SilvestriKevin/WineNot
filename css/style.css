@@ -762,6 +762,10 @@ body {
     transition: transform 0.5s;
 }
 
+#current_year {
+    color: white !important;
+}
+
 /*DESCRIPTION ANNATA*/
 
 #description_annata {
