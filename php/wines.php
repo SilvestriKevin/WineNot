@@ -13,7 +13,6 @@ $annata='';
 $tipologia='';
 $improved_search='';
 
-/*
 if(!empty($_COOKIE['error'])){
     $lista.="<h1 id='error_message'>".$_COOKIE['error']."</h1><br></br>";
     setcookie('error',null);
@@ -22,8 +21,6 @@ if(!empty($_COOKIE['info'])){
     $lista.="<h1 id='error_message'>".$_COOKIE['info']."</h1><br></br>";
     setcookie('info',null);
 }
-*/
-
 
 //SELECT ANNATA NEL FORM
 $sql = "SELECT annata FROM vini GROUP BY annata ORDER BY annata";
@@ -44,7 +41,7 @@ if(mysqli_num_rows($result)!=0)
         if(!empty($_GET['tipologia']) && $_GET['tipologia']==$row['tipologia']) $tipologia.=" selected='selected'";
         $tipologia.=">".$row['tipologia']."</option>";
     }*/
-$array_tipologie=array('bianco','rosso','nero','ros&egrave;');
+$array_tipologie=array('bianco','rosso','nero','ros&egrave');
 $num_elementi=count($array_tipologie);
 for($i=0 ; $i<$num_elementi ; $i++){
     $tipologia.="<option value='".$array_tipologie[$i]."'";
@@ -52,7 +49,7 @@ for($i=0 ; $i<$num_elementi ; $i++){
     $tipologia.=">".$array_tipologie[$i]."</option>";
 }
 
-$text_search = '';
+$text_search = 'vini';
 
 
 //STAMPA I VINI SECONDO I PARAMETRI DI RICERCA
@@ -68,37 +65,36 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
         $search = cleanInput($search);
 
         $counter=0;
-        $text_search = " WHERE ";
         while(!empty($search[$counter])) {
 
             if($counter>0) {
-                $text_search.=" OR ";
+                $text_search = "( SELECT vini.* FROM ".$text_search." WHERE ( vini.nome LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.vitigno LIKE '%".$search[$counter]."%' OR vini.gradazione LIKE '%".$search[$counter]."%' ) ) AS vini";
+            }
+            else{
+                $text_search = "( SELECT vini.* FROM vini WHERE ( vini.nome LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.vitigno LIKE '%".$search[$counter]."%' OR vini.gradazione LIKE '%".$search[$counter]."%' ) ) AS vini";
             }
 
-            $text_search.= "vini.nome LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.vitigno LIKE '%".$search[$counter]."%' OR vini.gradazione LIKE '%".$search[$counter]."%'";
-
             $counter++;
+
         }
     }
 
 
 
     if($_GET['annata']!='All') {
-        if(!empty($_GET['search'])) {
-            $improved_search.=" AND annata='".$_GET['annata']."'";
-        } else {
-            $improved_search.=" WHERE annata='".$_GET['annata']."'";
-        }
+        $improved_search.=" WHERE annata='".$_GET['annata']."'";
     }
 
     if($_GET['tipologia']!='All'){
-        if(!empty($improved_search)) $improved_search.=" AND tipologia='".$_GET['tipologia']."'";
-        else $improved_search.=" WHERE tipologia='".$_GET['tipologia']."'";
+        if(!empty($improved_search)) $improved_search.=" AND tipologia='".entityAccentedVowels($_GET['tipologia'])."'";
+        else {
+            $improved_search.=" WHERE tipologia='".entityAccentedVowels($_GET['tipologia'])."'";
+        }
     }
 
 
     //STAMPA I VINI 
-    $sql = "SELECT vini.nome, vini.tipologia,vini.vitigno,vini.gradazione,vini.foto, vini.id_wine FROM vini ".$text_search.$improved_search." ORDER BY ".$_GET['ordine'];
+    $sql = "SELECT vini.nome, vini.tipologia,vini.vitigno,vini.gradazione,vini.foto, vini.id_wine FROM ".$text_search.$improved_search." ORDER BY ".$_GET['ordine'];
 
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0)

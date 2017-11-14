@@ -13,12 +13,12 @@ function random($lunghezza=12)
 
 function entityAccentedVowels($stringa)
 {
-    $stringa = str_replace ('à', '&agrave;', $stringa);
-    $stringa = str_replace ('é', '&eacute;', $stringa);
-    $stringa = str_replace ('è', '&egrave;', $stringa);
-    $stringa = str_replace ('ì', '&igrave;', $stringa);
-    $stringa = str_replace ('ò', '&ograve;', $stringa);
-    $stringa = str_replace ('ù', '&ugrave;', $stringa);
+    $stringa = str_replace ('à', '&agrave', $stringa);
+    $stringa = str_replace ('é', '&eacute', $stringa);
+    $stringa = str_replace ('è', '&egrave', $stringa);
+    $stringa = str_replace ('ì', '&igrave', $stringa);
+    $stringa = str_replace ('ò', '&ograve', $stringa);
+    $stringa = str_replace ('ù', '&ugrave', $stringa);
     return $stringa;
 }
 
@@ -42,7 +42,7 @@ function cleanInput($input)
     $input = preg_replace(array('/\s[[:punct:]]+/'),' ',$input);
 
     //tolgo gli accenti dalle vocali nella stringa di ricerca
-    $input = EntityAccentedVowels($input);
+    $input = entityAccentedVowels($input);
 
     //tolgo gli spazi, che si potrebbero essere creati con le funzioni precedenti, all'inizio e alla fine della stringa di ricerca
     $input = trim($input);
