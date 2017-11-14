@@ -70,4 +70,5 @@ function escapingText($string)
     return $string;
 }
 
+
 ?>
