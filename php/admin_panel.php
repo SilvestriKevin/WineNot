@@ -80,6 +80,8 @@ if(isset($section)){
                 }
             }
 
+            $vini.='<form action="admin_panel.php?section=garbage" method="post">';
+
             $vini.='<input type="hidden" name="section" value="garbage" />';
 
             $vini.='<div><input type="submit" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
@@ -112,7 +114,10 @@ if(isset($section)){
                     $vini.="<div class ='wines_td remove_column'><a title='Elimina definitivamente vino' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></div>";
                     $vini.="</div>";
                 }
-            else $vini.="<h2>Non sono presenti vini.</h2>";           
+            else {
+                $vini.="<h2>Non sono presenti vini.</h2>";           
+                $vini.="</form>";
+            }
             break;
 
 
@@ -170,6 +175,8 @@ if(isset($section)){
                 }
             }
 
+            $vini.='<form action="admin_panel.php?section=years" method="post">';
+
             $vini.='<input type="hidden" name="section" value="years" />';
 
             $vini.='<div><input type="submit" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
@@ -202,8 +209,10 @@ if(isset($section)){
                     $vini.="<div class ='wines_td remove_column'><a title='Elimina annata' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></div>";
                     $vini.="</div>";
                 }
-            else $vini.="<h2>Non sono presenti annate.</h2>";
-
+            else {
+                $vini.="<h2>Non sono presenti annate.</h2>";
+                $vini.="</form>";
+            }
             break;
 
         case 'profile':
@@ -212,6 +221,8 @@ if(isset($section)){
             $result=mysqli_query($conn,$sql);
 
             $row = mysqli_fetch_array($result,MYSQL_ASSOC);
+
+            $vini.='<form action="admin_panel.php?section=profile" method="post">';
 
             // faccio lo stesso il controllo perchè non si sa mai?!
             if(mysqli_num_rows($result)!=0){
@@ -228,101 +239,139 @@ if(isset($section)){
 
 
 
+            // se tutti i campi tranne password attuale/password nuova NON sono vuoti
+            // allora posso aggiornare quei campi dato E (potenialmente) anche la password
 
-
-            if(isset($_POST['actual_password']) && $_POST['actual_password']) {
-
-                if(preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST['actual_password']) && preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST['new_password'])) {
-
-                    // dichiaro le variabili necessarie
-                    $current_password = $_POST['actual_password'];
-                    $new_password = $_POST['new_password'];
-
-                    $sql = "SELECT * FROM utenti WHERE id_user='".$_SESSION['id']."' AND password =MD5('".$current_password."')";
-
-                    $result = mysql_query($conn,$sql);
-
-                    // controllo la connessione
-                    if(mysqli_num_rows($result)!=0) {
-                        if($new_password !=$current_password) {
-                            // modifico la password nel database
-
-                            $sql = "UPDATE utenti SET password=MD5('".$new_password."') WHERE id_user='".$_SESSION['id']."'";
-
-                            $result = mysqli_query($conn,$sql);
-                            //controllo la connessione
-                            if($result) {
-                                setcookie('info',"Modifica password eseguita con successo.");
-                                header("Location: admin_panel.php?section=profile");
-                            } else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare.");
-                        } 
-                    } else setcookie('error',"La password inserita non &egrave; corretta.");
-
-                } else {
-                    setcookie('error',"La password inserita non rispetta il formato corretto");
-                    header("Location: admin_panel.php?section=profile");
-                }
-            } else if(!empty($_POST['nome']) && !preg_match("/^(\s)+$/",$_POST['nome']) && !empty($_POST['email']) && !empty($_POST['username'])) { // controllo che il campo delle password rispetti le policy
+            if(!empty($_POST['nome']) && !preg_match("/^(\s)+$/",$_POST['nome']) && !empty($_POST['email']) && !empty($_POST['username']) && !preg_match("/^(\s)+$/",$_POST['username'])) {
 
                 // controllo campi vuoti o spazi
-
-                $nome = $_POST['nome'];
                 $username = $_POST['username'];
-                $password = $_POST['password'];
+                $nome = $_POST['nome'];
                 $email = $_POST['email'];
 
-                // controllo formato email
+                //controllo che i dati presenti non siano uguali a quelli già presenti nel database
 
-                if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/",$email)) {
-                    setcookie('error',"L'email inserita non rispetta il formato corretto");
-                    header("Location: admin_panel.php?section=profile");
-                } else {
-                    // controllo che la password sia uguale a quella inserita nel database
+                $sql = "SELECT * FROM utenti WHERE id_user='".$_SESSION['id']."' AND username='".$username."' AND nome='".$nome."' AND email='".$email."'";
 
-                    $sql = "SELECT * FROM utenti WHERE id_user='".$_SESSION['id']."' AND password=MD5('".$password."')";
+                $result = mysqli_query($conn,$sql);
 
-                    $result = mysqli_query($conn,$sql);
+                if(mysqli_num_rows($result)==0) { // i dati inseriti dall'utente non sono uguali a quelli già presenti nel database, quindi l'utente vuole cambiare almeno un campo dato
 
-                    if(mysqli_num_rows($result) == 0) {
-                        setcookie('error',"La password inserita non &egrave; corretta");
-                        header("Location: admin.php?section=profile");
-                    } else {
-                        // posso modificare i dati all'interno del database
+                    // controllo che la mail sia del formato giusto
+
+                    if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/",$email)) {
+                        setcookie('error',"L'email inserita non rispetta il formato corretto");
+                        header("Location: admin_panel.php?section=profile"); 
+                    } else { // se è del formato giusto, posso andare avanti
 
 
-                        $sql = "UPDATE utenti SET nome='".$nome."', username='".$username."', password='".$new_password."', email='".$email."' WHERE id_user='".$_SESSION['id']."'";
 
-                        $result = mysqli_query($conn,$sql);
+                        // controllo SE anche i campi password sono settati e non vuoti
 
+                        if((isset($_POST['actual_password']) && $_POST['actual_password']) && (isset($_POST['new_password']) && $_POST['new_password'])) {
+
+                            $current_password = $_POST['actual_password'];
+                            $new_password = $_POST['new_password'];
+
+                            // controllo se la 'actual_password' coincide con la password del database
+
+                            $sql = "SELECT * FROM utenti WHERE id_user='".$_SESSION['id']."' AND password =MD5('".$current_password."')";
+
+                            $result = mysqli_query($conn,$sql);
+
+
+                            if(mysqli_num_rows($result)!=0) { // vuol dire che la password che l'utente ha inserito all'interno della casella 'Password Corrente" è giusta
+
+                                //controllo che la password corrente e quella nuova non coincidano
+
+                                if($new_password != $current_password) {
+                                    // se sono diverse allora dovrò salvare la prima nel database 
+                                    // se è del formato giusto
+
+                                    if(preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST['new_password'])) {
+
+                                        // posso salvare anche la nuova password nel database
+
+                                        $sql = "UPDATE utenti SET nome='".$nome."', username='".$username."', password='".$new_password."', email='".$email."' WHERE id_user='".$_SESSION['id']."'";
+
+                                        $result = mysqli_query($conn,$sql);
+
+                                        if($result) { // se c'è stata una modifica allora tutto ok
+                                            setcookie('info',"Modifica dati eseguita con successo");
+                                            header("Location: admin_panel.php?section=profile");
+                                        } else { // se non sono riuscito a cambiare dati nel database
+                                            setcookie('error',"Si è verificato un errore. La preghiamo di riprovare.");
+
+                                        }
+
+                                    } else { // password formato sbagliato
+                                        setcookie('error',"La nuova password è in un formato sbagliato.");
+                                    }
+                                } else { // le password erano uguali quindi cambio solo i dati esclusi la password
+                                    $sql = "UPDATE utenti SET nome='".$nome."', username='".$username."', email='".$email."' WHERE id_user='".$_SESSION['id']."'";
+
+                                    $result = mysqli_query($conn,$sql);
+
+                                    if($result) { // se c'è stata una modifica allora tutto ok
+                                        setcookie('info',"Modifica dati eseguita con successo");
+                                        header("Location: admin_panel.php?section=profile");
+                                    } else { // se non sono riuscito a cambiare dati nel database
+                                        setcookie('error',"Si è verificato un errore. La preghiamo di riprovare.");
+
+                                    }
+                                }
+
+                            } else setcookie('error',"La password inserita non &egrave; corretta.");     
+
+
+                        } else { // salvo SOLO i dati relativi a username, nome ed email
+
+
+                            $sql = "UPDATE utenti SET nome='".$nome."', username='".$username."', email='".$email."' WHERE id_user='".$_SESSION['id']."'";
+
+                            $result = mysqli_query($conn,$sql);
+
+                            if($result) { // se c'è stata una modifica allora tutto ok
+                                setcookie('info',"Modifica dati eseguita con successo");
+                                header("Location: admin_panel.php?section=profile");
+                            } else { // se non sono riuscito a cambiare dati nel database
+                                setcookie('error',"Si è verificato un errore. La preghiamo di riprovare.");
+
+                            }
+
+                        }
 
                     }
 
-                } 
+                }
 
 
-//            } else {    // è stato lasciato un campo vuoto
-//
-//                setcookie('error',"Uno o più campi sono stati lasciati vuoti.");
-//                header("Location: admin_panel.php?section=profile");
-//
-//            } 
-           
 
-    break;
+            } else { // faccio capire all'utente che ha lasciato dei campi vuoti(esclusi password)
+                // oppure ci sono degli spazi all'interno di username e nome
+
+                setcookie('error',"Alcuni campi dati sono stati lasciati vuoti oppure i campi dato Username(o Nome) contengono degli spazi vietati.");
+
+            }
+
+            $vini.="</form>";
+            break;
 
 
-    case 'users':
-    $sql = "SELECT admin FROM utenti WHERE id_user='".$_SESSION['id']."'";
-    $result=mysqli_query($conn,$sql);
+        case 'users':
+            $sql = "SELECT admin FROM utenti WHERE id_user='".$_SESSION['id']."'";
+            $result=mysqli_query($conn,$sql);
 
-    $row = mysqli_fetch_array($result,MYSQL_ASSOC);
+            $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
-    if($row['admin'] == 1) { 
-        //STAMPA I VINI (PRESENTI NELLE ANNATE MIGLIORI)
-        $sql = "SELECT utenti.* FROM utenti WHERE admin=0";
-        $result=mysqli_query($conn,$sql);
+            $vini.='<form action="admin_panel.php?section=users" method="post">';        
 
-        $vini.='<div class="wines_tr" id="wines_header">
+            if($row['admin'] == 1) { 
+                //STAMPA I VINI (PRESENTI NELLE ANNATE MIGLIORI)
+                $sql = "SELECT utenti.* FROM utenti WHERE admin=0";
+                $result=mysqli_query($conn,$sql);
+
+                $vini.='<div class="wines_tr" id="wines_header">
                             <div class="wines_td">Username</div>
                             <div class="wines_td">Password</div>
                             <div class="wines_td">Nome</div> 
@@ -331,26 +380,28 @@ if(isset($section)){
 
                     </div>';
 
-        if(mysqli_num_rows($result)!=0)
-            while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                $vini.="<div class='wines_tr'>";
-                $vini.="<div class ='wines_td'>".$row['username']."</div>";
-                $vini.="<div class ='wines_td'>".$row['password']."</div>";
-                $vini.="<div class ='wines_td'>".$row['nome']."</div>";
-                $vini.="<div class ='wines_td'>".$row['email']."</div>";
-                $vini.="<div class ='wines_td remove_column'><a title='Elimina utente' class='' href='./delete_user.php' tabindex='' accesskey=''>X</a></div>";
-                $vini.="</div>";
-                $vini.="<div class ='wines_td'><a title='Elimina annata' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></div>";
-                $vini.="</div>";
+                if(mysqli_num_rows($result)!=0)
+                    while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+                        $vini.="<div class='wines_tr'>";
+                        $vini.="<div class ='wines_td'>".$row['username']."</div>";
+                        $vini.="<div class ='wines_td'>".$row['password']."</div>";
+                        $vini.="<div class ='wines_td'>".$row['nome']."</div>";
+                        $vini.="<div class ='wines_td'>".$row['email']."</div>";
+                        $vini.="<div class ='wines_td remove_column'><a title='Elimina utente' class='' href='./delete_user.php' tabindex='' accesskey=''>X</a></div>";
+                        $vini.="</div>";
+                        $vini.="<div class ='wines_td'><a title='Elimina annata' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></div>";
+                        $vini.="</div>";
+                    }
+                else $vini.="<h2>Non sono presenti utenti.</h2>";
+            } else {
+                $vini.="<h2>Non hai diritti di accesso a questa sezione.</h2>";
             }
-        else $vini.="<h2>Non sono presenti utenti.</h2>";
-    } else {
-        $vini.="<h2>Non hai diritti di accesso a questa sezione.</h2>";
-    }
 
-    $vini.="<a title='Aggiungi utente' class='' href='./add_user.php' tabindex='' accesskey=''>Aggiungi Utente</a>";
-    break;
-}
+            $vini.="<a title='Aggiungi utente' class='' href='./add_user.php' tabindex='' accesskey=''>Aggiungi Utente</a>";
+
+            $vini.="</form>";
+            break;
+    }
 }
 else {
     if(isset($_POST['delete_selected'])){
@@ -378,6 +429,8 @@ else {
             header("Location: admin_panel.php");
         }
     }
+
+    $vini.='<form action="admin_panel.php" method="post">';
 
     $vini.='<div><input type="submit" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
     $vini.='<input type="submit" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
@@ -410,7 +463,10 @@ else {
             $vini.="</div>";
         }
     else $vini.="<h2>Non sono presenti vini.</h2>";
+
+    $vini.="</form>";
 }
+
 
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
