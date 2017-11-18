@@ -1,11 +1,11 @@
 /*
-    Bordeaux: #5F021F
+    Bordeaux: #5F021F;
     LISTE: list-style-type: none;
 */
 
-
-
-/* ----------------------------------------------------- GENERAL ----------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                                /*  GENERAL  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 * {
     margin: 0;
@@ -84,7 +84,6 @@ body {
 }
 
 
-
 /* HEADER & FOOTER */
 
 #header,#footer {
@@ -100,7 +99,7 @@ body {
     text-transform: uppercase;
 }
 
-#header li, #footer li {
+#header li {
     display: inline-block;
     margin-right: 1.2em;
     font-size: 1.2em;
@@ -111,12 +110,10 @@ body {
 #header li a:hover,#footer li a:hover, #horizontal_menu a:hover {
     margin: 0em !important;
     color: #fff;
-    /*
-    border-bottom: 0.02em solid #fff;
-    padding-bottom: 0.2em;
-    */
     transition: 0.2s;
 }
+
+/* TITOLI */
 
 #title_best_annate h1, #title_our_wines h1, #history_description h1, #container_wine h1, #register_fieldset h1, #presentation_events h1 {
     padding-top: 1em;
@@ -137,25 +134,16 @@ body {
     margin-bottom: 0.8em;
 }
 
-#breadcrumb {
-    padding: 0.2em 0em 0.3em 0.5em;
-    letter-spacing: 0em;
-}
-
-#breadcrumb a {
-    margin-left: 0.3em;
-}
-
-
 /* classi che utilizzerà JAVASCRIPT */
  
 .hide{
- 
     display: none;
 }
 
 
-/*-----------------------------------------------------------HEADER*---------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                                  /*  HEADER  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 
 #header {
@@ -177,7 +165,9 @@ body {
     display: none;
 }
 
-/*------------------------------------------------------------FOOTER------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                                  /*  FOOTER  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 
 #footer { 
@@ -193,22 +183,22 @@ body {
 #footer ul {
     text-align: center;
     margin: 1em;
-    padding-top: 1em;
+    padding-top: 1.2em;
     list-style-type: none;
-    
     margin-top: 0 !important;
 }
 
 #footer li {
     display: inline-block;
+    margin-right: 1.2em;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    color: #fff;
 }
 
-#footer li a {
-    font-size: 0.85em;
-}
-
-
-/*-------------------------------------------------------------HOME----------------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                                   /*  INDEX  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 #header, #presentation,#wine_preview,#history_preview, #footer{
     display: block;
@@ -218,11 +208,10 @@ body {
 /* PRESENTATION */
 
 #presentation {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)),url("../img/background.jpg");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)),url("../img/background_index.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 25em;
+    height: 27em;
     max-height: 100%;
     width: 100%;
     box-shadow: 0em -0.15em 2em rgba(41, 51, 57, .5);
@@ -236,23 +225,27 @@ body {
 
 #presentation h1 {
     font-family: 'Dancing Script',sans-serif;
-    font-size: 4em;
-    margin-left: 3.5em;
+    font-size: 3.5em;
+    text-align: center;
+    margin-left: 4em;
     padding-top: 0.8em;
 }
 
 #presentation p {
-    font-size: 1.5em;
+    text-align: center;
+    margin-left: 43%;
+    margin-right: 32%;
+    font-size: 1.3em;
     font-weight: 100;
-    margin-left: 9em;
-    padding-top: 1em;
+    padding-top: 1.3em;
 }
 
 
-/*SHORT DESCRIPTION*/
+/* SHORT DESCRIPTION */
 
 #short_description {
     margin-top: 2em;
+    text-align: center;
 }
 
 #short_description h2 {
@@ -279,18 +272,16 @@ body {
     margin-top: 1em;
     width: 67%;
     color: dimgray;
-    margin-left: 20%;
+    margin-left: 16%;
     margin-bottom: 4em;
 }
 
 /* WINE PREVIEW */
 
-#wine_preview {
-}
-
 #wine_preview .preview_wine {
     display: inline-block;
     width: 32%;
+    text-align: center;
 }
 
 #wine_preview .preview_wine img {
@@ -311,28 +302,35 @@ body {
 }
 
 #wine_preview .preview_wine:first-child{
-    background-color: azure;
-    margin-left: 2%;
+    background-color: rgba(227, 206, 191, 0.87);
+    margin-left: 1.5%;
+    margin-right: 0.3%;
+}
+
+#wine_preview .preview_wine:nth-child(2){
+    background-color: rgba(235, 220, 209, 0.83);
+    margin-right: 0.3%;
 }
 
 #wine_preview .preview_wine:last-child{
-    background-color:beige;
+    background-color: rgba(242, 233, 227, 0.71);
 }
 
 .preview_wine_description {
-    padding-top: 20%;
+    padding-top: 4em;
     width: 50%;
     float: right;
 }
 
-.preview_wine_description h3 {
-    padding-bottom: 0.5em;
+.preview_wine_description p {
+    padding-right: 1em;
 }
 
-.preview_wine_description a {
-    text-align: center;
-    clear: both;
-    color: grey;
+.preview_wine_description h3, .preview_wine_description h4, .preview_wine_description h5 {
+    padding-bottom: 0.5em;
+    font-family: 'Dancing Script',sans-serif;
+    font-size: 2.2em;
+    color: #5F021F;
 }
 
 .preview_wine_description a:hover {
@@ -341,47 +339,16 @@ body {
 }
 
 
-/* HISTORY PREVIEW */
+/* TASTING */
 
-#history_preview {
-    background-image: url("../img/background-storia.jpg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 100%;
-    background-color: black;
-    background-position: center;
-    height: 20em;
-}
-
-#history_preview h5 {
-    margin-left: 61%;
-    color: #fff;
-    padding-top: 0.5em;
-    font-family: 'Dancing Script',sans-serif;
-    font-size: 2.3em;
-}
-
-#history_preview p{
-    color: #fff;
-    width: 50%;
-    margin-left: 40%;
-    margin-top: 2.2em;
-    text-align: center;
-    padding-bottom: 3em;
-    font-style: italic;
-    font-weight: 300;
-}
-
-/* APPETIZER */
-
-#tasting h4 {
+#tasting h6 {
     margin-top: 1em;
     font-family: 'Dancing Script',sans-serif;
     font-size: 3em;
     color: #5F021F;
 }
 
-#tasting h4:after{
+#tasting h6:after{
     display: block;
     height: 0.03em;
     background-color: #000;
@@ -391,7 +358,7 @@ body {
     margin-top: 0.5em;
 }
 
-#tasting h4, #tasting p {
+#tasting h6, #tasting p {
     text-align: center;
 }
 
@@ -403,16 +370,53 @@ body {
     margin-bottom: 4em;
 }
 
-/*-------------------------------------------------------------VINI---------------------------------------------------*/
 
-/*SEARCH_WINES*/
+/* HISTORY PREVIEW */
+
+#history_preview {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32)), url("../img/background-storia.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+    width: 100%;
+    height: 17em;
+    padding-bottom: 5em;
+}
+
+#history_paragraph {
+    padding-top: 4em;
+    text-align: center;
+    width: 50%;
+    margin-left: 45%;
+    margin-right: 20%;
+}
+
+#history_preview h7 {
+    color: #fff;
+    font-family: 'Dancing Script',sans-serif;
+    font-size: 2.8em;
+}
+
+#history_preview p{
+    color: #fff;
+    margin-top: 2em;
+    text-align: center;
+    padding-bottom: 3em;
+    font-style: italic;
+    font-weight: 300;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                                    /*  VINI  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* SEARCH_WINES */
 
 #search_wines fieldset {
     border: none;
-    background-image:  linear-gradient(rgba(237, 224, 224, 0.55), rgba(237, 224, 224, 0.55)),url(../img/background_search.png);
+    background-image:  linear-gradient(rgba(245, 233, 233, 0.4), rgba(245, 233, 233, 0.4)),url(../img/background_search.png);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
 }
 
 #search_wines ul {
@@ -433,7 +437,7 @@ body {
     border: none;
     box-shadow: 0 0.1em 0.5em 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
     font-size: 1em;
-    padding-left: 0.5em;
+    padding-left: 0.7em;
     /*immagine lente ingrandimento
     background-image: url(../img/icon_search.png);
     background-repeat: no-repeat;
@@ -451,7 +455,7 @@ body {
 }
 
 
-/*WINE_RESULTS*/
+/* WINE_RESULTS */
 
 #wine_results{
     width: 90%;
@@ -485,7 +489,12 @@ body {
 }
 
 
-/*----------------------------------------------------------PAGINA SPECIFICA VINO----------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                   /*  PAGINA SPECIFICA VINO  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/* CONTAINER WINE */
 
 #container_wine h1 {
     margin-left: 10em;
@@ -495,6 +504,8 @@ body {
     display: inline-block;
 }
 
+/* IMG DESCRIPTION WINE */
+
 #img_description_wine {
 }
 
@@ -502,6 +513,8 @@ body {
     margin-left: 6em;
     height: 40em;
 }
+
+/* DETAILS WINE */
 
 #details_wine {
     width: 60%;
@@ -548,9 +561,156 @@ body {
 }
 
 
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                         /*  ANNATE MIGLIORI  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-/*-------------------------------------------------EVENTI---------------------------------------------------*/
+/* TITLE BEST ANNATE */
 
+#title_best_annate {
+    width: 80%;
+    margin-left: 10%;
+}
+
+#title_best_annate p {
+    text-align: center;
+    clear: both;
+    margin-bottom: 2em;
+    font-size: 1.7em;
+    letter-spacing: 0.025em;
+    font-family: 'Dancing Script',sans-serif;
+}
+
+/* LIST ANNATE */
+
+#list_annate {
+    text-align: center;
+    background-image: linear-gradient(rgba(252, 239, 223, 0.53), rgba(252, 239, 223, 0.53)), url(../img/background_annata.png);
+    height: 9em;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0em 0em 1.5em rgba(97, 106, 111, 0.44);
+}
+
+#list_annate ul {
+    margin-left: 8%;
+}
+
+#list_annate a {
+    text-decoration: none;
+    -webkit-transform: scale(1.00);
+	-ms-transform: scale(1.00);
+	transform: scale(1.00);
+    color: black;
+}
+
+#list_annate li {
+    margin-top: 1.8em;
+    margin-bottom: 1em;
+    font-size: 2em;
+    font-family: 'Dancing Script',sans-serif;
+    display: inline-block;
+    margin-right: 3.5em;
+    font-weight: 600;
+}
+
+#list_annate li:hover {
+    -webkit-transform: scale(1.20);
+	-ms-transform: scale(1.20);
+	transform: scale(1.20);
+    transition: transform 0.5s;
+}
+
+#current_year {
+    color: #740e2e !important;
+}
+
+/* DESCRIPTION ANNATA */
+
+#description_annata {
+    width: 85%;
+    margin-top: 2.5em;
+    margin-left: 7.5%;
+    text-align: center;
+}
+
+#description_annata li {
+    list-style-type: none;
+}
+
+#description_annata label {
+    font-family: 'Dancing Script',sans-serif;
+    font-size: 2em;
+    color: #5F021F;
+    font-weight: 600;
+    width: 100%;
+}
+
+#description_annata div {
+    display: inline-block;
+}
+
+#year_quality {
+    width: 35%;
+    float: left;
+}
+
+#year_quality li {
+    display: block;
+}
+
+#year_quality p {
+    padding-top: 0.1em;
+    font-size: 1.2em;
+    padding-bottom: 0.3em;
+}
+
+#year_description p {
+    padding-top: 0.4em;
+    font-size: 1.1em;
+}
+
+#year_description {
+    width: 65%;
+}
+
+/* LIST WINES YEAR */
+
+#list_wines_year {
+    width: 90%;
+    margin-top: 4em;
+    margin-left: 5%;
+    margin-bottom: 3em;
+}
+
+#list_wines_year h2 {
+    padding-top: 1em;
+    margin-bottom: 1em;
+    font-size: 2em;
+    text-align: center;
+    font-weight: 100;
+}
+
+#list_wines_year h3 {
+    font-size: 1.05em;
+}
+
+#list_wines_year li {
+    display: inline-block;
+    width: 25%;
+}
+
+#list_wines_year ul {
+    float: left;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                                  /*  EVENTI  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/* EVENTS CONTENT */
 
 #events_content {
     background-image: url(../img/events_frame.png);
@@ -558,6 +718,8 @@ body {
     
     background-size: contain;
 }
+
+/* PRESENTATION EVENTS */
 
 #presentation_events p {
     width: 80%;
@@ -573,6 +735,8 @@ body {
     text-transform: uppercase;
     color: #a31b46;
 }
+
+/* EVENT PREVIEW */
 
 #event_preview div {
     height: 20em;
@@ -640,7 +804,11 @@ body {
     background-size: contain;
 }
 
-/*---------------------------------------------------STORIA---------------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                                  /*  STORIA  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* HISTORY DESCRIPTION */
 
 #slideshow {
     width: 94%;
@@ -648,44 +816,49 @@ body {
     margin-right: 3%; 
     background-image: url(../img/slideshow_1.png);
     background-repeat: no-repeat;
-    background-size: contain;
-    background-size: cover;
-    
     background-position: center;
-    height: 28em;
+    height: 30.5em;
 }
 
 #history_description p {
+    text-align: center;
     margin-top: 2em;
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
 }
 
+/* HISTORY FAMILY */
+
 #history_family {
-    margin: 4em 0em 3em 0em;
+    margin: 3em 3em 2em 4em;
     background-image: url(../img/back_background_family.png);
     background-repeat: no-repeat;
-    background-size: contain;
-    background-size: cover;
-    height: 25em;
+    background-position: center;
+    height: 20em;
+    border: 0.01em solid black;
+}
+
+#history_family_paragraph {
+    padding-top: 1em;
+    margin: 0% 10% 5% 48%;
+    width: 45%;
 }
 
 #history_family h2 {
-    margin: 0em 0em 1em 9em;
-    padding-top: 1.5em;
+    margin-bottom: 0.5em;
     text-align: center;
     font-size: 2.3em;
-    color: #5F021F;
     letter-spacing: 0.025em;
     font-family: 'Dancing Script',sans-serif;
 }
 
 #history_family p {
-    margin: 0em 5em 1em 25em;
     text-align: center;
     font-size: 1.1em;
 }
+
+/* HISTORY FUTURE */
 
 #history_future {
     margin-bottom: 2.5em;
@@ -695,172 +868,37 @@ body {
     text-transform: uppercase;
     font-size: 1.6em;
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     font-weight: 300;
 }
 
 #history_future p {
-    margin: 0em 0em 1.5em 4em;
-}
-
-
-/*--------------------------------------------ANNATE MIGLIORI-------------------------------------------------*/
-
-/*TITLE BEST ANNATE*/
-
-#title_best_annate {
-    width: 80%;
-    margin-left: 10%;
-}
-
-#title_best_annate p {
     text-align: center;
-    clear: both;
-    margin-bottom: 2em;
-    font-size: 1.7em;
-    letter-spacing: 0.025em;
-    font-family: 'Dancing Script',sans-serif;
+    margin: 0% 5%;
 }
 
-/*LIST ANNATE*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                              /*  CONTATTACI  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-#list_annate {
-    text-align: center;
-    background-image: linear-gradient(rgba(252, 239, 223, 0.53), rgba(252, 239, 223, 0.53)), url(../img/background_annata.png);
-    height: 9em;
-    background-position: center;
-    background-repeat: no-repeat;
-    box-shadow: 0em 0em 1.5em rgba(97, 106, 111, 0.44);
-}
-
-#list_annate ul {
-    margin-left: 8%;
-}
-
-#list_annate li {
-    margin-top: 1.8em;
-    margin-bottom: 1em;
-    font-size: 2em;
-    font-family: 'Dancing Script',sans-serif;
-    display: inline-block;
-    margin-right: 3.5em;
-    font-weight: 600;
-}
-
-#list_annate a {
-    text-decoration: none;
-    -webkit-transform: scale(1.00);
-	-ms-transform: scale(1.00);
-	transform: scale(1.00);
-    color: black;
-}
-
-#list_annate li:hover {
-    -webkit-transform: scale(1.20);
-	-ms-transform: scale(1.20);
-	transform: scale(1.20);
-    transition: transform 0.5s;
-}
-
-#current_year {
-    color: white !important;
-}
-
-/*DESCRIPTION ANNATA*/
-
-#description_annata {
-    width: 85%;
-    margin-top: 2.5em;
-    margin-left: 7.5%;
-    text-align: center;
-}
-
-#description_annata li {
-    list-style-type: none;
-}
-
-#description_annata label {
-    font-family: 'Dancing Script',sans-serif;
-    font-size: 2em;
-    color: #5F021F;
-    font-weight: 600;
-    width: 100%;
-}
-
-#description_annata div {
-    display: inline-block;
-}
-
-#year_quality {
-    width: 35%;
-    float: left;
-}
-
-#year_quality li {
-    display: block;
-}
-
-#year_quality p {
-    padding-top: 0.4em;
-    font-size: 1.3em;
-}
-
-#year_description p {
-    padding-top: 0.4em;
-    font-size: 1.1em;
-}
-
-#year_description {
-    width: 65%;
-}
-
-
-/*LIST WINES YEAR*/
-
-#list_wines_year {
-    width: 90%;
-    margin-top: 4em;
-    margin-left: 5%;
-    margin-bottom: 3em;
-}
-
-#list_wines_year h2 {
-    padding-top: 1em;
-    margin-bottom: 1em;
-    font-size: 2em;
-    text-align: center;
-    font-weight: 100;
-}
-
-#list_wines_year h3 {
-    font-size: 1.05em;
-}
-
-#list_wines_year li {
-    display: inline-block;
-    width: 25%;
-}
-
-#list_wines_year ul {
-    float: left;
-}
-
-
-/*---------------------------------------------------CONTATTI---------------------------------------------------*/
+/* CONTENT CONTACTS EXTERNAL */
 
 #content_contacts_external {
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-size: cover;
-    width: 100%;
     background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("../img/backgroung_contacts.png");
+    background-repeat: repeat;
+    background-position: center;
+    width: 100%;
 }
+
+/* CONTENT CONTACTS */
 
 #content_contacts {
     background-color: #fff;
     width: 60%;
     margin-left: 20%;
 }
+
+/* HOW TO CONTACTS */
 
 #howto_contacts h1 {
     padding-top: 1em;
@@ -918,13 +956,15 @@ body {
     margin-top: 1em;
 }
 
+/* PERSONAL CONTACTS */
+
 #personal_contacts {
     margin: 2em 0em 2em 0em;
     background-color: #393535;
     color: #fff;
     padding: 1em 0em 1em 0em;
-    width: 55%;
-    margin-left: 22.5%;
+    width: 50%;
+    margin-left: 25%;
 }
 
 #personal_contacts ul {
@@ -933,6 +973,12 @@ body {
 
 #personal_contacts li {
     margin-left: 0em !important;
+}
+
+/* POSITION CONTACTS */
+
+#position_contacts {
+    padding-bottom: 1.5em;
 }
 
 #position_contacts h2 {
@@ -952,16 +998,21 @@ body {
 }
 
 
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                                  /*  LOGIN  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-/*-------------------------------------------------ACCEDI----------------------------------------*/
+/* REGISTER CONTENT */
 
-/*messaggio di errore*/
-#register_div h2, #gonna_delete_user {
+/* messaggio di errore */
+#register_content h2, #gonna_delete_user {
     margin-top: 2em;
     text-align: center;
     font-size: 1.6em;
     color: red;
 }
+
+/* REGISTER FIELDSET */
 
 #register_fieldset {
     border: 0em;
@@ -1011,28 +1062,39 @@ body {
 }
 
 
-/*-------------------------------------------------RECUPERO PASSWORD----------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                                /*  RECOVER  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* RECOVER TEXT */
 
 #recover_text {
     width: 17em !important;
     margin-left: 2em !important;
 }
 
+/* RECOVER SUBMIT */
+
 #recover_submit {
     margin-right: 3em !important;
 }
 
 
-/*-------------------------------------------------ERROR 404----------------------------------------*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                               /*  ERROR 404  */
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* ERROR 404 */
 
 #error_404 {
     background-image: url("../img/404.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 34.15em;
+    height: 35.75em;
     width: 100%;
 }
+
+/* NOT FOUND */
 
 #not_found {
     padding-top: 15em;
@@ -1056,11 +1118,9 @@ body {
     color: #5F021F;
 }
 
-
-
-/*
-    ADMIN PANEL
-*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+                                                              /*ADMIN PANEL*/
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 #admin_content {
     border:1.5px solid;
@@ -1115,7 +1175,6 @@ body {
     margin-bottom: -1px;
     
 }
-
 
 .wines_table {
     display: table;
