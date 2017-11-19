@@ -327,8 +327,18 @@ body {
     padding-right: 1em;
 }
 
+.preview_wine_description a {
+    text-decoration: none;
+}
+
+.preview_wine_description h3:hover, .preview_wine_description h4:hover, .preview_wine_description h5:hover {
+    border-bottom: 0.01em solid #5F021F;
+    transition: 0.1s;
+}
+
 .preview_wine_description h3, .preview_wine_description h4, .preview_wine_description h5 {
-    padding-bottom: 0.5em;
+    margin-bottom: 0.3em;
+    padding-bottom: 0.1em;
     font-family: 'Dancing Script',sans-serif;
     font-size: 2.2em;
     color: #5F021F;
@@ -348,7 +358,7 @@ body {
     height: 0.03em;
     background-color: #000;
     content: " ";
-    width: 8em;
+    width: 10em;
     margin: 0 auto;
     margin-top: 0.3em;
 }
@@ -398,7 +408,6 @@ body {
     text-align: center;
     padding-bottom: 3em;
     font-style: italic;
-    font-weight: 300;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
@@ -442,10 +451,10 @@ body {
 #search_wines select {
     border-radius: 0.2em;
     font-size: 0.9em;
-    padding: 0.2em 0.3em 0.2em 0.3em;
+    padding: 0.2em 0.3em;
 }
 
-#order_by {
+#order_by, #filter_by {
     font-size: 1.2em;
 }
 

@@ -1,63 +1,87 @@
 /*  dimensioni Iphone: 320x480  */
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/                                    /*  max  480  */
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-/*  max  480  */
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 @media screen and (max-width:480px) {
-    /*------------------  HEADER & FOOTER ------------------------*/
+    
+/*--------------  HEADER & FOOTER & GENERAL ------------------*/
+    
     #logo {
         display: none;
     }
+    
     #header, #footer {
         height: 8%;
     }
+    
     #header ul {
         width: 100%;
         text-align: right;
-        margin: 0.5em 0.3em 0.5em 0em;
+        margin: 0.5em 0.5em 0.5em 0em;
     }
+    
     #header li, #footer li {
-        margin-left: 3%;
+        margin-left: 2%;
         font-size: 0.9em;
         margin-right: 0em;
     }
+    
     #header a, #footer a {
         letter-spacing: 0em;
     }
+    
     #footer ul {
         padding: 0.5em;
         text-align: center;
         margin: 0.5em 0.3em 0.5em 0em;
         margin-bottom: 0em;
     }
-    /*---------------------  INDEX  -----------------------------*/
+    
+    #title_best_annate h1, #title_our_wines h1, #history_description h1, #container_wine h1, #register_fieldset h1, #presentation_events h1 {
+    font-size: 1.5em;
+    }
+    
+    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after,  #container_wine h1:after, #register_fieldset h1:after, #presentation_events h1:after {
+    width: 90%;
+    }
+    
+/*---------------------  INDEX  -----------------------------*/
+    
     #presentation, #history_preview {
         background-size: cover;
         height: 45%;
         padding-bottom: 0em;
     }
+    
     #presentation h1 {
         padding-top: 0em;
         margin-left: 1.8em;
         font-size: 1.9em;
         letter-spacing: 0em;
     }
+    
     #presentation p {
         padding-top: 0.6em;
         margin-left: 40%;
         margin-right: 28%;
         font-size: 0.9em;
     }
+    
     #short_description {
         margin-top: 0.6em;
     }
+    
     #short_description h2, #tasting h6 {
         font-size: 2em;
         margin-top: 0em;
     }
+    
     #short_description h2:after {
         margin-top: 0.1em;
         width: 6em;
     }
+    
     #short_description p, #tasting p {
         width: 86%;
         margin-left: 7%;
@@ -66,117 +90,227 @@
         margin-bottom: 5%;
         font-size: 0.8em;
     }
+    
     #wine_preview .preview_wine {
         width: 90%;
         margin-left: 5%;
         margin-right: 5%;
         margin-bottom: 2%;
     }
+    
     #wine_preview .preview_wine:first-child {
         margin-left: 5%;;
     }
+    
     #wine_preview .preview_wine img {
         height: 9em;
         margin-left: 0em;
         padding: 0.5em;
     }
+    
     #wine_preview img:hover {
         transform: none;
         transition: none;
     }
+    
     .preview_wine_description {
         padding: 0.2em;
         width: 65%;
     }
+    
     .preview_wine_description h3, .preview_wine_description h4, .preview_wine_description h5 {
         font-size: 1.8em;
         padding-bottom: 0em;
     }
+    
     .preview_wine_description p {
         font-size: 0.8em;
     }
+    
     #tasting h6:after {
         margin-top: 0.1em;
-        width: 5em;
+        width: 7em;
     }
+    
     #history_paragraph {
         padding: 0em;
         width: 66%;
         margin-left: 30%;
         margin-right: 3%;
+        padding-top: 10%;
     }
+    
     #history_preview h7 {
         margin-left: 1em;
         font-size: 2em;
     }
+    
     #history_preview p {
         padding: 0em;
         margin-top: 0em;
         font-size: 0.7em;
     }
+    
+/*----------------------  VINI  -------------------------*/   
+    
+    #search_wines ul {
+        margin-top: 0em;
+        margin-bottom: 1em;
+    }
+    
+    #search_wines li {
+        margin: 0em;
+        width: 100%;
+    }
+    
+    #search {
+        margin-top: 1em;
+        height: 1.5em;
+        width: 80%;
+        margin-left: 8%;
+        margin-bottom: 0.4em;
+        padding-left: 0.4em;
+    }
+    
+    #filter_by, #order_by {
+        padding-top: 0.6em;
+        padding-bottom: 0.3em;
+        font-size: 1em;
+        font-weight: 600;
+    }
+    
+    #search_wines select {
+        width: 50%;
+        padding: 0.1em 0.2em;
+        font-size: 0.8em;
+    }
+    
+    #filter_order, #search_line {
+        text-align: center;
+    }
+    
+    .search_button {
+        font-size: 0.7em;
+    }
+    
+    #wine_results {
+        margin-top: 0em;
+    }
+    
+    #wine_results li {
+        display: inline;
+    }
+    
+    .specific_wine img {
+        padding: 0em;
+        height: 10em;
+    }
+    
+    #specific_result {
+        margin-bottom: 1em;
+    }
+    
+    #specific_result li {
+        margin-left: 8%;
+    }
+    
+    #specific_result ul {
+        width: 80%;
+        float: right;
+        margin: 0em;
+        margin-right: 0.5em;
+        margin-top: 2.5em;
+        padding: 0em;
+        font-size: 0.9em;
+    }
 }
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/                                   /*  481 - 768  */
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-/*  481 - 768  */
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 @media screen and (min-width: 481px) and (max-width:768px){
-    /*-------------------  HEADER & FOOTER  ----------------------*/
+    
+/*---------------  HEADER & FOOTER & GENERAL  ----------------*/
+    
     #logo {
         display: none;
     }
+    
     #logo_alt {
         margin-left: 1em;
         display: inline;
         float: left;
     }
+    
     #header ul {
         width: 75%;
         text-align: right;
         margin-right: 0.7em;
     }
+    
     #header li {
-        margin-left: 3%;
+        margin-left: 2%;
         font-size: 1em;
         margin-right: 0em;
     }
+    
     #footer {
         height: 9%;
     }
+    
     #footer li {
         font-size: 0.9em;
     }
+    
     #footer ul {
         padding: 0.6em;
         text-align: center;
         margin-bottom: 0em;
     }
-    /*---------------------  INDEX  -----------------------------*/
+    
+    #title_best_annate h1, #title_our_wines h1, #history_description h1, #container_wine h1, #register_fieldset h1, #presentation_events h1 {
+    font-size: 1.7em;
+    }
+    
+    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after,  #container_wine h1:after, #register_fieldset h1:after, #presentation_events h1:after {
+    width: 90%;
+    }
+    
+/*---------------------  INDEX  -----------------------------*/
+    
     #presentation, #history_preview {
         background-size: cover;
         height: 55%;
         padding-bottom: 0em;
     }
+    
     #presentation h1 {
-        padding-top: 0.1em;
-        margin-left: 4em;
+        padding-top: 1em;
+        margin-left: 5em;
         font-size: 2.2em;
     }
+    
     #presentation p {
         padding-top: 0.6em;
-        margin-left: 40%;
+        margin-left: 42%;
         margin-right: 28%;
         font-size: 1em;
     }
+    
     #short_description {
         margin-top: 0.6em;
     }
+    
     #short_description h2, #tasting h6 {
         font-size: 2.4em;
         margin-top: 0em;
     }
+    
     #short_description h2:after {
         margin-top: 0.1em;
         width: 7em;
     }
+    
     #short_description p, #tasting p {
         width: 86%;
         margin-left: 7%;
@@ -185,54 +319,65 @@
         margin-bottom: 5%;
         font-size: 0.9em;
     }
+    
     #wine_preview .preview_wine {
         width: 30%;
         margin-left: 1%;
         margin-right: 1%;
         margin-bottom: 2%;
     }
+    
     #wine_preview .preview_wine:first-child {
         margin-left: 3%;
     }
+    
     #wine_preview .preview_wine img {
         height: 12em;
         margin-left: 0em;
         padding: 0.5em;
     }
+    
     #wine_preview img:hover {
         -webkit-transform: scale(1.05);
         -ms-transform: scale(1.05);
         transform: scale(1.05);
         transition: transform 0.5s;
     }
+    
     .preview_wine_description {
         float: left;
         padding: 0.2em;
         width: 100%;
         height: 12.5em;
     }
+    
     .preview_wine_description h3, .preview_wine_description h4, .preview_wine_description h5 {
         font-size: 1.7em;
         padding-bottom: 0em;
     }
+    
     .preview_wine_description p {
         font-size: 0.8em;
     }
+    
     #tasting h6:after {
         margin-top: 0.1em;
-        width: 10em;
+        width: 9em;
     }
+    
     #history_paragraph {
         padding: 0em;
         width: 70%;
         margin-left: 30%;
         margin-right: 3%;
-        padding-top: 1%;
+        padding-top: 10%;
     }
+    
     #history_preview h7 {
         margin-left: 2.5em;
         font-size: 2.2em;
     }
+    
     #history_preview p {
         padding: 0em;
         margin-top: 1%;
@@ -240,87 +385,241 @@
         margin-right: 0.5em;
         margin-left: 2em;
     }
+    
+/*----------------------  VINI  -------------------------*/ 
+    
+    #search_wines li {
+        margin-right: 0em;
+    }
+    
+    #search {
+        width: 24em;
+        margin-left: 6%;
+        margin-bottom: 0.4em;
+        padding-left: 0.6em;
+    }
+    
+    #filter_by, #order_by {
+        width: 23%;
+        padding-top: 0.6em;
+        margin-left: 6%;
+    }
+    
+    #search_wines select {
+        margin-right: 0.5em;
+    }
+    
+    #search_line {
+        width: 100%;
+        text-align: center;
+    }
+    
+    #wine_results {
+        margin-top: 0em;
+    }
+    
+    #wine_results li {
+        width: 33%;
+    }
+    
+    #specific_result.specific_wine {
+        margin-left: 1%;
+    }
+    
+    .specific_wine img {
+        margin-left: 1em;
+        height: 13em;
+        padding: 0em;
+    }
+    
+    .specific_wine label {
+        margin-right: 0em;
+    }
+    
+    #specific_result ul {
+        margin: 0em;
+        margin-bottom: 1em;
+    }
+    
+    #specific_result li {
+        margin: 0em;
+    }
+    
+    #specific_result ul {
+        font-size: 0.9em;
+    }   
 }
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/                                  /*  769 - 1024  */
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-/*  769 - 1024  */
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-    /*---------------------  HEADER  -----------------------------*/    
+    
+/*---------------------  HEADER  -----------------------------*/    
     #header ul {
         width: 60%;
         text-align: right;
         margin-right: 1em;
     }
+    
     #header li, #footer li {
         margin-left: 5%;
         font-size: 1.1em;
         margin-right: 0em;
     }
-    /*---------------------  INDEX  -----------------------------*/
+    
+/*---------------------  INDEX  -----------------------------*/
+    
     #presentation, #history_preview {
         background-size: cover;
         height: 70%;
         padding-bottom: 0em;
     }
+    
     #presentation h1 {
-        padding-top: 0.3em;
+        padding-top: 1.5em;
         margin-left: 5em;
         font-size: 2.7em;
     }
+    
     #presentation p {
         padding-top: 0.7em;
-        margin-left: 41%;
-        margin-right: 28%;
+        margin-left: 43%;
+        margin-right: 30%;
         font-size: 1.1em;
     }
+    
     #short_description h2, #tasting h6 {
         font-size: 2.6em;
     }
+    
     #short_description h2:after {
         margin-top: 0.1em;
         width: 8em;
     }
+    
     #short_description p, #tasting p {
         width: 86%;
         margin-left: 7%;
         margin-right: 7%;
     }
+    
     #wine_preview .preview_wine {
         width: 30%;
         margin-left: 1%;
         margin-right: 1%;
     }
+    
     #wine_preview .preview_wine:first-child {
         margin-left: 3%;
     }
+    
     #wine_preview .preview_wine img {
         height: 14em;
         margin-left: 0em;
         padding: 0.6em;
     }
+    
     #wine_preview img:hover {
         -webkit-transform: scale(1.06);
         -ms-transform: scale(1.06);
         transform: scale(1.06);
         transition: transform 0.5s;
     }
+    
     .preview_wine_description {
         float: left;
         padding: 0.2em;
         width: 100%;
         height: 12.5em;  
     }
+    
     .preview_wine_description h3, .preview_wine_description h4, .preview_wine_description h5 {
         font-size: 2em;
         padding-bottom: 0.2em;
     }
+    
     .preview_wine_description p {
         font-size: 1em;
     }
+    
+    #tasting h6:after {
+        margin-top: 0.1em;
+    }
+    
+    #history_paragraph {
+        width: 70%;
+        margin-left: 30%;
+        margin-right: 3%;
+        padding-top: 10%;
+    }
+    
+    #history_preview h7 {
+        margin-left: 2.5em;
+    }
+    
+    #history_preview p {
+        padding: 0em;
+        margin-top: 2%;
+        margin-right: 0.5em;
+        margin-left: 5em;
+    }
+    
+/*----------------------  VINI  -------------------------*/    
+    
+    #search_wines li {
+        margin-right: 0em;
+    }
+    
+    #search {
+        margin-left: 32%;
+        padding-left: 0.6em;
+    }
+    
+    #search_wines select {
+        margin-left: 0.5em;
+    }
+    
+    #filter_by {
+        padding-left: 1em;
+    }
+    
+    #order_by {
+        margin-left: 1em;
+    }
+    
+    #go_button {
+        margin-left: 2em;
+    }
+    
+    .specific_wine img {
+        margin-left: 3em;
+        padding: 0em;
+    }
+    
+    #specific_result ul {
+        margin: 0em;
+        margin-bottom: 2em;
+    }
+    
+    #specific_result li {
+        margin: 0em;
+    }
+    
+    
+    
 }
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/                                    /*  min 1025  */
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-/*  min 1025  */
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 @media screen and (min-width: 1025px) {
+    
+  
+    
+    
+    
+    
+    
 }
  
