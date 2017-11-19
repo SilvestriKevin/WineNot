@@ -224,7 +224,6 @@ if(isset($section)){
 
             $vini.='<form action="admin_panel.php?section=profile" method="post">';
 
-            // faccio lo stesso il controllo perchè non si sa mai?!
             if(mysqli_num_rows($result)!=0){
                 $vini.='<ul>
                     <li><label>Username: </label><input type="text" maxlength="100" name="username" id="" title="username" value="'.$row['username'].'"/></li>
@@ -237,14 +236,14 @@ if(isset($section)){
             } else 
                 $vini.='<h2>Ci sono dei problemi con il database.</h2>';
 
-
-
             // se tutti i campi tranne password attuale/password nuova NON sono vuoti
-            // allora posso aggiornare quei campi dato E (potenialmente) anche la password
+            // allora posso aggiornare quei campi dato E (potenzialmente) anche la password
 
-            if(!empty($_POST['nome']) && !preg_match("/^(\s)+$/",$_POST['nome']) && !empty($_POST['email']) && !empty($_POST['username']) && !preg_match("/^(\s)+$/",$_POST['username'])) {
+            /**/ 
 
-                // controllo campi vuoti o spazi
+
+            if(!empty($_POST['nome']) && !preg_match("/^(\s)+$/",$_POST['nome']) && !empty($_POST['email']) && !empty($_POST['username']) && !preg_match("/^(\s)+$/",$_POST['username'])){
+
                 $username = $_POST['username'];
                 $nome = $_POST['nome'];
                 $email = $_POST['email'];
@@ -367,13 +366,12 @@ if(isset($section)){
             $vini.='<form action="admin_panel.php?section=users" method="post">';        
 
             if($row['admin'] == 1) { 
-                //STAMPA I VINI (PRESENTI NELLE ANNATE MIGLIORI)
+                //STAMPA GLI UTENTI
                 $sql = "SELECT utenti.* FROM utenti WHERE admin=0";
                 $result=mysqli_query($conn,$sql);
 
                 $vini.='<div class="wines_tr" id="wines_header">
                             <div class="wines_td">Username</div>
-                            <div class="wines_td">Password</div>
                             <div class="wines_td">Nome</div> 
                             <div class="wines_td">Email</div>
                             <div class="wines_td remove_column">Elimina</div>
@@ -384,12 +382,10 @@ if(isset($section)){
                     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
                         $vini.="<div class='wines_tr'>";
                         $vini.="<div class ='wines_td'>".$row['username']."</div>";
-                        $vini.="<div class ='wines_td'>".$row['password']."</div>";
                         $vini.="<div class ='wines_td'>".$row['nome']."</div>";
                         $vini.="<div class ='wines_td'>".$row['email']."</div>";
                         $vini.="<div class ='wines_td remove_column'><a title='Elimina utente' class='' href='./delete_user.php' tabindex='' accesskey=''>X</a></div>";
                         $vini.="</div>";
-                        $vini.="<div class ='wines_td'><a title='Elimina annata' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></div>";
                         $vini.="</div>";
                     }
                 else $vini.="<h2>Non sono presenti utenti.</h2>";

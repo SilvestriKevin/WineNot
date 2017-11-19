@@ -37,7 +37,7 @@ else $vini.="<li><h2>Non sono presenti vini.</h2></li>";
 
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
-$pagina = file_get_contents("../html/modify_wine.html");
+$pagina = file_get_contents("../html/admin_panel.html");
 //rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
 echo str_replace("[VINI]", $vini, $pagina);
 mysqli_close($conn);
