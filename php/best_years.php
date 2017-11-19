@@ -31,7 +31,7 @@ $result=mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)!=0) 
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
         $annate.="<li><a title='".$row['anno']."' ";
-        if(!empty($_GET['year']) && $_GET['year']==$row['anno']) $annate.=" id='current_year' ";
+        if((!empty($_GET['year']) && $_GET['year']==$row['anno']) or (empty($_GET['year']) && $row['anno']=='2016')) $annate.=" id='current_year' ";
         $annate.=" href='./best_years.php?year=".$row['anno']."' tabindex='".$cont."'>".$row['anno']."</a></li>";
         $cont++;
     }
