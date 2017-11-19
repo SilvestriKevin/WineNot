@@ -226,6 +226,7 @@ body {
 #presentation h1 {
     font-family: 'Dancing Script',sans-serif;
     font-size: 3.5em;
+    font-weight: 100;
     text-align: center;
     margin-left: 4em;
     padding-top: 0.8em;
@@ -261,7 +262,7 @@ body {
     content: " ";
     width: 7em;
     margin: 0 auto;
-    margin-top: 0.5em;
+    margin-top: 0.2em;
 }
 
 #short_description h2, #short_description p {
@@ -333,12 +334,6 @@ body {
     color: #5F021F;
 }
 
-.preview_wine_description a:hover {
-    border-bottom: 0.01em solid gray;
-    transition: 0.5s;
-}
-
-
 /* TASTING */
 
 #tasting h6 {
@@ -353,9 +348,9 @@ body {
     height: 0.03em;
     background-color: #000;
     content: " ";
-    width: 7em;
+    width: 8em;
     margin: 0 auto;
-    margin-top: 0.5em;
+    margin-top: 0.3em;
 }
 
 #tasting h6, #tasting p {
@@ -943,9 +938,14 @@ body {
     margin-right: 1.7em;
 }
 
+#howto_contacts input {
+    padding: 0.2em 0.3em;
+}
+
 #textarea_form_help {
     margin-right: 25em;
     margin-top: 0.5em;
+    padding: 0.3em 0.5em;
     width: 53%;
 }
 
