@@ -1,7 +1,7 @@
 /*  dimensioni Iphone: 320x480  */
 
-/*----------------------------------------------------------------------------------------------------------------------------------------*/                                    /*  max  480  */
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------*/                                    /*  max  480  */
+/*--------------------------------------------------------------*/
 
 @media screen and (max-width:480px) {
     
@@ -38,20 +38,19 @@
         margin-bottom: 0em;
     }
     
-    #title_best_annate h1, #title_our_wines h1, #history_description h1, #container_wine h1, #register_fieldset h1, #presentation_events h1 {
+    #title_best_annate h1, #title_our_wines h1, #history_description h1, #register_fieldset h1, #presentation_events h1 {
     font-size: 1.5em;
     }
     
-    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after,  #container_wine h1:after, #register_fieldset h1:after, #presentation_events h1:after {
+    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after, #register_fieldset h1:after, #presentation_events h1:after {
     width: 90%;
     }
     
 /*---------------------  INDEX  -----------------------------*/
     
-    #presentation, #history_preview {
+    #presentation {
         background-size: cover;
         height: 45%;
-        padding-bottom: 0em;
     }
     
     #presentation h1 {
@@ -132,12 +131,18 @@
         width: 7em;
     }
     
+    #history_preview {
+        background-size: cover;
+        height: 38%;
+        padding-bottom: 0em;
+    }
+    
     #history_paragraph {
         padding: 0em;
         width: 66%;
         margin-left: 30%;
         margin-right: 3%;
-        padding-top: 10%;
+        padding-top: 5%;
     }
     
     #history_preview h7 {
@@ -223,10 +228,242 @@
         padding: 0em;
         font-size: 0.9em;
     }
+    
+/*-----------------  PAGINA VINO SPECIFICA  ------------------*/     
+    #container_wine h1 {
+        margin-left: 0em;
+        font-size: 2.2em;
+        color: #5F021F;
+        letter-spacing: 0.025em;
+        font-family: 'Dancing Script',sans-serif;
+        font-weight: 600;
+        margin-bottom: 0.5em;
+    }
+    
+    #img_description_wine, #details_wine {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        text-align: center;
+    }
+    
+    #wine_img {
+        height: 25em;
+        margin-left: 0em;
+    }
+    
+    #details_wine p {
+        font-size: 0.9em;
+        margin-top: 1em;
+    }
+    
+    #title_details {
+        font-size: 1.6em !important;
+        border-bottom: 0.01em solid #5F021F;
+    }
+    
+     #container_wine h1:after, #title_details:after {
+        content: none;
+    }
+    
+    #details_wine li {
+        font-size: 0.9em;
+    }
+    
+    #details_wine li label {
+        font-size: 1em;
+        margin-bottom: 0.3em;
+        font-weight: 600;
+    }
+    
+/*------------------  ANNATE MIGLIORI  -----------------------*/    
+    #title_best_annate p {
+        font-size: 1.1em;
+        margin-bottom: 1em;
+    }
+    
+    #list_annate {
+        background-size: cover;
+        height: 5em;
+    }
+    
+    #list_annate ul {
+        margin-left: 0em;
+    }
+    
+    #list_annate li {
+        font-size: 1.1em;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    
+    #list_annate li:hover {
+        transform: none;
+        transition: 0em;
+    }
+    
+    #description_annata {
+        margin-top: 0.5em;
+        margin-left: 5%;
+    }
+    
+    #description_annata label {
+        font-size: 1.3em;
+    }
+    
+    #year_quality {
+        float: none;
+        width: 100%;
+    }
+    
+    #year_quality p, #year_description p {
+        font-size: 0.8em;
+        padding-top: 0em;
+    }
+    
+    #year_description {
+        width: 100%;
+    }
+    
+    #list_wines_year {
+        margin-top: 1em;
+    }
+    
+    #list_wines_year h2 {
+        padding: 0em;
+        font-size: 1.4em;
+    }
+    
+    #list_wines_year li {
+        display: inline;
+    }
+    
+/*-----------------------  EVENTI  --------------------------*/     #events_content {
+        background-image: none;
+    }
+    
+    #presentation_events {
+        text-align: center;
+    }
+    
+    #presentation_events p {
+        font-size: 0.9em;
+        width: 95%;
+        margin: 0% 3% 5% 3%;
+    }
+    
+    #presentation_events a {
+        font-size: 1em;
+        margin-left: 0em;
+    }
+    
+    #tasting_tour, #san_valenwine, #apperitif_gourmet {
+        background-image: none;
+    }
+    
+    #event_preview {
+        margin-top: 2em;
+    }
+    
+    #event_preview div {
+        height: 15em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        margin-top: 0em;
+    }
+    
+    #tasting_tour h2, #apperitif_gourmet h3, #san_valenwine h4 {
+        margin-left: 0em;
+        margin-right: 0em;
+        font-size: 1.7em;
+        padding: 0em;
+    }
+    
+    #tasting_tour p, #apperitif_gourmet p, #san_valenwine p {
+        margin-left: 0em;
+        margin-right: 0em;
+        margin-bottom: 0.5em;
+        font-size: 0.8em;
+    }
+
+    #ovidio_quote {
+        font-size: 1.1em !important;
+    }
+    
+/*----------------------  STORIA  -------------------------*/    
+    #slideshow {
+        background-image: none;
+        height: 0em;
+    }
+    
+    #history_description p {
+        font-size: 0.9em;
+        margin-top: 1em;
+    }
+    
+    #history_family {
+        margin: 5%;
+        border: 0em;
+    }
+    
+    #history_family div {
+        display: inherit;
+    }
+    
+    #history_family_photo {
+        width: 100%;
+        height: 15em;
+    }
+    
+    #history_family_paragraph {
+        width: 100%;
+        margin-left: 5%;
+        margin-right: 0%;
+    }
+    
+    #history_family h2 {
+        font-size: 1.6em;
+    }
+    
+    #history_family p, #history_future p {
+        font-size: 0.9em;
+        margin-bottom: 2em;
+    }
+    
+    #history_future h3 {
+        font-size: 1.2em;
+        margin-top: 2em;
+    }
+    
+/*----------------------  ERROR 404  -------------------------*/    
+    #error_404 {
+        background-size: cover;
+        background-position: right;
+    }
+    
+    #not_found {
+        padding-top: 2em;
+        float: right;
+        width: 80%;
+        margin-right: 2em;
+    }
+    
+    #not_found h1 {
+        font-size: 2.7em;
+    }
+    
+    #not_found p {
+        font-size: 1em;
+    }
+    
+    #not_found a {
+        font-size: 1em;
+    }
+    
 }
 
-/*----------------------------------------------------------------------------------------------------------------------------------------*/                                   /*  481 - 768  */
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------*/                                   /*  481 - 768  */
+/*--------------------------------------------------------------*/
 
 @media screen and (min-width: 481px) and (max-width:768px){
     
@@ -278,10 +515,9 @@
     
 /*---------------------  INDEX  -----------------------------*/
     
-    #presentation, #history_preview {
+    #presentation {
         background-size: cover;
         height: 55%;
-        padding-bottom: 0em;
     }
     
     #presentation h1 {
@@ -365,12 +601,17 @@
         width: 9em;
     }
     
+    #history_preview {
+        background-size: cover;
+        height: 48%;
+        padding-bottom: 0em;
+    }
+    
     #history_paragraph {
         padding: 0em;
         width: 70%;
         margin-left: 30%;
-        margin-right: 3%;
-        padding-top: 10%;
+        padding-top: 5%;
     }
     
     #history_preview h7 {
@@ -382,7 +623,7 @@
         padding: 0em;
         margin-top: 1%;
         font-size: 0.9em;
-        margin-right: 0.5em;
+        margin-right: 1em;
         margin-left: 2em;
     }
     
@@ -427,7 +668,7 @@
     }
     
     .specific_wine img {
-        margin-left: 1em;
+        margin-left: 2.5em;
         height: 13em;
         padding: 0em;
     }
@@ -448,10 +689,181 @@
     #specific_result ul {
         font-size: 0.9em;
     }   
+    
+/*-----------------  PAGINA VINO SPECIFICA  ------------------*/
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+/*------------------  ANNATE MIGLIORI  -----------------------*/     
+    #title_best_annate p {
+        font-size: 1.4em;
+    }
+    
+    #list_annate {
+        background-size: cover;
+        height: 8em;
+    }
+    
+    #list_annate ul {
+        margin-left: 0em;
+    }
+    
+    #list_annate li {
+        font-size: 1.6em;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    
+    #description_annata {
+        margin-left: 5%;
+    }
+    
+    #description_annata label {
+    }
+    
+    #year_quality {
+        float: none;
+        width: 100%;
+    }
+    
+    #year_description {
+        width: 100%;
+    }
+    
+    #list_wines_year {
+        margin-top: 1em;
+    }
+    
+    #list_wines_year li {
+        width: 33%;
+    }
+    
+/*-----------------------  EVENTI  --------------------------*/    
+    #events_content {
+        background-image: none;
+    } 
+    
+    #presentation_events {
+        text-align: center;
+    }
+    
+    #presentation_events p {
+        width: 95%;
+        margin: 0% 3% 5% 3%;
+    }
+    
+    #presentation_events a {
+        font-size: 1.1em;
+        margin-left: 0em;
+    }
+    
+    #tasting_tour, #san_valenwine, #apperitif_gourmet {
+        background-image: none;
+    }
+    
+    #event_preview {
+        margin-top: 3em;
+    }
+    
+    #event_preview div {
+        height: 16em;
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-top: 0em;
+    }
+    
+    #tasting_tour h2, #apperitif_gourmet h3, #san_valenwine h4 {
+        margin-left: 0em;
+        margin-right: 0em;
+        padding: 0em;
+        font-size: 1.8em;
+    }
+    
+    #tasting_tour p, #apperitif_gourmet p, #san_valenwine p {
+        margin-left: 0em;
+        margin-right: 0em;
+        margin-bottom: 0.5em;
+        font-size: 0.9em;
+    }
+
+    #ovidio_quote {
+        font-size: 1.1em !important;
+    }
+    
+/*----------------------  STORIA  -------------------------*/      
+    #slideshow {
+        background-image: none;
+        height: 0em;
+    }
+    
+    #history_family {
+        margin: 5%;
+        border: 0em;
+    }
+    
+    #history_family div {
+        display: inherit;
+    }
+    
+    #history_family_photo {
+        width: 100%;
+        height: 15em;
+        padding-top: 8em;
+    }
+    
+    #history_family_paragraph {
+        width: 100%;
+        margin-left: 5%;
+        margin-right: 0%;
+    }
+    
+    #history_family h2 {
+        font-size: 2em;
+    }
+    
+    #history_family p {
+        font-size: 1em;
+        margin-bottom: 2em;
+    }
+    
+    #history_future h3 {
+        font-size: 1.4em;
+        margin-top: 2em;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
+/*----------------------  ERROR 404  -------------------------*/   
+    #error_404 {
+        background-size: cover;
+    }
+    
+    #not_found {
+        width: 50%;
+        margin-left: 0.5em;
+    }
+    
+    #not_found h1 {
+        font-size: 2.9em;
+        margin-right: 1em;
+    }
+    
+    #not_found p {
+        font-size: 1.1em;
+    }
+    
+    
 }
 
-/*----------------------------------------------------------------------------------------------------------------------------------------*/                                  /*  769 - 1024  */
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------*/                                  /*  769 - 1024  */
+/*--------------------------------------------------------------*/
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     
@@ -470,10 +882,9 @@
     
 /*---------------------  INDEX  -----------------------------*/
     
-    #presentation, #history_preview {
+    #presentation {
         background-size: cover;
         height: 70%;
-        padding-bottom: 0em;
     }
     
     #presentation h1 {
@@ -547,11 +958,16 @@
         margin-top: 0.1em;
     }
     
+    #presentation, #history_preview {
+        background-size: cover;
+        height: 50%;
+        padding-bottom: 0em;
+    }
+    
     #history_paragraph {
         width: 70%;
         margin-left: 30%;
-        margin-right: 3%;
-        padding-top: 10%;
+        padding-top: 5%;
     }
     
     #history_preview h7 {
@@ -561,7 +977,7 @@
     #history_preview p {
         padding: 0em;
         margin-top: 2%;
-        margin-right: 0.5em;
+        margin-right: 1em;
         margin-left: 5em;
     }
     
@@ -606,12 +1022,110 @@
         margin: 0em;
     }
     
+/*------------------  ANNATE MIGLIORI  -----------------------*/     
+    #list_annate ul {
+        margin-left: 0em;
+    }
+    
+    #list_annate li {
+        font-size: 1.8em;
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+    
+    #description_annata {
+        margin-left: 1em;
+        width: 100%;
+    }
+    
+    #year_quality {
+        width: 20%;
+    }
+    
+    #year_description {
+        width: 70%;
+    }
+    
+    #list_wines_year {
+        margin-top: 1.5em;
+    }
+    
+/*-----------------------  EVENTI  --------------------------*/     
+    #events_content {
+        background-image: none;
+    }
+    
+    #event_preview div {
+        height: 19em;
+    }
+    
+    #tasting_tour, #san_valenwine, #apperitif_gourmet {
+        margin-left: 4%;
+    }
+    
+    #tasting_tour h2, #san_valenwine h4, #apperitif_gourmet h3 {
+        margin-left: 55%;
+        padding-top: 0em;
+        margin-right: 0em;
+        font-size: 1.8em;
+    }
+    
+    #tasting_tour p, #san_valenwine p, #apperitif_gourmet p {
+        margin-left: 55%;
+        margin-right: 1%;
+        font-size: 0.9em;
+    }
+    
+    #ovidio_quote {
+        font-size: 1.2em !important;
+    }
+    
+/*----------------------  STORIA  -------------------------*/    
+    #slideshow {
+        height: 25.5em;
+    }
+    
+    #history_description p {
+        margin-bottom: 2.5em;
+    }
+    
+    #history_family {
+        margin: 3%;
+        height: 24em;
+    }
+    
+    #history_family_photo {
+        height: 24em;
+        width: 50%;
+    }
+    
+    #history_family_paragraph {
+        padding-top: 0.2em;
+        width: 40%;
+    }
+    
+    #history_family h2 {
+        font-size: 2.1em;
+    }
+    
+    #history_family p {
+        font-size: 1em;
+        margin-bottom: 2em;
+    }
+    
+    #history_future h3 {
+        font-size: 1.5em;
+        margin-top: 1.5em;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
     
     
 }
 
-/*----------------------------------------------------------------------------------------------------------------------------------------*/                                    /*  min 1025  */
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------*/                                    /*  min 1025  */
+/*--------------------------------------------------------------*/
 
 @media screen and (min-width: 1025px) {
     

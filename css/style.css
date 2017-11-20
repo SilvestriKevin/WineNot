@@ -331,9 +331,8 @@ body {
     text-decoration: none;
 }
 
-.preview_wine_description h3:hover, .preview_wine_description h4:hover, .preview_wine_description h5:hover {
-    border-bottom: 0.01em solid #5F021F;
-    transition: 0.1s;
+#wine_preview a {
+    border-bottom: 0.5em solid #5F021F;
 }
 
 .preview_wine_description h3, .preview_wine_description h4, .preview_wine_description h5 {
@@ -343,6 +342,18 @@ body {
     font-size: 2.2em;
     color: #5F021F;
 }
+
+/*
+.preview_wine_description h3:after, .preview_wine_description h4:after, .preview_wine_description h5:after {
+    display: block;
+    height: 0.05em;
+    background-color: #5F021F;
+    content: " ";
+    width: 4.5em;
+    margin: 0 auto;
+}
+*/
+
 
 /* TASTING */
 
@@ -536,7 +547,7 @@ body {
 }
 
 #title_details {
-    font-size: 1.8em !important;
+    font-size: 1.8em;
     color: #5F021F;
     margin-top: 1.5em;
     letter-spacing: 0.025em;
@@ -556,12 +567,16 @@ body {
 #details_wine li {
     list-style-type: none;
     margin-bottom: 0.5em;
-    font-size: 1.1em;
+    margin-right: 0.3em;
+}
+
+#details_wine li label {
+    font-size: 1.2em;
+    color: #5F021F;
 }
 
 #details_wine label {
     font-size: 1.1em;
-    margin-right: 0.3em;
 }
 
 
@@ -606,6 +621,7 @@ body {
 	-ms-transform: scale(1.00);
 	transform: scale(1.00);
     color: black;
+    border-bottom: 0.01em solid black;
 }
 
 #list_annate li {
@@ -627,6 +643,7 @@ body {
 
 #current_year {
     color: #740e2e !important;
+    border-bottom: 0em !important;
 }
 
 /* DESCRIPTION ANNATA */
@@ -746,10 +763,10 @@ body {
     height: 20em;
 }
 
-#tasting_tour h2, #san_valenwine h4 {
+#tasting_tour h2, #san_valenwine h4, #apperitif_gourmet h3 {
     text-align: center;
     margin-left: 35%;
-    padding-top: 1em;
+    padding-top: 0.5em;
     margin-bottom: 0.3em;
     font-family: 'Dancing Script',sans-serif;
     font-size: 2.5em;
@@ -757,55 +774,35 @@ body {
     font-weight: 600;
 }
 
-#apperitif_gourmet h3 {
-    text-align: center;
-    margin-right: 40%;
-    padding-top: 1em;
-    margin-bottom: 0.3em;
-    font-family: 'Dancing Script',sans-serif;
-    font-size: 2.5em;
-    color: #5F021F;
-    font-weight: 600;
-}
-
-#tasting_tour p, #san_valenwine p {
-    margin-left: 37%;
-    margin-right: 5%;
+#tasting_tour p, #san_valenwine p, #apperitif_gourmet p {
+    margin-left: 42%;
+    margin-right: 2%;
     margin-bottom: 1em;
     text-align: center;
 }
 
-#apperitif_gourmet p {
-    margin-right: 40%;
-    margin-left: 7%;
-    margin-bottom: 1em;
-    text-align: center;
+#tasting_tour, #san_valenwine, #apperitif_gourmet {
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 5%;
 }
 
 #tasting_tour {
     margin-top: 4em;
-    margin-left: 5em;
     background-image: url(../img/tasting_tour.png);
-    background-repeat: no-repeat;
-    background-size: contain;
 }
 
 #san_valenwine {
-    margin-left: 6%;
     background-image: url(../img/san_valenwine.png);
-    background-repeat: no-repeat;
-    background-size: contain;
+}
+
+#apperitif_gourmet {
+    background-image: url(../img/apperitif_gourmet.png);
 }
 
 #ovidio_quote {
     font-family: 'Dancing Script',sans-serif;
     font-size: 1.4em;
-}
-
-#apperitif_gourmet {
-    background-image: url(../img/apperitif_gourmet.png);
-    background-repeat: no-repeat;
-    background-size: contain;
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
@@ -834,23 +831,35 @@ body {
 
 /* HISTORY FAMILY */
 
-#history_family {
-    margin: 3em 3em 2em 4em;
+#history_family div {
+    display: inline-block;
+}
+
+#history_family_photo {
     background-image: url(../img/back_background_family.png);
     background-repeat: no-repeat;
     background-position: center;
-    height: 20em;
+    background-size: cover;
+    width: 40%;
+    height: 21em;
+}
+
+#history_family {
+    margin: 3em 3em 2em 4em;
+    height: 21em;
     border: 0.01em solid black;
 }
 
 #history_family_paragraph {
     padding-top: 1em;
-    margin: 0% 10% 5% 48%;
-    width: 45%;
+    margin: 0% 3% 0% 0%;
+    width: 53%;
+    float: right;
 }
 
 #history_family h2 {
     margin-bottom: 0.5em;
+    margin-top: 3%;
     text-align: center;
     font-size: 2.3em;
     letter-spacing: 0.025em;
@@ -1128,7 +1137,7 @@ body {
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                                              /*ADMIN PANEL*/
+                                    /*ADMIN PANEL*/
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 #admin_content {
@@ -1163,7 +1172,6 @@ body {
     list-style-type: none;
 }
 
-
 #wines_list {
     width: 90%;
     margin: 1em 5%;
@@ -1181,8 +1189,7 @@ body {
     border-right: 1px solid;
     border-bottom: 1px solid;
     margin-right: -1px; /* margine negativo compensa spazio occupato da border*/
-    margin-bottom: -1px;
-    
+    margin-bottom: -1px; 
 }
 
 .wines_table {
