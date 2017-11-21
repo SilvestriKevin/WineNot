@@ -105,6 +105,7 @@ body {
     font-size: 1.2em;
     text-transform: uppercase;
     color: #fff;
+    margin-top: 0.2em;
 }
 
 #header li a:hover,#footer li a:hover, #horizontal_menu a:hover {
@@ -115,7 +116,7 @@ body {
 
 /* TITOLI */
 
-#title_best_annate h1, #title_our_wines h1, #history_description h1, #container_wine h1, #register_fieldset h1, #presentation_events h1 {
+#title_best_annate h1, #title_our_wines h1, #history_description h1, #container_wine h1, #register_fieldset h1, #presentation_events h1, #howto_contacts h1 {
     padding-top: 1em;
     text-align: center;
     font-size: 2em;
@@ -123,7 +124,7 @@ body {
     letter-spacing: 0.04em;
 }
 
-#title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after,  #container_wine h1:after, #register_fieldset h1:after, #presentation_events h1:after {
+#title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after,  #container_wine h1:after, #register_fieldset h1:after, #presentation_events h1:after, #howto_contacts h1:after {
     display: block;
     height: 0.03em;
     background-color: #000;
@@ -155,13 +156,13 @@ body {
     margin: 1em 2em 1em 0em;
 }
 
-#logo,#logo_alt {
+#logo, #logo_alt, #logo_alt_mobile {
     margin: 0.4em 0em 0em 1.4em;
     height: 80%;
     text-decoration: none;
 }
 
-#logo_alt {
+#logo_alt, #logo_alt_mobile {
     display: none;
 }
 
@@ -913,25 +914,6 @@ body {
 
 /* HOW TO CONTACTS */
 
-#howto_contacts h1 {
-    padding-top: 1em;
-    text-align: center;
-    font-size: 2em;
-    font-weight: 100;
-    letter-spacing: 0.04em;
-}
-
-#howto_contacts h1:after {
-    display: block;
-    height: 0.03em;
-    background-color: #000;
-    content: " ";
-    width: 15em;
-    margin: 0 auto;
-    margin-top: 0.5em;
-    margin-bottom: 0.8em;
-}
-
 #howto_contacts fieldset {
     width: 80%;
     margin-left: 10%;
@@ -948,6 +930,9 @@ body {
 
 #howto_contacts li {
     list-style-type: none;
+}
+
+#message_fieldset li {
     margin-left: 9em;
     margin-bottom: 0.5em;
 }
@@ -980,17 +965,13 @@ body {
     margin: 2em 0em 2em 0em;
     background-color: #393535;
     color: #fff;
-    padding: 1em 0em 1em 0em;
+    padding: 1em 0em;
     width: 50%;
     margin-left: 25%;
 }
 
 #personal_contacts ul {
     text-align: center;
-}
-
-#personal_contacts li {
-    margin-left: 0em !important;
 }
 
 /* POSITION CONTACTS */
@@ -1007,7 +988,7 @@ body {
 
 #position_contacts p {
     text-align: center;
-    margin: 0.5em 0em 0.5em 0em;
+    margin: 0.5em 0em;
 }
 
 #googleMap {

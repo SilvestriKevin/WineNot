@@ -7,8 +7,14 @@
     
 /*--------------  HEADER & FOOTER & GENERAL ------------------*/
     
-    #logo {
+    #logo{
         display: none;
+    }
+    
+    #logo_alt_mobile {
+        margin-left: 0.2em;
+        display: inline;
+        float: left;
     }
     
     #header, #footer {
@@ -16,14 +22,14 @@
     }
     
     #header ul {
-        width: 100%;
+        width: 83.5%;
         text-align: right;
-        margin: 0.5em 0.5em 0.5em 0em;
+        margin: 0.8em 0.5em 0.5em 0em;
     }
     
     #header li, #footer li {
-        margin-left: 2%;
-        font-size: 0.9em;
+        margin-left: 1.5%;
+        font-size: 0.8em;
         margin-right: 0em;
     }
     
@@ -32,17 +38,16 @@
     }
     
     #footer ul {
-        padding: 0.5em;
+        padding-top: 0.8em;
         text-align: center;
-        margin: 0.5em 0.3em 0.5em 0em;
         margin-bottom: 0em;
     }
     
-    #title_best_annate h1, #title_our_wines h1, #history_description h1, #register_fieldset h1, #presentation_events h1 {
-    font-size: 1.5em;
+    #title_best_annate h1, #title_our_wines h1, #history_description h1, #register_fieldset h1, #presentation_events h1, #container_wine h1, #howto_contacts h1 {
+    font-size: 1.6em;
     }
     
-    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after, #register_fieldset h1:after, #presentation_events h1:after {
+    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after, #register_fieldset h1:after, #presentation_events h1:after, #howto_contacts h1:after {
     width: 90%;
     }
     
@@ -54,7 +59,7 @@
     }
     
     #presentation h1 {
-        padding-top: 0em;
+        padding-top: 0.3em;
         margin-left: 1.8em;
         font-size: 1.9em;
         letter-spacing: 0em;
@@ -232,12 +237,11 @@
 /*-----------------  PAGINA VINO SPECIFICA  ------------------*/     
     #container_wine h1 {
         margin-left: 0em;
-        font-size: 2.2em;
-        color: #5F021F;
-        letter-spacing: 0.025em;
-        font-family: 'Dancing Script',sans-serif;
-        font-weight: 600;
-        margin-bottom: 0.5em;
+    }
+    
+    #wine_img {
+        height: 25em;
+        margin-left: 0em;
     }
     
     #img_description_wine, #details_wine {
@@ -245,11 +249,6 @@
         margin-left: 5%;
         margin-right: 5%;
         text-align: center;
-    }
-    
-    #wine_img {
-        height: 25em;
-        margin-left: 0em;
     }
     
     #details_wine p {
@@ -262,7 +261,7 @@
         border-bottom: 0.01em solid #5F021F;
     }
     
-     #container_wine h1:after, #title_details:after {
+     #title_details:after {
         content: none;
     }
     
@@ -435,6 +434,79 @@
         margin-top: 2em;
     }
     
+/*---------------------  CONTATTACI  -------------------------*/    
+    #content_contacts_external {
+        background-image: none;
+        background-color: rgba(0, 0, 0, 0.87);
+    }
+    
+    #content_contacts, #personal_contacts {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    
+    #howto_contacts fieldset {
+        border: 0em;
+        margin-top: 1.5em;
+    }
+    
+    #howto_contacts legend {
+        font-size: 1em;
+        margin-left: 4%;
+        margin-bottom: 0.5em;
+        text-align: inherit;
+    }
+    
+    #message_fieldset li {
+        margin-left: 4%;
+        width: 60%;
+        font-size: 0.8em;
+    }
+    
+    #howto_contacts input {
+        padding: 0em;
+    }
+    
+    #textarea_form_help {
+        width: 75%;
+        margin-top: 0em;
+    }
+    
+    #send_request {
+        float: left;
+        margin-left: 15%;
+        padding: 0.2em 0.3em !important;
+        font-size: 0.9em !important;
+    }
+    
+    #personal_contacts {
+        padding: 0.6em 0em;
+        margin-top: 1em;
+        margin-bottom: 1.5em;
+    }
+    
+    #personal_contacts li {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        font-size: 0.8em;
+    }
+    
+    #position_contacts {
+        padding-bottom: 1em;
+    }
+    
+    #position_contacts h2 {
+        font-size: 1.1em;
+    }
+    
+    #position_contacts p {
+        font-size: 0.8em;
+        margin-top: 0.2em;
+        margin-bottom: 1em;
+    }
+    
 /*----------------------  ERROR 404  -------------------------*/    
     #error_404 {
         background-size: cover;
@@ -459,7 +531,6 @@
     #not_found a {
         font-size: 1em;
     }
-    
 }
 
 /*--------------------------------------------------------------*/                                   /*  481 - 768  */
@@ -483,6 +554,7 @@
         width: 75%;
         text-align: right;
         margin-right: 0.7em;
+        margin-top: 1.3em;
     }
     
     #header li {
@@ -500,16 +572,16 @@
     }
     
     #footer ul {
-        padding: 0.6em;
+        padding-top: 1em;
         text-align: center;
         margin-bottom: 0em;
     }
     
-    #title_best_annate h1, #title_our_wines h1, #history_description h1, #container_wine h1, #register_fieldset h1, #presentation_events h1 {
+    #title_best_annate h1, #title_our_wines h1, #history_description h1, #container_wine h1, #register_fieldset h1, #presentation_events h1, #howto_contacts h1 {
     font-size: 1.7em;
     }
     
-    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after,  #container_wine h1:after, #register_fieldset h1:after, #presentation_events h1:after {
+    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after,  #container_wine h1:after, #register_fieldset h1:after, #presentation_events h1:after, #howto_contacts h1:after {
     width: 90%;
     }
     
@@ -692,14 +764,41 @@
     
 /*-----------------  PAGINA VINO SPECIFICA  ------------------*/
     
+    #container_wine h1 {
+        margin-left: 0em;
+    }
     
+    #wine_img {
+        height: 27em;
+        margin-left: 0em;
+    }
     
+    #img_description_wine, #details_wine {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        text-align: center;
+    }
     
+    #details_wine p {
+        font-size: 1em;
+        margin-top: 2em;
+    }
     
+    #title_details {
+        font-size: 2em !important;
+        border-bottom: 0.01em solid #5F021F;
+    }
     
+    #title_details:after {
+        content: none;
+    }
     
-    
-    
+    #details_wine li label {
+        font-size: 1em;
+        margin-bottom: 0.3em;
+        font-weight: 600;
+    }
     
 /*------------------  ANNATE MIGLIORI  -----------------------*/     
     #title_best_annate p {
@@ -773,7 +872,7 @@
     }
     
     #event_preview div {
-        height: 16em;
+        height: 13em;
         margin-left: 1em;
         margin-right: 1em;
         margin-top: 0em;
@@ -858,8 +957,6 @@
     #not_found p {
         font-size: 1.1em;
     }
-    
-    
 }
 
 /*--------------------------------------------------------------*/                                  /*  769 - 1024  */
@@ -872,12 +969,17 @@
         width: 60%;
         text-align: right;
         margin-right: 1em;
+        margin-top: 1.3em;
     }
     
     #header li, #footer li {
         margin-left: 5%;
         font-size: 1.1em;
         margin-right: 0em;
+    }
+    
+    #footer ul {
+        padding-top: 1.3em;
     }
     
 /*---------------------  INDEX  -----------------------------*/
@@ -1022,6 +1124,20 @@
         margin: 0em;
     }
     
+/*-----------------  PAGINA VINO SPECIFICA  ------------------*/   
+   #container_wine h1 {
+        margin-left: 25%;
+    }  
+    
+    #wine_img {
+        height: 37em;
+        margin-left: 30%;
+    }
+    
+    #details_wine p {
+        margin-top: 1em;
+    }
+    
 /*------------------  ANNATE MIGLIORI  -----------------------*/     
     #list_annate ul {
         margin-left: 0em;
@@ -1035,6 +1151,10 @@
     
     #description_annata {
         margin-left: 1em;
+        width: 100%;
+    }
+    
+    #description_annata li {
         width: 100%;
     }
     
@@ -1120,20 +1240,12 @@
         margin-right: 5%;
     }
     
-    
-    
 }
 
 /*--------------------------------------------------------------*/                                    /*  min 1025  */
 /*--------------------------------------------------------------*/
 
 @media screen and (min-width: 1025px) {
-    
   
-    
-    
-    
-    
-    
 }
  
