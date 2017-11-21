@@ -205,14 +205,17 @@ if(isset($section)){
                     $vini.="'></div>";
                     $vini.="<div class ='wines_td'>".$row['anno']."</div>";
                     $vini.="<div class ='wines_td'>".$row['qualita']."</div>";
-                    $vini.="<div class ='wines_td modify_column'><a title='Modifica vino' class='' href='./modify_wine.php' tabindex='' accesskey=''>Modifica</a></div>";
+                    $vini.="<div class ='wines_td modify_column'><a title='Modifica vino' class='' href='./modify_year.php?year=".$row['anno']."' tabindex='' accesskey=''>Modifica</a></div>";
                     $vini.="<div class ='wines_td remove_column'><a title='Elimina annata' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></div>";
                     $vini.="</div>";
                 }
             else {
                 $vini.="<h2>Non sono presenti annate.</h2>";
-                $vini.="</form>";
             }
+
+            $vini.="<a title='Aggiungi Annata' class='' href='./add_year.php' tabindex='' accesskey=''>Aggiungi Annata</a>";
+            $vini.="</form>";
+
             break;
 
         case 'profile':
