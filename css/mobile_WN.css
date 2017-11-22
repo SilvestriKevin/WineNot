@@ -436,8 +436,8 @@
     
 /*---------------------  CONTATTACI  -------------------------*/    
     #content_contacts_external {
-        background-image: none;
-        background-color: rgba(0, 0, 0, 0.87);
+        
+        background-size: cover;
     }
     
     #content_contacts, #personal_contacts {
@@ -446,38 +446,47 @@
         margin-right: 10%;
     }
     
-    #howto_contacts fieldset {
-        border: 0em;
-        margin-top: 1.5em;
+    #howto_contacts form {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    
+    #howto_contacts ul {
+        width: 100%;
+        margin-left: 0em;
     }
     
     #howto_contacts legend {
         font-size: 1em;
-        margin-left: 4%;
         margin-bottom: 0.5em;
-        text-align: inherit;
+        text-align: center;
     }
     
-    #message_fieldset li {
-        margin-left: 4%;
-        width: 60%;
+    #howto_contacts li {
+        margin-left: 6%;
+        padding-left: 0em;
         font-size: 0.8em;
     }
     
     #howto_contacts input {
         padding: 0em;
+        padding-left: 0.2em;
+        margin-right: 6%;
+        width: 92%;
     }
     
     #textarea_form_help {
-        width: 75%;
+        width: 92%;
         margin-top: 0em;
+        padding: 0.1em 0.2em;
     }
     
     #send_request {
-        float: left;
-        margin-left: 15%;
+        text-align: center;
         padding: 0.2em 0.3em !important;
         font-size: 0.9em !important;
+        width: 10em !important;
     }
     
     #personal_contacts {
@@ -506,6 +515,7 @@
         margin-top: 0.2em;
         margin-bottom: 1em;
     }
+    
     
 /*----------------------  ERROR 404  -------------------------*/    
     #error_404 {
@@ -939,6 +949,84 @@
         margin-right: 5%;
     }
     
+/*---------------------  CONTATTACI  -------------------------*/    
+    #content_contacts_external {
+        background-size: cover;
+    }
+    
+    #content_contacts {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    
+    #howto_contacts form {
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    
+    #howto_contacts ul {
+        width: 100%;
+        margin-left: 0em;
+    }
+    
+    #howto_contacts legend {
+        font-size: 1.1em;
+        margin-bottom: 0.5em;
+        text-align: center;
+    }
+    
+    #howto_contacts li {
+        margin-left: 6%;
+        padding-left: 0em;
+    }
+    
+    #howto_contacts input {
+        padding: 0em;
+        padding-left: 0.2em;
+    }
+    
+    #textarea_form_help {
+        width: 91%;
+        margin-top: 0em;
+        padding: 0.1em 0.2em;
+    }
+    
+    #send_request {
+        text-align: center;
+        padding: 0.2em 0.3em !important;
+        font-size: 0.9em !important;
+        margin-left: 25%;
+    }
+    
+    #personal_contacts {
+        width: 60%;
+        margin-left: 20%;
+        padding: 0.6em 0em;
+        margin-top: 1em;
+        margin-bottom: 1.5em;
+    }
+    
+    #personal_contacts li {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    
+    #position_contacts {
+        padding-bottom: 1em;
+    }
+    
+    #position_contacts h2 {
+        font-size: 1.2em;
+    }
+    
+    #position_contacts p {
+        margin-top: 0.2em;
+        margin-bottom: 1em;
+    }
+    
 /*----------------------  ERROR 404  -------------------------*/   
     #error_404 {
         background-size: cover;
@@ -1239,6 +1327,34 @@
         margin-left: 5%;
         margin-right: 5%;
     }
+    
+/*---------------------  CONTATTACI  -------------------------*/ 
+    
+    #content_contacts_external {
+        background-size: cover;
+    }
+    
+    #textarea_form_help {
+        width: 70%;
+        margin-top: 0em;
+    }
+    
+    #send_request {
+        text-align: center;
+        margin-left: 13%;
+    }
+    
+    #personal_contacts {
+        width: 60%;
+        margin-left: 20%;
+        padding: 0.6em 0em;
+        margin-top: 1em;
+        margin-bottom: 1.5em;
+    }
+    
+    
+    
+    
     
 }
 

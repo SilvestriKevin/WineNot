@@ -898,9 +898,10 @@ body {
 /* CONTENT CONTACTS EXTERNAL */
 
 #content_contacts_external {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("../img/backgroung_contacts.png");
-    background-repeat: repeat;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("../img/background_contacts.png");
+    background-repeat: no-repeat;
     background-position: center;
+    background-size: cover;
     width: 100%;
 }
 
@@ -914,49 +915,49 @@ body {
 
 /* HOW TO CONTACTS */
 
-#howto_contacts fieldset {
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 3em;
-}
-
 #howto_contacts legend {
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
+    padding-top: 1em;
     text-transform: uppercase;
     font-size: 1.2em;
     letter-spacing: 0.06em;
 }
 
+#howto_contacts ul {
+    width: 70%;
+    margin-left: 15%;
+    border: 0.01em solid black;
+}
+
 #howto_contacts li {
     list-style-type: none;
+    margin-bottom: 0.3em;
+    padding-left: 25%;
 }
 
-#message_fieldset li {
-    margin-left: 9em;
-    margin-bottom: 0.5em;
-}
-
-#object_send {
-    margin-right: 1.7em;
+#howto_contacts li:first-child {
+    margin-top: 1.5em;
 }
 
 #howto_contacts input {
     padding: 0.2em 0.3em;
 }
 
-#textarea_form_help {
-    margin-right: 25em;
-    margin-top: 0.5em;
-    padding: 0.3em 0.5em;
-    width: 53%;
+#object_send {
+    margin-right: 1.7em;
 }
 
 #send_request{
-    float: right;
-    margin-right: 8%;
+    margin-left: 20%;
     margin-bottom: 1em;
     margin-top: 1em;
+}
+
+#textarea_form_help {
+    margin-top: 0.5em;
+    padding: 0.3em 0.5em;
+    width: 61%;
 }
 
 /* PERSONAL CONTACTS */
@@ -966,8 +967,12 @@ body {
     background-color: #393535;
     color: #fff;
     padding: 1em 0em;
-    width: 50%;
-    margin-left: 25%;
+    width: 40%;
+    margin-left: 30%;
+}
+
+#personal_contacts li {
+    list-style-type: none;
 }
 
 #personal_contacts ul {
