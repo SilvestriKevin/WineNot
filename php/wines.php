@@ -11,6 +11,7 @@ include_once("../include/lib.php");
 $vini='';
 $annata='';
 $tipologia='';
+$ordine='';
 $improved_search='';
 
 if(!empty($_COOKIE['error'])){
@@ -33,20 +34,21 @@ if(mysqli_num_rows($result)!=0)
     }
 
 //SELECT TIPOLOGIA NEL FORM
-/*$sql = "SELECT tipologia FROM vini GROUP BY tipologia ORDER BY tipologia";
-$result=mysqli_query($conn,$sql);
-if(mysqli_num_rows($result)!=0)
-    while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-        $tipologia.="<option value='".$row['tipologia']."'";
-        if(!empty($_GET['tipologia']) && $_GET['tipologia']==$row['tipologia']) $tipologia.=" selected='selected'";
-        $tipologia.=">".$row['tipologia']."</option>";
-    }*/
 $array_tipologie=array('bianco','rosso','nero','ros&egrave');
 $num_elementi=count($array_tipologie);
 for($i=0 ; $i<$num_elementi ; $i++){
     $tipologia.="<option value='".$array_tipologie[$i]."'";
     if(!empty($_GET['tipologia']) && entityAccentedVowels($_GET['tipologia'])==$array_tipologie[$i]) $tipologia.=" selected='selected'";
     $tipologia.=">".$array_tipologie[$i]."</option>";
+}
+
+//SELECT ORDINE NEL FORM
+$array_ordine=array('nome','annata','tipologia','gradazione','formato');
+$num_elementi=count($array_ordine);
+for($i=0 ; $i<$num_elementi ; $i++){
+    $ordine.="<option value='".$array_ordine[$i]."'";
+    if(!empty($_GET['ordine']) && $_GET['ordine']==$array_ordine[$i]) $ordine.=" selected='selected'";
+    $ordine.=">".$array_ordine[$i]."</option>";
 }
 
 $text_search = 'vini';
@@ -68,10 +70,10 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
         while(!empty($search[$counter])) {
 
             if($counter>0) {
-                $text_search = "( SELECT vini.* FROM ".$text_search." WHERE ( vini.nome LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.vitigno LIKE '%".$search[$counter]."%' OR vini.gradazione LIKE '%".$search[$counter]."%' ) ) AS vini";
+                $text_search = "( SELECT vini.* FROM ".$text_search." WHERE ( vini.nome LIKE '%".$search[$counter]."%' OR vini.denominazione LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.vitigno LIKE '%".$search[$counter]."%' OR vini.gradazione LIKE '%".$search[$counter]."%' ) ) AS vini";
             }
             else{
-                $text_search = "( SELECT vini.* FROM vini WHERE ( vini.nome LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.vitigno LIKE '%".$search[$counter]."%' OR vini.gradazione LIKE '%".$search[$counter]."%' ) ) AS vini";
+                $text_search = "( SELECT vini.* FROM vini WHERE ( vini.nome LIKE '%".$search[$counter]."%' OR vini.denominazione LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.vitigno LIKE '%".$search[$counter]."%' OR vini.gradazione LIKE '%".$search[$counter]."%' ) ) AS vini";
             }
 
             $counter++;
@@ -131,6 +133,7 @@ $pagina = file_get_contents("../html/wines.html");
 //rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
 $pagina = str_replace("[ANNATA]", $annata, $pagina);
 $pagina = str_replace("[TIPOLOGIA]", $tipologia, $pagina);
+$pagina = str_replace("[ORDINE]", $ordine, $pagina);
 echo str_replace("[VINI]", $vini, $pagina);
 mysqli_close($conn);
 ?>

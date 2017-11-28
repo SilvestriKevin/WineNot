@@ -115,8 +115,11 @@ if(!empty($_COOKIE['error'])){
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
 $pagina = file_get_contents("../html/admin_panel.html");
-//rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
+//rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina 
+
+$pagina = str_replace("[SEARCH_WINE]", '', $pagina);
+
 $pagina = str_replace("[INFO/ERRORE]", $info_errore, $pagina);
-echo str_replace("[VINI]", $user, $pagina);
+echo str_replace("[DATI]", $user, $pagina);
 mysqli_close($conn);
 ?>

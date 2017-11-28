@@ -52,18 +52,18 @@ if(mysqli_num_rows($result)!=0) {
             if($annata == $subrow['anno']) $vino.=" selected='selected'";
             $vino.=">".$subrow['anno']."</option>";
         }
-    $vino.='</select><a title="Aggiungi utente" class="" href="./add_year.php" tabindex="" accesskey="">Aggiungi Annata</a></li>';
+    $vino.='</select><a title="Aggiungi annata" class="" href="./add_year.php" tabindex="" accesskey="">Aggiungi Annata</a></li>';
 
     $vino.='<li><label>Nome: </label><input type="text" maxlength="30" name="nome" title="nome" value="'.$row['nome'].'"</li>';
     $vino.='<li><label>Tipologia: </label><input type="text" maxlength="30" name="tipologia" title="tipologia" value="'.$row['tipologia'].'"</li>';
     $vino.='<li><label>Vitigno: </label><input type="textarea" maxlength="30" name="vitigno" title="vitigno" value="'.$row['vitigno'].'"</li>';
-    $vino.='<li><label>Denominazione: </label><input type="text" maxlength="30" name="denominazione" title="" value="'.$row['denominazione'].'"</li>';
+    $vino.='<li><label>Denominazione: </label><input type="text" maxlength="30" name="denominazione" title="denominazione" value="'.$row['denominazione'].'"</li>';
     $vino.='<li><label>Gradazione(%): </label><input type="text" maxlength="30" name="gradazione" title="gradazione" value="'.$row['gradazione'].'"</li>';
     $vino.='<li><label>Formato(l)   : </label><input type="text" maxlength="30" name="formato" title="formato" value="'.$row['formato'].'"</li>';
     $vino.='<li><label>Descrizione: </label><input type="textarea"  name="descrizione" title="descrizione" value="'.$row['descrizione'].'"</li>';
     $vino.='<li><label>Abbinamento: </label><input type="textarea"  name="abbinamento" title="abbinamento" value="'.$row['abbinamento'].'"</li>';
     $vino.='<li><label>Degustazione: </label><input type="textarea"  name="degustazione" title="degustazione" value="'.$row['degustazione'].'"</li>';
-    $vino.='<li><input type="submit" name="save_profile" id="save_profile_modifications" value="Salva" /></li>';
+    $vino.='<li><input type="submit" name="save_profile" id="save_year_modifications" value="Salva" /></li>';
     $vino.='</ul>';
 } else 
     $vino.='<h1>Ci sono dei problemi con il database.</h1>';
@@ -74,6 +74,9 @@ $vino.='</form>';
 //leggo il file e lo inserisco in una stringa
 $pagina = file_get_contents("../html/admin_panel.html");
 //rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
-echo str_replace("[VINI]", $vino, $pagina);
+
+$pagina = str_replace("[SEARCH_WINE]", '', $pagina);
+
+echo str_replace("[DATI]", $vino, $pagina);
 mysqli_close($conn);
 ?>

@@ -1,0 +1,34 @@
+<div id="search_wines" class="">
+    <form action="admin_panel.php" method="get">
+        <fieldset>
+            <ul>
+                <li><input type="text" maxlength="100" name="search" id="search" title="Testo di ricerca" /></li>
+                <li id='filter_order'>
+                    <ul>
+                        <li id='filter_by'>Filtra per: </li>
+                        <li>
+                            <select name='annata'>
+                                    <option value='All'>Tutte le annate</option>
+                                [ANNATA]
+                                </select>
+                        </li>
+                        <li>
+                            <select name='tipologia'>
+                                    <option value='All'>Tutte le tipologie</option>
+                                [TIPOLOGIA]
+                                </select>
+                        </li>
+                        <li id='order_by'>Ordina per: </li>
+                        <li>
+                            <select name='ordine'>
+                                    [ORDINE]
+                                </select>
+                        </li>
+                    </ul>
+                </li>
+
+                <li id='search_line'><input id='go_button' type="submit" class="search_button" value="Cerca" /></li>
+            </ul>
+        </fieldset>
+    </form>
+</div>
