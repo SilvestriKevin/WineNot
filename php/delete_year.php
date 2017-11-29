@@ -27,33 +27,57 @@ if(!empty($_COOKIE['error'])){
 if(!empty($_POST['cancel'])) header("Location: admin_years.php");
 
 //in $_POST['years'] sono contenuti tutti gli id dei vini che si vogliono eliminare
-//se è settata anche $_GET['delete_elements'] allora procedo all'eliminazione
+//se è settata anche $_POST['confirm'] allora procedo all'eliminazione
 else if(!empty($_POST['years']) && !empty($_POST['confirm'])){
     $years = $_POST['years'];
     $num_elem = count($years);
-    $sql="DELETE FROM annate WHERE anno = '";
-    for($i=0 ; $i<$num_elem ; $i++){
-        if($i!=0) $sql.="' OR anno = '";
-        $sql.=$years[$i];
-    }
-    $sql.="'";
-    $result = mysqli_query($conn,$sql);
-    
-    
-    
-    //DA FARE controllo presenza vini di quella annata
-    
-    
-    //controllo la connessione
-    if ($result) {
-        $message = "Eliminazione avvenuta con successo. ";
-        if($num_elem == 1) $message .= "Eliminato 1 annata.";
-        else $message .= "Eliminati ".$num_elem." annate.";
-        setcookie('info',$message);
-    }
-    else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare");
+    $year_failed=array();
 
-    //ritorno in ogni caso alla gestione dei vini
+    //scorro le annate selezionate e controllo che non ci siano vini di quelle annate. Se un annata ha dei vini allora la salvo nell'array $year_failed
+    for($i=0 ; $i<$num_elem ; $i++){
+        $sql = "SELECT id_wine FROM vini INNER JOIN annate ON vini.annata = annate.anno WHERE anno = '".$years[$i]."'";
+        $result = mysqli_query($conn, $sql);
+        if(mysqli_num_rows($result) != 0) $year_failed[] = $years[$i];
+    }    
+    
+    //se nessuna annata selezionata ha dei vini allora procedo all'eliminazione
+    if(empty($year_failed)){
+        
+        //creazione della query inserendo tutti le annate selezionate
+        $sql="DELETE FROM annate WHERE anno = '";
+        for($i=0 ; $i<$num_elem ; $i++){
+            if($i!=0) $sql.="' OR anno = '";
+            $sql.=$years[$i];
+        }
+        $sql.="'";
+
+        $result = mysqli_query($conn,$sql);
+
+        //controllo la connessione
+        if ($result) {
+            $message = "Eliminazione avvenuta con successo. ";
+            if($num_elem == 1) $message .= "Eliminato 1 annata.";
+            else $message .= "Eliminati ".$num_elem." annate.";
+            setcookie('info',$message);
+        }
+        else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare");
+
+    }
+    //alcune annate hanno dei vini
+    else {
+        //scorro l'array $year_failed e stampo le annate che hanno dei vini
+        $num_elem = count($year_failed);
+        $error="Sono presenti vini per le annate ["; 
+        for($i=0 ; $i<$num_elem ; $i++){
+            if($i!=0) $error.=", ";
+            $error.=$year_failed[$i];
+        } 
+        $error.="]. La preghiamo di eliminare prima tutti i vini relativi e poi le annate.";
+
+        setcookie('error',$error);
+    }
+
+    //ritorno in ogni caso alla gestione dei vini, dove verrà stampato un messagio di conferma o di errore
     header("Location: admin_years.php");
 }
 //in $_GET['years'] sono contenuti tutti gli id dei vini che si vogliono eliminare
