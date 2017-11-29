@@ -91,7 +91,7 @@ if(!empty($_COOKIE['error'])){
                             //controllo la connessione
                             if (mysqli_query($conn, $sql) == TRUE) {
                                 setcookie('info',"Aggiunta avvenuta con successo.");
-                                header("Location: admin_panel.php?section=users");
+                                header("Location: admin_users.php");
                             } else {
                                 setcookie('error',"Si &egrave; verificato un errore. La preghiamo di riprovare");
                             }

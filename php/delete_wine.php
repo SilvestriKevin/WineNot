@@ -24,7 +24,7 @@ if(!empty($_COOKIE['error'])){
 }
 
 //se è settato $_POST['cancel'] significa che l'utente ha deciso di annullare l'eliminazione
-if(!empty($_POST['cancel'])) header("Location: admin_panel.php");
+if(!empty($_POST['cancel'])) header("Location: admin_wines.php");
 
 //in $_POST['wines'] sono contenuti tutti gli id dei vini che si vogliono eliminare
 //se è settata anche $_GET['delete_elements'] allora procedo all'eliminazione
@@ -48,7 +48,7 @@ else if(!empty($_POST['wines']) && !empty($_POST['confirm'])){
     else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare");
 
     //ritorno in ogni caso alla gestione dei vini
-    header("Location: admin_panel.php");
+    header("Location: admin_wines.php");
 }
 //in $_GET['wines'] sono contenuti tutti gli id dei vini che si vogliono eliminare
 //se è settato solo $_GET['wines'] allora mostro la richiesta di conferma per l'eliminazione
@@ -96,12 +96,12 @@ else if(!empty($_GET['wines'])){
             $dati.="<div class ='wines_td'>".$row['annata']."</div>";
             $dati.="</div>";
         }
-    else header("Location: admin_panel.php");
+    else header("Location: admin_wines.php");
 
     $dati.="</form>";
 }
 //se la variabile non è settata significa che è stato manomesso l'url, allora riporto l'utente alla pagina amministrazione
-else header("Location: admin_panel.php");
+else header("Location: admin_wines.php");
 
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa

@@ -13,7 +13,7 @@ if(!empty($_SESSION['id']) && !empty($_GET['esci']) && $_GET['esci']==1){
     unset($_SESSION['id']);
     header('Location: ../index.html');
 }
-else if(!empty($_SESSION['id'])) header("Location: admin_panel.php");
+else if(!empty($_SESSION['id'])) header("Location: admin_wines.php");
 
 
 $stampa='';
@@ -41,7 +41,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
         else{
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
             $_SESSION['id'] = $row['id'];
-            header("Location: ./admin_panel.php");
+            header("Location: ./admin_wines.php");
         }
     }
     else{

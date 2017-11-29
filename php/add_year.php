@@ -76,7 +76,7 @@ if(isset($_POST['anno']) && isset($_POST['descrizione']) && isset($_POST['qualit
                 //controllo la connessione
                 if (mysqli_query($conn, $sql) == TRUE) {
                     setcookie('info',"Aggiunta avvenuta con successo.");
-                    header("Location: admin_panel.php");
+                    header("Location: admin_years.php");
                 } else {
                     setcookie('error',"Si &egrave; verificato un errore. La preghiamo di riprovare");
                     header("Location: add_year.php");
