@@ -1139,13 +1139,12 @@ body {
     width: 100%;
 }
 
-#horizontal_menu li,#wines_header li,
-.wines_row li {
+#horizontal_menu li,#admin_header li{
     display: inline-block;
     text-align: center;
 }
 
-#wines_header {
+#admin_header {
     background-color: #777777;
     color:#fff;
 }
@@ -1154,16 +1153,7 @@ body {
     padding: 0.4em 2em;
 }
 
-#wines_list li{
-    list-style-type: none;
-}
-
-#wines_list {
-    width: 90%;
-    margin: 1em 5%;
-}
-
-#wines_header li,.wines_row li{
+#admin_header li{
     width:25%;
 }
 
@@ -1171,21 +1161,14 @@ body {
     width: 12.5%!important;
 }
 
-.wines_row li {
-    border-right: 1px solid;
-    border-bottom: 1px solid;
-    margin-right: -1px; /* margine negativo compensa spazio occupato da border*/
-    margin-bottom: -1px; 
-}
-
-.wines_table {
+.admin_table {
     display: table;
 }
-.wines_tr {
+.admin_tr {
     display: table-row;
     padding: 0.2em;
 }
 
-.wines_td{
+.admin_td{
     display: table-cell;
 }

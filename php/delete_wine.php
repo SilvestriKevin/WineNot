@@ -41,8 +41,8 @@ else if(!empty($_POST['wines']) && !empty($_POST['confirm'])){
     //controllo la connessione
     if ($result) {
         $message = "Eliminazione avvenuta con successo. ";
-        if($num_elem == 1) $message .= "Eliminato 1 elemento.";
-        else $message .= "Eliminati ".$num_elem." elementi.";
+        if($num_elem == 1) $message .= "Eliminato 1 vino.";
+        else $message .= "Eliminati ".$num_elem." vini.";
         setcookie('info',$message);
     }
     else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare");
@@ -60,6 +60,7 @@ else if(!empty($_GET['wines'])){
 
     //controllo che nell'url abbia un array serializzato o un singolo dato
     //quindi provo a fare unserialize e se fallisce allora deduco di avere un dato unico
+    //N.B.:inserire @ prima di una chiamata di funzione, evita che vengano mostrati errori che potrebbero essere lanciati da quella funzione e che potrebbero bloccare l'esecuzione del codice. === significa 'identico' mentre == significa 'uguale'
     if(($result = @unserialize($_GET['wines'])) === false){
         $wine = $_GET['wines'];
         $sql="SELECT vini.* FROM vini WHERE id_wine = '".$wine."'";
@@ -78,22 +79,22 @@ else if(!empty($_GET['wines'])){
 
     $result=mysqli_query($conn,$sql);
 
-    $dati.='<div class="wines_tr" id="wines_header">
-                            <div class="wines_td">Selezione</div>
-                            <div class="wines_td">Nome</div>
-                            <div class="wines_td">Denominazione</div>
-                            <div class="wines_td">Tipologia</div>
-                            <div class="wines_td">Annata</div>
+    $dati.='<div class="admin_tr" id="admin_header">
+                            <div class="admin_td">Selezione</div>
+                            <div class="admin_td">Nome</div>
+                            <div class="admin_td">Denominazione</div>
+                            <div class="admin_td">Tipologia</div>
+                            <div class="admin_td">Annata</div>
                     </div>';
 
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $dati.="<div class='wines_tr'>";
-            $dati.="<div class ='wines_td'><input type='checkbox' name='wines[]' value='".$row['id_wine']."' checked='checked'></div>";
-            $dati.="<div class ='wines_td'>".$row['nome']."</div>";
-            $dati.="<div class ='wines_td'>".$row['denominazione']."</div>";
-            $dati.="<div class ='wines_td'>".$row['tipologia']."</div>";
-            $dati.="<div class ='wines_td'>".$row['annata']."</div>";
+            $dati.="<div class='admin_tr'>";
+            $dati.="<div class ='admin_td'><input type='checkbox' name='wines[]' value='".$row['id_wine']."' checked='checked'></div>";
+            $dati.="<div class ='admin_td'>".$row['nome']."</div>";
+            $dati.="<div class ='admin_td'>".$row['denominazione']."</div>";
+            $dati.="<div class ='admin_td'>".$row['tipologia']."</div>";
+            $dati.="<div class ='admin_td'>".$row['annata']."</div>";
             $dati.="</div>";
         }
     else header("Location: admin_wines.php");
@@ -107,10 +108,7 @@ else header("Location: admin_wines.php");
 //leggo il file e lo inserisco in una stringa
 $pagina = file_get_contents("../html/admin_panel.html");
 //rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
-
-$search_wine = file_get_contents("../html/search_wine.html");
-$pagina = str_replace("[SEARCH_WINE]", $search_wine, $pagina);
-
+$pagina = str_replace("[SEARCH_WINE]", '', $pagina);
 $pagina = str_replace("[INFO/ERRORE]", $info_errore, $pagina);
 echo str_replace("[DATI]", $dati, $pagina);
 mysqli_close($conn);

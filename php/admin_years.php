@@ -24,7 +24,7 @@ if(!empty($_COOKIE['error'])){
 }
 
 
-if(isset($_POST['delete_finally_selected'])){
+if(isset($_POST['delete_selected'])){
 
     $years = isset($_POST['years']) ? $_POST['years'] : array();
     if (!count($years)) {
@@ -32,47 +32,8 @@ if(isset($_POST['delete_finally_selected'])){
         header("Location: admin_years.php");
     }   
     else{
-        $num_elem = count($years);
-        $sql="DELETE annate WHERE anno ='";
-        for($i=0 ; $i<$num_elem ; $i++){
-            if($i!=0) $sql.="' or '";
-            $sql.=$years[$i];
-        }
-        $sql.="'";
-        $result = mysqli_query($conn,$sql);
-        //controllo la connessione
-        if ($result) {
-            setcookie('info',"Elementi eliminati definitivamente");
-            header("Location: admin_years.php");
-        }
-        else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare");
-        header("Location: admin_years.php");
-    }
-}
-
-if(isset($_POST['restore_selected'])){
-
-    $years = isset($_POST['years']) ? $_POST['years'] : array();
-    if (!count($years)) {
-        setcookie('error',"Selezionare almeno un elemento");
-        header("Location: admin_years.php");
-    }   
-    else{
-        $num_elem = count($wines);
-        $sql="UPDATE annate SET cestino = 0 WHERE anno ='";
-        for($i=0 ; $i<$num_elem ; $i++){
-            if($i!=0) $sql.="' or anno = '";
-            $sql.=$years[$i];
-        }
-        $sql.="'";
-        $result = mysqli_query($conn,$sql);
-        //controllo la connessione
-        if ($result) {
-            setcookie('info',"Elementi ripristinati");
-            header("Location: admin_years.php");
-        }
-        else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare");
-        header("Location: admin_years.php");
+        //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  serialize/unserialize o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni elemento singolarmente in questo modo key[indice]=valore
+        header("Location: delete_year.php?years=".serialize($years));
     }
 }
 
@@ -80,39 +41,44 @@ $dati.='<form action="admin_years.php" method="post">';
 
 $dati.='<div><input type="submit" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
 $dati.='<input type="submit" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
-$dati.='<input type="submit" name="restore_selected" id="restore_selected" value="Ripristina Selezionati" />';
-$dati.='<input type="submit" name="delete_finally_selected" id="delete_finally_selected" value="Elimina Selezionati" /></div>';
+$dati.='<input type="submit" name="delete_selected" id="delete_selected" value="Elimina Selezionati" /></div>';
 
-//STAMPA I VINI (PRESENTI NELLE ANNATE MIGLIORI)
-$sql = "SELECT annate.* FROM annate WHERE migliore=1";
+$dati.="<a title='Aggiungi Annata' class='' href='./add_year.php' tabindex='' accesskey=''>Aggiungi Annata</a>";
+
+//STAMPA LE ANNATE
+$sql = "SELECT annate.* FROM annate";
 $result=mysqli_query($conn,$sql);
 
-$dati.='<div class="wines_tr" id="wines_header">
-                            <div class="wines_td">Selezione</div>
-                            <div class="wines_td">Annata</div>
-                            <div class="wines_td">Qualit&agrave;</div>
-                            <div class="wines_td modify_column">Modifica</div>
-                            <div class="wines_td remove_column">Cestina</div>
+$dati.='<div class="admin_tr" id="admin_header">
+                            <div class="admin_td">Selezione</div>
+                            <div class="admin_td">Annata</div>
+                            <div class="admin_td">Qualit&agrave;</div>
+                            <div class="admin_td">Migliore</div>
+                            <div class="admin_td modify_column">Modifica</div>
+                            <div class="admin_td remove_column">Elimina</div>
 
                     </div>';
 
 if(mysqli_num_rows($result)!=0)
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-        $dati.="<div class='wines_tr'>";
-        $dati.="<div class ='wines_td'><input type='checkbox' name='wines[]' value='".$row['anno'];
+        $dati.="<div class='admin_tr'>";
+        $dati.="<div class ='admin_td'><input type='checkbox' name='years[]' value='".$row['anno'];
         if(isset($_POST['all_selected'])) $dati.="' checked='checked";
         $dati.="'></div>";
-        $dati.="<div class ='wines_td'>".$row['anno']."</div>";
-        $dati.="<div class ='wines_td'>".$row['qualita']."</div>";
-        $dati.="<div class ='wines_td modify_column'><a title='Modifica vino' class='' href='./modify_year.php?year=".$row['anno']."' tabindex='' accesskey=''>Modifica</a></div>";
-        $dati.="<div class ='wines_td remove_column'><a title='Elimina annata' class='' href='./delete_wine.php' tabindex='' accesskey=''>X</a></div>";
+        $dati.="<div class ='admin_td'>".$row['anno']."</div>";
+        $dati.="<div class ='admin_td'>".$row['qualita']."</div>";
+        $dati.="<div class ='admin_td'>";
+        if($row['migliore'] == 0) $dati.="No";
+        else $dati.="Si";
+        $dati.="</div>";
+        $dati.="<div class ='admin_td modify_column'><a title='Modifica vino' class='' href='./modify_year.php?year=".$row['anno']."' tabindex='' accesskey=''>Modifica</a></div>";
+        $dati.="<div class ='admin_td remove_column'><a title='Elimina annata' class='' href='./delete_year.php?years=".$row['anno']."' tabindex='' accesskey=''>X</a></div>";
         $dati.="</div>";
     }
 else {
     $dati.="<h2>Non sono presenti annate.</h2>";
 }
 
-$dati.="<a title='Aggiungi Annata' class='' href='./add_year.php' tabindex='' accesskey=''>Aggiungi Annata</a>";
 $dati.="</form>";
 
 
