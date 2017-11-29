@@ -30,6 +30,19 @@ $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
 if($row['admin'] == 1) { 
 
+    if(isset($_POST['delete_selected'])){
+
+        $users = isset($_POST['users']) ? $_POST['users'] : array();
+        if (!count($users)) {
+            setcookie('error',"Selezionare almeno un elemento");
+            header("Location: admin_users.php");
+        }   
+        else{
+            //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  serialize/unserialize o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni elemento singolarmente in questo modo key[indice]=valore
+            header("Location: delete_user.php?users=".serialize($users));
+        }
+    }
+
     $dati.='<form action="admin_users.php" method="post">'; 
 
     $dati.='<div><input type="submit" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
@@ -46,7 +59,8 @@ if($row['admin'] == 1) {
                             <div class="admin_td">Selezione</div>
                             <div class="admin_td">Username</div>
                             <div class="admin_td">Nome</div> 
-                            <div class="admin_td">Email</div>
+                            <div class="admin_td">Email</div>                            
+                            <div class="admin_td modify_column">Modifica</div>
                             <div class="admin_td remove_column">Elimina</div>
 
                     </div>';
@@ -60,6 +74,7 @@ if($row['admin'] == 1) {
             $dati.="<div class ='admin_td'>".$row['nome']."</div>";
             $dati.="<div class ='admin_td'>".$row['username']."</div>";
             $dati.="<div class ='admin_td'>".$row['email']."</div>";
+            $dati.="<div class ='admin_td modify_column'><a title='Modifica utente' class='' href='./modify_user.php?user=".$row['id_user']."' tabindex='' accesskey=''>Modifica</a></div>";
             $dati.="<div class ='admin_td remove_column'><a title='Elimina utente' class='' href='./delete_user.php?users=".$row['id_user']."' tabindex='' accesskey=''>X</a></div>";
             $dati.="</div>";
         }
