@@ -53,7 +53,7 @@ if(mysqli_num_rows($result)!=0) {
             $vino.=">".$subrow['anno']."</option>";
         }
     $vino.='</select><a title="Aggiungi annata" class="" href="./add_year.php" tabindex="" accesskey="">Aggiungi Annata</a></li>';
-
+    $vino.='<input type="hidden" name="action" value="upload" />';
     $vino.='<li><label>Nome: </label><input type="text" maxlength="30" name="nome" title="nome" value="'.$row['nome'].'"</li>';
     $vino.='<li><label>Tipologia: </label><input type="text" maxlength="30" name="tipologia" title="tipologia" value="'.$row['tipologia'].'"</li>';
     $vino.='<li><label>Vitigno: </label><input type="textarea" maxlength="30" name="vitigno" title="vitigno" value="'.$row['vitigno'].'"</li>';
@@ -65,8 +65,17 @@ if(mysqli_num_rows($result)!=0) {
     $vino.='<li><label>Degustazione: </label><input type="textarea"  name="degustazione" title="degustazione" value="'.$row['degustazione'].'"</li>';
     $vino.='<li><input type="submit" name="save_profile" id="save_year_modifications" value="Salva" /></li>';
     $vino.='</ul>';
+    
+    
+    // provo a modificare i campi dati
+    
+    
+    
+    
 } else 
     $vino.='<h1>Ci sono dei problemi con il database.</h1>';
+
+
 
 $vino.='</form>';
 
