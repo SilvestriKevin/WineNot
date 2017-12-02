@@ -85,17 +85,17 @@ if(!empty($_POST['save_profile'])){
 
         // controllo gradazione
 
-        if(!preg_match("/\d{2}\.\d/",strval($gradazione)) ||
+        if(strlen($gradazione) !=4 ||!preg_match("/\d{2}\.\d/",strval($gradazione)) ||
            preg_match("/^(\s)+$/",strval($gradazione)))
             $error.='Gradazione non è nel formato giusto./n';
 
         // controllo formato
 
-        if(!preg_match("/\d\.\d{2}/",$formato) || preg_match("/^(\s)+$/",$formato))
+        if(strlen($formato) != 4 || !preg_match("/\d\.\d{2}/",$formato) || preg_match("/^(\s)+$/",$formato))
             $error.='Formato non è nel formato giusto./n';
 
         // controllo che con i files sia tutto ok
-        if($file['error'] == UPLOAD_ERR_OK && is_uploaded_file($file['tmp_name'])) 
+        if($file['error'] != UPLOAD_ERR_OK && !is_uploaded_file($file['tmp_name'])) 
             $error.="C'&egrave; stato un problema con il caricamento dell'immagine. La preghiamo di riprovare./n";
 
         if(!empty($error)){
@@ -122,13 +122,18 @@ if(!empty($_POST['save_profile'])){
                     // che ricordiamo non serve salvare alcun dato nel db dato
                     // che ci servirà solamente l'id_wine
 
+                    // LAST_INSERT_ID() ritorna l'ultimo id creato
+                    // attraverso autoincrement
                     $sql = "SELECT LAST_INSERT_ID() as id_wine";
 
                     $result = mysqli_query($conn,$sql);
 
                     if(mysqli_num_rows($result)!=0)
                         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
+                        else {
+                            setcookie("C'&egrave; stato un errore con l'inserimento dell'immagine, la preghiamo di riprovare provando a fare la Modifica del vino.");
+                            header("Location: add_wine.php");
+                        }
                     // dò il nome che mi serve alla foto (cioè id_wine)
                     $file['name'] = $row['id_wine'];
                     // e lo sposto nella cartella giusta
@@ -140,6 +145,7 @@ if(!empty($_POST['save_profile'])){
                         header("Location: admin_wines.php");
                     } else { // il caricamento del file non è andato a buon fine
                         setcookie('error',"Il caricamento dell'immagine non &egrave; andato a buon fine. La preghiamo di riprovare ad inserire l'immagine attraverso la Modifica del vino.");
+                        header("Location: modify_wine.php?idwine=".$file['name']."");
                     }
 
 

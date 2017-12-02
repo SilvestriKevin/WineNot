@@ -1172,3 +1172,9 @@ body {
 .admin_td{
     display: table-cell;
 }
+
+
+/*MODIFY WINE*/
+#modify_wine_img {
+    height: 20em;
+}

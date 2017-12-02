@@ -20,7 +20,7 @@ if(!empty($_GET['id_wine'])){
     if(mysqli_num_rows($result)!=0){
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        $immagine.="<img id='wine_img' alt='immagine del vino' src='../img/".$row['foto'].".png' />";
+        $immagine.="<img id='wine_img' alt='immagine del vino' src='../img/".$row['id_wine'].".png' />";
 
         $descrizione.=$row['descrizione'];
 
