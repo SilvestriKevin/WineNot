@@ -74,7 +74,7 @@ if($row['admin'] == 1) {
             $dati.="<div class ='admin_td'>".$row['nome']."</div>";
             $dati.="<div class ='admin_td'>".$row['username']."</div>";
             $dati.="<div class ='admin_td'>".$row['email']."</div>";
-            $dati.="<div class ='admin_td modify_column'><a title='Modifica utente' class='' href='./modify_user.php?user=".$row['id_user']."' tabindex='' accesskey=''>Modifica</a></div>";
+            $dati.="<div class ='admin_td modify_column'><a title='Modifica utente' class='' href='./modify_users.php?user=".$row['id_user']."' tabindex='' accesskey=''>Modifica</a></div>";
             $dati.="<div class ='admin_td remove_column'><a title='Elimina utente' class='' href='./delete_user.php?users=".$row['id_user']."' tabindex='' accesskey=''>X</a></div>";
             $dati.="</div>";
         }

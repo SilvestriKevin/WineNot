@@ -11,8 +11,8 @@ include_once("../include/lib.php");
 if(!isset($_SESSION['id'])) header("Location: ../index.php");
 
 
-
-$vino='';
+$dati='';
+$user='';
 $info_errore='';
 
 if(!empty($_COOKIE['info'])){
@@ -24,169 +24,107 @@ if(!empty($_COOKIE['error'])){
     setcookie('error',null);
 }
 
-if(empty($_GET['idwine'])) {
-    $id_wine = $_POST['idwine'];
-} else $id_wine = $_GET['idwine'];
+if(empty($_GET['user'])) {
+    $id_user = $_POST['user'];
+} else $id_user = $_GET['user'];
 // prendo il valore chiave del vino che voglio andare a modificare
 
 // controllo che non siano stati lasciati spazi vuoti e poi modifico all'interno del database i campi dati richiesti
 $error='';
 
-if(!empty($_POST['save_wine'])) {
+if(!empty($_POST['save_user'])) {
 
-    if(!empty($_POST['annata']) &&
-       !empty($_POST['nome']) &&
-       !empty($_POST['tipologia']) &&
-       !empty($_POST['vitigno']) &&
-       !empty($_POST['denominazione']) &&
-       !empty($_POST['gradazione']) &&
-       !empty($_POST['formato']) &&
-       !empty($_POST['descrizione']) &&
-       !empty($_POST['abbinamento']) &&
-       !empty($_POST['degustazione'])) {
+    if(!empty($_POST['nome']) && !preg_match("/^(\s)+$/",$_POST['nome']) && !empty($_POST['email']) && !empty($_POST['username']) && !preg_match("/^(\s)+$/",$_POST['username'])) {
 
+        $username = $_POST['username'];
         $nome = $_POST['nome'];
-        $tipologia = $_POST['tipologia'];
-        $descrizione = $_POST['descrizione'];
-        $denominazione = $_POST['denominazione'];
-        $annata = $_POST['annata'];
-        $vitigno = $_POST['vitigno'];
-        $abbinamento = $_POST['abbinamento'];
-        $degustazione = $_POST['degustazione'];
-        $gradazione = $_POST['gradazione'];
-        $formato = $_POST['formato'];
+        $email = $_POST['email'];
         // siccome tutti i campi non sono vuoti allora potrò procedere con i controlli all'interno del database
 
-        // controllo che il campo annata sia giusto
-        if(!is_numeric($annata) || strlen($annata)!=4 || preg_match("/^(\s)+$/",$annata))
-            $error.='Anno non è nel formato giusto./n';
+        $sql = "SELECT * FROM utenti WHERE id_user='".$id_user."' AND username='".$username."' AND nome='".$nome."' AND email='".$email."'";
 
-        // controllo gradazione
+        $result = mysqli_query($conn,$sql);
 
-        if(strlen($gradazione) !=4 ||!preg_match("/\d{2}\.\d/",strval($gradazione)) ||
-           preg_match("/^(\s)+$/",$gradazione))
-            $error.='Gradazione non è nel formato giusto./n';
-
-        // controllo formato
-
-        if(strlen($formato) != 4 || !preg_match("/\d\.\d{2}/",$formato) || preg_match("/^(\s)+$/",$formato))
-            $error.='Formato non è nel formato giusto./n';
+        if(mysqli_num_rows($result)==0) { // dati diversi, quindi da cambiare
 
 
+            // controllo che la mail sia del formato giusto
 
-        // se ho caricato un'immagine, dò la possibilità di poterla cambiare
+            if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/",$email))
+                $error.="L'email inserita non rispetta il formato corretto\n";
 
-        if(!empty($_FILES['wine_img']) &&
-           $_FILES['wine_img']['type'] == "image/png") {
-            $file = $_FILES['wine_img'];
+            if(!empty($_POST['password'])) {
+                // allora cambio anche la password
 
-            if($file['error'] != UPLOAD_ERR_OK && !is_uploaded_file($file['tmp_name'])) {
-                $error.="C'&egrave; stato un problema con il caricamento dell'immagine. La preghiamo di riprovare./n";
+                if(empty($error)) {
+                    $password = $_POST['password'];
+
+                    if(preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/",$password)) { // password del formato giusto
+
+                        $sql = "UPDATE utenti SET nome='".$nome."', username='".$username."', password=MD5('".$password."'), email='".$email."' WHERE id_user='".$id_user."'";
+
+                        $result= mysqli_query($conn,$sql);
+
+                        if($result) {
+                            setcookie('info',"Modifica dati eseguita con successo");
+                            header("Location: admin_users.php");
+                        } else  $error.="Si è verificato un errore. La preghiamo di riprovare.\n";
+
+                    } else $error.="La nuova password è in un formato sbagliato.\n";
+                }
+
+            } else { //cambio solo la i dati principali
+                if(empty($error)) {
+                    
+                    $sql = "UPDATE utenti SET nome='".$nome."', username='".$username."', email='".$email."' WHERE id_user='".$id_user."'";
+
+                    $result = mysqli_query($conn,$sql);
+
+                    if($result) { // se c'è stata una modifica allora tutto ok
+                        setcookie('info',"Modifica dati eseguita con successo");
+                        header("Location: admin_users.php");
+                    } else { // se non sono riuscito a cambiare dati nel database
+                        $error.="Si è verificato un errore. La preghiamo di riprovare.\n";
+
+                    }
+                }
             }
         }
 
+    } else  $error.="Alcuni campi dati sono stati lasciati vuoti o non sono del formato giusto.";
+
+} 
 
 
-        // se quei dati sopra sono giusti 
-        // posso dunque procedere con il cambiamento dei dati (cercando di stare attenti a non modificare un vino in un altro vino uguale)
-
-
-        if(!empty($error)) { // ci sono dunque stati dei problemi
-            setcookie('error',$error);
-            header("Location: modify_wine.php?idwine=".$id_wine."");
-        } else { // posso ora controllare che questo vino non esista già escludendo il vino attuale per evitare problemi
-
-
-            $sql = "SELECT * FROM vini WHERE annata='".$annata."' AND nome='".$nome."' AND tipologia='".$tipologia."' AND denominazione='".$denominazione."' AND id_wine != '".$id_wine."'";
-
-            $result = mysqli_query($conn,$sql);
-
-            if(mysqli_num_rows($result) != 0) {
-                setcookie('error', "Un vino con queste informazioni &egrave; stato gi&agrave; inserito.");
-                header('Location: modify_wine.php?idwine='.$id_wine.'');
-
-            } else {
-                // posso ora aggiornare il mio vino all'interno del database
-
-                $sql = "UPDATE vini SET nome='".$nome."', tipologia='".$tipologia."', descrizione='".$descrizione."', denominazione='".$denominazione."', annata='".$annata."', vitigno='".$vitigno."', abbinamento='".$abbinamento."', degustazione='".$degustazione."', gradazione='".$gradazione."', formato='".$formato."' WHERE id_wine='".$id_wine."'";
-
-                $result = mysqli_query($conn,$sql);
-                if($result) { // se c'è stata una modifica
-                    
-                    $file['name'] = $id_wine;
-                    
-                    if(move_uploaded_file($file['tmp_name'],$_SERVER['DOCUMENT_ROOT']."/WineNot/img/".$file['name'].".png")) {
-                    
-                    setcookie('info','Modifica dei dati avvenuta con successo.');
-                    header('Location: admin_wines.php');} else // il caricamento file non è andato a buon fine, tuttavia la query ha fatto il suo dovere 
-                    {
-                        setcookie("error","Il caricamento dell'immagine non &egrave; andato a buon fine. Tuttavia il gli altri dati sono stati aggiornati correttamente.");
-                        header("Location: modify_wine.php?idwine=".$id_wine."");
-                }
-                } else { // la modifica non è andata a buon fine
-                    setcookie('error',"Si &egrave; verificato un problema con la modifica dei dati all'interno del database.");
-                    header('Location: modify_wine.php?idwine='.$id_wine.'');
-                }
-            }
-
-        }
-
-
-    } else  $error.="Alcuni campi dati sono stati lasciati vuoti.";
+if(!empty($error)) {
+    setcookie('error',$error);
+    header("Location: modify_users.php?user=".$id_user."");
 }
-
-
-if(!empty($error)) setcookie('error',$error);
-
 
 
 //FORM DATI VINO
 
-$sql = "SELECT * FROM vini WHERE id_wine='".$id_wine."'";
+$sql = "SELECT * FROM utenti WHERE id_user='".$id_user."'";
 
 $result = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
 $annata='';
 
-$vino.='<form action="modify_wine.php" method="post">';
-$vino.='<input type="hidden" name="idwine" value="'.$id_wine.'" />';
+$user.='<form action="modify_users.php" method="post">';
+$user.='<input type="hidden" name="user" value="'.$id_user.'" />';
 
 if(mysqli_num_rows($result)!=0) {
-    $vino.='<ul>';
-    $annata = $row['annata'];
-
-    // aggiungo tutte le annate 
-
-    $vino.='<li><label>Annata: </label><select name="annata">';
-    $sql = "SELECT annata as anno FROM vini GROUP BY anno ORDER BY anno";
-    $result=mysqli_query($conn,$sql);
-    if(mysqli_num_rows($result)!=0)
-        while($subrow = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $vino.="<option value='".$subrow['anno']."'";
-            // faccio in modo che venga selezionata l'annata giusta per questo vino
-            if($annata == $subrow['anno']) $vino.=" selected='selected'";
-            $vino.=">".$subrow['anno']."</option>";
-        }
-    $vino.='</select><a title="Aggiungi annata" class="" href="./add_year.php" tabindex="" accesskey="">Aggiungi Annata</a></li>';
-    $vino.='<input type="hidden" name="action" value="upload" />';
-    $vino.='<li><label>Nome: </label><input type="text" maxlength="30" name="nome" title="nome" value="'.$row['nome'].'"</li>';
-    $vino.='<li><label>Tipologia: </label><input type="text" maxlength="30" name="tipologia" title="tipologia" value="'.$row['tipologia'].'"</li>';
-    $vino.='<li><label>Vitigno: </label><input type="textarea" maxlength="30" name="vitigno" title="vitigno" value="'.$row['vitigno'].'"</li>';
-    $vino.='<li><label>Denominazione: </label><input type="text" maxlength="30" name="denominazione" title="denominazione" value="'.$row['denominazione'].'"</li>';
-    $vino.='<li><label>Gradazione(%): </label><input type="text" maxlength="30" name="gradazione" title="gradazione" value="'.$row['gradazione'].'"</li>';
-    $vino.='<li><label>Formato(l)   : </label><input type="text" maxlength="30" name="formato" title="formato" value="'.$row['formato'].'"</li>';
-    $vino.='<li><label>Descrizione: </label><input type="textarea"  name="descrizione" title="descrizione" value="'.$row['descrizione'].'"</li>';
-    $vino.='<li><label>Abbinamento: </label><input type="textarea"  name="abbinamento" title="abbinamento" value="'.$row['abbinamento'].'"</li>';
-    $vino.='<li><label>Degustazione: </label><input type="textarea"  name="degustazione" title="degustazione" value="'.$row['degustazione'].'"</li>';
-    $vino.="<li><label>Immagine attuale: </label><img id='modify_wine_img' alt='immagine del vino' src='../img/".$row['id_wine'].".png' /></li><li><label>Cambia immagine: </label><input type='file' name='wine_img'/></li>";
-    $vino.='</ul>';
-    $vino.='<input type="submit" name="save_wine" id="save_year_modifications" value="Salva" />';
+    $user.='<ul><li><label>Username: </label><input type="text" maxlength="100" name="username" id="" title="username" value="'.$row['username'].'"/></li>
+                    <li><label>Nome: </label><input type="text" maxlength="100" name="nome" id="" title="nome" value="'.$row['nome'].'"/></li>
+                    <li><label>Email: </label><input type="text" maxlength="100" name="email" id="" title="email" value="'.$row['email'].'"/></li>
+                    <li><label>Password: </label><input type="text" maxlength="100" name="password" id="" title="password" value=""/></li>';
+    $user.='<input type="submit" name="save_user" id="save_year_modifications" value="Salva" />';
     // provo a modificare i campi dati
-} else $vino.='<h2>Non ho trovato informazioni riguardo a questo vino.</h2>';
+} else $user.='<h2>Non ho trovato informazioni riguardo a questo utente.</h2>';
 
 
-$vino.='</form>';
+$user.='</form>';
 
 
 
@@ -196,7 +134,7 @@ $pagina = file_get_contents("../html/admin_panel.html");
 //rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
 
 $pagina = str_replace("[SEARCH_WINE]", '', $pagina);
-$pagina = str_replace("[INFO/ERRORE]",$error,$pagina);
-echo str_replace("[DATI]", $vino, $pagina);
+$pagina = str_replace("[INFO/ERRORE]",$info_errore,$pagina);
+echo str_replace("[DATI]", $user, $pagina);
 mysqli_close($conn);
 ?>
