@@ -42,86 +42,93 @@ if(!empty($_POST['nome']) && !preg_match("/^(\s)+$/",$_POST['nome']) && !empty($
 
         if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/",$email)) {
             $error.="L'email inserita non rispetta il formato corretto\n";
-        } else { // se è del formato giusto, posso andare avanti
+        }  
+
+        // controllo SE anche i campi password sono settati e non vuoti
+
+        if(!empty($_POST['actual_password']) && !empty($_POST['new_password'])) {
+
+            $current_password = $_POST['actual_password'];
+            $new_password = $_POST['new_password'];
+
+            // controllo se la 'actual_password' coincide con la password del database
+
+            $sql = "SELECT * FROM utenti WHERE id_user='".$_SESSION['id']."' AND password =MD5('".$current_password."')";
+
+            $result = mysqli_query($conn,$sql);
 
 
+            if(mysqli_num_rows($result)!=0) { // vuol dire che la password che l'utente ha inserito all'interno della casella 'Password Corrente" è giusta
 
-            // controllo SE anche i campi password sono settati e non vuoti
+                //controllo che la password corrente e quella nuova non coincidano
 
-            if(!empty($_POST['actual_password']) && !empty($_POST['new_password'])) {
-
-                $current_password = $_POST['actual_password'];
-                $new_password = $_POST['new_password'];
-
-                // controllo se la 'actual_password' coincide con la password del database
-
-                $sql = "SELECT * FROM utenti WHERE id_user='".$_SESSION['id']."' AND password =MD5('".$current_password."')";
-
-                $result = mysqli_query($conn,$sql);
-
-
-                if(mysqli_num_rows($result)!=0) { // vuol dire che la password che l'utente ha inserito all'interno della casella 'Password Corrente" è giusta
-
-                    //controllo che la password corrente e quella nuova non coincidano
-
-                    if($new_password != $current_password) {
-                        // se sono diverse allora dovrò salvare la prima nel database 
-                        // se è del formato giusto
-
+                if($new_password != $current_password) {
+                    // se sono diverse allora dovrò salvare la prima nel database 
+                    // se è del formato giusto
+                    if(empty($error)){
                         if(preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST['new_password'])) {
 
                             // posso salvare anche la nuova password nel database
 
-                            $sql = "UPDATE utenti SET nome='".$nome."', username='".$username."', password='".$new_password."', email='".$email."' WHERE id_user='".$_SESSION['id']."'";
+                            $sql = "UPDATE utenti SET nome='".$nome."', username='".$username."', password=MD5('".$new_password."'), email='".$email."' WHERE id_user='".$_SESSION['id']."'";
 
                             $result = mysqli_query($conn,$sql);
 
                             if($result) { // se c'è stata una modifica allora tutto ok
                                 setcookie('info',"Modifica dati eseguita con successo");
-                                header("Location: admin_panel.php?section=profile");
+                                header("Location: admin_profile.php");
                             } else { // se non sono riuscito a cambiare dati nel database
                                 $error.="Si è verificato un errore. La preghiamo di riprovare.\n";
 
                             }
 
-                        } else { // password formato sbagliato
-                            $error.="La nuova password è in un formato sbagliato.\n";
-                        }
-                    } else { // le password erano uguali quindi cambio solo i dati esclusi la password
+                        } else $error.="La nuova password è in un formato sbagliato.\n";
+                    } 
+
+                } else { // le password erano uguali quindi cambio solo i dati esclusi la password
+
+                    if(empty($error)) {
                         $sql = "UPDATE utenti SET nome='".$nome."', username='".$username."', email='".$email."' WHERE id_user='".$_SESSION['id']."'";
 
                         $result = mysqli_query($conn,$sql);
 
                         if($result) { // se c'è stata una modifica allora tutto ok
                             setcookie('info',"Modifica dati eseguita con successo");
-                            header("Location: admin_panel.php?section=profile");
+                            header("Location: admin_profile.php");
                         } else { // se non sono riuscito a cambiare dati nel database
                             $error.="Si è verificato un errore. La preghiamo di riprovare.\n";
 
                         }
                     }
+                }
 
-                } else $error.="La password inserita non &egrave; corretta.\n";     
-
-
-            } else { // salvo SOLO i dati relativi a username, nome ed email
+            } else $error.="La password inserita non &egrave; corretta.\n";     
 
 
+        } else { // salvo SOLO i dati relativi a username, nome ed email
+
+            if(!empty($_POST['new_password']) || !empty($_POST['actual_password']))
+                $error.="Entrambi i campi password devono essere compilati.\n";
+
+            if(empty($error)){
                 $sql = "UPDATE utenti SET nome='".$nome."', username='".$username."', email='".$email."' WHERE id_user='".$_SESSION['id']."'";
 
                 $result = mysqli_query($conn,$sql);
 
                 if($result) { // se c'è stata una modifica allora tutto ok
                     setcookie('info',"Modifica dati eseguita con successo");
-                    header("Location: admin_panel.php?section=profile");
+                    header("Location: admin_profile.php");
                 } else { // se non sono riuscito a cambiare dati nel database
                     $error.="Si è verificato un errore. La preghiamo di riprovare.\n";
 
                 }
 
             }
-
         }
+
+
+
+
 
     }
 
@@ -137,7 +144,7 @@ if(!empty($_POST['nome']) && !preg_match("/^(\s)+$/",$_POST['nome']) && !empty($
 
 if(!empty($error)){
     setcookie('error',$error);
-    header("Location: admin_panel.php?section=profile");
+    header("Location: admin_profile.php");
 }
 
 //FORM DATI PROFILO
@@ -147,9 +154,8 @@ $result=mysqli_query($conn,$sql);
 
 $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
-$dati.='<form action="admin_panel.php" method="post">';
+$dati.='<form action="admin_profile.php" method="post">';
 
-$dati.='<input type="hidden" name="section" value="profile" />';
 
 if(mysqli_num_rows($result)!=0){
     $dati.='<ul>
