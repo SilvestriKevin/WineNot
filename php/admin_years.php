@@ -39,25 +39,23 @@ if(isset($_POST['delete_selected'])){
 
 $dati.='<form action="admin_years.php" method="post">';
 
-$dati.='<div><input type="submit" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
-$dati.='<input type="submit" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
-$dati.='<input type="submit" name="delete_selected" id="delete_selected" value="Elimina Selezionati" /></div>';
-
-$dati.="<a title='Aggiungi Annata' class='' href='./add_year.php' tabindex='' accesskey=''>Aggiungi Annata</a>";
+$dati.='<div id="select_admin_buttons"><input type="submit"  class="admin_button name="all_selected" id="all_selected" value="Seleziona Tutti" />';
+$dati.='<input type="submit" class="admin_button name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
+$dati.='<input type="submit" class="admin_button name="delete_selected" id="delete_selected" value="Elimina Selezionati" />';
+$dati.="<a title='Aggiungi Annata' class='' href='./add_year.php' tabindex='' accesskey=''>Aggiungi Annata</a></div>";
 
 //STAMPA LE ANNATE
 $sql = "SELECT annate.* FROM annate";
 $result=mysqli_query($conn,$sql);
 
 $dati.='<div class="admin_tr" id="admin_header">
-                            <div class="admin_td">Selezione</div>
+                            <div id="menu_select" class="admin_td">Selezione</div>
                             <div class="admin_td">Annata</div>
                             <div class="admin_td">Qualit&agrave;</div>
                             <div class="admin_td">Migliore</div>
                             <div class="admin_td modify_column">Modifica</div>
                             <div class="admin_td remove_column">Elimina</div>
-
-                    </div>';
+                        </div>';
 
 if(mysqli_num_rows($result)!=0)
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){

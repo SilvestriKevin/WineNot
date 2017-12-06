@@ -18,14 +18,16 @@ if(!empty($_COOKIE['info'])){
     setcookie('info',null);
 }
 if(!empty($_COOKIE['error'])){
-    $info_errore.="<li>".$_COOKIE['error']."</li>";
+    $info_errore.="<li id='error_admin_message'>".$_COOKIE['error']."</li>";
     setcookie('error',null);
 }
 
 // qualsiasi tipo di utente può aggiungere una nuova annata
 
-$vino.='<form enctype="multipart/form-data" action="add_wine.php" method="post">';        
-$vino.= '<fieldset id="register_fieldset"><ul>';
+$vino.='<h1>Inserisci un nuovo vino</h1>';
+
+$vino.='<form id="panel_admin_form" enctype="multipart/form-data" action="add_wine.php" method="post">';        
+$vino.= '<fieldset><ul>';
 
 $vino.='<li><label>Annata: </label><select name="annata">';
 $sql = "SELECT annata as anno FROM vini GROUP BY anno ORDER BY anno";
@@ -46,8 +48,8 @@ $vino.="</select><a title='Aggiungi annata' class='' href='./add_year.php' tabin
             <li><label>Descrizione: </label><input type='textarea'  name='descrizione' title='descrizione' </li>
             <li><label>Abbinamento: </label><input type='textarea' name='abbinamento' title='abbinamento' </li>
             <li><label>Degustazione: </label><input type='textarea'  name='degustazione' title='degustazione' </li>
-            <li><input type='file' name='wine_img'/></li>
-            <li><input type='submit' name='save_profile' id='save_profile_modifications' value='Salva' /></li>
+            <li><input id='select_file' type='file' name='wine_img'/></li>
+            <li><input type='submit' class='search_button' name='save_profile' id='save_add_wine' value='Salva' /></li>
             </ul></fieldset>";
 
 

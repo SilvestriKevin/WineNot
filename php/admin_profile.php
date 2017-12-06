@@ -154,7 +154,9 @@ $result=mysqli_query($conn,$sql);
 
 $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
-$dati.='<form action="admin_profile.php" method="post">';
+$dati.='<h1>Dati del profilo</h1>';
+
+$dati.='<form id="admin_profile_page" action="admin_profile.php" method="post">';
 
 
 if(mysqli_num_rows($result)!=0){
@@ -165,7 +167,7 @@ if(mysqli_num_rows($result)!=0){
                     <li><label>Password attuale: </label><input type="text" maxlength="100" name="actual_password" id="" title="password attuale" value=""/></li>
                     <li><label>Password nuova: </label><input type="text" maxlength="100" name="new_password" id="" title="password nuova" value=""/></li>
                 </ul>';
-    $dati.='<input type="submit" name="save_profile" id="save_profile_modifications" value="Salva" />';
+    $dati.='<input type="submit" class="search_button" name="save_profile" id="save_admin_profile" value="Salva" />';
 } else 
     $dati.='<h2>Ci sono dei problemi con il database.</h2>';
 

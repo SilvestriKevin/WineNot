@@ -131,14 +131,14 @@ $dati.='<form action="admin_wines.php" method="post">';
 
 if(!empty($salva_sql)) $dati.='<input type="hidden" name="sql" value="'.$sql.'" />'; 
 
-$dati.='<div><input type="submit" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
-$dati.='<input type="submit" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
-$dati.='<input type="submit" name="delete_selected" id="delete_selected" value="Elimina Selezionati" /></div>';
+$dati.='<div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
+$dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
+$dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionati" />';
 
-$dati.="<a title='Aggiungi vino' class='' href='./add_wine.php' tabindex='' accesskey=''>Aggiungi Vino</a>";
+$dati.="<a title='Aggiungi vino' class='' href='./add_wine.php' tabindex='' accesskey=''>Aggiungi Vino</a></div>";
 
 $dati.='<div class="admin_tr" id="admin_header">
-                            <div class="admin_td">Selezione</div>
+                            <div id="menu_select" class="admin_td">Selezione</div>
                             <div class="admin_td">Nome</div>
                             <div class="admin_td">Denominazione</div>
                             <div class="admin_td">Tipologia</div>

@@ -18,7 +18,7 @@ if(!empty($_COOKIE['info'])){
     setcookie('info',null);
 }
 if(!empty($_COOKIE['error'])){
-    $info_errore.="<li>".$_COOKIE['error']."</li>";
+    $info_errore.="<li id='error_admin_message'>".$_COOKIE['error']."</li>";
     setcookie('error',null);
 }
 
@@ -27,13 +27,15 @@ if(!empty($_COOKIE['error'])){
 
             $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
-            $user.='<form action="add_user.php" method="post">';        
+            $user.='<h1>Inserisci un nuovo utente</h1>';
+
+            $user.='<form id="admin_profile_page" action="add_user.php" method="post">';        
 
             if($row['admin'] == 1) { 
 
-                $user.= '<fieldset id="register_fieldset">
+                $user.= '<fieldset>
                     <ul>
-                    <li><span>Tutti i campi sono obbligatori</span></li>
+                    <li id="important_message_user"><span>Tutti i campi sono obbligatori</span></li>
                     <li><label>Nome:</label>
                     <input type="text" maxlength="50" name="nome" id="nome" title="nome" tabindex="1"/>
                     <li><label>Username:</label>
@@ -41,11 +43,11 @@ if(!empty($_COOKIE['error'])){
                         </li><li><label>Indirizzo email:</label>
                     <input type="text" maxlength="50" name="email" id="email" title="email" value="example@gmail.com" onfocus="placeHolder(this);" tabindex="5"/>
                         </li><li><label>Password:</label>
-                    <input type="password" maxlength="100" name="password" id="password" title="password" tabindex="6"/>
+                    <input type="password" maxlength="100" name="password" id="password_user" title="password" tabindex="6"/>
                         </li><li><label>Conferma Password:</label>
-                    <input type="password" maxlength="100" name="conferma_password" id="conferma_password" title="conferma_password" tabindex="7"/>
-                        </li><li><input type="submit" class="search_button" name="register" value="Salva" accesskey="s" tabindex="8"/></li>
+                    <input type="password" maxlength="100" name="conferma_password" id="conferma_password" title="conferma_password" tabindex="7"/></li>
                     </ul>
+                        <input type="submit" class="search_button" name="register" value="Salva" id="save_admin_profile" accesskey="s" tabindex="8"/>
 
                 </fieldset>';
 

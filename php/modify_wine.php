@@ -149,7 +149,9 @@ $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
 $annata='';
 
-$vino.='<form action="modify_wine.php" method="post">';
+$vino.='<h1>Modifica il vino</h1>';
+
+$vino.='<form id="panel_admin_form" action="modify_wine.php" method="post">';
 $vino.='<input type="hidden" name="idwine" value="'.$id_wine.'" />';
 
 if(mysqli_num_rows($result)!=0) {
@@ -179,9 +181,11 @@ if(mysqli_num_rows($result)!=0) {
     $vino.='<li><label>Descrizione: </label><input type="textarea"  name="descrizione" title="descrizione" value="'.$row['descrizione'].'"</li>';
     $vino.='<li><label>Abbinamento: </label><input type="textarea"  name="abbinamento" title="abbinamento" value="'.$row['abbinamento'].'"</li>';
     $vino.='<li><label>Degustazione: </label><input type="textarea"  name="degustazione" title="degustazione" value="'.$row['degustazione'].'"</li>';
-    $vino.="<li><label>Immagine attuale: </label><img id='modify_wine_img' alt='immagine del vino' src='../img/".$row['id_wine'].".png' /></li><li><label>Cambia immagine: </label><input type='file' name='wine_img'/></li>";
+    $vino.="<li><label>Immagine attuale: </label><img id='modify_wine_img' alt='immagine del vino' src='../img/".$row['id_wine'].".png' /></li>
+    <li><label>Cambia immagine: </label><input id='select_file' type='file' name='wine_img'/></li>";
+    $vino.='<input type="submit" class="search_button" name="save_wine" id="save_modify_wine" value="Salva" />';
     $vino.='</ul>';
-    $vino.='<input type="submit" name="save_wine" id="save_year_modifications" value="Salva" />';
+    
     // provo a modificare i campi dati
 } else $vino.='<h2>Non ho trovato informazioni riguardo a questo vino.</h2>';
 

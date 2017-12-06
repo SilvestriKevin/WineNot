@@ -22,6 +22,21 @@ body {
     letter-spacing: 0.025em;
 }
 
+.admin_button {
+    padding: 0.1em 0.2em;
+    border-radius: 0.2em;
+    font-size: 0.9em;
+    color: #5F021F;
+    background-color: rgba(226, 211, 201, 0.71);
+    border: 0.1em solid #5F021F;
+}
+
+.admin_button:hover {
+    color: #fff;
+    background-color: #5F021F;
+    transition: 0.5s;
+}
+
 .inv_search_button {
     padding: 0.4em;
     border-radius: 0.4em;
@@ -83,6 +98,14 @@ body {
     font-size: 0.9em;
 }
 
+#search, #search_admin {
+    height: 2em;
+    margin: 0em 2em 0em 4em;
+    border-radius: 0.25em;
+    border: none;
+    box-shadow: 0 0.1em 0.5em 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+    padding-left: 0.7em;
+}
 
 /* HEADER & FOOTER */
 
@@ -430,7 +453,7 @@ body {
 
 #search_wines fieldset {
     border: none;
-    background-image:  linear-gradient(rgba(245, 233, 233, 0.4), rgba(245, 233, 233, 0.4)),url(../img/background_search.png);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.29), rgba(255, 255, 255, 0.29)),url(../img/background_search.png);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -442,22 +465,12 @@ body {
 #search_wines li {
     list-style-type: none;
     display: inline-block;
-    margin-right: 1em;
+    margin-left: 1em;
 }
 
 #search {
-    height: 2em;
     width: 25em;
-    margin: 0em 4em 0em 4em;
-    border-radius: 0.25em;
-    border: none;
-    box-shadow: 0 0.1em 0.5em 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
     font-size: 1em;
-    padding-left: 0.7em;
-    /*immagine lente ingrandimento
-    background-image: url(../img/icon_search.png);
-    background-repeat: no-repeat;
-    background-position:right;*/
 }
 
 #search_wines select {
@@ -730,16 +743,6 @@ body {
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
                                                   /*  EVENTI  */
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
-
-/* EVENTS CONTENT */
-
-#events_content {
-    background-image: url(../img/events_frame.png);
-    background-repeat: no-repeat;
-    
-    background-size: contain;
-}
 
 /* PRESENTATION EVENTS */
 
@@ -1018,7 +1021,7 @@ body {
 
 /* REGISTER FIELDSET */
 
-#register_fieldset {
+#register_fieldset, #panel_admin_form fieldset {
     border: 0em;
 }
 
@@ -1126,55 +1129,256 @@ body {
                                     /*ADMIN PANEL*/
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+/**********************************************  ADMIN WINES  ****************************************************/
+
+/* HORIZONTAL MENU */
+
 #admin_content {
-    border:1.5px solid;
-    min-height: 30em;
+    border: 0.1em solid;
     width: 80%;
     margin-left: 10%;
     margin-top: 3em;
+    margin-bottom: 2em;
+    padding-bottom: 0.8em;
 }
 
 #horizontal_menu {
     background-color: #5F021F;
-    width: 100%;
-}
-
-#horizontal_menu li,#admin_header li{
-    display: inline-block;
-    text-align: center;
-}
-
-#admin_header {
-    background-color: #777777;
-    color:#fff;
 }
 
 #horizontal_menu ul {
-    padding: 0.4em 2em;
+    padding: 0.6em 0em;
+    text-align: center;
 }
 
-#admin_header li{
-    width:25%;
+#horizontal_menu li {
+    display: inline-block;
+    margin-right: 3%;
+}
+
+/* ADMIN SEARCH */
+
+#admin_content fieldset {
+    border-left: 0.01em solid;
+    border-right: 0.01em solid;
+}
+
+#admin_after_menu ul {
+    margin: 1em 0em;
+}
+
+#search_admin {
+    width: 17em;
+}
+
+/* SELECT ADMIN BUTTONS */
+
+#select_admin_buttons {
+    margin: 1.3em 0em 0.7em 1em;
+}
+
+#select_admin_buttons a {
+    float: right;
+    margin-right: 1.5em;
+    text-transform: uppercase;
+    color: #5F021F;
+    font-weight: 600;
+}
+
+#select_admin_buttons a:hover {
+    -webkit-transform: scale(1.05);
+	-ms-transform: scale(1.05);
+	transform: scale(1.05);
+    transition: transform 0.4s;
+}
+
+#select_admin_buttons input {
+    margin-right: 1em;
+}
+
+/* ADMIN HEADER */
+
+#admin_header {
+    color: #5F021F;
+    background-color: rgba(226, 211, 201, 0.71);
+    font-weight: 600;
+    height: 1.8em;
+}
+
+#menu_select {
+    padding-top: 0.3em;
 }
 
 .modify_column,.remove_column {
-    width: 12.5%!important;
+    width: 11.5%;
 }
+
+.remove_column a {
+    padding-left: 30%;
+    color: red;
+}
+
+/* WINES RESULTS */
 
 .admin_table {
     display: table;
 }
 .admin_tr {
     display: table-row;
-    padding: 0.2em;
 }
 
 .admin_td{
     display: table-cell;
+    padding-left: 2em;
 }
 
+.admin_td input {
+    margin-left: 40%;
+}
 
-/*MODIFY WINE*/
+/**********************************************  ADD WINE  ****************************************************/
+
+#panel_admin_form {
+    border: none;
+}
+
+#panel_admin_form ul {
+    width: 60%;
+    margin-left: 20%;
+    border: 0.01em solid black;
+}
+
+#panel_admin_form li {
+    list-style-type: none;
+    margin-left: 10em;
+    margin-right: 5em;
+    margin-bottom: 0.3em;
+}
+
+#panel_admin_form input, #panel_admin_form select {
+}
+
+#panel_admin_form select {
+    margin-right: 1.5em;
+}
+
+#select_file {
+    padding-left: 0em !important;
+}
+
+#save_add_wine {
+    margin-left: 35%;
+}
+
+/**********************************************  ADD YEAR  ****************************************************/
+
+#admin_table h1 {
+    text-align: center;
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+#important_message {
+    margin-bottom: 1em !important;
+    margin-left: 9em !important;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+#save_add_year {
+    margin-left: 30%;
+}
+
+#error_admin_message {
+    margin-top: 1em;
+    list-style-type: none;
+    text-align: center;
+    color: red;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+/**********************************************  MODIFY WINE  ****************************************************/
 #modify_wine_img {
-    height: 20em;
+    height: 15em;
 }
+
+#save_modify_wine {
+    margin-left: 45%;
+}
+
+/**********************************************  ADMIN USERS  ****************************************************/
+
+#admin_table h2 {
+    margin: 1em 0em 0.5em 2em;
+    font-size: 1.2em;
+}
+
+/**********************************************  ADD USERS  ****************************************************/
+
+#important_message_user {
+    font-weight: 600;
+    margin-bottom: 0.5em !important;
+}
+
+#admin_profile_page fieldset {
+    border: 0em;
+}
+
+/**********************************************  ADMIN PROFILE  ****************************************************/
+
+#admin_profile_page li {
+    list-style-type: none;
+    margin-left: 8em;
+    margin-right: 5em;
+    margin-bottom: 0.3em;
+}
+
+#admin_profile_page li:first-child, #panel_admin_form li:first-child {
+    margin-top: 1.5em;
+}
+
+#admin_profile_page li:last-child, #panel_admin_form li:last-child {
+    margin-bottom: 1.5em;
+}
+
+#admin_profile_page ul {
+    width: 40%;
+    margin-left: 30%;
+    border: 0.01em solid black;
+}
+
+#admin_profile_page label, #panel_admin_form label {
+    color: #5F021F;
+    font-size: 1.1em;
+}
+
+#admin_profile_page input, #panel_admin_form input, #panel_admin_form select {
+    padding: 0.2em 0.3em;
+    margin-bottom: 0.8em;
+    font-size: 0.9em;
+}
+
+#save_admin_profile {
+    margin-left: 47.5%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

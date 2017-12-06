@@ -45,18 +45,17 @@ if($row['admin'] == 1) {
 
     $dati.='<form action="admin_users.php" method="post">'; 
 
-    $dati.='<div><input type="submit" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
-    $dati.='<input type="submit" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
-    $dati.='<input type="submit" name="delete_selected" id="delete_selected" value="Elimina Selezionati" /></div>';
-
-    $dati.="<a title='Aggiungi utente' class='' href='./add_user.php' tabindex='' accesskey=''>Aggiungi Utente</a>";
+    $dati.='<div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
+    $dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
+    $dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionati" />';
+    $dati.="<a title='Aggiungi utente' class='' href='./add_user.php' tabindex='' accesskey=''>Aggiungi Utente</a></div>";
 
     //STAMPA GLI UTENTI
     $sql = "SELECT utenti.* FROM utenti WHERE admin=0";
     $result=mysqli_query($conn,$sql);
 
     $dati.='<div class="admin_tr" id="admin_header">
-                            <div class="admin_td">Selezione</div>
+                            <div id="menu_select" class="admin_td">Selezione</div>
                             <div class="admin_td">Username</div>
                             <div class="admin_td">Nome</div> 
                             <div class="admin_td">Email</div>                            

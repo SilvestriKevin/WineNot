@@ -18,16 +18,18 @@ if(!empty($_COOKIE['info'])){
     setcookie('info',null);
 }
 if(!empty($_COOKIE['error'])){
-    $info_errore.="<li>".$_COOKIE['error']."</li>";
+    $info_errore.="<li id='error_admin_message'>".$_COOKIE['error']."</li>";
     setcookie('error',null);
 }
 
 // qualsiasi tipo di utente può aggiungere una nuova annata
 
-$annata.='<form action="add_year.php" method="post">';        
-$annata.= '<fieldset id="register_fieldset">
+$annata.='<h1>Inserisci una nuova annata</h1>';
+
+$annata.='<form id="panel_admin_form" action="add_year.php" method="post">';        
+$annata.= '<fieldset>
                     <ul>
-                    <li><span>Tutti i campi sono obbligatori</span></li>
+                    <li id="important_message"><span>Tutti i campi sono obbligatori</span></li>
                     <li><label>Anno:</label>
                     <input type="text" maxlength="4" name="anno" title="anno" tabindex="1"/>
                     <li><label>Descrizione:</label>
@@ -37,7 +39,7 @@ $annata.= '<fieldset id="register_fieldset">
                     <input type="text" maxlength="100" name="qualita" title="qualita" tabindex="6"/>
                         </li>
                         <li><label>Migliore: </label><input type="checkbox" name="migliore" title="migliore" value="1" tabindex="7"/></li>
-                        <li><input type="submit" class="search_button" name="salva" value="Aggiungi" accesskey="s" tabindex="8"/></li>
+                        <li><input type="submit" class="search_button" name="salva" id="save_add_year" value="Aggiungi" accesskey="s" tabindex="8"/></li>
                     </ul>
 
                 </fieldset>';

@@ -174,11 +174,10 @@
     }
     
     #search {
-        margin-top: 1em;
         height: 1.5em;
-        width: 80%;
-        margin-left: 8%;
-        margin-bottom: 0.4em;
+        width: 65%;
+        margin-left: 17%;
+        margin-bottom: 1em;
         padding-left: 0.4em;
     }
     
@@ -277,7 +276,7 @@
     
 /*------------------  ANNATE MIGLIORI  -----------------------*/    
     #title_best_annate p {
-        font-size: 1.1em;
+        font-size: 1.2em;
         margin-bottom: 1em;
     }
     
@@ -307,7 +306,7 @@
     }
     
     #description_annata label {
-        font-size: 1.3em;
+        font-size: 1.5em;
     }
     
     #year_quality {
@@ -316,7 +315,7 @@
     }
     
     #year_quality p, #year_description p {
-        font-size: 0.8em;
+        font-size: 0.9em;
         padding-top: 0em;
     }
     
@@ -337,11 +336,7 @@
         display: inline;
     }
     
-/*-----------------------  EVENTI  --------------------------*/     #events_content {
-        background-image: none;
-    }
-    
-    #presentation_events {
+/*-----------------------  EVENTI  --------------------------*/     #presentation_events {
         text-align: center;
     }
     
@@ -715,15 +710,7 @@
         margin-right: 0em;
     }
     
-    #search {
-        width: 24em;
-        margin-left: 6%;
-        margin-bottom: 0.4em;
-        padding-left: 0.6em;
-    }
-    
     #filter_by, #order_by {
-        width: 23%;
         padding-top: 0.6em;
         margin-left: 6%;
     }
@@ -733,8 +720,14 @@
     }
     
     #search_line {
-        width: 100%;
         text-align: center;
+    }
+    
+    #search {
+        width: 20em;
+        margin-left: 6%;
+        margin-bottom: 0.4em;
+        padding-left: 0.6em;
     }
     
     #wine_results {
@@ -855,10 +848,6 @@
     }
     
 /*-----------------------  EVENTI  --------------------------*/    
-    #events_content {
-        background-image: none;
-    } 
-    
     #presentation_events {
         text-align: center;
     }
@@ -1078,7 +1067,7 @@
     }
     
     #presentation h1 {
-        padding-top: 1.5em;
+        padding-top: 0.5em;
         margin-left: 5em;
         font-size: 2.7em;
     }
@@ -1178,7 +1167,6 @@
     }
     
     #search {
-        margin-left: 32%;
         padding-left: 0.6em;
     }
     
@@ -1187,15 +1175,11 @@
     }
     
     #filter_by {
-        padding-left: 1em;
+        padding-left: 2.5em;
     }
     
     #order_by {
         margin-left: 1em;
-    }
-    
-    #go_button {
-        margin-left: 2em;
     }
     
     .specific_wine img {
@@ -1259,10 +1243,6 @@
     }
     
 /*-----------------------  EVENTI  --------------------------*/     
-    #events_content {
-        background-image: none;
-    }
-    
     #event_preview div {
         height: 19em;
     }
@@ -1350,12 +1330,7 @@
         padding: 0.6em 0em;
         margin-top: 1em;
         margin-bottom: 1.5em;
-    }
-    
-    
-    
-    
-    
+    }  
 }
 
 /*--------------------------------------------------------------*/                                    /*  min 1025  */
