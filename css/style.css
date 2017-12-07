@@ -37,6 +37,13 @@ body {
     transition: 0.5s;
 }
 
+#admin_title {
+    text-align: center;
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
 .inv_search_button {
     padding: 0.4em;
     border-radius: 0.4em;
@@ -1250,7 +1257,7 @@ body {
 
 #panel_admin_form li {
     list-style-type: none;
-    margin-left: 10em;
+    margin-left: 11em;
     margin-right: 5em;
     margin-bottom: 0.3em;
 }
@@ -1272,16 +1279,9 @@ body {
 
 /**********************************************  ADD YEAR  ****************************************************/
 
-#admin_table h1 {
-    text-align: center;
-    margin-top: 0.5em;
-    font-size: 1.5em;
-    font-weight: 100;
-}
-
 #important_message {
     margin-bottom: 1em !important;
-    margin-left: 9em !important;
+    margin-left: 10em !important;
     font-size: 1.1em;
     font-weight: 600;
 }
@@ -1299,22 +1299,6 @@ body {
     font-weight: 600;
 }
 
-/**********************************************  MODIFY WINE  ****************************************************/
-#modify_wine_img {
-    height: 15em;
-}
-
-#save_modify_wine {
-    margin-left: 45%;
-}
-
-/**********************************************  ADMIN USERS  ****************************************************/
-
-#admin_table h2 {
-    margin: 1em 0em 0.5em 2em;
-    font-size: 1.2em;
-}
-
 /**********************************************  ADD USERS  ****************************************************/
 
 #important_message_user {
@@ -1326,7 +1310,36 @@ body {
     border: 0em;
 }
 
-/**********************************************  ADMIN PROFILE  ****************************************************/
+/**********************************************  MODIFY WINE  ****************************************************/
+#modify_wine_img {
+    height: 15em;
+}
+
+#save_modify_wine {
+    margin-left: 45%;
+}
+
+/**********************************************  MODIFY YEAR  ****************************************************/
+
+#save_modify_year {
+    margin-left: 30%;
+}
+
+#textarea_modify_year {
+    font-size: 0.9em;
+    font-family: 'Lato',Verdana, Arial, Helvetica sans-serif;
+    width: 80%;
+    padding: 0.2em 0em 0.4em 0.4em;
+}
+
+/**********************************************  ADMIN USERS  ****************************************************/
+
+#admin_table h2 {
+    margin: 1em 0em 0.5em 2em;
+    font-size: 1.2em;
+}
+
+/********************************************  ADMIN PROFILE  ****************************************************/
 
 #admin_profile_page li {
     list-style-type: none;

@@ -24,7 +24,7 @@ if(!empty($_COOKIE['error'])){
 
 // qualsiasi tipo di utente può aggiungere una nuova annata
 
-$vino.='<h1>Inserisci un nuovo vino</h1>';
+$vino.='<h1 id="admin_title">Inserisci un nuovo vino</h1>';
 
 $vino.='<form id="panel_admin_form" enctype="multipart/form-data" action="add_wine.php" method="post">';        
 $vino.= '<fieldset><ul>';

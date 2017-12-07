@@ -154,7 +154,7 @@ $result=mysqli_query($conn,$sql);
 
 $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
-$dati.='<h1>Dati del profilo</h1>';
+$dati.='<h1 id="admin_title">Dati del profilo</h1>';
 
 $dati.='<form id="admin_profile_page" action="admin_profile.php" method="post">';
 

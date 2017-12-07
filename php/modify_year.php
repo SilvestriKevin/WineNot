@@ -77,7 +77,9 @@ $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
 $annata='';
 
-$annata.='<form action="modify_year.php" method="post">';
+$annata.='<h3 id="admin_title">Modifica annata</h3>';
+
+$annata.='<form id="panel_admin_form" action="modify_year.php" method="post">';
 
 $annata.='<input type="hidden" name="save_year" value="'.$year.'" />';
 
@@ -85,7 +87,7 @@ if(mysqli_num_rows($result)!=0) {
     $annata.='<ul>';
 
     $annata.='<li><label>Anno: </label><input type="text" maxlength="4" name="anno" title="anno" value="'.$row['anno'].' "/></li>';
-    $annata.='<li><label>Descrizione: </label><textarea rows="5" cols="50" name="descrizione" title="descrizione">'.$row['descrizione'].'</textarea></li> ';
+    $annata.='<li><label>Descrizione: </label><textarea id="textarea_modify_year" rows="5" cols="50" name="descrizione" title="descrizione">'.$row['descrizione'].'</textarea></li> ';
     $annata.='<li><label>Qualit&agrave;: </label><input type="text" maxlength="30" name="qualita" title="qualita" value="'.$row['qualita'].'"/></li>';
 
     $annata.='<li><label>Migliore: </label><input type="checkbox" maxlength="30" name="migliore" title="migliore"';
@@ -94,7 +96,7 @@ if(mysqli_num_rows($result)!=0) {
         $annata.='checked="checked" /></li>';
     else $annata.='/></li>';
 
-    $annata.='<li><input type="submit" name="save_year" id="" value="Salva" /></li>';
+    $annata.='<li><input type="submit" class="search_button" name="save_year" id="save_modify_year" value="Salva" /></li>';
     $annata.='</ul>';
 } else { $annata.='<h2>Ci sono dei problemi con il database.</h2>'; }
 

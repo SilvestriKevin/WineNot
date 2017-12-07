@@ -27,7 +27,7 @@ if(!empty($_COOKIE['error'])){
 
             $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
-            $user.='<h1>Inserisci un nuovo utente</h1>';
+            $user.='<h1 id="admin_title">Inserisci un nuovo utente</h1>';
 
             $user.='<form id="admin_profile_page" action="add_user.php" method="post">';        
 

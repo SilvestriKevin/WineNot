@@ -83,10 +83,10 @@ else if(!empty($_POST['years']) && !empty($_POST['confirm'])){
 //in $_GET['years'] sono contenuti tutti gli id dei vini che si vogliono eliminare
 //se è settato solo $_GET['years'] allora mostro la richiesta di conferma per l'eliminazione
 else if(!empty($_GET['years'])){
-    $dati.='<form action="delete_year.php" method="post">';
+    $dati.='<form id="select_admin_buttons" action="delete_year.php" method="post">';
 
-    $dati.='<input type="submit" name="cancel" id="cancel" value="Annulla Eliminazione" /></div>';
-    $dati.='<input type="submit" name="confirm" id="confirm" value="Conferma Eliminazione" /></div>';
+    $dati.='<input type="submit" class="admin_button" name="cancel" id="cancel" value="Annulla Eliminazione" />';
+    $dati.='<input type="submit" class="admin_button" name="confirm" id="confirm" value="Conferma Eliminazione" /></div>';
 
     //controllo che nell'url abbia un array serializzato o un singolo dato
     //quindi provo a fare unserialize e se fallisce allora deduco di avere un dato unico

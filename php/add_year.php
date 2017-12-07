@@ -24,7 +24,7 @@ if(!empty($_COOKIE['error'])){
 
 // qualsiasi tipo di utente può aggiungere una nuova annata
 
-$annata.='<h1>Inserisci una nuova annata</h1>';
+$annata.='<h1 id="admin_title">Inserisci una nuova annata</h1>';
 
 $annata.='<form id="panel_admin_form" action="add_year.php" method="post">';        
 $annata.= '<fieldset>

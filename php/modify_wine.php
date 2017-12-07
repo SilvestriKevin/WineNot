@@ -149,7 +149,7 @@ $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
 $annata='';
 
-$vino.='<h1>Modifica il vino</h1>';
+$vino.='<h3 id="admin_title">Modifica il vino</h3>';
 
 $vino.='<form id="panel_admin_form" action="modify_wine.php" method="post">';
 $vino.='<input type="hidden" name="idwine" value="'.$id_wine.'" />';
