@@ -150,15 +150,15 @@ $dati.='<div class="admin_tr" id="admin_header">
 if(mysqli_num_rows($result)!=0)
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
         $dati.="<div class='admin_tr'>";
-        $dati.="<div class ='admin_td'><input type='checkbox' name='wines[]' value='".$row['id_wine'];
+        $dati.="<div class ='admin_td admin_wines_checkbox_column'><input id='admin_wines_checkbox' type='checkbox' name='wines[]' value='".$row['id_wine'];
         if(isset($_POST['all_selected'])) $dati.="' checked='checked";
         $dati.="'></div>";
-        $dati.="<div class ='admin_td'>".$row['nome']."</div>";
-        $dati.="<div class ='admin_td'>".$row['denominazione']."</div>";
-        $dati.="<div class ='admin_td'>".$row['tipologia']."</div>";
-        $dati.="<div class ='admin_td'>".$row['annata']."</div>";
-        $dati.="<div class ='admin_td modify_column'><a title='Modifica vino' class='' href='./modify_wine.php?idwine=".$row['id_wine']."' tabindex='' accesskey=''>Modifica</a></div>";
-        $dati.="<div class ='admin_td remove_column'><a title='Elimina vino' class='' href='./delete_wine.php?wines=".$row['id_wine']."' tabindex='' accesskey=''>X</a></div>";
+        $dati.="<div class ='admin_td admin_wines_name_column'>".$row['nome']."</div>";
+        $dati.="<div class ='admin_td admin_wines_denomination_column'>".$row['denominazione']."</div>";
+        $dati.="<div class ='admin_td admin_wines_tipology_column'>".$row['tipologia']."</div>";
+        $dati.="<div class ='admin_td admin_wines_year_column'>".$row['annata']."</div>";
+        $dati.="<div class ='admin_td admin_wines_modify_column'><a title='Modifica vino' class='' href='./modify_wine.php?idwine=".$row['id_wine']."' tabindex='' accesskey=''>Modifica</a></div>";
+        $dati.="<div class ='admin_td admin_wines_remove_column'><a title='Elimina vino' class='' href='./delete_wine.php?wines=".$row['id_wine']."' tabindex='' accesskey=''>X</a></div>";
         $dati.="</div>";
     }
 else $dati.="<h2>Non sono presenti vini.</h2>";

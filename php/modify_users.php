@@ -111,7 +111,9 @@ $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
 $annata='';
 
-$user.='<form action="modify_users.php" method="post">';
+$user.='<h3 id="admin_title">Modifica utente</h3>';
+
+$user.='<form id="panel_admin_form" action="modify_users.php" method="post">';
 $user.='<input type="hidden" name="user" value="'.$id_user.'" />';
 
 if(mysqli_num_rows($result)!=0) {
@@ -119,7 +121,7 @@ if(mysqli_num_rows($result)!=0) {
                     <li><label>Nome: </label><input type="text" maxlength="100" name="nome" id="" title="nome" value="'.$row['nome'].'"/></li>
                     <li><label>Email: </label><input type="text" maxlength="100" name="email" id="" title="email" value="'.$row['email'].'"/></li>
                     <li><label>Password: </label><input type="text" maxlength="100" name="password" id="" title="password" value=""/></li>';
-    $user.='<input type="submit" name="save_user" id="save_year_modifications" value="Salva" />';
+    $user.='<input type="submit" class="search_button" name="save_user" id="save_modify_users" value="Salva" />';
     // provo a modificare i campi dati
 } else $user.='<h2>Non ho trovato informazioni riguardo a questo utente.</h2>';
 

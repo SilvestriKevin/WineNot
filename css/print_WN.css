@@ -1,0 +1,270 @@
+/*-------------------------- GENERAL ------------------------*/
+
+#header, #footer, #search_wines, #list_annate, #presentation_events a, #slideshow, #howto_contacts form, #not_found a {
+    display: none;
+}
+
+#presentation h1, #list_wines_year h2, #title_our_wines h1, #container_wine h1, #register_fieldset h1 {
+    padding-top: 0em;
+}
+
+/*------------------------  INDEX  --------------------------*/
+
+#presentation {
+    height: 5em;
+    box-shadow: none;
+}
+
+#presentation h1 {
+    margin-left: 0em;
+    color: black;
+    font-size: 3em;
+}
+
+#presentation p {
+    margin-left: 0em;
+    margin-right: 0em;
+    color: black;
+    padding-top: 0.5em;
+}
+
+#short_description h2, #tasting h6 {
+    font-weight: 100;
+}
+
+#short_description p, #tasting p {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 0em;
+}
+
+#wine_preview .preview_wine img {
+    height: 16em;
+    margin-left: 0em;
+    padding-top: 0em;
+}
+
+.preview_wine_description {
+    padding-top: 0em;
+    width: 60%;
+}
+
+#wine_preview .preview_wine:first-child {
+    margin-left: 0em;
+}
+
+.preview_wine_description h3, .preview_wine_description h4, .preview_wine_description h5 {
+    font-size: 2em;
+    font-weight: 100;
+}
+
+.preview_wine_description p {
+    padding-right: 0em;
+}
+
+#history_preview {
+    height: 5em;
+}
+
+#history_paragraph {
+    padding-top: 0em;
+    margin-left: 0em;
+    margin-right: 0em;
+    width: 100%;
+}
+
+#history_preview h7 {
+    color: #5F021F;
+    text-align: center;
+}
+
+#history_preview p {
+    color: dimgray;
+    margin-top: 0em;
+}
+
+/*--------------------------  VINI  -------------------------*/
+
+#wine_results, #list_wines_year {
+    margin-bottom: 0em;
+}
+    
+#wine_results li {
+    display: inline;
+}
+    
+.specific_wine img {
+    padding: 0em;
+    height: 10em;
+}
+    
+#specific_result {
+    margin-bottom: 1.5em;
+}
+   
+#specific_result ul {
+    width: 80%;
+    float: right;
+    margin: 0em;
+    margin-top: 2.5em;
+}
+
+.specific_wine label {
+    font-weight: 100;
+}
+
+/*-----------------  PAGINA VINO SPECIFICA  ------------------*/
+
+#container_wine h1 {
+    margin-left: 0em;
+}
+    
+#wine_img {
+    height: 18em;
+    margin-left: 0em;
+}
+    
+#img_description_wine, #details_wine {
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+    text-align: center;
+}
+    
+#details_wine p {
+    margin-top: 1em;
+}
+    
+#title_details {
+    margin-top: 0.8em;
+    font-size: 1.7em !important;
+    border-bottom: 0.01em solid #5F021F;
+}
+    
+ #title_details:after {
+    content: none;
+}
+
+#details_wine li {
+    margin-bottom: 0.2em;
+}
+
+/*------------------  ANNATE MIGLIORI  -----------------------*/ 
+
+#description_annata {
+    margin-left: 0em;
+    width: 100%;
+}
+
+#description_annata label {
+    font-weight: 100;
+    font-size: 2.5em;
+}
+
+#year_quality {
+    width: 30%;
+}
+
+#year_description {
+    width: 70%;
+}
+
+#list_wines_year li {
+    display: inline;
+}
+
+/*-------------------------  EVENTI  -------------------------*/ 
+
+#presentation_events p {
+    width: 90%;
+    margin-left: 5%;
+}
+
+#event_preview div {
+    height: 13em;
+    margin-top: 0em;
+}
+
+#tasting_tour h2, #apperitif_gourmet h3, #san_valenwine h4 {
+    margin-left: 0em;
+    margin-right: 0em;
+}
+    
+#tasting_tour p, #apperitif_gourmet p, #san_valenwine p {
+    margin-left: 0em;
+    margin-right: 0em;
+    margin-bottom: 0.5em;
+}
+
+/*------------------------  STORIA  -------------------------*/
+
+#history_description p, #history_family p, #history_future p {
+    font-size: 1.2em;
+}
+
+#history_family {
+    margin: 0em;
+    border: none;
+}
+
+#history_family div {
+    display: inherit;
+}
+
+#history_family_photo {
+    display: none !important;
+}
+
+#history_family_paragraph {
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+#history_family h2 {
+    font-size: 2.5em;
+}
+
+/*-----------------------  CONTATTACI  -----------------------*/ 
+
+#content_contacts {
+    width: 90%;
+    margin-left: 5%;
+}
+
+#personal_contacts {
+    width: 100%;
+    margin-top: 1em;
+    margin-left: 0%;
+    color: black;
+    font-size: 1.3em;
+}
+
+#personal_contacts li {
+    margin-bottom: 0.4em;
+}
+
+#position_contacts h2 {
+    font-weight: 100;
+    font-size: 1.8em;
+    color: #5F021F;
+}
+
+#position_contacts a {
+    text-decoration: none;
+    margin-top: 1em;
+    font-size: 1.3em;
+    color: black;
+}
+
+#googleMap {
+    width: 100%;
+    margin-left: 0em;
+}
+
+/*------------------------  ERROR 404  -----------------------*/ 
+
+#not_found {
+    width: 100%;
+    margin-left: 0%;
+}

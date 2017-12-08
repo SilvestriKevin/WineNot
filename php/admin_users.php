@@ -67,14 +67,14 @@ if($row['admin'] == 1) {
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $dati.="<div class='admin_tr'>";  
-            $dati.="<div class ='admin_td'><input type='checkbox' name='users[]' value='".$row['id_user'];
+            $dati.="<div class ='admin_td admin_users_checkbox_column'><input id='admin_users_checkbox' type='checkbox' name='users[]' value='".$row['id_user'];
             if(isset($_POST['all_selected'])) $dati.="' checked='checked";
             $dati.="'></div>";          
-            $dati.="<div class ='admin_td'>".$row['nome']."</div>";
-            $dati.="<div class ='admin_td'>".$row['username']."</div>";
-            $dati.="<div class ='admin_td'>".$row['email']."</div>";
-            $dati.="<div class ='admin_td modify_column'><a title='Modifica utente' class='' href='./modify_users.php?user=".$row['id_user']."' tabindex='' accesskey=''>Modifica</a></div>";
-            $dati.="<div class ='admin_td remove_column'><a title='Elimina utente' class='' href='./delete_user.php?users=".$row['id_user']."' tabindex='' accesskey=''>X</a></div>";
+            $dati.="<div class ='admin_td admin_users_name_column'>".$row['nome']."</div>";
+            $dati.="<div class ='admin_td admin_users_username_column'>".$row['username']."</div>";
+            $dati.="<div class ='admin_td admin_users_email_column'>".$row['email']."</div>";
+            $dati.="<div class ='admin_td admin_users_modify_column'><a title='Modifica utente' class='' href='./modify_users.php?user=".$row['id_user']."' tabindex='' accesskey=''>Modifica</a></div>";
+            $dati.="<div class ='admin_td admin_users_remove_column'><a title='Elimina utente' class='' href='./delete_user.php?users=".$row['id_user']."' tabindex='' accesskey=''>X</a></div>";
             $dati.="</div>";
         }
     else $dati.="<h2>Non sono presenti utenti.</h2>";

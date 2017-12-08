@@ -35,7 +35,7 @@ if(!empty($_COOKIE['error'])){
 
                 $user.= '<fieldset>
                     <ul>
-                    <li id="important_message_user"><span>Tutti i campi sono obbligatori</span></li>
+                    <li id="important_message"><span>Tutti i campi sono obbligatori</span></li>
                     <li><label>Nome:</label>
                     <input type="text" maxlength="50" name="nome" id="nome" title="nome" tabindex="1"/>
                     <li><label>Username:</label>

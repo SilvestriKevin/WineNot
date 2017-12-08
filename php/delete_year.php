@@ -110,7 +110,7 @@ else if(!empty($_GET['years'])){
     $result=mysqli_query($conn,$sql);
 
     $dati.='<div class="admin_tr" id="admin_header">
-                            <div class="admin_td">Selezione</div>
+                            <div id="menu_select" class="admin_td">Selezione</div>
                             <div class="admin_td">Annata</div>
                             <div class="admin_td">Qualit&agrave;</div>
                             <div class="admin_td">Migliore</div>
@@ -119,10 +119,10 @@ else if(!empty($_GET['years'])){
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $dati.="<div class='admin_tr'>";
-            $dati.="<div class ='admin_td'><input type='checkbox' name='years[]' value='".$row['anno']."' checked='checked'></div>";
-            $dati.="<div class ='admin_td'>".$row['anno']."</div>";
-            $dati.="<div class ='admin_td'>".$row['qualita']."</div>";
-            $dati.="<div class ='admin_td'>";
+            $dati.="<div class ='admin_td delete_year_checkbox_column'><input id='delete_year_checkbox' type='checkbox' name='years[]' value='".$row['anno']."' checked='checked'></div>";
+            $dati.="<div class ='admin_td delete_year_year_column'>".$row['anno']."</div>";
+            $dati.="<div class ='admin_td delete_year_quality_column'>".$row['qualita']."</div>";
+            $dati.="<div class ='admin_td delete_year_best_column'>";
             if($row['migliore'] == 0) $dati.="No";
             else $dati.="Si";
             $dati.="</div>";

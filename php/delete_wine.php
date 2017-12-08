@@ -80,7 +80,7 @@ else if(!empty($_GET['wines'])){
     $result=mysqli_query($conn,$sql);
 
     $dati.='<div class="admin_tr" id="admin_header">
-                            <div class="admin_td">Selezione</div>
+                            <div id="menu_select" class="admin_td">Selezione</div>
                             <div class="admin_td">Nome</div>
                             <div class="admin_td">Denominazione</div>
                             <div class="admin_td">Tipologia</div>
@@ -90,11 +90,11 @@ else if(!empty($_GET['wines'])){
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $dati.="<div class='admin_tr'>";
-            $dati.="<div class ='admin_td'><input type='checkbox' name='wines[]' value='".$row['id_wine']."' checked='checked'></div>";
-            $dati.="<div class ='admin_td'>".$row['nome']."</div>";
-            $dati.="<div class ='admin_td'>".$row['denominazione']."</div>";
-            $dati.="<div class ='admin_td'>".$row['tipologia']."</div>";
-            $dati.="<div class ='admin_td'>".$row['annata']."</div>";
+            $dati.="<div class ='admin_td delete_wine_checkbox_column'><input id='delete_wine_checkbox' type='checkbox' name='wines[]' value='".$row['id_wine']."' checked='checked'></div>";
+            $dati.="<div class ='admin_td delete_wine_name_column'>".$row['nome']."</div>";
+            $dati.="<div class ='admin_td delete_wine_denomination_column'>".$row['denominazione']."</div>";
+            $dati.="<div class ='admin_td delete_wine_tipology_column'>".$row['tipologia']."</div>";
+            $dati.="<div class ='admin_td delete_wine_year_column'>".$row['annata']."</div>";
             $dati.="</div>";
         }
     else header("Location: admin_wines.php");

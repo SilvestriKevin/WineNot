@@ -60,17 +60,17 @@ $dati.='<div class="admin_tr" id="admin_header">
 if(mysqli_num_rows($result)!=0)
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
         $dati.="<div class='admin_tr'>";
-        $dati.="<div class ='admin_td'><input type='checkbox' name='years[]' value='".$row['anno'];
+        $dati.="<div class ='admin_td admin_years_checkbox_column'><input id='admin_years_checkbox' type='checkbox' name='years[]' value='".$row['anno'];
         if(isset($_POST['all_selected'])) $dati.="' checked='checked";
         $dati.="'></div>";
-        $dati.="<div class ='admin_td'>".$row['anno']."</div>";
-        $dati.="<div class ='admin_td'>".$row['qualita']."</div>";
-        $dati.="<div class ='admin_td'>";
+        $dati.="<div class ='admin_td admin_years_year_column'>".$row['anno']."</div>";
+        $dati.="<div class ='admin_td admin_years_quantity_column'>".$row['qualita']."</div>";
+        $dati.="<div class ='admin_td admin_years_best_column'>";
         if($row['migliore'] == 0) $dati.="No";
         else $dati.="Si";
         $dati.="</div>";
-        $dati.="<div class ='admin_td modify_column'><a title='Modifica vino' class='' href='./modify_year.php?year=".$row['anno']."' tabindex='' accesskey=''>Modifica</a></div>";
-        $dati.="<div class ='admin_td remove_column'><a title='Elimina annata' class='' href='./delete_year.php?years=".$row['anno']."' tabindex='' accesskey=''>X</a></div>";
+        $dati.="<div class ='admin_td admin_years_modify_column'><a title='Modifica vino' class='' href='./modify_year.php?year=".$row['anno']."' tabindex='' accesskey=''>Modifica</a></div>";
+        $dati.="<div class ='admin_td admin_years_remove_column'><a title='Elimina annata' class='' href='./delete_year.php?years=".$row['anno']."' tabindex='' accesskey=''>X</a></div>";
         $dati.="</div>";
     }
 else {

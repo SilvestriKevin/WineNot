@@ -80,7 +80,7 @@ else if(!empty($_GET['users'])){
     $result=mysqli_query($conn,$sql);
 
     $dati.='<div class="admin_tr" id="admin_header">
-                            <div class="admin_td">Selezione</div>
+                            <div id="menu_select" class="admin_td">Selezione</div>
                             <div class="admin_td">Username</div>
                             <div class="admin_td">Nome</div> 
                             <div class="admin_td">Email</div> 
@@ -89,10 +89,10 @@ else if(!empty($_GET['users'])){
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $dati.="<div class='admin_tr'>";
-            $dati.="<div class ='admin_td'><input type='checkbox' name='users[]' value='".$row['id_user']."' checked='checked'></div>"; 
-            $dati.="<div class ='admin_td'>".$row['nome']."</div>";
-            $dati.="<div class ='admin_td'>".$row['username']."</div>";
-            $dati.="<div class ='admin_td'>".$row['email']."</div>";
+            $dati.="<div class ='admin_td delete_user_checkbox_column'><input id='delete_user_checkbox' type='checkbox' name='users[]' value='".$row['id_user']."' checked='checked'></div>"; 
+            $dati.="<div class ='admin_td delete_user_name_column'>".$row['nome']."</div>";
+            $dati.="<div class ='admin_td delete_user_username_column'>".$row['username']."</div>";
+            $dati.="<div class ='admin_td delete_user_email_column'>".$row['email']."</div>";
             $dati.="</div>";
         }
     else header("Location: admin_users.php");
