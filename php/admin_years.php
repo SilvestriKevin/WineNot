@@ -48,7 +48,8 @@ $dati.="<a title='Aggiungi Annata' class='' href='./add_year.php' tabindex='' ac
 $sql = "SELECT annate.* FROM annate";
 $result=mysqli_query($conn,$sql);
 
-$dati.='<div class="admin_tr" id="admin_header">
+if(mysqli_num_rows($result)!=0){
+    $dati.='<div class="admin_tr" id="admin_header">
                             <div id="menu_select" class="admin_td">Selezione</div>
                             <div class="admin_td">Annata</div>
                             <div class="admin_td">Qualit&agrave;</div>
@@ -56,8 +57,6 @@ $dati.='<div class="admin_tr" id="admin_header">
                             <div class="admin_td modify_column">Modifica</div>
                             <div class="admin_td remove_column">Elimina</div>
                         </div>';
-
-if(mysqli_num_rows($result)!=0)
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
         $dati.="<div class='admin_tr'>";
         $dati.="<div class ='admin_td admin_years_checkbox_column'><input id='admin_years_checkbox' type='checkbox' name='years[]' value='".$row['anno'];
@@ -73,6 +72,7 @@ if(mysqli_num_rows($result)!=0)
         $dati.="<div class ='admin_td admin_years_remove_column'><a title='Elimina annata' class='' href='./delete_year.php?years=".$row['anno']."' tabindex='' accesskey=''>X</a></div>";
         $dati.="</div>";
     }
+}
 else {
     $dati.="<h2>Non sono presenti annate.</h2>";
 }

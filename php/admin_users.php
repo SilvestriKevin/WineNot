@@ -54,7 +54,8 @@ if($row['admin'] == 1) {
     $sql = "SELECT utenti.* FROM utenti WHERE admin=0";
     $result=mysqli_query($conn,$sql);
 
-    $dati.='<div class="admin_tr" id="admin_header">
+    if(mysqli_num_rows($result)!=0){
+        $dati.='<div class="admin_tr" id="admin_header">
                             <div id="menu_select" class="admin_td">Selezione</div>
                             <div class="admin_td">Username</div>
                             <div class="admin_td">Nome</div> 
@@ -63,8 +64,6 @@ if($row['admin'] == 1) {
                             <div class="admin_td remove_column">Elimina</div>
 
                     </div>';
-
-    if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $dati.="<div class='admin_tr'>";  
             $dati.="<div class ='admin_td admin_users_checkbox_column'><input id='admin_users_checkbox' type='checkbox' name='users[]' value='".$row['id_user'];
@@ -77,6 +76,7 @@ if($row['admin'] == 1) {
             $dati.="<div class ='admin_td admin_users_remove_column'><a title='Elimina utente' class='' href='./delete_user.php?users=".$row['id_user']."' tabindex='' accesskey=''>X</a></div>";
             $dati.="</div>";
         }
+    }
     else $dati.="<h2>Non sono presenti utenti.</h2>";
     $dati.="</form>";
 

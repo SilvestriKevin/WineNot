@@ -137,7 +137,10 @@ $dati.='<input type="submit" class="admin_button" name="delete_selected" id="del
 
 $dati.="<a title='Aggiungi vino' class='' href='./add_wine.php' tabindex='' accesskey=''>Aggiungi Vino</a></div>";
 
-$dati.='<div class="admin_tr" id="admin_header">
+
+
+if(mysqli_num_rows($result)!=0){
+    $dati.='<div class="admin_tr" id="admin_header">
                             <div id="menu_select" class="admin_td">Selezione</div>
                             <div class="admin_td">Nome</div>
                             <div class="admin_td">Denominazione</div>
@@ -146,8 +149,6 @@ $dati.='<div class="admin_tr" id="admin_header">
                             <div class="admin_td modify_column">Modifica</div>
                             <div class="admin_td remove_column">Elimina</div>
                     </div>';
-
-if(mysqli_num_rows($result)!=0)
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
         $dati.="<div class='admin_tr'>";
         $dati.="<div class ='admin_td admin_wines_checkbox_column'><input id='admin_wines_checkbox' type='checkbox' name='wines[]' value='".$row['id_wine'];
@@ -161,6 +162,7 @@ if(mysqli_num_rows($result)!=0)
         $dati.="<div class ='admin_td admin_wines_remove_column'><a title='Elimina vino' class='' href='./delete_wine.php?wines=".$row['id_wine']."' tabindex='' accesskey=''>X</a></div>";
         $dati.="</div>";
     }
+}
 else $dati.="<h2>Non sono presenti vini.</h2>";
 $dati.="</form>";
 
