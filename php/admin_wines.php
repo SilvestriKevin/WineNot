@@ -62,7 +62,7 @@ for($i=0 ; $i<$num_elementi ; $i++){
 }
 
 //SELECT ORDINE NEL FORM
-$array_ordine=array('nome','annata','tipologia','gradazione','formato');
+$array_ordine=array('nome','denominazione','tipologia','annata');
 $num_elementi=count($array_ordine);
 for($i=0 ; $i<$num_elementi ; $i++){
     $ordine.="<option value='".$array_ordine[$i]."'";
@@ -77,22 +77,21 @@ $text_search = 'vini';
 if(!empty($_POST['annata']) && !empty($_POST['tipologia']) && !empty($_POST['ordine'])){
 
     if(!empty($_POST['search'])){
-        //chiamo la funzione in lib.php che controlla il testo inserito. (controllare ricerca su homie)
-
-        // rendo tutto in minuscolo
-        $search = strtolower($_POST['search']);
+        //chiamo la funzione in lib.php che controlla il testo inserito.
 
         // pulisco la stringa
-        $search = cleanInput($search);
+        $search = cleanInput($_POST['search']);
 
         $counter=0;
+        $prova='';
         while(!empty($search[$counter])) {
+            $prova.=" ".$search[$counter]." ";
 
             if($counter>0) {
-                $text_search = "( SELECT vini.* FROM ".$text_search." WHERE ( vini.nome LIKE '%".$search[$counter]."%' OR vini.denominazione LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.vitigno LIKE '%".$search[$counter]."%' OR vini.gradazione LIKE '%".$search[$counter]."%' ) ) AS vini";
+                $text_search = "( SELECT vini.* FROM ".$text_search." WHERE ( vini.nome LIKE '%".$search[$counter]."%' OR vini.denominazione LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.annata LIKE '%".$search[$counter]."%' ) ) AS vini";
             }
             else{
-                $text_search = "( SELECT vini.* FROM vini WHERE ( vini.nome LIKE '%".$search[$counter]."%' OR vini.denominazione LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.vitigno LIKE '%".$search[$counter]."%' OR vini.gradazione LIKE '%".$search[$counter]."%' ) ) AS vini";
+                $text_search = "( SELECT vini.* FROM vini WHERE ( vini.nome LIKE '%".$search[$counter]."%' OR vini.denominazione LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.annata LIKE '%".$search[$counter]."%' ) ) AS vini";
             }
 
             $counter++;
@@ -122,14 +121,30 @@ if(!empty($_POST['annata']) && !empty($_POST['tipologia']) && !empty($_POST['ord
 //STAMPA I VINI (QUANDO SI APRE LA PAGINA LA PRIMA VOLTA)
 else $sql = "SELECT vini.* FROM vini";
 
-if(!empty($_POST['sql'])) $sql = $_POST['sql'];
+//se è stata salvata in precedenza la query, continuo a preservare la query risettando a true $salva_sql e assegno la query a $sql per eseguirla
+if(!empty($_POST['sql'])){
+    $salva_sql=true;
+    $sql = $_POST['sql'];
+}
 
 $result=mysqli_query($conn,$sql);
 
 
 $dati.='<form action="admin_wines.php" method="post">';
 
-if(!empty($salva_sql)) $dati.='<input type="hidden" name="sql" value="'.$sql.'" />'; 
+
+//se è stata salvata in precedenza la query, allora mantengo i dati della query e della ricerca (annata, tipologia, ordine)
+if(!empty($salva_sql)){
+    $dati.='<input type="hidden" name="sql" value="'.$sql.'" />';
+    $dati.='<input type="hidden" name="annata" value="'.$_POST['annata'].'" />';
+    $dati.='<input type="hidden" name="tipologia" value="'.$_POST['tipologia'].'" />';    
+    $dati.='<input type="hidden" name="ordine" value="'.$_POST['ordine'].'" />';
+    if(!empty($_POST['search'])){
+        //utilizzo la funzione htmlentities per ricaricare sul valore search l'input testuale corretto
+        $dati.='<input type="hidden" name="search" value="'.htmlentities($_POST['search']).'" />';
+        $dati.="<div>Hai cercato: '".$_POST['search']."' --> ".$prova."</div>";
+    }
+}
 
 $dati.='<div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
 $dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
