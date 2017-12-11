@@ -35,7 +35,7 @@ if(mysqli_num_rows($result)!=0)
     }
 
 //SELECT TIPOLOGIA NEL FORM
-$array_tipologie=array('bianco','rosso','nero','ros&egrave');
+$array_tipologie=array('bianco','rosso','ros&egrave;');
 $num_elementi=count($array_tipologie);
 for($i=0 ; $i<$num_elementi ; $i++){
     $tipologia.="<option value='".$array_tipologie[$i]."'";
@@ -44,7 +44,7 @@ for($i=0 ; $i<$num_elementi ; $i++){
 }
 
 //SELECT ORDINE NEL FORM
-$array_ordine=array('nome','annata','tipologia','gradazione','formato');
+$array_ordine=array('nome','annata','tipologia','gradazione');
 $num_elementi=count($array_ordine);
 for($i=0 ; $i<$num_elementi ; $i++){
     $ordine.="<option value='".$array_ordine[$i]."'";
@@ -94,7 +94,7 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
 
 
     //STAMPA I VINI 
-    $sql = "SELECT vini.nome, vini.tipologia,vini.vitigno,vini.gradazione,vini.foto, vini.id_wine FROM ".$text_search.$improved_search." ORDER BY ".$_GET['ordine'];
+    $sql = "SELECT vini.* FROM ".$text_search.$improved_search." ORDER BY ".$_GET['ordine'];
 
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0)
@@ -102,7 +102,7 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
             $vini.="<li><a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''><div id='specific_result' class='specific_wine'><img alt='' src='../img/".$row['id_wine'].".png'/><ul>";
             $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
             $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
-            $vini.="<li><label>Vitigno: </label>".$row['vitigno']."</li>";
+            $vini.="<li><label>Annata: </label>".$row['annata']."</li>";
             $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
             $vini.="</ul></div></a></li>";
         }
@@ -117,7 +117,7 @@ else {
             $vini.="<li><a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''><div id='specific_result' class='specific_wine'><img alt='' src='../img/".$row['id_wine'].".png'/><ul>";
             $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
             $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
-            $vini.="<li><label>Vitigno: </label>".$row['vitigno']."</li>";
+            $vini.="<li><label>Annata: </label>".$row['annata']."</li>";
             $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
             $vini.="</ul></div></a></li>";
         }

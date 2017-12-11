@@ -566,7 +566,7 @@ body {
     margin-bottom: 2.5em;
 }
 
-#title_details {
+.title_details {
     font-size: 1.8em;
     color: #5F021F;
     margin-top: 1.5em;
@@ -574,7 +574,7 @@ body {
     font-family: 'Dancing Script',sans-serif;
 }
 
-#title_details:after{
+.title_details:after{
     display: block;
     height: 0.03em;
     background-color: #5F021F;

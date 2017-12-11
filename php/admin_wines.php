@@ -81,9 +81,8 @@ if(!empty($_POST['annata']) && !empty($_POST['tipologia']) && !empty($_POST['ord
         $search = cleanInput($_POST['search']);
 
         $counter=0;
-        $prova='';
+        
         while(!empty($search[$counter])) {
-            $prova.=" ".$search[$counter]." ";
 
             if($counter>0) {
                 $text_search = "( SELECT vini.* FROM ".$text_search." WHERE ( vini.nome LIKE '%".$search[$counter]."%' OR vini.denominazione LIKE '%".$search[$counter]."%' OR vini.tipologia LIKE '%".$search[$counter]."%' OR vini.annata LIKE '%".$search[$counter]."%' ) ) AS vini";
@@ -140,7 +139,7 @@ if(!empty($salva_sql)){
     if(!empty($_POST['search'])){
         //utilizzo la funzione htmlentities per ricaricare sul valore search l'input testuale corretto
         $dati.='<input type="hidden" name="search" value="'.htmlentities($_POST['search']).'" />';
-        $dati.="<div>Hai cercato: '".$_POST['search']."' --> ".$prova."</div>";
+        $dati.="<div>Hai cercato: '".$_POST['search']."'</div>";
     }
 }
 

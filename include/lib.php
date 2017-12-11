@@ -73,7 +73,7 @@ function controlText($string)
 //funzione per fare l'escaping degli apici negli input testuali che sono sensibili ad injection code
 function escapingText($string)
 {
-    //eventualmente c'è la funzione mysqli_escape_string($conn,$voce) da usare direttamente nel file .php
+    //eventualmente c'è la funzione mysqli_real_escape_string($conn,$voce) da usare direttamente nel file .php
     
     $string = str_replace("'","\'",$string);
     return $string;
