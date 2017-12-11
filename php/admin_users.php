@@ -15,11 +15,11 @@ $info_errore='';
 
 //stampo i messaggi informativi e/o di errore
 if(!empty($_COOKIE['info'])){
-    $info_errore.="<li>".$_COOKIE['info']."</li>";
+    $info_errore.="<div>".$_COOKIE['info']."</div>";
     setcookie('info',null);
 }
 if(!empty($_COOKIE['error'])){
-    $info_errore.="<li>".$_COOKIE['error']."</li>";
+    $info_errore.="<div>".$_COOKIE['error']."</div>";
     setcookie('error',null);
 }
 
@@ -66,7 +66,7 @@ if($row['admin'] == 1) {
                     </div>';
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $dati.="<div class='admin_tr'>";  
-            $dati.="<div class ='admin_td admin_users_checkbox_column'><input id='admin_users_checkbox' type='checkbox' name='users[]' value='".$row['id_user'];
+            $dati.="<div class ='admin_td admin_users_checkbox_column'><input class='admin_users_checkbox' type='checkbox' name='users[]' value='".$row['id_user'];
             if(isset($_POST['all_selected'])) $dati.="' checked='checked";
             $dati.="'></div>";          
             $dati.="<div class ='admin_td admin_users_name_column'>".$row['nome']."</div>";

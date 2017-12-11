@@ -20,11 +20,11 @@ $salva_sql=false;
 
 //stampo i messaggi informativi e/o di errore
 if(!empty($_COOKIE['info'])){
-    $info_errore.="<li>".$_COOKIE['info']."</li>";
+    $info_errore.="<div>".$_COOKIE['info']."</div>";
     setcookie('info',null);
 }
 if(!empty($_COOKIE['error'])){
-    $info_errore.="<li>".$_COOKIE['error']."</li>";
+    $info_errore.="<div>".$_COOKIE['error']."</div>";
     setcookie('error',null);
 }
 
@@ -53,7 +53,7 @@ if(mysqli_num_rows($result)!=0)
     }
 
 //SELECT TIPOLOGIA NEL FORM
-$array_tipologie=array('bianco','rosso','nero','ros&egrave');
+$array_tipologie=array('bianco','rosso','ros&egrave;');
 $num_elementi=count($array_tipologie);
 for($i=0 ; $i<$num_elementi ; $i++){
     $tipologia.="<option value='".$array_tipologie[$i]."'";
@@ -73,13 +73,11 @@ for($i=0 ; $i<$num_elementi ; $i++){
 $text_search = 'vini';
 
 
-//STAMPA I VINI SECONDO I PARAMETRI DI RICERCA
+//CREA LA QUERY SECONDO I PARAMETRI DI RICERCA
 if(!empty($_POST['annata']) && !empty($_POST['tipologia']) && !empty($_POST['ordine'])){
 
     if(!empty($_POST['search'])){
-        //chiamo la funzione in lib.php che controlla il testo inserito.
-
-        // pulisco la stringa
+        //chiamo la funzione in lib.php che controlla il testo inserito e pulisce la stringa
         $search = cleanInput($_POST['search']);
 
         $counter=0;
@@ -118,7 +116,7 @@ if(!empty($_POST['annata']) && !empty($_POST['tipologia']) && !empty($_POST['ord
     $salva_sql=true;
 
 }
-//STAMPA I VINI (QUANDO SI APRE LA PAGINA LA PRIMA VOLTA)
+//STAMPA TUTTI I VINI (QUANDO SI APRE LA PAGINA LA PRIMA VOLTA)
 else $sql = "SELECT vini.* FROM vini";
 
 //se è stata salvata in precedenza la query, continuo a preservare la query risettando a true $salva_sql e assegno la query a $sql per eseguirla
@@ -133,7 +131,7 @@ $result=mysqli_query($conn,$sql);
 $dati.='<form action="admin_wines.php" method="post">';
 
 
-//se è stata salvata in precedenza la query, allora mantengo i dati della query e della ricerca (annata, tipologia, ordine)
+//se è stata salvata in precedenza la query, allora mantengo i dati della query e della ricerca (annat  a, tipologia, ordine)
 if(!empty($salva_sql)){
     $dati.='<input type="hidden" name="sql" value="'.$sql.'" />';
     $dati.='<input type="hidden" name="annata" value="'.$_POST['annata'].'" />';
@@ -166,9 +164,9 @@ if(mysqli_num_rows($result)!=0){
                     </div>';
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
         $dati.="<div class='admin_tr'>";
-        $dati.="<div class ='admin_td admin_wines_checkbox_column'><input id='admin_wines_checkbox' type='checkbox' name='wines[]' value='".$row['id_wine'];
+        $dati.="<div class ='admin_td admin_wines_checkbox_column'><input class='admin_wines_checkbox' type='checkbox' name='wines[]' value='".$row['id_wine'];
         if(isset($_POST['all_selected'])) $dati.="' checked='checked";
-        $dati.="'></div>";
+        $dati.="'/></div>";
         $dati.="<div class ='admin_td admin_wines_name_column'>".$row['nome']."</div>";
         $dati.="<div class ='admin_td admin_wines_denomination_column'>".$row['denominazione']."</div>";
         $dati.="<div class ='admin_td admin_wines_tipology_column'>".$row['tipologia']."</div>";

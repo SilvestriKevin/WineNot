@@ -1235,7 +1235,7 @@ body {
     width: 5%;
 }
 
-#admin_wines_checkbox {
+.admin_wines_checkbox {
     margin-left: 36%;
 }
 

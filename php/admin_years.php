@@ -15,11 +15,11 @@ $info_errore='';
 
 //stampo i messaggi informativi e/o di errore
 if(!empty($_COOKIE['info'])){
-    $info_errore.="<li>".$_COOKIE['info']."</li>";
+    $info_errore.="<div>".$_COOKIE['info']."</div>";
     setcookie('info',null);
 }
 if(!empty($_COOKIE['error'])){
-    $info_errore.="<li>".$_COOKIE['error']."</li>";
+    $info_errore.="<div>".$_COOKIE['error']."</div>";
     setcookie('error',null);
 }
 
@@ -59,7 +59,7 @@ if(mysqli_num_rows($result)!=0){
                         </div>';
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
         $dati.="<div class='admin_tr'>";
-        $dati.="<div class ='admin_td admin_years_checkbox_column'><input id='admin_years_checkbox' type='checkbox' name='years[]' value='".$row['anno'];
+        $dati.="<div class ='admin_td admin_years_checkbox_column'><input class='admin_years_checkbox' type='checkbox' name='years[]' value='".$row['anno'];
         if(isset($_POST['all_selected'])) $dati.="' checked='checked";
         $dati.="'></div>";
         $dati.="<div class ='admin_td admin_years_year_column'>".$row['anno']."</div>";
