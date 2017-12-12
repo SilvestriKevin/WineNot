@@ -36,6 +36,7 @@ function cleanInput($input)
     //Quindi finchè trovo corrispondenza con la mia espressione regolare, sostituisco. 
     while(preg_match('/\s('.implode('|',$preposizioni_articoli).')\s/',$input))
     $input = preg_replace('/\s('.implode('|',$preposizioni_articoli).')\s/',' ',$input);
+    $input = preg_replace('/^('.implode('|',$preposizioni_articoli).')\s/',' ',$input);
 
     //tolgo i comandi di escape dalla stringa di ricerca
     $input = str_replace(array('\n','\r','\t'),' ',$input);
@@ -46,9 +47,15 @@ function cleanInput($input)
     //tolgo tutti i simboli di monete e cioè: € £ $
     $input = str_replace(array('€','£','$'),' ',$input);
     
-    //tolgo tutta la punteggiatura dalla stringa di ricerca
+    //tolgo tutta la punteggiatura dalla stringa di ricerca tranne & e ; che mi servono per le lettere accentate
     //[:punct:] è un array che contiene !"#$%&'()*+,\-./:;<=>?@[]^_`{|}~
-    $input = preg_replace('/[[:punct:]][^&agrave;][^&eacute;][^&egrave;][^&igrave;][^&ograve;][^&ugrave;]/',' ',$input);
+    $input = preg_replace('/(?!&|;)[[:punct:]]/',' ',$input);
+    
+    //tolgo i simboli che ho escluso prima (& e ;). Questo per evitare di togliere i simboli quando mi servono. es. &egrave; 
+    $input = preg_replace('/\s(&|;)\s/',' ',$input); //' & '
+    $input = preg_replace('/^(&|;)\s/',' ',$input);  //'& '
+    $input = preg_replace('/\s(&|;)$/',' ',$input);  //' &'
+    $input = preg_replace('/^(&|;)$/',' ',$input);   //'&'
 
     //tolgo gli spazi, che si potrebbero essere creati con le funzioni precedenti, all'inizio e alla fine della stringa di ricerca
     $input = trim($input);
