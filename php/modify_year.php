@@ -87,7 +87,7 @@ if(mysqli_num_rows($result)!=0) {
     $annata.='<ul>';
 
     $annata.='<li><label>Anno: </label><input type="text" maxlength="4" name="anno" title="anno" value="'.$row['anno'].' "/></li>';
-    $annata.='<li><label>Descrizione: </label><textarea id="textarea_modify_year" rows="5" cols="50" name="descrizione" title="descrizione">'.$row['descrizione'].'</textarea></li> ';
+    $annata.='<li><label>Descrizione: </label></li><li><textarea id="textarea_modify_year" rows="5" cols="50" name="descrizione" title="descrizione">'.$row['descrizione'].'</textarea></li> ';
     $annata.='<li><label>Qualit&agrave;: </label><input type="text" maxlength="30" name="qualita" title="qualita" value="'.$row['qualita'].'"/></li>';
 
     $annata.='<li><label>Migliore: </label><input type="checkbox" maxlength="30" name="migliore" title="migliore"';

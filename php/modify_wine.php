@@ -97,13 +97,12 @@ if(!empty($_POST['save_wine'])) {
         } else { // posso ora controllare che questo vino non esista già escludendo il vino attuale per evitare problemi
 
 
-            $sql = "SELECT * FROM vini WHERE annata='".$annata."' AND nome='".$nome."' AND tipologia='".$tipologia."' AND denominazione='".$denominazione."' AND id_wine != '".$id_wine."'";
+            $sql = "SELECT * FROM vini WHERE annata='".$annata."' AND nome='".$nome."' AND tipologia='".$tipologia."' AND denominazione='".$denominazione."'";
 
             $result = mysqli_query($conn,$sql);
 
             if(mysqli_num_rows($result) != 0) {
-                setcookie('error', "Un vino con queste informazioni &egrave; stato gi&agrave; inserito.");
-                header('Location: modify_wine.php?idwine='.$id_wine.'');
+                $error.="Un vino con queste informazioni &egrave; stato gi&agrave; inserito.\n";
 
             } else {
                 // posso ora aggiornare il mio vino all'interno del database
@@ -112,20 +111,19 @@ if(!empty($_POST['save_wine'])) {
 
                 $result = mysqli_query($conn,$sql);
                 if($result) { // se c'è stata una modifica
-                    
+
                     $file['name'] = $id_wine;
-                    
+
                     if(move_uploaded_file($file['tmp_name'],$_SERVER['DOCUMENT_ROOT']."/WineNot/img/".$file['name'].".png")) {
-                    
-                    setcookie('info','Modifica dei dati avvenuta con successo.');
-                    header('Location: admin_wines.php');} else // il caricamento file non è andato a buon fine, tuttavia la query ha fatto il suo dovere 
+
+                        $error.="Modifica dei dati avvenuta con successo.";
+                        header('Location: admin_wines.php');} else // il caricamento file non è andato a buon fine, tuttavia la query ha fatto il suo dovere 
                     {
-                        setcookie("error","Il caricamento dell'immagine non &egrave; andato a buon fine. Tuttavia il gli altri dati sono stati aggiornati correttamente.");
-                        header("Location: modify_wine.php?idwine=".$id_wine."");
-                }
+                        $error.="Il caricamento dell'immagine non &egrave; andato a buon fine. Tuttavia il gli altri dati sono stati aggiornati correttamente.\n";
+
+                    }
                 } else { // la modifica non è andata a buon fine
-                    setcookie('error',"Si &egrave; verificato un problema con la modifica dei dati all'interno del database.");
-                    header('Location: modify_wine.php?idwine='.$id_wine.'');
+                    $error.="La modifica non &egrave; andata a buon fine.\n";
                 }
             }
 
@@ -136,9 +134,10 @@ if(!empty($_POST['save_wine'])) {
 }
 
 
-if(!empty($error)) setcookie('error',$error);
-
-
+if(!empty($error)) {
+    setcookie('error',$error);
+   // header("Location: modify_wine.php?idwine=".$id_wine."");
+}
 
 //FORM DATI VINO
 
@@ -178,14 +177,14 @@ if(mysqli_num_rows($result)!=0) {
     $vino.='<li><label>Denominazione: </label><input type="text" maxlength="30" name="denominazione" title="denominazione" value="'.$row['denominazione'].'"</li>';
     $vino.='<li><label>Gradazione(%): </label><input type="text" maxlength="30" name="gradazione" title="gradazione" value="'.$row['gradazione'].'"</li>';
     $vino.='<li><label>Formato(l)   : </label><input type="text" maxlength="30" name="formato" title="formato" value="'.$row['formato'].'"</li>';
-    $vino.='<li><label>Descrizione: </label><input type="textarea"  name="descrizione" title="descrizione" value="'.$row['descrizione'].'"</li>';
-    $vino.='<li><label>Abbinamento: </label><input type="textarea"  name="abbinamento" title="abbinamento" value="'.$row['abbinamento'].'"</li>';
-    $vino.='<li><label>Degustazione: </label><input type="textarea"  name="degustazione" title="degustazione" value="'.$row['degustazione'].'"</li>';
-    $vino.="<li><label>Immagine attuale: </label><img id='modify_wine_img' alt='immagine del vino' src='../img/".$row['id_wine'].".png' /></li>
+    $vino.='<li><label>Descrizione: </label></li><li><textarea name="descrizione" title="descrizione">'.$row["descrizione"].'</textarea></li>';
+    $vino.='<li><label>Abbinamento: </label></li><li><textarea  name="abbinamento" title="abbinamento">'.$row["abbinamento"].'</textarea></li>';
+    $vino.='<li><label>Degustazione: </label></li><li><textarea  name="degustazione" title="degustazione" >'.$row['degustazione'].'</textarea></li>';
+    $vino.="<li><label>Immagine attuale: </label></li><li><img id='modify_wine_img' alt='immagine del vino' src='../img/".$row['id_wine'].".png' /></li>
     <li><label>Cambia immagine: </label><input id='select_file' type='file' name='wine_img'/></li>";
     $vino.='<input type="submit" class="search_button" name="save_wine" id="save_modify_wine" value="Salva" />';
     $vino.='</ul>';
-    
+
     // provo a modificare i campi dati
 } else $vino.='<h2>Non ho trovato informazioni riguardo a questo vino.</h2>';
 
