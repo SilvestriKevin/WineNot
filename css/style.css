@@ -22,28 +22,6 @@ body {
     letter-spacing: 0.025em;
 }
 
-.admin_button {
-    padding: 0.1em 0.2em;
-    border-radius: 0.2em;
-    font-size: 0.9em;
-    color: #5F021F;
-    background-color: rgba(226, 211, 201, 0.71);
-    border: 0.1em solid #5F021F;
-}
-
-.admin_button:hover {
-    color: #fff;
-    background-color: #5F021F;
-    transition: 0.5s;
-}
-
-#admin_title {
-    text-align: center;
-    margin-top: 0.5em;
-    font-size: 1.5em;
-    font-weight: 100;
-}
-
 .inv_search_button {
     padding: 0.4em;
     border-radius: 0.4em;
@@ -162,6 +140,42 @@ body {
     margin: 0 auto;
     margin-top: 0.5em;
     margin-bottom: 0.8em;
+}
+
+/* PANNELLO ADMIN */
+
+.admin_button {
+    padding: 0.1em 0.2em;
+    border-radius: 0.2em;
+    font-size: 0.9em;
+    color: #5F021F;
+    background-color: rgba(226, 211, 201, 0.71);
+    border: 0.1em solid #5F021F;
+}
+
+.admin_button:hover {
+    color: #fff;
+    background-color: #5F021F;
+    transition: 0.5s;
+}
+
+#admin_title {
+    text-align: center;
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+#top_message {
+    list-style-type: none;
+    margin-top: 1em;
+    margin-left: 1em;
+    font-weight: 600;
+}
+
+#no_elements {
+    margin: 1em 0em 0.5em 2em;
+    font-size: 1.2em;
 }
 
 /* classi che utilizzerà JAVASCRIPT */
@@ -1258,7 +1272,7 @@ body {
     width: 19%;
 }
 
-#admin_years_checkbox, #admin_users_checkbox {
+.admin_years_checkbox, .admin_users_checkbox {
     margin-left: 24%;
 }
 
@@ -1281,11 +1295,6 @@ body {
 
 /**********************************************  ADMIN USERS  ****************************************************/
 
-#admin_table h2 {
-    margin: 1em 0em 0.5em 2em;
-    font-size: 1.2em;
-}
-
 .admin_users_checkbox_column {
     width: 19%;
 }
@@ -1303,29 +1312,65 @@ body {
     color: red;
 }
 
+/********************************************  ADMIN PROFILE  ****************************************************/
+#admin_profile_page li {
+    list-style-type: none;
+    margin-left: 30%;
+    margin-bottom: 0.1em;
+}
+
+#admin_profile_page li:first-child, #panel_admin_form_add_wine li:first-child, #panel_admin_form_add_year li:first-child {
+    margin-top: 1.5em;
+}
+
+#admin_profile_page li:last-child, #panel_admin_form_add_wine li:last-child {
+    margin-bottom: 1.5em;
+}
+
+#admin_profile_page ul {
+    width: 40%;
+    margin-left: 30%;
+    border: 0.01em solid black;
+}
+
+#admin_profile_page label, #panel_admin_form_add_wine label, #panel_admin_form_add_year label {
+    color: #5F021F;
+    font-size: 1.1em;
+}
+
+#admin_profile_page input, #panel_admin_form_add_wine input, #panel_admin_form_add_wine select, #panel_admin_form_add_year select, #panel_admin_form_add_year input {
+    padding: 0.2em 0.3em;
+    margin-bottom: 0.8em;
+    font-size: 0.9em;
+}
+
+#save_admin_profile {
+    margin-left: 47.5%;
+}
+
 /**********************************************  ADD WINE  ****************************************************/
 
-#panel_admin_form {
+#panel_admin_form_add_wine fieldset, #panel_admin_form_add_year fieldset {
     border: none;
 }
 
-#panel_admin_form ul {
+#panel_admin_form_add_wine ul, #panel_admin_form_add_year ul {
     width: 60%;
     margin-left: 20%;
     border: 0.01em solid black;
 }
 
-#panel_admin_form li {
+#panel_admin_form_add_wine li, #panel_admin_form_add_year li {
     list-style-type: none;
-    margin-left: 12em;
     margin-right: 5em;
     margin-bottom: 0.3em;
 }
 
-#panel_admin_form input, #panel_admin_form select {
+#panel_admin_form_add_wine li {
+    margin-left: 12em;
 }
 
-#panel_admin_form select {
+#panel_admin_form_add_wine select {
     margin-right: 1.5em;
 }
 
@@ -1339,16 +1384,13 @@ body {
 
 /**********************************************  ADD YEAR  ****************************************************/
 
-#important_message {
-    margin-bottom: 1em !important;
-    margin-left: 25% !important;
-    margin-right: 5% !important;
-    font-size: 1.1em;
-    font-weight: 600;
+#important_message_year {
+    margin-left: 12% !important;
 }
 
 #save_add_year {
-    margin-left: 30%;
+    margin-top: 1em;
+    margin-left: 15%;
 }
 
 #error_admin_message {
@@ -1360,7 +1402,21 @@ body {
     font-weight: 600;
 }
 
+#panel_admin_form_add_year li {
+    margin-left: 35%;
+}
+
 /**********************************************  ADD USERS  ****************************************************/
+#important_message_user, #important_message_year {
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 1em !important;
+}
+
+#important_message_user {
+    margin-left: 0% !important;
+}
 
 #admin_profile_page fieldset {
     border: 0em;
@@ -1375,18 +1431,24 @@ body {
     margin-left: 45%;
 }
 
+#panel_admin_form textarea {
+    width: 70%;
+    height: 5.8em;
+    padding: 0.2em 0.3em 0.3em 0.4em;
+    font-family: 'Lato',Verdana, Arial, Helvetica sans-serif;
+    font-size: 0.9em;
+    margin-bottom: 1em;
+}
+
+#panel_admin_form img {
+    margin-left: 28%;
+    margin-bottom: 1em;
+}
+
 /**********************************************  MODIFY YEAR  ****************************************************/
 
 #save_modify_year {
     margin-left: 30%;
-}
-
-#textarea_modify_year {
-    font-size: 0.9em;
-    font-family: 'Lato',Verdana, Arial, Helvetica sans-serif;
-    width: 80%;
-    padding: 0.2em 0em 0.3em 0.4em;
-    margin-bottom: 1em;
 }
 
 /**********************************************  DELETE WINE  ****************************************************/
@@ -1424,62 +1486,8 @@ body {
 }
 
 #delete_user_checkbox {
-    margin-left: 21%;
+    margin-left: 19%;
 }
-
-/********************************************  ADMIN PROFILE  ****************************************************/
-
-#admin_profile_page li {
-    list-style-type: none;
-    margin-left: 8em;
-    margin-right: 5em;
-    margin-bottom: 0.3em;
-}
-
-#admin_profile_page li:first-child, #panel_admin_form li:first-child {
-    margin-top: 1.5em;
-}
-
-#admin_profile_page li:last-child, #panel_admin_form li:last-child {
-    margin-bottom: 1.5em;
-}
-
-#admin_profile_page ul {
-    width: 40%;
-    margin-left: 30%;
-    border: 0.01em solid black;
-}
-
-#admin_profile_page label, #panel_admin_form label {
-    color: #5F021F;
-    font-size: 1.1em;
-}
-
-#admin_profile_page input, #panel_admin_form input, #panel_admin_form select {
-    padding: 0.2em 0.3em;
-    margin-bottom: 0.8em;
-    font-size: 0.9em;
-}
-
-#save_admin_profile {
-    margin-left: 47.5%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

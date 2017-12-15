@@ -15,11 +15,11 @@ $info_errore='';
 
 //stampo i messaggi informativi e/o di errore
 if(!empty($_COOKIE['info'])){
-    $info_errore.="<li>".$_COOKIE['info']."</li>";
+    $info_errore.="<div id='top_message'>".$_COOKIE['info']."</div>";
     setcookie('info',null);
 }
 if(!empty($_COOKIE['error'])){
-    $info_errore.="<li>".$_COOKIE['error']."</li>";
+    $info_errore.="<div id='top_message'>".$_COOKIE['error']."</div>";
     setcookie('error',null);
 }
 

@@ -26,7 +26,7 @@ if(!empty($_COOKIE['error'])){
 
 $vino.='<h1 id="admin_title">Inserisci un nuovo vino</h1>';
 
-$vino.='<form id="panel_admin_form" enctype="multipart/form-data" action="add_wine.php" method="post">';        
+$vino.='<form id="panel_admin_form_add_wine" enctype="multipart/form-data" action="add_wine.php" method="post">';        
 $vino.= '<fieldset><ul>';
 
 $vino.='<li><label>Annata: </label><select name="annata">';

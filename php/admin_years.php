@@ -15,11 +15,11 @@ $info_errore='';
 
 //stampo i messaggi informativi e/o di errore
 if(!empty($_COOKIE['info'])){
-    $info_errore.="<div>".$_COOKIE['info']."</div>";
+    $info_errore.="<div id='top_message'>".$_COOKIE['info']."</div>";
     setcookie('info',null);
 }
 if(!empty($_COOKIE['error'])){
-    $info_errore.="<div>".$_COOKIE['error']."</div>";
+    $info_errore.="<div id='top_message'>".$_COOKIE['error']."</div>";
     setcookie('error',null);
 }
 
@@ -74,7 +74,7 @@ if(mysqli_num_rows($result)!=0){
     }
 }
 else {
-    $dati.="<h2>Non sono presenti annate.</h2>";
+    $dati.="<h2 id='no_elements'>Non sono presenti annate.</h2>";
 }
 
 $dati.="</form>";

@@ -161,11 +161,11 @@ $dati.='<form id="admin_profile_page" action="admin_profile.php" method="post">'
 
 if(mysqli_num_rows($result)!=0){
     $dati.='<ul>
-                    <li><label>Username: </label><input type="text" maxlength="100" name="username" id="" title="username" value="'.$row['username'].'"/></li>
-                    <li><label>Nome: </label><input type="text" maxlength="100" name="nome" id="" title="nome" value="'.$row['nome'].'"/></li>
-                    <li><label>Email: </label><input type="text" maxlength="100" name="email" id="" title="email" value="'.$row['email'].'"/></li>
-                    <li><label>Password attuale: </label><input type="text" maxlength="100" name="actual_password" id="" title="password attuale" value=""/></li>
-                    <li><label>Password nuova: </label><input type="text" maxlength="100" name="new_password" id="" title="password nuova" value=""/></li>
+                    <li><label>Username</label></li><li><input type="text" maxlength="100" name="username" id="" title="username" value="'.$row['username'].'"/></li>
+                    <li><label>Nome</label></li><li><input type="text" maxlength="100" name="nome" id="" title="nome" value="'.$row['nome'].'"/></li>
+                    <li><label>Email</label></li><li><input type="text" maxlength="100" name="email" id="" title="email" value="'.$row['email'].'"/></li>
+                    <li><label>Password attuale</label></li><li><input type="text" maxlength="100" name="actual_password" id="" title="password attuale" value=""/></li>
+                    <li><label>Password nuova</label></li><li><input type="text" maxlength="100" name="new_password" id="" title="password nuova" value=""/></li>
                 </ul>';
     $dati.='<input type="submit" class="search_button" name="save_profile" id="save_admin_profile" value="Salva" />';
 } else 

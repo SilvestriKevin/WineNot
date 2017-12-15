@@ -26,19 +26,19 @@ if(!empty($_COOKIE['error'])){
 
 $annata.='<h1 id="admin_title">Inserisci una nuova annata</h1>';
 
-$annata.='<form id="panel_admin_form" action="add_year.php" method="post">';        
+$annata.='<form id="panel_admin_form_add_year" action="add_year.php" method="post">';        
 $annata.= '<fieldset>
                     <ul>
-                    <li id="important_message"><span>Tutti i campi sono obbligatori</span></li>
-                    <li><label>Anno:</label>
-                    <input type="text" maxlength="4" name="anno" title="anno" tabindex="1"/>
-                    <li><label>Descrizione:</label>
-                    <input type="textarea" maxlength="50" name="descrizione" title="descrizione" tabindex="1"/>
+                    <li id="important_message_year"><span>Tutti i campi sono obbligatori</span></li>
+                    <li><label>Anno</label>
+                    </li><li><input type="text" maxlength="4" name="anno" title="anno" tabindex="1"/>
+                    <li><label>Descrizione</label>
+                    </li><li><input type="textarea" maxlength="50" name="descrizione" title="descrizione" tabindex="1"/>
                         </li>
-                        <li><label>Qualit&agrave;:</label>
-                    <input type="text" maxlength="100" name="qualita" title="qualita" tabindex="6"/>
+                        <li><label>Qualit&agrave;</label>
+                    </li><li><input type="text" maxlength="100" name="qualita" title="qualita" tabindex="6"/>
                         </li>
-                        <li><label>Migliore: </label><input type="checkbox" name="migliore" title="migliore" value="1" tabindex="7"/></li>
+                        <li><label>Migliore </label><input type="checkbox" name="migliore" title="migliore" value="1" tabindex="7"/></li>
                         <li><input type="submit" class="search_button" name="salva" id="save_add_year" value="Aggiungi" accesskey="s" tabindex="8"/></li>
                     </ul>
 

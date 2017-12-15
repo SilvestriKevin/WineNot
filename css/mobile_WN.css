@@ -51,6 +51,15 @@
     width: 90%;
     }
     
+    #top_message {
+        text-align: center;
+    }
+    
+    #no_elements {
+        float: left;
+        margin-left: 20%;
+    }
+    
 /*---------------------  INDEX  -----------------------------*/
     
     #presentation {
@@ -595,7 +604,7 @@
     #select_admin_buttons input {
         margin-bottom: 0.5em;
         margin-right: 2%;
-        font-size:0.7em;
+        font-size:0.8em;
     }
     
     #select_admin_buttons a {
@@ -614,17 +623,17 @@
     } 
     
 /*----------------------  ADMIN PROFILE  --------------------*/    
-    #admin_profile_page ul, #panel_admin_form ul {
+    #admin_profile_page ul, #panel_admin_form_add_wine ul {
         width: 90%;
         margin-left: 5%;
     }
     
-    #admin_profile_page li, #panel_admin_form li {
+    #admin_profile_page li, #panel_admin_form_add_wine li {
         margin-left: 20%;
         margin-right: 26%;
     }
     
-    #admin_profile_page input, #panel_admin_form input, #panel_admin_form select {
+    #admin_profile_page input, #panel_admin_form_add_year input, #panel_admin_form_add_year select, #panel_admin_form_add_wine input, #panel_admin_form_add_wine select {
     margin-bottom: 0.7em;
     }
     
@@ -633,10 +642,19 @@
     }
     
 /*----------------------  ADD YEAR  --------------------*/    
-    #important_message {
+    #important_message_user, #important_message_year {
         margin-left: 0em !important;
         margin-right: 0em !important;
         text-align: center;
+    }
+    
+    #panel_admin_form_add_year li {
+    margin-left: 10%;
+    }
+    
+/*---------------------  MODIFY YEAR  --------------------*/   
+    #panel_admin_form textarea {
+        width: 12em;
     }
     
 }
@@ -691,6 +709,15 @@
     
     #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after,  #container_wine h1:after, #register_fieldset h1:after, #presentation_events h1:after, #howto_contacts h1:after {
     width: 90%;
+    }
+    
+    #top_message {
+        text-align: center;
+    }
+    
+    #no_elements {
+        float: left;
+        margin-left: 30%;
     }
     
 /*---------------------  INDEX  -----------------------------*/
@@ -808,10 +835,6 @@
     }
     
 /*----------------------  VINI  -------------------------*/ 
-    
-    #search_wines li {
-        margin-right: 0em;
-    }
     
     #filter_by, #order_by {
         padding-top: 0.6em;
@@ -1196,14 +1219,13 @@
     }
     
 /*-------------  ADMIN PROFILE  &  ADD WINE -----------------*/    
-    #admin_profile_page ul, #panel_admin_form ul {
+    #admin_profile_page ul, #panel_admin_form_add_wine ul {
         width: 80%;
         margin-left: 10%;
     }
     
-    #admin_profile_page li, #panel_admin_form li {
+    #admin_profile_page li, #panel_admin_form_add_wine li {
         margin-left: 30%;
-        margin-right: 32%;
     }
     
     #save_admin_profile {
@@ -1211,11 +1233,21 @@
     }
     
 /*----------------------  ADD YEAR  --------------------*/    
-    #important_message {
+    #important_message_user, #important_message_year {
         margin-left: 0em !important;
         margin-right: 0em !important;
         text-align: center;
     }    
+    
+    #panel_admin_form_add_year li {
+    margin-left: 25%;
+    }
+    
+/*---------------------  MODIFY YEAR  --------------------*/   
+    #panel_admin_form textarea {
+        width: 12em;
+    }
+        
     
 }
 
@@ -1533,31 +1565,34 @@
         margin-bottom: 0em;
     }
     
-    #admin_profile_page ul, #panel_admin_form ul {
+    #admin_profile_page ul, #panel_admin_form_add_wine ul {
         width: 70%;
         margin-left: 15%;
     }
     
-    #admin_profile_page li, #panel_admin_form li {
+    #admin_profile_page li, #panel_admin_form_add_wine li {
         margin-left: 30%;
-        margin-right: 32%;
     }
     
-    #admin_profile_page li:first-child, #panel_admin_form li:first-child {
-        margin-top: 0.5em;
-    }
-    
-    #admin_profile_page li:last-child, #panel_admin_form li:last-child {
+    #admin_profile_page li:last-child, #panel_admin_form_add_wine li:last-child {
         margin-bottom: 0.5em;
     }
 
 /*----------------------  ADD YEAR  --------------------*/    
-    #important_message {
+    #important_message_user, #important_message_year {
         margin-left: 0em !important;
         margin-right: 0em !important;
         text-align: center;
     }
     
+    #panel_admin_form_add_year li {
+    margin-left: 30%;
+    }
+    
+/*---------------------  MODIFY YEAR  --------------------*/   
+#panel_admin_form textarea {
+    width: 12em;
+} 
 }
 
 /*--------------------------------------------------------------*/                                    /*  min 1025  */

@@ -35,17 +35,17 @@ if(!empty($_COOKIE['error'])){
 
                 $user.= '<fieldset>
                     <ul>
-                    <li id="important_message"><span>Tutti i campi sono obbligatori</span></li>
-                    <li><label>Nome:</label>
-                    <input type="text" maxlength="50" name="nome" id="nome" title="nome" tabindex="1"/>
-                    <li><label>Username:</label>
-                    <input type="text" maxlength="50" name="username" id="username" title="username" tabindex="1"/>
-                        </li><li><label>Indirizzo email:</label>
-                    <input type="text" maxlength="50" name="email" id="email" title="email" value="example@gmail.com" onfocus="placeHolder(this);" tabindex="5"/>
-                        </li><li><label>Password:</label>
-                    <input type="password" maxlength="100" name="password" id="password_user" title="password" tabindex="6"/>
-                        </li><li><label>Conferma Password:</label>
-                    <input type="password" maxlength="100" name="conferma_password" id="conferma_password" title="conferma_password" tabindex="7"/></li>
+                    <li id="important_message_user"><span>Tutti i campi sono obbligatori</span></li>
+                    <li><label>Nome</label></li>
+                    <li><input type="text" maxlength="50" name="nome" id="nome" title="nome" tabindex="1"/></li>
+                    <li><label>Username</label></li>
+                    <li><input type="text" maxlength="50" name="username" id="username" title="username" tabindex="1"/>
+                        </li><li><label>Indirizzo email</label>
+                    </li><li><input type="text" maxlength="50" name="email" id="email" title="email" value="example@gmail.com" onfocus="placeHolder(this);" tabindex="5"/>
+                        </li><li><label>Password</label>
+                    </li><li><input type="password" maxlength="100" name="password" id="password_user" title="password" tabindex="6"/>
+                        </li><li><label>Conferma Password</label>
+                    </li><li><input type="password" maxlength="100" name="conferma_password" id="conferma_password" title="conferma_password" tabindex="7"/></li>
                     </ul>
                         <input type="submit" class="search_button" name="register" value="Salva" id="save_admin_profile" accesskey="s" tabindex="8"/>
 
