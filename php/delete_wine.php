@@ -101,6 +101,13 @@ else if(!empty($_GET['wines'])){
 
     $dati.="</form>";
 }
+//questo ramo if si verifica se si deselezionano tutti i vini precedentemente scelti per essere eliminati e poi si clicca su "conferma eliminazione"
+else  if(!empty($_POST['confirm'])){
+    setcookie('error',"Nessun vino selezionato. Eliminazione annullata.");
+
+    //ritorno alla gestione dei vini
+    header("Location: admin_wines.php");
+}
 //se la variabile non è settata significa che è stato manomesso l'url, allora riporto l'utente alla pagina amministrazione
 else header("Location: admin_wines.php");
 

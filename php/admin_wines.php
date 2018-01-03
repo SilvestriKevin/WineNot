@@ -28,13 +28,13 @@ if(!empty($_COOKIE['error'])){
     setcookie('error',null);
 }
 
+//se è stato cliccato "Elimina selezionati"
 if(isset($_POST['delete_selected'])){
 
     $wines = isset($_POST['wines']) ? $_POST['wines'] : array();
-    if (!count($wines)) {
-        setcookie('error',"Selezionare almeno un elemento");
-        header("Location: admin_wines.php");
-    }   
+    
+    //se non sono stati selezionati vini stampo un messaggio d'errore
+    if (!count($wines)) $info_errore.="<div id='top_message'>Selezionare almeno un vino</div>"; 
     else{
         //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  serialize/unserialize o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni elemento singolarmente in questo modo key[indice]=valore
         header("Location: delete_wine.php?wines=".serialize($wines));
@@ -132,7 +132,7 @@ $dati.='<form action="admin_wines.php" method="post">';
 
 //se è stata salvata in precedenza la query, allora mantengo i dati della query e della ricerca (annat  a, tipologia, ordine)
 if(!empty($salva_sql)){
-    $dati.='<input type="hidden" name="sql" value="'.$sql.'" />';
+    $dati.='<input type="hidden" name="sql" value="'.htmlentities($sql).'" />';
     $dati.='<input type="hidden" name="annata" value="'.$_POST['annata'].'" />';
     $dati.='<input type="hidden" name="tipologia" value="'.$_POST['tipologia'].'" />';    
     $dati.='<input type="hidden" name="ordine" value="'.$_POST['ordine'].'" />';

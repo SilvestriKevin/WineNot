@@ -29,14 +29,13 @@ $result=mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($result,MYSQL_ASSOC);
 
 if($row['admin'] == 1) { 
-
+    //se è stato cliccato "Elimina selezionate"
     if(isset($_POST['delete_selected'])){
 
         $users = isset($_POST['users']) ? $_POST['users'] : array();
-        if (!count($users)) {
-            setcookie('error',"Selezionare almeno un elemento");
-            header("Location: admin_users.php");
-        }   
+        
+        //se non sono stati selezionati utenti stampo un messaggio d'errore
+        if (!count($users)) $info_errore.="<div id='top_message'>Selezionare almeno un utente</div>";   
         else{
             //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  serialize/unserialize o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni elemento singolarmente in questo modo key[indice]=valore
             header("Location: delete_user.php?users=".serialize($users));

@@ -23,14 +23,13 @@ if(!empty($_COOKIE['error'])){
     setcookie('error',null);
 }
 
-
+//se è stato cliccato "Elimina selezionate"
 if(isset($_POST['delete_selected'])){
 
     $years = isset($_POST['years']) ? $_POST['years'] : array();
-    if (!count($years)) {
-        setcookie('error',"Selezionare almeno un elemento");
-        header("Location: admin_years.php");
-    }   
+    
+    //se non sono state selezionate annate stampo un messaggio d'errore
+    if (!count($years))  $info_errore.="<div id='top_message'>Selezionare almeno un'annata</div>";   
     else{
         //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  serialize/unserialize o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni elemento singolarmente in questo modo key[indice]=valore
         header("Location: delete_year.php?years=".serialize($years));
@@ -39,9 +38,9 @@ if(isset($_POST['delete_selected'])){
 
 $dati.='<form action="admin_years.php" method="post">';
 
-$dati.='<div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
-$dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
-$dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionati" />';
+$dati.='<div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" id="all_selected" value="Seleziona Tutte" />';
+$dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutte" />';
+$dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionate" />';
 $dati.="<a title='Aggiungi Annata' class='' href='./add_year.php' tabindex='' accesskey=''>Aggiungi Annata</a></div>";
 
 //STAMPA LE ANNATE
@@ -68,7 +67,7 @@ if(mysqli_num_rows($result)!=0){
         if($row['migliore'] == 0) $dati.="No";
         else $dati.="Si";
         $dati.="</div>";
-        $dati.="<div class ='admin_td admin_years_modify_column'><a title='Modifica vino' class='' href='./modify_year.php?year=".$row['anno']."' tabindex='' accesskey=''>Modifica</a></div>";
+        $dati.="<div class ='admin_td admin_years_modify_column'><a title='Modifica annata' class='' href='./modify_year.php?year=".$row['anno']."' tabindex='' accesskey=''>Modifica</a></div>";
         $dati.="<div class ='admin_td admin_years_remove_column'><a title='Elimina annata' class='' href='./delete_year.php?years=".$row['anno']."' tabindex='' accesskey=''>X</a></div>";
         $dati.="</div>";
     }

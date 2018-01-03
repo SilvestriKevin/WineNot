@@ -39,10 +39,10 @@ else if(!empty($_POST['years']) && !empty($_POST['confirm'])){
         $result = mysqli_query($conn, $sql);
         if(mysqli_num_rows($result) != 0) $year_failed[] = $years[$i];
     }    
-    
+
     //se nessuna annata selezionata ha dei vini allora procedo all'eliminazione
     if(empty($year_failed)){
-        
+
         //creazione della query inserendo tutti le annate selezionate
         $sql="DELETE FROM annate WHERE anno = '";
         for($i=0 ; $i<$num_elem ; $i++){
@@ -131,6 +131,13 @@ else if(!empty($_GET['years'])){
     else header("Location: admin_years.php");
 
     $dati.="</form>";
+}
+//questo ramo if si verifica se si deselezionano tutte le annate precedentemente scelte per essere eliminate e poi si clicca su "conferma eliminazione"
+else  if(!empty($_POST['confirm'])){
+    setcookie('error',"Nessuna annata selezionata. Eliminazione annullata.");
+
+    //ritorno alla gestione delle annate
+    header("Location: admin_years.php");
 }
 //se la variabile non è settata significa che è stato manomesso l'url, allora riporto l'utente alla pagina amministrazione
 else header("Location: admin_years.php");

@@ -99,6 +99,13 @@ else if(!empty($_GET['users'])){
 
     $dati.="</form>";
 }
+//questo ramo if si verifica se si deselezionano tutti gli utenti precedentemente scelti per essere eliminati e poi si clicca su "conferma eliminazione"
+else  if(!empty($_POST['confirm'])){
+    setcookie('error',"Nessun utente selezionato. Eliminazione annullata.");
+
+    //ritorno alla gestione degli utenti
+    header("Location: admin_users.php");
+}
 //se la variabile non è settata significa che è stato manomesso l'url, allora riporto l'utente alla pagina amministrazione
 else header("Location: admin_users.php");
 

@@ -127,11 +127,7 @@ if(!empty($_POST['nome']) && !preg_match("/^(\s)+$/",$_POST['nome']) && !empty($
         }
 
 
-
-
-
     }
-
 
 
 } else { // faccio capire all'utente che ha lasciato dei campi vuoti(esclusi password)
@@ -164,12 +160,13 @@ if(mysqli_num_rows($result)!=0){
                     <li><label>Username</label></li><li><input type="text" maxlength="100" name="username" id="" title="username" value="'.$row['username'].'"/></li>
                     <li><label>Nome</label></li><li><input type="text" maxlength="100" name="nome" id="" title="nome" value="'.$row['nome'].'"/></li>
                     <li><label>Email</label></li><li><input type="text" maxlength="100" name="email" id="" title="email" value="'.$row['email'].'"/></li>
-                    <li><label>Password attuale</label></li><li><input type="text" maxlength="100" name="actual_password" id="" title="password attuale" value=""/></li>
-                    <li><label>Password nuova</label></li><li><input type="text" maxlength="100" name="new_password" id="" title="password nuova" value=""/></li>
-                </ul>';
+                    <li><label>Password attuale*</label></li><li><input type="text" maxlength="100" name="actual_password" id="" title="password attuale" value=""/></li>
+                    <li><label>Password nuova*</label></li><li><input type="text" maxlength="100" name="new_password" id="" title="password nuova" value=""/></li>
+                </ul>
+                    <label>*Campi obbligatori UNICAMENTE per il cambio password</label>';
     $dati.='<input type="submit" class="search_button" name="save_profile" id="save_admin_profile" value="Salva" />';
-} else 
-    $dati.='<h2>Ci sono dei problemi con il database.</h2>';
+} 
+else $dati.='<h2>Ci sono stati dei problemi con il database. La preghiamo di ricaricare la pagina.</h2>';
 
 $dati.="</form>";
 
