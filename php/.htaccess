@@ -1,0 +1,9 @@
+ErrorDocument 404 /WineNot/html/404.html
+AddType application/x-httpd-php .html .htm
+
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ^(.*)/admin$ /WineNot/php/login.php [L,R=301]
+
+RewriteCond %{QUERY_STRING} ^(.*)/admin$
+RewriteRule ^(.*)$ /WineNot/php/login.php? [L,R=301]
