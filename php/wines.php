@@ -13,6 +13,7 @@ $annata='';
 $tipologia='';
 $ordine='';
 $improved_search='';
+$text_searched='';
 $lista='';
 
 if(!empty($_COOKIE['error'])){
@@ -59,9 +60,10 @@ $text_search = 'vini';
 if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine'])){
 
     if(!empty($_GET['search'])){
-        //chiamo la funzione in lib.php che controlla il testo inserito.
-
-        // pulisco la stringa
+        //assegno il testo cercato nella barra di testo ad una variabile per poi stamparlo successivamente a schermo
+        $text_searched = "<div>Hai cercato: '".$_GET['search']."'</div>";
+        
+        //chiamo la funzione in lib.php che controlla il testo inserito e pulisce la stringa
         $search = cleanInput($_GET['search']);
 
         $counter=0;
@@ -95,6 +97,9 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
 
     //STAMPA I VINI 
     $sql = "SELECT vini.* FROM ".$text_search.$improved_search." ORDER BY ".$_GET['ordine'];
+    
+    //assegno la query string nell'url ad un cookie che mi servirà per tornare alla ricerca da dentro la pagina di un vino specifico
+    setcookie('ricerca',$_SERVER['QUERY_STRING']);
 
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0)
@@ -132,6 +137,7 @@ $pagina = file_get_contents("../html/wines.html");
 $pagina = str_replace("[ANNATA]", $annata, $pagina);
 $pagina = str_replace("[TIPOLOGIA]", $tipologia, $pagina);
 $pagina = str_replace("[ORDINE]", $ordine, $pagina);
+$pagina = str_replace("[TESTO_CERCATO]", $text_searched, $pagina);
 echo str_replace("[VINI]", $vini, $pagina);
 mysqli_close($conn);
 ?>
