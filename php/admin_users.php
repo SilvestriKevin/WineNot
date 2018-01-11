@@ -26,7 +26,7 @@ if(!empty($_COOKIE['error'])){
 $sql = "SELECT admin FROM utenti WHERE id_user='".$_SESSION['id']."'";
 $result=mysqli_query($conn,$sql);
 
-$row = mysqli_fetch_array($result,MYSQL_ASSOC);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
 if($row['admin'] == 1) { 
     //se è stato cliccato "Elimina selezionate"

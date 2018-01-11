@@ -148,7 +148,7 @@ if(!empty($error)){
 $sql = "SELECT utenti.* FROM utenti WHERE id_user='".$_SESSION['id']."'";
 $result=mysqli_query($conn,$sql);
 
-$row = mysqli_fetch_array($result,MYSQL_ASSOC);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
 $dati.='<h1 id="admin_title">Dati del profilo</h1>';
 

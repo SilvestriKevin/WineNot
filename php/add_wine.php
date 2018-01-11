@@ -22,7 +22,7 @@ if(!empty($_COOKIE['error'])){
     setcookie('error',null);
 }
 
-// qualsiasi tipo di utente può aggiungere una nuova annata
+// qualsiasi tipo di utente può aggiungere un nuovo vino
 
 $vino.='<h1 id="admin_title">Inserisci un nuovo vino</h1>';
 
@@ -37,6 +37,7 @@ if(mysqli_num_rows($result)!=0)
         $vino.="<option value='".$subrow['anno']."'>".$subrow['anno']."</option>";
     }
 
+setcookie('AddYear','');
 
 $vino.="</select><a title='Aggiungi annata' class='' href='./add_year.php' tabindex='' accesskey=''>Aggiungi Annata</a></li>
             <li><label>Nome: </label><input type='text' maxlength='30' name='nome' title='nome' </li>
@@ -55,11 +56,7 @@ $vino.="</select><a title='Aggiungi annata' class='' href='./add_year.php' tabin
 
 if(!empty($_POST['save_profile'])){
     // controllo che tutti i campi siano non vuoti.
-    if(!empty($_POST['nome']) && !empty($_POST['tipologia']) && !empty($_POST['descrizione']) && !empty($_POST['denominazione']) && 
-       !empty($_POST['annata']) && 
-       !empty($_POST['vitigno']) && !empty($_POST['abbinamento']) && !empty($_POST['degustazione']) && !empty($_POST['gradazione']) && !empty($_POST['formato']) &&
-       !empty($_FILES['wine_img']) &&
-       $_FILES['wine_img']['type'] == "image/png") {
+    if(!empty($_POST['nome']) && !empty($_POST['tipologia']) && !empty($_POST['descrizione']) && !empty($_POST['denominazione']) && !empty($_POST['vitigno']) && !empty($_POST['abbinamento']) && !empty($_POST['degustazione']) && !empty($_POST['gradazione']) && !empty($_POST['formato']) && !empty($_FILES['wine_img']) && $_FILES['wine_img']['type'] == "image/png") {
         //dichiaro le variabili
         $nome = $_POST['nome'];
         $tipologia = $_POST['tipologia'];
@@ -80,14 +77,9 @@ if(!empty($_POST['save_profile'])){
 
         $error='';
 
-        // controllo l'anno
-
-        if(!is_numeric($annata) || strlen($annata)!=4 || preg_match("/^(\s)+$/",$annata))
-            $error.='Anno non è nel formato giusto./n';
-
         // controllo gradazione
 
-        if(strlen($gradazione) !=4 ||!preg_match("/\d{2}\.\d/",strval($gradazione)) ||
+        if(strlen($gradazione) !=4 || !preg_match("/\d{2}\.\d/",strval($gradazione)) ||
            preg_match("/^(\s)+$/",strval($gradazione)))
             $error.='Gradazione non è nel formato giusto./n';
 
@@ -97,6 +89,7 @@ if(!empty($_POST['save_profile'])){
             $error.='Formato non è nel formato giusto./n';
 
         // controllo che con i files sia tutto ok
+        
         if($file['error'] != UPLOAD_ERR_OK && !is_uploaded_file($file['tmp_name'])) 
             $error.="C'&egrave; stato un problema con il caricamento dell'immagine. La preghiamo di riprovare./n";
 
@@ -132,10 +125,10 @@ if(!empty($_POST['save_profile'])){
 
                     if(mysqli_num_rows($result)!=0)
                         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                        else {
-                            setcookie("C'&egrave; stato un errore con l'inserimento dell'immagine, la preghiamo di riprovare provando a fare la Modifica del vino.");
-                            header("Location: add_wine.php");
-                        }
+                    else {
+                        setcookie("C'&egrave; stato un errore con l'inserimento dell'immagine, la preghiamo di riprovare provando a fare la Modifica del vino.");
+                        header("Location: add_wine.php");
+                    }
                     // dò il nome che mi serve alla foto (cioè id_wine)
                     $file['name'] = $row['id_wine'];
                     // e lo sposto nella cartella giusta

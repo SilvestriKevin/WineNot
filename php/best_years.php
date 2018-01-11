@@ -23,6 +23,11 @@ if(!empty($_COOKIE['info'])){
 }
 */
 
+//assegno la query string nell'url ad un cookie che mi servirà per tornare alla ricerca da dentro la pagina di un vino specifico
+$url = $_SERVER['PHP_SELF'];
+if(!empty($_SERVER['QUERY_STRING'])) $url.='?'.$_SERVER['QUERY_STRING'];
+setcookie('indietro',$url);
+
 $cont = 6;
 
 //STAMPA LE ANNATE

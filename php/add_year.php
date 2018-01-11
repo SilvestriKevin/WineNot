@@ -44,30 +44,29 @@ $annata.= '<fieldset>
 
                 </fieldset>';
 
+//questo controllo va a buon fineà
 if(isset($_POST['anno']) && isset($_POST['descrizione']) && isset($_POST['qualita'])) {
-    // controllo che non siano stati lasciati spazi vuoti all'interno di anno e che tutti i campi siano non vuoti.
-
-    if(!empty($_POST['anno']) && !empty($_POST['descrizione']) && !empty($_POST['qualita'])) {
+    
+    // controllo che non siano stati lasciati campi vuoti.
+    if(!empty($_POST['anno']) && !preg_match("/^(\s)+$/",$_POST['anno']) && !empty($_POST['descrizione']) && !preg_match("/^(\s)+$/",$_POST['descrizione']) && !empty($_POST['qualita']) && !preg_match("/^(\s)+$/",$_POST['qualita'])) {
+        
         //dichiaro le variabili
-
         $anno = $_POST['anno'];
         $descrizione = $_POST['descrizione'];
         $qualita = $_POST['qualita'];
 
         // controllo che l'anno sia del formato giusto
-
         if(is_numeric($anno) && strlen($anno)==4 && !preg_match("/^(\s)+$/",$anno)) {
+            
             // controllo che l'anno non sia già presente all'interno del database
-
             $sql = "SELECT anno FROM annate WHERE anno='".$anno."'";
             $result = mysqli_query($conn, $sql);
 
             if(mysqli_num_rows($result) != 0){
-                setcookie('error',"L'anno inserito esiste gi&agrave;"); 
+                setcookie('error',"L'anno inserito &egrave; gi&agrave; presente nel database."); 
                 header("Location: add_year.php");
             } else {
                 // inserisco i dati nel database
-                
                 if(!isset($_POST['migliore']))
                 {   
                     $sql = "INSERT INTO annate (anno, descrizione,qualita) VALUES ('".$anno."','".$descrizione."', '".$qualita."')";
@@ -76,7 +75,7 @@ if(isset($_POST['anno']) && isset($_POST['descrizione']) && isset($_POST['qualit
                     $sql = "INSERT INTO annate (anno, descrizione,qualita,migliore) VALUES ('".$anno."','".$descrizione."', '".$qualita."', '1')";
                 }
                 //controllo la connessione
-                if (mysqli_query($conn, $sql) == TRUE) {
+                if (mysqli_query($conn, $sql)) {
                     setcookie('info',"Aggiunta avvenuta con successo.");
                     header("Location: admin_years.php");
                 } else {
@@ -85,7 +84,7 @@ if(isset($_POST['anno']) && isset($_POST['descrizione']) && isset($_POST['qualit
                 }
             }
         } else {
-            setcookie('error','Anno non è nel formato giusto.');
+            setcookie('error','Anno non è nel formato corretto (es. 1994).');
             header("Location: add_year.php"); 
         }
 

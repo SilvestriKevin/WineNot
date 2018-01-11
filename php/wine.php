@@ -12,12 +12,15 @@ $immagine='';
 $descrizione='';
 $informazioni='';
 
-//se il cookie è settato, lo assegno alla variabile di ricerca che mi serve per settare l'href del link 'torna alla ricerca'
-if(!empty($_COOKIE['ricerca'])){
-    $ricerca='?'.$_COOKIE['ricerca'];
-    unset($_COOKIE['ricerca']);
+//in base a che cookie è settato, assegno alla variabile $indietro l'indirizzo che diverrà l'href del pulsante 'torna indietro'
+if(isset($_COOKIE['indietro'])){
+    $indietro=$_COOKIE['indietro'];
+    unset($_COOKIE['indietro']);
+    setcookie('indietro', '', time() - 3600);
 }
-else $ricerca='';
+//se ricado in questo caso significa che l'utente ha scritto direttamente l'url della pagina del vino specifico
+//es.http://localhost/WineNot/php/wine.php?id_wine=3 senza passare per la pagina dei vini o delle annate
+else $indietro='../index.html';
 
 if(!empty($_GET['id_wine'])){
 
@@ -61,7 +64,7 @@ $pagina = file_get_contents("../html/wine.html");
 //rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
 $pagina = str_replace("[IMMAGINE]", $immagine, $pagina);
 $pagina = str_replace("[DESCRIZIONE]", $descrizione, $pagina);
-$pagina = str_replace("[RICERCA]", $ricerca, $pagina);
+$pagina = str_replace("[INDIETRO]", $indietro, $pagina);
 echo str_replace("[INFORMAZIONI]", $informazioni, $pagina);
 mysqli_close($conn);
 

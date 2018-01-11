@@ -25,6 +25,11 @@ if(!empty($_COOKIE['info'])){
     setcookie('info',null);
 }
 
+//assegno la query string nell'url ad un cookie che mi servirà per tornare alla ricerca da dentro la pagina di un vino specifico
+$url = $_SERVER['PHP_SELF'];
+if(!empty($_SERVER['QUERY_STRING'])) $url.='?'.$_SERVER['QUERY_STRING'];
+setcookie('indietro',$url);
+
 //SELECT ANNATA NEL FORM
 $sql = "SELECT annata FROM vini GROUP BY annata ORDER BY annata";
 $result=mysqli_query($conn,$sql);
@@ -94,13 +99,9 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
         }
     }
 
-
     //STAMPA I VINI 
     $sql = "SELECT vini.* FROM ".$text_search.$improved_search." ORDER BY ".$_GET['ordine'];
     
-    //assegno la query string nell'url ad un cookie che mi servirà per tornare alla ricerca da dentro la pagina di un vino specifico
-    setcookie('ricerca',$_SERVER['QUERY_STRING']);
-
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
