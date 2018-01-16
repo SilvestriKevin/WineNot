@@ -1,0 +1,246 @@
+\input{StyleLatex/global.tex}
+\input{StyleLatex/layout.tex}
+\input{res/local}
+
+\title{\textbf{Relazione progetto TecWeb}}
+\author{WineNot}
+
+\date{1 Febbraio 2018}
+
+\begin{document}
+
+%\maketitle
+
+\makeFrontPage
+
+\tableofcontents
+
+\newpage
+
+\section{Abstract}
+
+Lo scopo del progetto sviluppato è quello di implementare un sito web per un
+concessionario, nella quale un utente pu visualizzare tutte le auto disponibili, sia nuove che usate, gestire le proprie riparazioni e prenotare dei tesdrive. La principale mansione del concessionario 
+è la vendita di auto, sia nuove che usate. Dreamcars inoltre offre assistenza post vendita a qualsiasi modello da lui
+venduto. Non sarà quindi possibile eseguire un intervento di assistenza su un'auto
+non venduta specicatamente dalla concessionaria. L'utente pu interagire sul sito
+a seconda della sua affiliazione. Un utente non registrato, o che non ha effettuato
+il login, potrà solo visualizzare un elenco di auto sia nuove che usate, anche sec-
+ondo a dei parametri da lui scelti direttamente nella pagine degli annunci tramite
+l'apposita funzione di ricerca. Un utente registrato, e che ha effettuato il login,
+pu visualizzare lo stato degli interventi delle sue auto direttamente dalla sua area
+personale. Da questa area personale l'utente pu, in aggiunta, modicare le infor-
+mazioni base del suo account. Sempre da loggato, un utente pu prenotare un test
+drive per unauto da lui scelta.
+Un dipendente pu confermare i test drive prenotati dagli utenti, e visualizzare le
+riparazioni delle auto modicandone eventualmente lo stato. Ogni dipendente in-
+oltre pu inserire, rimuovere o modicare degli annunci, che compariranno poi nelle
+pagine relative alle auto nuove o usate del sito.
+
+\subsection{Utenti destinatari}
+
+Il sito è destinato a qualsiasi utente cui scopo è quello di consultare, ed eventual-
+mente prenotare un test drive di una specica auto. Una volta acquistata un'auto
+direttamente in concessionaria, si accederà ad un ecosistema di assistenza secondo
+il quale, sempre direttamente dal sito web, si potranno visualizzare gli interventi
+dei propri autoveicoli.
+
+\subsection{Gestione dei dati}
+
+Il sito presenta dei contenuti modicabili da parte di utenti e di dipendenti (con
+ruolo simile a quello di un amministratore). Qui di seguito sono riportati nello
+specico le modiche possibili da parte di ciascuna categoria di utilizzatore:
+
+\subsubsection{Utenti}
+
+Previo login un utente pu vedere lo stato di avanzamento delle assistenze sulle
+auto di sua proprietà, modicare le sue informazioni personali quali numero di
+telefono, mail associata e password dell'account. Un cliente pu inoltre prenotare
+un testdrive di una specica auto tramite l'apposito form sul sito. Sarà poi compito
+di un dipendente confermare il test drive richiesto dall'utente.
+
+\subsection{Amministratori}
+
+Previo login un dipendente pu visualizzare, modicare o rimuovere le riparazioni
+con i relativi interventi a cui è stata sottoposta qualsiasi auto in assistenza. Una
+volta effettuato l'accesso all'area personale, un dipendente pu modificare le sue
+informazioni di registrazione, quali telefono, mail e password. Sempre dalla pagina
+di gestione account, un dipendente potrà confermare i testdrive richiesti dai clienti,
+modicandone opportunamente date, ore e macchina selezionata. Un dipendente
+pu inoltre aggiungere, modicare o rimuovere degli annunci.
+
+\section{Fasi di progettazione}
+
+Lo sviluppo del progetto si è suddiviso in varie fasi, raggruppabili nelle seguenti
+categorie:
+
+\subsection{Analisi dei requisiti}
+
+Il gruppo si è pi volte riunito per analizzare ( e progettare ) dei requisiti che
+potessero soddisfare ed essere il pi vicini possibili alla realtà di una concession-
+aria. I requisiti presi in considerazione sono stati bacino di utenza, funzionalità,
+e la visualizzazione ed interazione delle pagine web da parte di utenti e dipen-
+denti. Il gruppo ha voluto dare una netta separazione tra dipendenti ed utenti, che si è ripercossa anche nei rispettivi permessi di modica del sito web. Inoltre,
+abbiamo preso spunto da alcuni concessionari realmente esistenti, come quello di
+Carraro Group ( http://www.gruppocarraro.it/ ) e Ceccato automobili ( http://
+www.ceccatoautomobili.it/ ).
+
+\subsection{Realizzazione ed implementazione delle funzionalità}
+
+Ogni funzionalità implementata nel sito è frutto di un attento studio attraverso
+esclusive sessioni di lavoro.
+Il sito web si appoggia innanzitutto su una base di dati dove si vanno a memoriz-
+zare tutte le informazioni viste a video, quali dati sulle auto, clienti, dipendenti,
+riparazioni e testdrive. Le informazioni su questa base di dati vengono ricercate,
+estrapolate e rielaborate attraverso speciali pagine, cui interno contengono delle
+query che interrogano direttamente il database attraverso una connessione dedi-
+cata.
+Particolare attenzione è stata inoltre riservata alla visualizzazione del sito su
+dispositivi mobile, dove risulta ottimizzata ogni pagina direttamente interagibile
+dall'utente.
+
+\subsection{Fase di test}
+
+Ogni funzionalità implementata nel sito web è stata oggetto di numerosi test per
+vericarne il suo effettivo funzionamento. Gli strumenti utilizzati sono stati W3C
+Markup Validator, Total Validator, XHTML validator e browserstack.com.
+
+\section{Struttura del progetto}
+
+Causa enorme complessità del progetto, i le che compongono il sito sono stati
+raggruppati e situati in 5 diverse cartelle:
+
+\begin{itemize}
+	\item \textbf{CARTELLA "css":} Questa cartella contiene tutti i file riguardanti il css, opportunamente diviso in tre file, per desktop, mobile e stampa;
+	\item \textbf{CARTELLA "html":} Questa cartella contiene i file html del sito web;
+	\item \textbf{CARTELLA "img":} Questa cartella contiene tutte le immagini del sito
+	web;
+	\item \textbf{CARTELLA "include":}
+	\item \textbf{CARTELLA "js":} Questa pagina contiene tutti gli script javascript
+	del progetto, quali "javascript.js" (script per slideshow e controlli sull'input) e "mappa.js" (script per visualizzare la mappa sulla pagina "info" del sito
+	web);
+	\item \textbf{CARTELLA "php":} Questa cartella contiene i file php del sito
+	web;
+	\item \textbf{CARTELLA "utility":} Questa cartella contiene un eseguibile utile per verificare il corretto funzionamento del recupero password;
+\end{itemize}
+
+\section{Gestione dei dati}
+
+Il sito web si appoggia su una base di dati di tipo MySQL. Il database immagazzina
+tutti i dati inseriti negli appositi form del sito web, rendendoli disponibili ad ogni
+query eseguita in una pagina. Tutte le modiche avvengono tramite query MySQL
+lanciate da pagine web PHP. La struttura del database è come segue:
+
+\begin{itemize}
+	\item \textbf{TABELLA "Annata":} in questa tabella vengono immagazzinate tutte le
+	informazioni sulle annate dei vini presenti nell'enoteca. La tabella è strutturata come segue:
+	\begin{itemize}
+		\item \textbf{Anno:} indica l'anno ed è univoco;
+		\item \textbf{Descrizione:} indica ;
+		\item \textbf{Qualita:} ;
+		\item \textbf{Migliore:} .
+	\end{itemize}	
+	\item \textbf{TABELLA "Utenti":} in questa tabella vengono immagazzinate tutte le
+	informazioni sugli utenti presenti nell'enoteca. La tabella è strutturata
+	come segue:
+	\begin{itemize}
+		\item \textbf{Id\_user:} indica ed è univoco;
+		\item \textbf{Nome:} indica ;
+		\item \textbf{Username:} ;
+		\item \textbf{Password:} ;
+		\item \textbf{Email:} ;
+		\item \textbf{Admin:} .
+	\end{itemize}
+	\item \textbf{TABELLA "Vini":} in questa tabella vengono immagazzinate tutte le
+	informazioni sui vini presenti nell'enoteca. La tabella è strutturata
+	come segue:
+	\begin{itemize}
+		\item \textbf{Id\_wine:} indica ed è univoco;
+		\item \textbf{Nome:} indica ;
+		\item \textbf{Tipologia:} ;
+		\item \textbf{Descrizione:} ;
+		\item \textbf{Denominazione:} ;
+		\item \textbf{Annata:} ;
+		\item \textbf{Vitigno:} ;
+		\item \textbf{Abbinamento:} ;
+		\item \textbf{Degustazione:} ;
+		\item \textbf{Gradazione:} ;
+		\item \textbf{Formato:} .
+	\end{itemize}
+\end{itemize}
+
+\section{Struttura sito}
+
+Alcune funzionalità del sito sono usufruibili previa registrazione e login. Qui di
+seguito sono elencate tutte le funzionalità del sito, raggruppate secondo le seguenti
+nomenclature:
+Everyone: identica qualsiasi utente ( anche dipendente ), registrato e non.
+Registered: identica qualsiasi utente registrato e che ha eseguito il login al sito
+web. Employee: identica qualsiasi dipendente registrato e che ha eseguito il login
+al sito web.
+
+\subsection{Funzionalità utenza usufruibile}
+
+\begin{center}
+	\begin{tabular}{r|l}
+		Esplorazione del sito & Everyone \\
+		Ricerca vini & Everyone \\
+		... & ... \\
+	\end{tabular}
+\end{center}
+
+\section{Adattabilità ed usabilità del sito}
+
+La correttezza della lettura del sito web è facilitata dall'introduzione di elementi
+tabindex, e la forte presenza di colori con contrasto elevato facilita la lettura del
+sito web anche da persone con capacità visive limitate. Il sito web inoltre è realizzato tramite layout responsive e nel completo rispetto dei vigenti standard di
+accessibilità.
+Non risulta inoltre mai necessario alcuno scorrimento orizzontale in quanto il sito
+web si adatta alla dimensione di ogni schermo da dove viene visualizzato. Nel
+sito web sono presenti alcuni elementi per aiutare l'utente nella navigazione, quali
+utilizzo di breadcrumb e colori diversi per ogni link visitato. Non sono inoltre
+presenti contenuti a rischio di epilessia o che possano indurre l'utente in uno stato
+confusionale.
+
+\section{Compatibilità browser}
+
+Il presente sito web è stato testato su vari browser in varie piattaforme tramite l'utilizzo del sito browserstack.com. Dai test effettuati, non sono emerse problematiche che possano inuire negativamente sulla navigazione o sullusabilità del sito.
+Di seguito si riporta un breve riepilogo delle principali piattaforme testate:
+-Internet Explorer 8.0: Il sito è visualizzato ed interagibile correttamente -
+Firefox 30: Il sito è visualizzabile ed interagibile correttamente -Safari iOS: Il sito
+è visualizzabile ed interagibile correttamente -Google Chrome 60: Il sito è visual-
+izzabile ed interagibile correttamente -Google Chrome 40: Il sito è visualizzabile
+ed interagibile correttamente -Opera 12.12: Il sito è visualizzabile ed interagibile
+correttamente
+
+\section{Organizzazione del gruppo di lavoro}
+
+La seguente tabella indica quali sono state le principali mansioni di ogni compo-
+nente del gruppo. Ogni componente, tuttavia, ha contribuito almeno in parte ad
+ogni fase di sviluppo del progetto.
+
+\subsection{Pirlog Cristian}
+
+\subsection{Silvestri Kevin}
+
+\subsection{Thiella Eleonora}
+
+\begin{itemize}
+	\item CSS Desktop;
+	\item CSS Mobile;
+	\item HTML
+	\item Javascript
+	\item Validazione
+	\item Creazione database
+	\item Aiuto query php, parte controlli php ed aiuto pagine php utenti
+	\item Stesura relazione
+	\item PHP
+	\item Ricerca vini
+	\item Controlli PHP
+	\item PHP: gestione sessioni e gestione connessioni
+	\item Gestione login
+	\item Gestione recupero password
+	\item Gestione errori
+\end{itemize}
+
+\end{document}
