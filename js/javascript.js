@@ -108,7 +108,7 @@ function checkEmailRecoverPassword() {
 
 
 
-/* Wines - Inserimento Vino */
+/* Wines - Inserimento e Modifica Vino */
 
 function checkNome() {
     var field = document.getElementsByName("nome")[0].value;
@@ -162,16 +162,30 @@ function checkDenominazione() {
     var field = document.getElementsByName("denominazione")[0].value;
     var isFieldCorrect = true;
 
+    if (!field) {
+        // document.getElementsByName("object")[0].style.borderColor = "red";
+        document.getElementById("wine_denominazione_error").innerHTML = "Il campo 'Denominazione' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        // document.getElementsByName("object")[0].style.border = "1px inset";
+        document.getElementById("wine_denominazione_error").innerHTML = " ";
+    }
+
     return isFieldCorrect;
 }
 
 function checkGradazione() {
     var field = document.getElementsByName("gradazione")[0].value;
+    var gradazione_reg = /\d{2}\.\d|\d\.\d{2}/i;
+
     var isFieldCorrect = true;
 
     if (!field) {
         // document.getElementsByName("object")[0].style.borderColor = "red";
         document.getElementById("wine_gradazione_error").innerHTML = "Il campo 'Gradazione' non può essere vuoto";
+        isFieldCorrect = false;
+    } else if (field.length != 4 || !gradazione_reg.test(field)) {
+        document.getElementById("wine_gradazione_error").innerHTML = "Formato sbagliato. Esempio: 7.50 oppure 13.5";
         isFieldCorrect = false;
     } else {
         // document.getElementsByName("object")[0].style.border = "1px inset";
@@ -183,11 +197,15 @@ function checkGradazione() {
 
 function checkFormato() {
     var field = document.getElementsByName("formato")[0].value;
+    var formato_reg = /\d\.\d{2}/i;
     var isFieldCorrect = true;
 
     if (!field) {
         // document.getElementsByName("object")[0].style.borderColor = "red";
         document.getElementById("wine_formato_error").innerHTML = "Il campo 'Formato' non può essere vuoto";
+        isFieldCorrect = false;
+    } else if (field.length != 4 || !formato_reg.test(field)) {
+        document.getElementById("wine_formato_error").innerHTML = "Formato sbagliato. Esempio: 1.50 oppure 5.00";
         isFieldCorrect = false;
     } else {
         // document.getElementsByName("object")[0].style.border = "1px inset";
@@ -245,7 +263,32 @@ function checkDegustazione() {
     return isFieldCorrect;
 }
 
-function checkAddWine() {
+function checkInputPicture() {
+    var isFieldCorrect = true;
+
+    if (document.getElementById("select_file").value == "") {
+        document.getElementById("wine_picture_error").innerHTML = "Il campo 'Foto' non può essere vuoto";
+        isFieldCorrect = false;
+    } else document.getElementById("wine_picture_error").innerHTML = " ";
+
+    return isFieldCorrect;
+}
+
+function checkWine() {
+    var check = checkNome();
+    check = checkTipologia();
+    check = checkVitigno();
+    check = checkDenominazione();
+    check = checkGradazione();
+    check = checkFormato();
+    check = checkDescrizione();
+    check = checkAbbinamento();
+    check = checkDegustazione();
+    check = checkInputPicture();
+    return check;
+}
+
+function checkModifyWine() {
     var check = checkNome();
     check = checkTipologia();
     check = checkVitigno();

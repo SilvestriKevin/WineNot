@@ -26,7 +26,7 @@ if(!empty($_COOKIE['error'])){
 
 $vino.='<h1 id="admin_title">Inserisci un nuovo vino</h1>';
 
-$vino.='<form id="panel_admin_form_add_wine" enctype="multipart/form-data" action="add_wine.php" method="post">';        
+$vino.='<form onsubmit="return checkWine()" id="panel_admin_form_add_wine" enctype="multipart/form-data" action="add_wine.php" method="post">';        
 $vino.= '<fieldset><ul>';
 
 $vino.='<li><label>Annata</label></li><li><select name="annata">';
@@ -129,9 +129,14 @@ $vino.="</select><a title='Aggiungi annata' class='' href='./add_year.php' tabin
 <li>
 <input type='textarea' name='degustazione' title='degustazione' onfocusout='checkDegustazione()'/>
 </li>
+
+<li>
+<span id='wine_picture_error' class='js_error'></span>
+</li>
 <li>
 <input id='select_file' type='file' name='wine_img' />
 </li>
+
 <li>
 <input type='submit' class='search_button' name='save_profile' id='save_add_wine' value='Salva' />
 </li>

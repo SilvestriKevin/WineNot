@@ -150,7 +150,7 @@ $annata='';
 
 $vino.='<h3 id="admin_title">Modifica il vino</h3>';
 
-$vino.='<form id="panel_admin_form" action="modify_wine.php" method="post">';
+$vino.='<form onsubmit="return checkModifyWine()" id="panel_admin_form" action="modify_wine.php" method="post">';
 $vino.='<input type="hidden" name="idwine" value="'.$id_wine.'" />';
 
 if(mysqli_num_rows($result)!=0) {
@@ -159,7 +159,7 @@ if(mysqli_num_rows($result)!=0) {
 
     // aggiungo tutte le annate 
 
-    $vino.='<li><label>Annata: </label><select name="annata">';
+    $vino.='<li><label>Annata</label></li><li><select name="annata">';
     $sql = "SELECT annata as anno FROM vini GROUP BY anno ORDER BY anno";
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0)
@@ -171,17 +171,17 @@ if(mysqli_num_rows($result)!=0) {
         }
     $vino.='</select><a title="Aggiungi annata" class="" href="./add_year.php" tabindex="" accesskey="">Aggiungi Annata</a></li>';
     $vino.='<input type="hidden" name="action" value="upload" />';
-    $vino.='<li><label>Nome: </label><input type="text" maxlength="30" name="nome" title="nome" value="'.$row['nome'].'"</li>';
-    $vino.='<li><label>Tipologia: </label><input type="text" maxlength="30" name="tipologia" title="tipologia" value="'.$row['tipologia'].'"</li>';
-    $vino.='<li><label>Vitigno: </label><input type="textarea" maxlength="30" name="vitigno" title="vitigno" value="'.$row['vitigno'].'"</li>';
-    $vino.='<li><label>Denominazione: </label><input type="text" maxlength="30" name="denominazione" title="denominazione" value="'.$row['denominazione'].'"</li>';
-    $vino.='<li><label>Gradazione(%): </label><input type="text" maxlength="30" name="gradazione" title="gradazione" value="'.$row['gradazione'].'"</li>';
-    $vino.='<li><label>Formato(l)   : </label><input type="text" maxlength="30" name="formato" title="formato" value="'.$row['formato'].'"</li>';
-    $vino.='<li><label>Descrizione: </label></li><li><textarea name="descrizione" title="descrizione">'.$row["descrizione"].'</textarea></li>';
-    $vino.='<li><label>Abbinamento: </label></li><li><textarea  name="abbinamento" title="abbinamento">'.$row["abbinamento"].'</textarea></li>';
-    $vino.='<li><label>Degustazione: </label></li><li><textarea  name="degustazione" title="degustazione" >'.$row['degustazione'].'</textarea></li>';
-    $vino.="<li><label>Immagine attuale: </label></li><li><img id='modify_wine_img' alt='immagine del vino' src='../img/".$row['id_wine'].".png' /></li>
-    <li><label>Cambia immagine: </label><input id='select_file' type='file' name='wine_img'/></li>";
+    $vino.='<li><label>Nome</label></li><li><span id="wine_name_error" class="js_error"></span></li><li><input type="text" maxlength="30" name="nome" title="nome" value="'.$row['nome'].'" onfocusout="checkNome()"/></li>';
+    $vino.='<li><label>Tipologia</label></li><li><span id="wine_tipologia_error" class="js_error"></span></li><li><input type="text" maxlength="30" name="tipologia" title="tipologia" value="'.$row['tipologia'].'" onfocusout="checkTipologia()"/></li>';
+    $vino.='<li><label>Vitigno</label></li><li><span id="wine_vitigno_error" class="js_error"></span></li><li><input type="textarea" maxlength="30" name="vitigno" title="vitigno" value="'.$row['vitigno'].'" onfocusout="checkVitigno()"/></li>';
+    $vino.='<li><label>Denominazione</label></li><li><span id="wine_denominazione_error" class="js_error"></span></li><li><input type="text" maxlength="30" name="denominazione" title="denominazione" value="'.$row['denominazione'].'" onfocusout="checkDenominazione()"/></li>';
+    $vino.='<li><label>Gradazione(%)</label></li><li><span id="wine_gradazione_error" class="js_error"></span></li><li><input type="text" maxlength="30" name="gradazione" title="gradazione" value="'.$row['gradazione'].'" onfocusout="checkGradazione()"/></li>';
+    $vino.='<li><label>Formato(l)</label></li><li><span id="wine_formato_error" class="js_error"></span></li><li><input type="text" maxlength="30" name="formato" title="formato" value="'.$row['formato'].'" onfocusout="checkFormato()"/></li>';
+    $vino.='<li><label>Descrizione</label></li><li><span id="wine_descrizione_error" class="js_error"></span></li><li><textarea name="descrizione" title="descrizione" onfocusout="checkDescrizione()">'.$row["descrizione"].'</textarea></li>';
+    $vino.='<li><label>Abbinamento</label></li><li><span id="wine_abbinamento_error" class="js_error"></span></li><li><textarea name="abbinamento" title="abbinamento" onfocusout="checkAbbinamento()">'.$row["abbinamento"].'</textarea></li>';
+    $vino.='<li><label>Degustazione</label></li><li><span id="wine_degustazione_error" class="js_error"></span></li><li><textarea  name="degustazione" title="degustazione" onfocusout="checkDegustazione()">'.$row['degustazione'].'</textarea></li>';
+    $vino.='<li><label>Immagine attuale</label></li><li><img id="modify_wine_img" alt="immagine del vino" src="../img/'.$row["id_wine"].'.png" /></li>
+    <li><label>Cambia immagine</label></li><li><span id="wine_picture_error" class="js_error"></span></li><li><input id="select_file" type="file" name="wine_img"/></li>';
     $vino.='<input type="submit" class="search_button" name="save_wine" id="save_modify_wine" value="Salva" />';
     $vino.='</ul>';
 
