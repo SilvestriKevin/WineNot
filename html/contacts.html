@@ -51,18 +51,18 @@
                     <ul>
                         <li>
                             <label>La tua email: </label>
-                            <input type="text" name="email" tabindex="1" />
+                            <input id="email" type="text" name="email" oninput="checkEmail()" tabindex="1" />
                         </li>
                         <li>
                             <label id='object_send'>Oggetto: </label>
-                            <input type="text" name="object" tabindex="2" />
+                            <input type="text" name="object" oninput="checkMailObject()" tabindex="2" />
                         </li>
 
                         <li>
                             <label>Messaggio: </label>
                         </li>
                         <li>
-                            <textarea id='textarea_form_help' name="msg" cols='40' rows='5' tabindex="3"></textarea>
+                            <textarea id='textarea_form_help' name="msg" oninput="checkMailMessage()" cols='40' rows='5' tabindex="3"></textarea>
                         </li>
                         <li>
                             <input id='send_request' class="search_button" type="submit" value="Invia Richiesta" tabindex="4" />
