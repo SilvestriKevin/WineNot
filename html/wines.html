@@ -39,7 +39,7 @@
         </ul>
     </div>
     <div id="search_wines" class="">
-        <form action="wines.php" method="get">
+        <form onsubmit="return checkAddWine()" action="wines.php" method="get">
             <fieldset>
                 <ul>
                     <li id='filter_order'>
@@ -79,7 +79,6 @@
         </div>
         <ul>
             [VINI]
-        </ul>
     </div>
     <div id='footer'>
         <ul>
@@ -90,3 +89,5 @@
 </body>
 
 </html>
+
+

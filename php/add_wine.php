@@ -29,7 +29,7 @@ $vino.='<h1 id="admin_title">Inserisci un nuovo vino</h1>';
 $vino.='<form id="panel_admin_form_add_wine" enctype="multipart/form-data" action="add_wine.php" method="post">';        
 $vino.= '<fieldset><ul>';
 
-$vino.='<li><label>Annata: </label><select name="annata">';
+$vino.='<li><label>Annata</label></li><li><select name="annata">';
 $sql = "SELECT annata as anno FROM vini GROUP BY anno ORDER BY anno";
 $result=mysqli_query($conn,$sql);
 if(mysqli_num_rows($result)!=0)
@@ -40,18 +40,102 @@ if(mysqli_num_rows($result)!=0)
 setcookie('AddYear','');
 
 $vino.="</select><a title='Aggiungi annata' class='' href='./add_year.php' tabindex='' accesskey=''>Aggiungi Annata</a></li>
-            <li><label>Nome: </label><input type='text' maxlength='30' name='nome' title='nome' </li>
-            <li><label>Tipologia: </label><input type='text' maxlength='30' name='tipologia' title='tipologia' </li>
-            <li><label>Vitigno: </label><input type='textarea' maxlength='30' name='vitigno' title='vitigno' </li>
-            <li><label>Denominazione: </label><input type='text' maxlength='30' name='denominazione' title='denominazione' </li>
-            <li><label>Gradazione(%): </label><input type='text' maxlength='4' name='gradazione' title='gradazione' </li>
-            <li><label>Formato(l)   : </label><input type='text' maxlength='4' name='formato' title='formato' </li>
-            <li><label>Descrizione: </label><input type='textarea'  name='descrizione' title='descrizione' </li>
-            <li><label>Abbinamento: </label><input type='textarea' name='abbinamento' title='abbinamento' </li>
-            <li><label>Degustazione: </label><input type='textarea'  name='degustazione' title='degustazione' </li>
-            <li><input id='select_file' type='file' name='wine_img'/></li>
-            <li><input type='submit' class='search_button' name='save_profile' id='save_add_wine' value='Salva' /></li>
-            </ul></fieldset>";
+<li>
+<label>Nome</label>
+</li>
+<li>
+<span id='wine_name_error' class='js_error'></span>
+</li>
+<li>
+<input type='text' maxlength='30' name='nome' title='nome' onfocusout='checkNome()' /> 
+</li>
+
+<li>
+<label>Tipologia</label>
+</li>
+<li>
+<span id='wine_tipologia_error' class='js_error'></span>
+</li>
+<li>
+<input type='text' maxlength='30' name='tipologia' title='tipologia' onfocusout='checkTipologia()' />
+</li>
+
+<li>
+<label>Vitigno</label>
+</li>
+<li>
+<span id='wine_vitigno_error' class='js_error'></span>
+</li>
+<li>
+<input type='textarea' maxlength='30' name='vitigno' title='vitigno' onfocusout='checkVitigno()' />
+</li>
+
+<li>
+<label>Denominazione</label>
+</li>
+<li>
+<span id='wine_denominazione_error' class='js_error'></span>
+</li>
+<li>
+<input type='text' maxlength='30' name='denominazione' title='denominazione' onfocusout='checkDenominazione()'/>
+</li>
+
+<li>
+<label>Gradazione(%)</label>
+</li>
+<li>
+<span id='wine_gradazione_error' class='js_error'></span>
+</li>
+<li>
+<input type='text' maxlength='4' name='gradazione' title='gradazione' onfocusout='checkGradazione()' /> 
+</li>
+
+<li>
+<label>Formato(l)</label>
+</li>
+<li>
+<span id='wine_formato_error' class='js_error'></span>
+</li>
+<li>
+<input type='text' maxlength='4' name='formato' title='formato' onfocusout='checkFormato()'/>
+</li>
+
+<li>
+<label>Descrizione</label>
+</li>
+<li>
+<span id='wine_descrizione_error' class='js_error'></span>
+</li>
+<li>
+<input type='textarea' name='descrizione' title='descrizione' onfocusout='checkDescrizione()'/>
+</li>
+
+<li>
+<label>Abbinamento</label>
+</li>
+<li>
+<span id='wine_abbinamento_error' class='js_error'></span>
+</li>
+<li>
+<input type='textarea' name='abbinamento' title='abbinamento' onfocusout='checkAbbinamento()'/>
+</li>
+
+<li>
+<label>Degustazione</label>
+</li>
+<li>
+<span id='wine_degustazione_error' class='js_error'></span>
+</li>
+<li>
+<input type='textarea' name='degustazione' title='degustazione' onfocusout='checkDegustazione()'/>
+</li>
+<li>
+<input id='select_file' type='file' name='wine_img' />
+</li>
+<li>
+<input type='submit' class='search_button' name='save_profile' id='save_add_wine' value='Salva' />
+</li>
+</ul></fieldset>";
 
 
 if(!empty($_POST['save_profile'])){

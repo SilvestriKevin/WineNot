@@ -103,7 +103,7 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
     $sql = "SELECT vini.* FROM ".$text_search.$improved_search." ORDER BY ".$_GET['ordine'];
     
     $result=mysqli_query($conn,$sql);
-    if(mysqli_num_rows($result)!=0)
+    if(mysqli_num_rows($result)!=0) {
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $vini.="<li><a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''><div id='specific_result' class='specific_wine'><img alt='' src='../img/".$row['id_wine'].".png'/><ul>";
             $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
@@ -112,14 +112,16 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
             $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
             $vini.="</ul></div></a></li>";
         }
-    else $vini.="<li><h2>Non sono presenti vini per questa ricerca. Riprova cambiando i parametri.</h2></li>";
+        $vini.="</ul>";
+    }
+    else $vini.="</ul><h2>Non sono presenti vini per questa ricerca. Riprova cambiando i parametri.</h2>";
 }
 else {
     //STAMPA I VINI (QUANDO SI APRE LA PAGINA LA PRIMA VOLTA)
     $sql = "SELECT vini.* FROM vini";
     $result=mysqli_query($conn,$sql);
-    if(mysqli_num_rows($result)!=0)
-        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+    if(mysqli_num_rows($result)!=0) {
+       while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $vini.="<li><a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''><div id='specific_result' class='specific_wine'><img alt='' src='../img/".$row['id_wine'].".png'/><ul>";
             $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
             $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
@@ -127,7 +129,8 @@ else {
             $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
             $vini.="</ul></div></a></li>";
         }
-    else $vini.="<li><h2>Non sono presenti vini.</h2></li>";
+        $vini.="</ul>";
+    } else $vini.="</ul><h2>Non sono presenti vini.</h2>";
 }
 
 

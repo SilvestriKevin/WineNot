@@ -66,7 +66,7 @@ function checkUsername() {
         document.getElementById("username_error").innerHTML = "Il campo 'Username' non può essere vuoto";
         isFieldCorrect = false;
     } else {
-       // document.getElementById("username").style.border = "1px inset";
+        // document.getElementById("username").style.border = "1px inset";
         document.getElementById("username_error").innerHTML = " ";
     }
 
@@ -82,7 +82,7 @@ function checkPassword() {
         document.getElementById("password_error").innerHTML = "Il campo 'Password' non può essere vuoto";
         isFieldCorrect = false;
     } else {
-       // document.getElementById("password").style.border = "1px inset";
+        // document.getElementById("password").style.border = "1px inset";
         document.getElementById("password_error").innerHTML = " ";
     }
 
@@ -95,9 +95,165 @@ function checkLoginForm() {
     return check;
 }
 
+
+
 /* RECUPERO PASSWORD */
 
 function checkEmailRecoverPassword() {
     var check = checkEmail();
+    return check;
+}
+
+
+
+
+
+/* Wines - Inserimento Vino */
+
+function checkNome() {
+    var field = document.getElementsByName("nome")[0].value;
+    var isFieldCorrect = true;
+
+    if (!field) {
+        // document.getElementsByName("object")[0].style.borderColor = "red";
+        document.getElementById("wine_name_error").innerHTML = "Il campo 'Nome' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        // document.getElementsByName("object")[0].style.border = "1px inset";
+        document.getElementById("wine_name_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkTipologia() {
+    var field = document.getElementsByName("tipologia")[0].value;
+    var isFieldCorrect = true;
+
+    if (!field) {
+        // document.getElementsByName("object")[0].style.borderColor = "red";
+        document.getElementById("wine_tipologia_error").innerHTML = "Il campo 'Tipologia' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        // document.getElementsByName("object")[0].style.border = "1px inset";
+        document.getElementById("wine_tipologia_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkVitigno() {
+    var field = document.getElementsByName("vitigno")[0].value;
+    var isFieldCorrect = true;
+
+    if (!field) {
+        // document.getElementsByName("object")[0].style.borderColor = "red";
+        document.getElementById("wine_vitigno_error").innerHTML = "Il campo 'Vitigno' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        // document.getElementsByName("object")[0].style.border = "1px inset";
+        document.getElementById("wine_vitigno_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkDenominazione() {
+    var field = document.getElementsByName("denominazione")[0].value;
+    var isFieldCorrect = true;
+
+    return isFieldCorrect;
+}
+
+function checkGradazione() {
+    var field = document.getElementsByName("gradazione")[0].value;
+    var isFieldCorrect = true;
+
+    if (!field) {
+        // document.getElementsByName("object")[0].style.borderColor = "red";
+        document.getElementById("wine_gradazione_error").innerHTML = "Il campo 'Gradazione' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        // document.getElementsByName("object")[0].style.border = "1px inset";
+        document.getElementById("wine_gradazione_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkFormato() {
+    var field = document.getElementsByName("formato")[0].value;
+    var isFieldCorrect = true;
+
+    if (!field) {
+        // document.getElementsByName("object")[0].style.borderColor = "red";
+        document.getElementById("wine_formato_error").innerHTML = "Il campo 'Formato' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        // document.getElementsByName("object")[0].style.border = "1px inset";
+        document.getElementById("wine_formato_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkDescrizione() {
+    var field = document.getElementsByName("descrizione")[0].value;
+    var isFieldCorrect = true;
+
+    if (!field) {
+        // document.getElementsByName("object")[0].style.borderColor = "red";
+        document.getElementById("wine_descrizione_error").innerHTML = "Il campo 'Descrizione' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        // document.getElementsByName("object")[0].style.border = "1px inset";
+        document.getElementById("wine_descrizione_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkAbbinamento() {
+    var field = document.getElementsByName("abbinamento")[0].value;
+    var isFieldCorrect = true;
+
+    if (!field) {
+        // document.getElementsByName("object")[0].style.borderColor = "red";
+        document.getElementById("wine_abbinamento_error").innerHTML = "Il campo 'Abbinamento' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        // document.getElementsByName("object")[0].style.border = "1px inset";
+        document.getElementById("wine_abbinamento_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkDegustazione() {
+    var field = document.getElementsByName("degustazione")[0].value;
+    var isFieldCorrect = true;
+
+    if (!field) {
+        // document.getElementsByName("object")[0].style.borderColor = "red";
+        document.getElementById("wine_degustazione_error").innerHTML = "Il campo 'Degustazione' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        // document.getElementsByName("object")[0].style.border = "1px inset";
+        document.getElementById("wine_degustazione_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkAddWine() {
+    var check = checkNome();
+    check = checkTipologia();
+    check = checkVitigno();
+    check = checkDenominazione();
+    check = checkGradazione();
+    check = checkFormato();
+    check = checkDescrizione();
+    check = checkAbbinamento();
+    check = checkDegustazione();
     return check;
 }
