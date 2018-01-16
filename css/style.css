@@ -3,8 +3,13 @@
     LISTE: list-style-type: none;
 */
 
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                                /*  GENERAL  */
+
+
+/*  GENERAL  */
+
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 * {
@@ -14,7 +19,7 @@
 
 html,
 body {
-    font-family: 'Lato',Verdana, Arial, Helvetica sans-serif;
+    font-family: 'Lato', Verdana, Arial, Helvetica sans-serif;
     max-width: 100%;
     height: 100%;
     margin: auto;
@@ -22,10 +27,14 @@ body {
     letter-spacing: 0.025em;
 }
 
+textarea {
+    resize: none;
+}
+
 .inv_search_button {
     padding: 0.4em;
     border-radius: 0.4em;
-    font-family: 'Lato',Verdana, Arial, Helvetica sans-serif;
+    font-family: 'Lato', Verdana, Arial, Helvetica sans-serif;
     color: #5F021F;
     font-size: 0.8em;
     letter-spacing: 0.03em;
@@ -44,7 +53,7 @@ body {
 .search_button {
     padding: 0.4em;
     border-radius: 0.4em;
-    font-family: 'Lato',Verdana, Arial, Helvetica sans-serif;
+    font-family: 'Lato', Verdana, Arial, Helvetica sans-serif;
     color: #fff;
     font-size: 0.8em;
     letter-spacing: 0.03em;
@@ -76,30 +85,35 @@ body {
     height: 16em;
 }
 
-.specific_wine label{
+.specific_wine label {
     text-transform: uppercase;
     margin-right: 0.3em;
     font-weight: 600;
     font-size: 0.9em;
 }
 
-#search, #search_admin {
+#search,
+#search_admin {
     height: 2em;
     border-radius: 0.25em;
     border: none;
-    box-shadow: 0 0.1em 0.5em 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+    box-shadow: 0 0.1em 0.5em 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     padding-left: 0.7em;
 }
 
+
 /* HEADER & FOOTER */
 
-#header,#footer {
-    background-color: #5F021F;  
+#header,
+#footer {
+    background-color: #5F021F;
     height: 4em;
     font-weight: 300;
 }
 
-#header a, #footer a,#horizontal_menu a{
+#header a,
+#footer a,
+#horizontal_menu a {
     color: rgba(226, 211, 201, 0.71);
     text-decoration: none;
     letter-spacing: 0.04em;
@@ -115,15 +129,24 @@ body {
     margin-top: 0.2em;
 }
 
-#header li a:hover,#footer li a:hover, #horizontal_menu a:hover {
+#header li a:hover,
+#footer li a:hover,
+#horizontal_menu a:hover {
     margin: 0em !important;
     color: #fff;
     transition: 0.2s;
 }
 
+
 /* TITOLI */
 
-#title_best_annate h1, #title_our_wines h1, #history_description h1, #container_wine h1, #register_fieldset h1, #presentation_events h1, #howto_contacts h1 {
+#title_best_annate h1,
+#title_our_wines h1,
+#history_description h1,
+#container_wine h1,
+#register_fieldset h1,
+#presentation_events h1,
+#howto_contacts h1 {
     padding-top: 1em;
     text-align: center;
     font-size: 2em;
@@ -131,7 +154,13 @@ body {
     letter-spacing: 0.04em;
 }
 
-#title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after,  #container_wine h1:after, #register_fieldset h1:after, #presentation_events h1:after, #howto_contacts h1:after {
+#title_best_annate h1:after,
+#title_our_wines h1:after,
+#history_description h1:after,
+#container_wine h1:after,
+#register_fieldset h1:after,
+#presentation_events h1:after,
+#howto_contacts h1:after {
     display: block;
     height: 0.03em;
     background-color: #000;
@@ -141,6 +170,7 @@ body {
     margin-top: 0.5em;
     margin-bottom: 0.8em;
 }
+
 
 /* PANNELLO ADMIN */
 
@@ -178,17 +208,21 @@ body {
     font-size: 1.2em;
 }
 
+
 /* classi che utilizzerà JAVASCRIPT */
- 
-.hide{
+
+.hide {
     display: none;
 }
 
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                                  /*  HEADER  */
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+/*  HEADER  */
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 #header {
     box-shadow: 0 0.15em 0.7em rgba(41, 51, 57, .5);
@@ -199,29 +233,34 @@ body {
     margin: 1em 2em 1em 0em;
 }
 
-#logo, #logo_alt, #logo_alt_mobile {
+#logo,
+#logo_alt,
+#logo_alt_mobile {
     margin: 0.4em 0em 0em 1.4em;
     height: 80%;
     text-decoration: none;
 }
 
-#logo_alt, #logo_alt_mobile {
+#logo_alt,
+#logo_alt_mobile {
     display: none;
 }
 
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                                  /*  FOOTER  */
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-#footer { 
+/*  FOOTER  */
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+#footer {
     box-shadow: 0em -0.15em 0.7em rgba(41, 51, 57, .5);
     width: 100%;
     position: relative;
     margin: 0em;
-    
     clear: both;
-    
 }
 
 #footer ul {
@@ -240,11 +279,20 @@ body {
     color: #fff;
 }
 
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                                   /*  INDEX  */
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-#header, #presentation,#wine_preview,#history_preview, #footer{
+
+/*  INDEX  */
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+#header,
+#presentation,
+#wine_preview,
+#history_preview,
+#footer {
     display: block;
 }
 
@@ -252,7 +300,7 @@ body {
 /* PRESENTATION */
 
 #presentation {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)),url("../img/background_index.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)), url("../img/background_index.png");
     background-position: center;
     background-repeat: no-repeat;
     height: 27em;
@@ -261,14 +309,14 @@ body {
     box-shadow: 0em -0.15em 2em rgba(41, 51, 57, .5);
 }
 
-
-#presentation h1,#presentation p {
+#presentation h1,
+#presentation p {
     text-align: left;
     color: #fff;
 }
 
 #presentation h1 {
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
     font-size: 3.5em;
     font-weight: 100;
     text-align: center;
@@ -294,12 +342,12 @@ body {
 }
 
 #short_description h2 {
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
     font-size: 3em;
     color: #5F021F;
 }
 
-#short_description h2:after{
+#short_description h2:after {
     display: block;
     height: 0.03em;
     background-color: #000;
@@ -309,7 +357,8 @@ body {
     margin-top: 0.2em;
 }
 
-#short_description h2, #short_description p {
+#short_description h2,
+#short_description p {
     text-align: center;
 }
 
@@ -320,6 +369,7 @@ body {
     margin-left: 16%;
     margin-bottom: 4em;
 }
+
 
 /* WINE PREVIEW */
 
@@ -335,29 +385,29 @@ body {
     padding-top: 10%;
     padding-bottom: 10%;
     -webkit-transform: scale(1.00);
-	-ms-transform: scale(1.00);
-	transform: scale(1.00);
+    -ms-transform: scale(1.00);
+    transform: scale(1.00);
 }
 
 #wine_preview img:hover {
-     -webkit-transform: scale(1.20);
-	-ms-transform: scale(1.20);
-	transform: scale(1.20);
+    -webkit-transform: scale(1.20);
+    -ms-transform: scale(1.20);
+    transform: scale(1.20);
     transition: transform 0.5s;
 }
 
-#wine_preview .preview_wine:first-child{
+#wine_preview .preview_wine:first-child {
     background-color: rgba(227, 206, 191, 0.87);
     margin-left: 1.5%;
     margin-right: 0.3%;
 }
 
-#wine_preview .preview_wine:nth-child(2){
+#wine_preview .preview_wine:nth-child(2) {
     background-color: rgba(235, 220, 209, 0.83);
     margin-right: 0.3%;
 }
 
-#wine_preview .preview_wine:last-child{
+#wine_preview .preview_wine:last-child {
     background-color: rgba(242, 233, 227, 0.71);
 }
 
@@ -379,13 +429,16 @@ body {
     border-bottom: 0.5em solid #5F021F;
 }
 
-.preview_wine_description h3, .preview_wine_description h4, .preview_wine_description h5 {
+.preview_wine_description h3,
+.preview_wine_description h4,
+.preview_wine_description h5 {
     margin-bottom: 0.3em;
     padding-bottom: 0.1em;
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
     font-size: 2.2em;
     color: #5F021F;
 }
+
 
 /*
 .preview_wine_description h3:after, .preview_wine_description h4:after, .preview_wine_description h5:after {
@@ -403,12 +456,12 @@ body {
 
 #tasting h6 {
     margin-top: 1em;
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
     font-size: 3em;
     color: #5F021F;
 }
 
-#tasting h6:after{
+#tasting h6:after {
     display: block;
     height: 0.03em;
     background-color: #000;
@@ -418,7 +471,8 @@ body {
     margin-top: 0.3em;
 }
 
-#tasting h6, #tasting p {
+#tasting h6,
+#tasting p {
     text-align: center;
 }
 
@@ -453,11 +507,11 @@ body {
 
 #history_preview h7 {
     color: #fff;
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
     font-size: 2.8em;
 }
 
-#history_preview p{
+#history_preview p {
     color: #fff;
     margin-top: 2em;
     text-align: center;
@@ -465,15 +519,21 @@ body {
     font-style: italic;
 }
 
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                                    /*  VINI  */
+
+
+/*  VINI  */
+
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 /* SEARCH_WINES */
 
 #search_wines fieldset {
     border: none;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.29), rgba(255, 255, 255, 0.29)),url(../img/background_search.png);
+    background-image: linear-gradient(rgba(255, 255, 255, 0.29), rgba(255, 255, 255, 0.29)), url(../img/background_search.png);
     background-position: center;
     background-repeat: no-repeat;
     border-bottom: 0.01em solid #c9ccce;
@@ -501,13 +561,15 @@ body {
     padding: 0.2em 0.3em;
 }
 
-#order_by, #filter_by {
+#order_by,
+#filter_by {
     font-size: 1.2em;
 }
 
+
 /* WINE_RESULTS */
 
-#wine_results{
+#wine_results {
     width: 90%;
     margin-top: 2em;
     margin-left: 5%;
@@ -539,7 +601,11 @@ body {
 
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                   /*  PAGINA SPECIFICA VINO  */
+
+
+/*  PAGINA SPECIFICA VINO  */
+
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 
@@ -553,15 +619,14 @@ body {
     display: inline-block;
 }
 
-/* IMG DESCRIPTION WINE */
 
-#img_description_wine {
-}
+/* IMG DESCRIPTION WINE */
 
 #wine_img {
     margin-left: 6em;
     height: 40em;
 }
+
 
 /* DETAILS WINE */
 
@@ -585,10 +650,10 @@ body {
     color: #5F021F;
     margin-top: 1.5em;
     letter-spacing: 0.025em;
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
 }
 
-.title_details:after{
+.title_details:after {
     display: block;
     height: 0.03em;
     background-color: #5F021F;
@@ -615,8 +680,13 @@ body {
 
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                         /*  ANNATE MIGLIORI  */
+
+
+/*  ANNATE MIGLIORI  */
+
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 /* TITLE BEST ANNATE */
 
@@ -631,8 +701,9 @@ body {
     margin-bottom: 2em;
     font-size: 1.7em;
     letter-spacing: 0.025em;
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
 }
+
 
 /* LIST ANNATE */
 
@@ -652,8 +723,8 @@ body {
 #list_annate a {
     text-decoration: none;
     -webkit-transform: scale(1.00);
-	-ms-transform: scale(1.00);
-	transform: scale(1.00);
+    -ms-transform: scale(1.00);
+    transform: scale(1.00);
     color: black;
     border-bottom: 0.01em solid black;
 }
@@ -662,7 +733,7 @@ body {
     margin-top: 1.8em;
     margin-bottom: 1em;
     font-size: 2em;
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
     display: inline-block;
     margin-right: 3.5em;
     font-weight: 600;
@@ -670,8 +741,8 @@ body {
 
 #list_annate li:hover {
     -webkit-transform: scale(1.20);
-	-ms-transform: scale(1.20);
-	transform: scale(1.20);
+    -ms-transform: scale(1.20);
+    transform: scale(1.20);
     transition: transform 0.5s;
 }
 
@@ -679,6 +750,7 @@ body {
     color: #740e2e !important;
     border-bottom: 0em !important;
 }
+
 
 /* DESCRIPTION ANNATA */
 
@@ -694,7 +766,7 @@ body {
 }
 
 #description_annata label {
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
     font-size: 2em;
     color: #5F021F;
     font-weight: 600;
@@ -729,6 +801,7 @@ body {
     width: 65%;
 }
 
+
 /* LIST WINES YEAR */
 
 #list_wines_year {
@@ -761,8 +834,13 @@ body {
 
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                                  /*  EVENTI  */
+
+
+/*  EVENTI  */
+
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 /* PRESENTATION EVENTS */
 
@@ -781,31 +859,38 @@ body {
     color: #a31b46;
 }
 
+
 /* EVENT PREVIEW */
 
 #event_preview div {
     height: 20em;
 }
 
-#tasting_tour h2, #san_valenwine h4, #apperitif_gourmet h3 {
+#tasting_tour h2,
+#san_valenwine h4,
+#apperitif_gourmet h3 {
     text-align: center;
     margin-left: 35%;
     padding-top: 0.5em;
     margin-bottom: 0.3em;
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
     font-size: 2.5em;
     color: #5F021F;
     font-weight: 600;
 }
 
-#tasting_tour p, #san_valenwine p, #apperitif_gourmet p {
+#tasting_tour p,
+#san_valenwine p,
+#apperitif_gourmet p {
     margin-left: 42%;
     margin-right: 2%;
     margin-bottom: 1em;
     text-align: center;
 }
 
-#tasting_tour, #san_valenwine, #apperitif_gourmet {
+#tasting_tour,
+#san_valenwine,
+#apperitif_gourmet {
     background-repeat: no-repeat;
     background-size: cover;
     margin-left: 5%;
@@ -825,20 +910,26 @@ body {
 }
 
 #ovidio_quote {
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
     font-size: 1.4em;
 }
 
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                                  /*  STORIA  */
+
+
+/*  STORIA  */
+
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 /* HISTORY DESCRIPTION */
 
 #slideshow {
     width: 94%;
     margin-left: 3%;
-    margin-right: 3%; 
+    margin-right: 3%;
     background-image: url(../img/slideshow_1.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -852,6 +943,7 @@ body {
     margin-left: 5%;
     margin-right: 5%;
 }
+
 
 /* HISTORY FAMILY */
 
@@ -887,13 +979,14 @@ body {
     text-align: center;
     font-size: 2.3em;
     letter-spacing: 0.025em;
-    font-family: 'Dancing Script',sans-serif;
+    font-family: 'Dancing Script', sans-serif;
 }
 
 #history_family p {
     text-align: center;
     font-size: 1.1em;
 }
+
 
 /* HISTORY FUTURE */
 
@@ -914,9 +1007,15 @@ body {
     margin: 0% 5%;
 }
 
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                              /*  CONTATTACI  */
+
+
+/*  CONTATTACI  */
+
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 /* CONTENT CONTACTS EXTERNAL */
 
@@ -928,6 +1027,7 @@ body {
     width: 100%;
 }
 
+
 /* CONTENT CONTACTS */
 
 #content_contacts {
@@ -935,6 +1035,7 @@ body {
     width: 60%;
     margin-left: 20%;
 }
+
 
 /* HOW TO CONTACTS */
 
@@ -971,7 +1072,7 @@ body {
     margin-right: 1.7em;
 }
 
-#send_request{
+#send_request {
     margin-left: 20%;
     margin-bottom: 1em;
     margin-top: 1em;
@@ -982,6 +1083,7 @@ body {
     padding: 0.3em 0.5em;
     width: 61%;
 }
+
 
 /* PERSONAL CONTACTS */
 
@@ -1001,6 +1103,7 @@ body {
 #personal_contacts ul {
     text-align: center;
 }
+
 
 /* POSITION CONTACTS */
 
@@ -1024,23 +1127,34 @@ body {
     width: 90%;
 }
 
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                                  /*  LOGIN  */
+
+
+/*  LOGIN  */
+
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 /* REGISTER CONTENT */
 
+
 /* messaggio di errore */
-#register_content h2, #gonna_delete_user {
+
+#register_content h2,
+#gonna_delete_user {
     margin-top: 2em;
     text-align: center;
     font-size: 1.6em;
     color: red;
 }
 
+
 /* REGISTER FIELDSET */
 
-#register_fieldset, #panel_admin_form fieldset {
+#register_fieldset,
+#panel_admin_form fieldset {
     border: 0em;
 }
 
@@ -1077,16 +1191,23 @@ body {
     border-radius: 0.18em;
 }
 
-#login_button, #recover_submit {
+#login_button,
+#recover_submit {
     font-size: 0.8em !important;
     width: auto !important;
     border-radius: 0.4em !important;
     padding: 0.4em !important;
 }
 
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                                /*  RECOVER  */
+
+
+/*  RECOVER  */
+
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 /* RECOVER TEXT */
 
@@ -1094,9 +1215,15 @@ body {
     width: 17em !important;
 }
 
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                               /*  ERROR 404  */
+
+
+/*  ERROR 404  */
+
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 /* ERROR 404 */
 
@@ -1107,6 +1234,7 @@ body {
     height: 35.75em;
     width: 100%;
 }
+
 
 /* NOT FOUND */
 
@@ -1132,11 +1260,18 @@ body {
     color: #5F021F;
 }
 
-/*----------------------------------------------------------------------------------------------------------------------------------------*/
-                                    /*ADMIN PANEL*/
+
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+/*ADMIN PANEL*/
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+
 /**********************************************  ADMIN WINES  ****************************************************/
+
 
 /* HORIZONTAL MENU */
 
@@ -1163,6 +1298,7 @@ body {
     margin-right: 3%;
 }
 
+
 /* ADMIN SEARCH */
 
 #admin_content fieldset {
@@ -1181,6 +1317,7 @@ body {
     margin-bottom: 1em;
 }
 
+
 /* SELECT ADMIN BUTTONS */
 
 #select_admin_buttons {
@@ -1197,14 +1334,15 @@ body {
 
 #select_admin_buttons a:hover {
     -webkit-transform: scale(1.05);
-	-ms-transform: scale(1.05);
-	transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
     transition: transform 0.4s;
 }
 
 #select_admin_buttons input {
     margin-right: 1em;
 }
+
 
 /* ADMIN HEADER */
 
@@ -1220,32 +1358,37 @@ body {
     padding-left: 2%;
 }
 
+
 /* WINES RESULTS */
 
 .admin_table {
     display: table;
 }
+
 .admin_tr {
     display: table-row;
 }
 
-.admin_td{
-    display: table-cell; 
+.admin_td {
+    display: table-cell;
 }
 
 .admin_wines_checkbox_column {
     width: 8%;
 }
 
-.admin_wines_name_column, .admin_wines_denomination_column {
+.admin_wines_name_column,
+.admin_wines_denomination_column {
     width: 16%;
 }
 
-.admin_wines_tipology_column, .admin_wines_year_column {
+.admin_wines_tipology_column,
+.admin_wines_year_column {
     width: 6%;
 }
 
-.admin_wines_modify_column, .admin_wines_remove_column {
+.admin_wines_modify_column,
+.admin_wines_remove_column {
     width: 5%;
 }
 
@@ -1253,11 +1396,13 @@ body {
     margin-left: 36%;
 }
 
-.admin_wines_tipology_column, .delete_wine_tipology_column {
+.admin_wines_tipology_column,
+.delete_wine_tipology_column {
     padding-left: 1%;
 }
 
-.admin_wines_year_column, .delete_wine_year_column {
+.admin_wines_year_column,
+.delete_wine_year_column {
     padding-left: 0.6%;
 }
 
@@ -1266,25 +1411,35 @@ body {
     color: red;
 }
 
+
 /**********************************************  ADMIN YEARS  ****************************************************/
 
-.admin_years_checkbox_column, .admin_years_year_column, .admin_years_quantity_column, .admin_years_best_column, .admin_years_modify_column, .admin_years_remove_column {
+.admin_years_checkbox_column,
+.admin_years_year_column,
+.admin_years_quantity_column,
+.admin_years_best_column,
+.admin_years_modify_column,
+.admin_years_remove_column {
     width: 19%;
 }
 
-.admin_years_checkbox, .admin_users_checkbox {
+.admin_years_checkbox,
+.admin_users_checkbox {
     margin-left: 24%;
 }
 
-.admin_years_year_column, .delete_year_year_column {
+.admin_years_year_column,
+.delete_year_year_column {
     padding-left: 0.5%;
 }
 
-.admin_years_quantity_column, .delete_year_quality_column {
+.admin_years_quantity_column,
+.delete_year_quality_column {
     padding-left: 0.3%;
 }
 
-.admin_years_best_column, .delete_year_best_column {
+.admin_years_best_column,
+.delete_year_best_column {
     padding-left: 2%;
 }
 
@@ -1293,13 +1448,17 @@ body {
     color: red;
 }
 
+
 /**********************************************  ADMIN USERS  ****************************************************/
 
 .admin_users_checkbox_column {
     width: 19%;
 }
 
-.admin_users_name_column, .admin_users_username_column, .admin_users_modify_column, .admin_users_remove_column {
+.admin_users_name_column,
+.admin_users_username_column,
+.admin_users_modify_column,
+.admin_users_remove_column {
     width: 17%;
 }
 
@@ -1312,18 +1471,23 @@ body {
     color: red;
 }
 
+
 /********************************************  ADMIN PROFILE  ****************************************************/
+
 #admin_profile_page li {
     list-style-type: none;
     margin-left: 30%;
     margin-bottom: 0.1em;
 }
 
-#admin_profile_page li:first-child, #panel_admin_form_add_wine li:first-child, #panel_admin_form_add_year li:first-child {
+#admin_profile_page li:first-child,
+#panel_admin_form_add_wine li:first-child,
+#panel_admin_form_add_year li:first-child {
     margin-top: 1.5em;
 }
 
-#admin_profile_page li:last-child, #panel_admin_form_add_wine li:last-child {
+#admin_profile_page li:last-child,
+#panel_admin_form_add_wine li:last-child {
     margin-bottom: 1.5em;
 }
 
@@ -1333,12 +1497,18 @@ body {
     border: 0.01em solid black;
 }
 
-#admin_profile_page label, #panel_admin_form_add_wine label, #panel_admin_form_add_year label {
+#admin_profile_page label,
+#panel_admin_form_add_wine label,
+#panel_admin_form_add_year label {
     color: #5F021F;
     font-size: 1.1em;
 }
 
-#admin_profile_page input, #panel_admin_form_add_wine input, #panel_admin_form_add_wine select, #panel_admin_form_add_year select, #panel_admin_form_add_year input {
+#admin_profile_page input,
+#panel_admin_form_add_wine input,
+#panel_admin_form_add_wine select,
+#panel_admin_form_add_year select,
+#panel_admin_form_add_year input {
     padding: 0.2em 0.3em;
     margin-bottom: 0.8em;
     font-size: 0.9em;
@@ -1348,19 +1518,23 @@ body {
     margin-left: 47.5%;
 }
 
+
 /**********************************************  ADD WINE  ****************************************************/
 
-#panel_admin_form_add_wine fieldset, #panel_admin_form_add_year fieldset {
+#panel_admin_form_add_wine fieldset,
+#panel_admin_form_add_year fieldset {
     border: none;
 }
 
-#panel_admin_form_add_wine ul, #panel_admin_form_add_year ul {
+#panel_admin_form_add_wine ul,
+#panel_admin_form_add_year ul {
     width: 60%;
     margin-left: 20%;
     border: 0.01em solid black;
 }
 
-#panel_admin_form_add_wine li, #panel_admin_form_add_year li {
+#panel_admin_form_add_wine li,
+#panel_admin_form_add_year li {
     list-style-type: none;
     margin-right: 5em;
     margin-bottom: 0.3em;
@@ -1381,6 +1555,7 @@ body {
 #save_add_wine {
     margin-left: 35%;
 }
+
 
 /**********************************************  ADD YEAR  ****************************************************/
 
@@ -1406,8 +1581,11 @@ body {
     margin-left: 35%;
 }
 
+
 /**********************************************  ADD USERS  ****************************************************/
-#important_message_user, #important_message_year {
+
+#important_message_user,
+#important_message_year {
     text-align: center;
     font-size: 1.1em;
     font-weight: 600;
@@ -1422,12 +1600,15 @@ body {
     border: 0em;
 }
 
+
 /**********************************************  MODIFY WINE  ****************************************************/
+
 #modify_wine_img {
     height: 15em;
 }
 
-#save_modify_wine, #save_modify_users {
+#save_modify_wine,
+#save_modify_users {
     margin-left: 45%;
 }
 
@@ -1435,7 +1616,7 @@ body {
     width: 70%;
     height: 5.8em;
     padding: 0.2em 0.3em 0.3em 0.4em;
-    font-family: 'Lato',Verdana, Arial, Helvetica sans-serif;
+    font-family: 'Lato', Verdana, Arial, Helvetica sans-serif;
     font-size: 0.9em;
     margin-bottom: 1em;
 }
@@ -1445,11 +1626,13 @@ body {
     margin-bottom: 1em;
 }
 
+
 /**********************************************  MODIFY YEAR  ****************************************************/
 
 #save_modify_year {
     margin-left: 30%;
 }
+
 
 /**********************************************  DELETE WINE  ****************************************************/
 
@@ -1457,11 +1640,13 @@ body {
     width: 9%;
 }
 
-.delete_wine_tipology_column, .delete_wine_year_column {
+.delete_wine_tipology_column,
+.delete_wine_year_column {
     width: 7%;
 }
 
-.delete_wine_name_column, .delete_wine_denomination_column {
+.delete_wine_name_column,
+.delete_wine_denomination_column {
     width: 10%;
 }
 
@@ -1469,9 +1654,13 @@ body {
     margin-left: 22%;
 }
 
+
 /**********************************************  DELETE YEAR  ****************************************************/
 
-.delete_year_checkbox_column, .delete_year_year_column, .delete_year_quality_column, .delete_year_best_column {
+.delete_year_checkbox_column,
+.delete_year_year_column,
+.delete_year_quality_column,
+.delete_year_best_column {
     width: 6%;
 }
 
@@ -1479,9 +1668,13 @@ body {
     margin-left: 18%;
 }
 
+
 /**********************************************  DELETE USER  ****************************************************/
 
-.delete_user_checkbox_column, .delete_user_name_column, .delete_user_username_column, .delete_user_email_column {
+.delete_user_checkbox_column,
+.delete_user_name_column,
+.delete_user_username_column,
+.delete_user_email_column {
     width: 8%;
 }
 
@@ -1490,11 +1683,9 @@ body {
 }
 
 
-
 /************************************* JAVASCRIPT *******************************************/
 
 .js_error {
     color: red;
-    font-size: 0.7em;
+    font-size: 0.85em;
 }
-

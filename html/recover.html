@@ -35,14 +35,14 @@
     <div id="box_center">
         
         <!-- FORM BASE L'utente inserisce la sua email (che dovrà corrispondere a quella salvata nel database).-->
-        <form action="../php/recover.php" method="post">
+        <form onsubmit="return checkEmailRecoverPassword()" action="../php/recover.php" method="post">
             <fieldset id="register_fieldset">
                 <h1>Recupero Password</h1>
                 [ERRORE]
                 <ul>
                     <li><label>Inserisci la tua email per ricevere la nuova password:</label></li>
-                        
-                    <li><input id="recover_text" type="text" name="email" tabindex="1" /></li>
+                    <li><span id="mail_error" class="js_error"></span></li>
+                    <li><input id="email" type="text" name="email" onfocusout="checkEmail()" tabindex="1" /></li>
                     <li><input id="recover_submit" class="search_button" type="submit" value="Invia" tabindex="2" accesskey="i" /></li>
                 </ul>
             </fieldset>

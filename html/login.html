@@ -33,17 +33,20 @@
         <a title='Home' class='' href='../index.html' tabindex='0' accesskey='h'><img id="logo_alt_mobile" alt="Logo WineNot" src="../img/logo_alt_mobile.png" /></a>
     </div>
     <div id="register_content">
-        <form action="../php/login.php" method="post">
+        <form action="../php/login.php" onsubmit="return checkLoginForm()" method="post">
 
             <fieldset id="register_fieldset">
                 <h1>Accedi</h1>
                 [ERRORE]
                 <ul>
-                    <li><label>Username:</label>
-                        <input type="text" maxlength="100" name="username" id="username" title="username" tabindex='' accesskey='u' /></li>
-                    <li id='err_username'></li>
-                    <li><label id="password_label">Password:</label><input type="password" maxlength="100" name="password" id="password" title="password" tabindex='' accesskey='p' /></li>
-                    <li id='err_pwd'></li>
+                    <li><label>Username</label>
+                    <li><span id="username_error" class="js_error"></span></li>
+                    <li><input type="text" maxlength="100" name="username" id="username" title="username" onfocusout="checkUsername()" tabindex='' accesskey='u' /></li>
+            
+                    <li><label id="password_label">Password</label></li>
+                    <li><span id="password_error" class="js_error"></span></li>
+                    <li><input type="password" maxlength="100" name="password" id="password" title="password" onfocusout="checkPassword()" tabindex='' accesskey='p' /></li>
+
                     <li>
                         <a id="box_center_recover" href="../php/recover.php" title="Hai dimenticato la password?" tabindex='' accesskey='f'>Hai dimenticato la password?</a>
                     </li>
@@ -51,8 +54,6 @@
                         <input id="login_button" type="submit" class="search_button" name="login" value="Entra" tabindex='' accesskey='g' />
                     </li>
                 </ul>
-                <p>Ciao</p>
-
             </fieldset>
         </form>
     </div>
