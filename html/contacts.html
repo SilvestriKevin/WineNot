@@ -9,7 +9,7 @@
     <link type="text/css" rel="stylesheet" href="../css/print_WN.css" media="print" />
     <link type="text/css" rel="stylesheet" href="../css/screenreader.css" media="speech" />
     <link rel="stylesheet" type="text/css" href="../css/mobile.css" media="screen" />
-    <link href="https://fonts.googleapis.com/css?family=Lato|Dancing+Script" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Dancing+Script" rel="stylesheet" />
 
     <script type="text/javascript" src="../js/javascript.js"></script>
     <script type="text/javascript" src="../js/mappa.js"></script>
@@ -29,63 +29,90 @@
 
 <body>
     <div id="header">
-        <a title='Home' class='' href='../index.html' tabindex='1' accesskey='h'><img id="logo" alt="Logo WineNot" src="../img/logo.png"/></a>
-        <a title='Home' class='' href='../index.html' tabindex='0' accesskey='h'><img id="logo_alt" alt="Logo WineNot" src="../img/logo_alt.png" /></a>
-        <a title='Home' class='' href='../index.html' tabindex='0' accesskey='h'><img id="logo_alt_mobile" alt="Logo WineNot" src="../img/logo_alt_mobile.png" /></a>
+        <a title='Home' class='' href='../index.html' tabindex='1' accesskey='h'>
+            <img id="logo" alt="Logo WineNot" src="../img/logo.png" />
+        </a>
+        <a title='Home' class='' href='../index.html' tabindex='0' accesskey='h'>
+            <img id="logo_alt" alt="Logo WineNot" src="../img/logo_alt.png" />
+        </a>
+        <a title='Home' class='' href='../index.html' tabindex='0' accesskey='h'>
+            <img id="logo_alt_mobile" alt="Logo WineNot" src="../img/logo_alt_mobile.png" />
+        </a>
         <ul>
-            <li><a title='Vini' class='' href='../php/wines.php' tabindex='2' accesskey='v'>Vini</a></li>
-            <li><a title='Annate Migliori' class='' href="../php/best_years.php" tabindex='3'>Annate Migliori</a></li>
-            <li><a title='Eventi' class='' href='../html/events.html' tabindex='2' accesskey='v'>Eventi</a></li>
-            <li><a title='Storia' class='' href='../html/history.html' tabindex='4' accesskey='s'>Storia</a></li>
+            <li>
+                <a title='Vini' class='' href='../php/wines.php' tabindex='2' accesskey='v'>Vini</a>
+            </li>
+            <li>
+                <a title='Annate Migliori' class='' href="../php/best_years.php" tabindex='3'>Annate Migliori</a>
+            </li>
+            <li>
+                <a title='Eventi' class='' href='../html/events.html' tabindex='2' accesskey='v'>Eventi</a>
+            </li>
+            <li>
+                <a title='Storia' class='' href='../html/history.html' tabindex='4' accesskey='s'>Storia</a>
+            </li>
         </ul>
     </div>
-    
+
     <div id="content_contacts_external">
         <div id='content_contacts'>
-            [ERRORE]
-            [INFO]
-        <div id="howto_contacts">
-            <h1>Come contattarci</h1>
-            <form action="contacts.php" method="post">
-                <legend>Invia un messaggio</legend>
+            [ERRORE] [INFO]
+            <div id="howto_contacts">
+                <h1>Come contattarci</h1>
+                <form onsubmit="return checkContactForm()" action="contacts.php" method="post">
+                    <legend>Invia un messaggio</legend>
                     <ul>
                         <li>
-                            <label>La tua email: </label>
-                            <input id="email" type="text" name="email" oninput="checkEmail()" tabindex="1" />
+                            <label>La tua email </label>
                         </li>
                         <li>
-                            <label id='object_send'>Oggetto: </label>
-                            <input type="text" name="object" oninput="checkMailObject()" tabindex="2" />
-                        </li>
-
-                        <li>
-                            <label>Messaggio: </label>
+                            <span id="mail_error" class="js_error"></span>
                         </li>
                         <li>
-                            <textarea id='textarea_form_help' name="msg" oninput="checkMailMessage()" cols='40' rows='5' tabindex="3"></textarea>
+                            <input id="email" type="text" name="email" onfocusout="checkEmail()" tabindex="1" />
                         </li>
                         <li>
-                            <input id='send_request' class="search_button" type="submit" value="Invia Richiesta" tabindex="4" />
+                            <label id='object_send'>Oggetto </label>
+                        </li>
+                        <li>
+                            <span id="mail_object_error" class="js_error"></span>
+                        </li>
+                        <li>
+                            <input type="text" name="object" onfocusout="checkMailObject()" tabindex="2" />
+                        </li>
+                        <li>
+                            <label>Messaggio </label>
+                        </li>
+                        <li>
+                            <span id="mail_content_error" class="js_error"></span>
+                        </li>
+                        <li>
+                            <textarea id='textarea_form_help' name="msg" onfocusout="checkMailMessage()" cols='40' rows='5' tabindex="3"></textarea>
+                        </li>
+                        <li>
+                            <input id='send_request' class="search_button" type="submit" name="send_message" value="Invia Richiesta" tabindex="4" />
                         </li>
                     </ul>
-            </form>
-            
-        </div>
-        <div id='personal_contacts'>
-            <ul>
-                <li>Telefono: (+39) 0934/301521</li>
-                <li>Cell: (+39) 3343954755</li>
-                <li>Email: winenot@gmail.com</li>
-                <li>Fax: (+39) 0934/304511</li>
-            </ul>
-        </div>
+                </form>
 
-        <div id="position_contacts">
-            <h2>Dove siamo</h2>
-            <p><a tabindex='' href="https://www.google.it/maps/place/Stradella+dei+Pini,+25,+93100+Caltanissetta+CL/@37.4814307,14.0388199,17z/data=!3m1!4b1!4m13!1m7!3m6!1s0x1310ec3ddad9c3dd:0x79040b61f8867315!2sSP127,+93100+Caltanissetta+CL!3b1!8m2!3d37.3974346!4d13.9854762!3m4!1s0x1310c2708e68df3d:0x4cdfeb459eae1722!8m2!3d37.4814265!4d14.0410086">Stradella dei Pini, 25 - 93100 Caltanissetta CL</a></p>
-            <div id="googleMap"></div>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaUkxp5oyLvwG5UI0jY5EmMg2InF-uMUA&callback=myMap"></script>
-        </div>
+            </div>
+            <div id='personal_contacts'>
+                <ul>
+                    <li>Telefono: (+39) 0934/301521</li>
+                    <li>Cell: (+39) 3343954755</li>
+                    <li>Email: winenot@gmail.com</li>
+                    <li>Fax: (+39) 0934/304511</li>
+                </ul>
+            </div>
+
+            <div id="position_contacts">
+                <h2>Dove siamo</h2>
+                <p>
+                    <a tabindex='' href="https://www.google.it/maps/place/Stradella+dei+Pini,+25,+93100+Caltanissetta+CL/@37.4814307,14.0388199,17z/data=!3m1!4b1!4m13!1m7!3m6!1s0x1310ec3ddad9c3dd:0x79040b61f8867315!2sSP127,+93100+Caltanissetta+CL!3b1!8m2!3d37.3974346!4d13.9854762!3m4!1s0x1310c2708e68df3d:0x4cdfeb459eae1722!8m2!3d37.4814265!4d14.0410086">Stradella dei Pini, 25 - 93100 Caltanissetta CL</a>
+                </p>
+                <div id="googleMap"></div>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaUkxp5oyLvwG5UI0jY5EmMg2InF-uMUA&callback=myMap"></script>
+            </div>
         </div>
     </div>
 
@@ -93,7 +120,9 @@
     <div id='footer'>
         <ul>
             <li>Contattaci</li>
-            <li><a title='Mappa del sito' class='' href='../html/sitemap.html' tabindex='' accesskey=''>Mappa del sito</a></li>
+            <li>
+                <a title='Mappa del sito' class='' href='../html/sitemap.html' tabindex='' accesskey=''>Mappa del sito</a>
+            </li>
         </ul>
     </div>
 </body>
