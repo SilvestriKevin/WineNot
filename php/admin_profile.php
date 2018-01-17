@@ -44,7 +44,7 @@ if(!empty($_POST['nome']) && !preg_match("/^(\s)+$/",$_POST['nome']) && !empty($
             $error.="L'email inserita non rispetta il formato corretto\n";
         }  
 
-        // controllo SE anche i campi password sono settati e non vuoti
+        // controllo SE anche i campi password sono settati e non vuoti 
 
         if(!empty($_POST['actual_password']) && !empty($_POST['new_password'])) {
 
@@ -130,7 +130,8 @@ if(!empty($_POST['nome']) && !preg_match("/^(\s)+$/",$_POST['nome']) && !empty($
     }
 
 
-} else { // faccio capire all'utente che ha lasciato dei campi vuoti(esclusi password)
+} else { 
+    // faccio capire all'utente che ha lasciato dei campi vuoti(esclusi password)
     // oppure ci sono degli spazi all'interno di username e nome
 
     if(!empty($_POST['save_profile']))
