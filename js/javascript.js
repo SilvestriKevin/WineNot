@@ -300,3 +300,55 @@ function checkModifyWine() {
     check = checkDegustazione();
     return check;
 }
+
+/* Rimozione dei vini */
+
+function isAnyWineChecked() {
+    var checkBoxes = document.getElementsByTagName("input");
+    
+    var isFieldCorrect = false;
+
+    for (var i = 0; i < checkBoxes.length; i++) {
+        if(checkBoxes[i].type.toLowerCase() == "checkbox") {
+            if (checkBoxes[i].checked) {
+                isFieldCorrect = true;
+            }
+        }
+    }
+        
+    if (!isFieldCorrect) {
+        document.getElementById("check_table").innerHTML = "Nessun vino è stato selezionato";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkThemAll() {
+    var checkboxes = document.getElementsByClassName("admin_wines_checkbox");
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = true;
+    }
+}
+
+function uncheckThemAll() {
+    var checkboxes = document.getElementsByClassName("admin_wines_checkbox");
+
+    for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].checked = false;
+    }
+}
+
+
+function deleteSelected() {
+    // controllo che almeno un vino sia selezionato
+    var check = isAnyWineChecked();
+    return check;
+}
+
+function goBackWines() {
+    return true;
+}
+
+function confirmDeletion() {
+}

@@ -127,7 +127,7 @@ if(!empty($_POST['sql'])){
 $result=mysqli_query($conn,$sql);
 
 
-$dati.='<form action="admin_wines.php" method="post">';
+$dati.='<form onsubmit="return deleteSelected()" action="admin_wines.php" method="post" >';
 
 
 //se è stata salvata in precedenza la query, allora mantengo i dati della query e della ricerca (annat  a, tipologia, ordine)
@@ -143,13 +143,23 @@ if(!empty($salva_sql)){
     }
 }
 
-$dati.='<div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
-$dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
-$dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionati" />';
+$dati.='<noscript><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" 
+        id="all_selected" value="Seleziona Tutti" onclick="checkThemAll()"/>';
+$dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" 
+        value="Deseleziona Tutti" onclick="uncheckThemAll()"/>';
+$dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" 
+        value="Elimina Selezionati" />';
+$dati.="<a title='Aggiungi vino' class='' href='./add_wine.php' tabindex='' accesskey=''>Aggiungi Vino</a></div></noscript>";
 
-$dati.="<a title='Aggiungi vino' class='' href='./add_wine.php' tabindex='' accesskey=''>Aggiungi Vino</a></div>";
-
-
+$dati.='<div id="select_admin_buttons">
+<input type="button" class="admin_button" name="all_selected" 
+id="all_selected" value="Seleziona Tutti" onclick="checkThemAll()"/>
+<input type="button" class="admin_button" name="none_selected" id="none_selected" 
+value="Deseleziona Tutti" onclick="uncheckThemAll()"/>
+<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" 
+value="Elimina Selezionati" />
+<a title="Aggiungi vino" href="./add_wine.php" tabindex="" accesskey="">Aggiungi Vino</a>
+</div>';
 
 if(mysqli_num_rows($result)!=0){
     $dati.='<div class="admin_tr" id="admin_header">
