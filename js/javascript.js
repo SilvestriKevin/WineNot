@@ -305,17 +305,17 @@ function checkModifyWine() {
 
 function isAnyWineChecked() {
     var checkBoxes = document.getElementsByTagName("input");
-    
+
     var isFieldCorrect = false;
 
     for (var i = 0; i < checkBoxes.length; i++) {
-        if(checkBoxes[i].type.toLowerCase() == "checkbox") {
+        if (checkBoxes[i].type.toLowerCase() == "checkbox") {
             if (checkBoxes[i].checked) {
                 isFieldCorrect = true;
             }
         }
     }
-        
+
     if (!isFieldCorrect) {
         document.getElementById("check_table").innerHTML = "Nessun vino è stato selezionato";
     }
@@ -325,6 +325,9 @@ function isAnyWineChecked() {
 
 function checkThemAll() {
     var checkboxes = document.getElementsByClassName("admin_wines_checkbox");
+    // se faccio check su tutti i vini, allora il messaggio d'errore, che indicherà
+    // che non ci sono vini selezionati, deve scomparire
+    removeErrorMessage();  
 
     for (var i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = true;
@@ -346,9 +349,33 @@ function deleteSelected() {
     return check;
 }
 
+
+// Ho bisogno di 2 variabili globali, per capire quale bottone è statto premuto
+var isCancelPressed = false;
+var isDeletionConfirmed = false;
+
+// 'isCancelPressed' diventa true quando premo il bottone per tornare indietro
 function goBackWines() {
-    return true;
+    isCancelPressed = true;
 }
 
+// 'isDeletionConfirmed' diventa true se c'é almeno un elemento selezionato tra
+// le checkbox, false altrimenti
 function confirmDeletion() {
+    isDeletionConfirmed = deleteSelected();
+}
+
+// ritorno 'true' se o si è premuto per tornare indietro oppure se esiste almeno
+// un vino selezionato che si vuole eliminare e si ha premuto il tasto apposito.
+// In alternativa, la funzione ritorna false, ed la submit non verrà eseguita
+function finalDeletion() {
+    if (isCancelPressed || isDeletionConfirmed) return true;
+    else return false;
+}
+
+// rimuovo il messaggio che mi dice che non ci sono vini selezionati quando:
+// - ho premuto una qualsiasi checkbox, e quindi ho almeno un vino selezionato
+// - ho premuto seleziona tutti, nel menu' principale
+function removeErrorMessage() {
+    document.getElementById("check_table").innerHTML = " ";
 }

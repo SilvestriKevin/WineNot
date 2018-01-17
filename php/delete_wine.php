@@ -53,17 +53,17 @@ else if(!empty($_POST['wines']) && !empty($_POST['confirm'])){
 //in $_GET['wines'] sono contenuti tutti gli id dei vini che si vogliono eliminare
 //se è settato solo $_GET['wines'] allora mostro la richiesta di conferma per l'eliminazione
 else if(!empty($_GET['wines'])){
-    $dati.='<form onsubmit="return confirmDeletion()" id="select_admin_buttons" action="delete_wine.php" method="post">';
+    $dati.='<form onsubmit="return finalDeletion()" id="select_admin_buttons" action="delete_wine.php" method="post">';
 
     $dati.='<noscript><input type="submit" id="cancel_deletion" class="admin_button" name="cancel" id="cancel" 
      value="Annulla Eliminazione" />';
     $dati.='<input type="submit" id="confirm_deletion" class="admin_button" name="confirm" id="confirm"
      value="Conferma Eliminazione" /></noscript></div>';
 
-     $dati.='<input type="button" id="cancel_deletion" class="admin_button" name="cancel" id="cancel" 
-     value="Annulla Eliminazione" onclick="goBackWines()"/>';
+     $dati.='<input type="submit" id="cancel_deletion" class="admin_button" name="cancel" id="cancel" 
+     value="Annulla Eliminazione" onclick="goBackWines()" />';
      $dati.='<input type="submit" id="confirm_deletion" class="admin_button" name="confirm" id="confirm"
-     value="Conferma Eliminazione" onclick="deleteSelected()"/></div>';
+     value="Conferma Eliminazione" onclick="confirmDeletion()" /></div>';
 
     //controllo che nell'url abbia un array serializzato o un singolo dato
     //quindi provo a fare unserialize e se fallisce allora deduco di avere un dato unico
@@ -98,7 +98,7 @@ else if(!empty($_GET['wines'])){
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $dati.="<div class='admin_tr'>";
             $dati.="<div class ='admin_td delete_wine_checkbox_column'><input id='delete_wine_checkbox' type='checkbox' 
-            name='wines[]' value='".$row['id_wine']."' checked='checked'></div>";
+            name='wines[]' value='".$row['id_wine']."' checked='checked' onclick='removeErrorMessage()'></div>";
             $dati.="<div class ='admin_td delete_wine_name_column'>".$row['nome']."</div>";
             $dati.="<div class ='admin_td delete_wine_denomination_column'>".$row['denominazione']."</div>";
             $dati.="<div class ='admin_td delete_wine_tipology_column'>".$row['tipologia']."</div>";
