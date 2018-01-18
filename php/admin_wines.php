@@ -144,9 +144,9 @@ if(!empty($salva_sql)){
 }
 
 $dati.='<noscript><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" 
-        id="all_selected" value="Seleziona Tutti" onclick="checkThemAll()"/>';
+        id="all_selected" value="Seleziona Tutti"/>';
 $dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" 
-        value="Deseleziona Tutti" onclick="uncheckThemAll()"/>';
+        value="Deseleziona Tutti"/>';
 $dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" 
         value="Elimina Selezionati" />';
 $dati.="<a title='Aggiungi vino' class='' href='./add_wine.php' tabindex='' accesskey=''>Aggiungi Vino</a></div></noscript>";

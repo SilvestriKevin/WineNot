@@ -38,8 +38,16 @@ if(isset($_POST['delete_selected'])){
 
 $dati.='<form action="admin_years.php" method="post">';
 
-$dati.='<div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" id="all_selected" value="Seleziona Tutte" />';
+$dati.='<noscript><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" id="all_selected"
+        value="Seleziona Tutte" onclick="checkThemAll() />';
 $dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutte" />';
+$dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionate" />';
+$dati.="<a title='Aggiungi Annata' class='' href='./add_year.php' tabindex='' accesskey=''>Aggiungi Annata</a></div></noscript>";
+
+$dati.='<div id="select_admin_buttons"><input type="button" class="admin_button" name="all_selected" id="all_selected" 
+        value="Seleziona Tutte" onclick="checkThemAll()" />';
+$dati.='<input type="button" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutte" 
+        onclick="uncheckThemAll()" />';
 $dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionate" />';
 $dati.="<a title='Aggiungi Annata' class='' href='./add_year.php' tabindex='' accesskey=''>Aggiungi Annata</a></div>";
 

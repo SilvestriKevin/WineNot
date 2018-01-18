@@ -327,10 +327,18 @@ function checkThemAll() {
     var checkboxes = document.getElementsByClassName("admin_wines_checkbox");
     // se faccio check su tutti i vini, allora il messaggio d'errore, che indicherà
     // che non ci sono vini selezionati, deve scomparire
-    removeErrorMessage();  
+    var checkboxes_years = document.getElementsByClassName("admin_years_checkbox");
 
-    for (var i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].checked = true;
+    removeErrorMessage();
+
+    if (checkboxes.length > 0) {    // allora vuol dire che abbiamo siamo nella pagina dei vini
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = true;
+        }
+    } else if (checkboxes_years.length > 0) { // altrimenti siamo nella pagina delle annate
+        for (var i = 0; i < checkboxes_years.length; i++) { 
+            checkboxes_years[i].checked = true;
+        }
     }
 }
 
