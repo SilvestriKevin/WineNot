@@ -8,6 +8,9 @@ function checkEmail() {
         // document.getElementById("email").style.borderColor = "red";
         document.getElementById("mail_error").innerHTML = "Formato 'e-mail' non corretto";
         isFieldCorrect = false;
+    } else if (!email) {
+        document.getElementById("mail_error").innerHTML = "Il campo mail non può essere lasciato vuoto";
+        isFieldCorrect = false;
     } else {
         // document.getElementById("email").style.border = "1px inset";
         document.getElementById("mail_error").innerHTML = " ";
@@ -264,13 +267,38 @@ function checkInputPicture() {
 }
 
 function checkWine() {
-    return checkNome() && checkTipologia() && checkVitigno() && checkDenominazione() && checkGradazione() &&
-            checkFormato() && checkDescrizione() && checkAbbinamento() && checkDegustazione() && checkInputPicture();
+    var nome = checkNome();
+    var tipologia = checkTipologia();
+    var vitigno = checkVitigno();
+    var denominazione = checkDenominazione();
+    var gradazione = checkGradazione();
+    var formato = checkFormato();
+    var descrizione = checkDescrizione();
+    var abbinamento = checkAbbinamento();
+    var degustazione = checkDegustazione();
+    var picture = checkInputPicture();
+
+    if (nome && tipologia && vitigno && denominazione && gradazione && formato && descrizione && abbinamento && degustazione &&
+        picture) return true;
+    else return false;
+
 }
 
 function checkModifyWine() {
-    return checkNome() && checkTipologia() && checkVitigno() && checkDenominazione() && checkGradazione() &&
-            checkFormato() && checkDescrizione() && checkAbbinamento() && checkDegustazione();
+    var nome = checkNome();
+    var tipologia = checkTipologia();
+    var vitigno = checkVitigno();
+    var denominazione = checkDenominazione();
+    var gradazione = checkGradazione();
+    var formato = checkFormato();
+    var descrizione = checkDescrizione();
+    var abbinamento = checkAbbinamento();
+    var degustazione = checkDegustazione();
+
+    if (nome && tipologia && vitigno && denominazione && gradazione && formato && descrizione && abbinamento && degustazione)
+        return true;
+    else return false;
+
 }
 
 /* Rimozione dei vini */
@@ -296,38 +324,23 @@ function isAnyWineChecked() {
 }
 
 function checkThemAll() {
-    var checkboxes = document.getElementsByClassName("admin_wines_checkbox");
+    var checkboxes = document.getElementsByClassName("admin_checkboxes");
     // se faccio check su tutti i vini, allora il messaggio d'errore, che indicherà
     // che non ci sono vini selezionati, deve scomparire
-    var checkboxes_years = document.getElementsByClassName("admin_years_checkbox");
-
     removeErrorMessage();
 
-    if (checkboxes.length > 0) { // allora vuol dire che abbiamo siamo nella pagina dei vini
-        for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes.length > 0) // allora vuol dire che abbiamo siamo nella pagina dei vini
+        for (var i = 0; i < checkboxes.length; i++)
             checkboxes[i].checked = true;
-        }
-    } else if (checkboxes_years.length > 0) { // altrimenti siamo nella pagina delle annate
-        for (var i = 0; i < checkboxes_years.length; i++) {
-            checkboxes_years[i].checked = true;
-        }
-    }
+
 }
 
 function uncheckThemAll() {
-    var checkboxes = document.getElementsByClassName("admin_wines_checkbox");
+    var checkboxes = document.getElementsByClassName("admin_checkboxes");
 
-    var checkboxes_years = document.getElementsByClassName("admin_years_checkbox");
-
-    if (checkboxes.length > 0) {
-        for (var i = 0; i < checkboxes.length; i++) {
+    if (checkboxes.length > 0)
+        for (var i = 0; i < checkboxes.length; i++)
             checkboxes[i].checked = false;
-        }
-    } else if (checkboxes_years.length > 0) {
-        for (var i = 0; i < checkboxes_years.length; i++) {
-            checkboxes_years[i].checked = false;
-        }
-    }
 }
 
 
@@ -421,5 +434,74 @@ function checkYearQuality() {
 }
 
 function fullyCheckYear() {
-    return checkYear() && checkYearDescription() && checkYearQuality();
+    var year = checkYear();
+    var yeardescription = checkYearDescription();
+    var yearquality = checkYearQuality();
+
+    if (year && yeardescription && yearquality) return true;
+    else return false;
+}
+/* Users: Admin Panel*/
+
+function checkUserFirstName() {
+    var firstname = document.getElementById("firstname").value;
+    var isFieldCorrect = true;
+
+    if (!firstname) {
+        document.getElementById("firstname_error").innerHTML = "Il campo 'Nome' non può essere lasciato vuoto";
+        isFieldCorrect = false;
+    } else {
+        document.getElementById("firstname_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkPasswordConfirmation() {
+    var password = document.getElementById("password").value;
+    var password_confirmation = document.getElementById("password_confirmation").value;
+
+    var isFieldCorrect = true;
+
+    if (!password_confirmation) {
+        document.getElementById("confirm_password_error").innerHTML = "Il campo 'Conferma Password' non può essere lasciato vuoto";
+        isFieldCorrect = false;
+    } else if (password != password_confirmation) {
+        document.getElementById("confirm_password_error").innerHTML = "Le due password non coincidono";
+        isFieldCorrect = false;
+    } else {
+        document.getElementById("confirm_password_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function fullyCheckUser() {
+
+    var firstname = checkUserFirstName();
+    var username = checkUsername();
+    var email = checkEmail();
+    var password = checkPassword();
+    var confirm_password = checkPasswordConfirmation();
+
+    if (firstname && username && email && password && confirm_password) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/* Modifica Utenti */
+
+function checkModifyUser() {
+    var firstname = checkUserFirstName();
+    var username = checkUsername();
+    var email = checkEmail();
+    var password = checkPassword();
+
+    if (firstname && username && email && password) {
+        return true;
+    } else {
+        return false;
+    }
 }

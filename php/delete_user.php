@@ -53,10 +53,10 @@ else if(!empty($_POST['users']) && !empty($_POST['confirm'])){
 //in $_GET['users'] sono contenuti tutti gli id degli utenti che si vogliono eliminare
 //se è settato solo $_GET['users'] allora mostro la richiesta di conferma per l'eliminazione
 else if(!empty($_GET['users'])){
-    $dati.='<form id="select_admin_buttons" action="delete_user.php" method="post">';
+    $dati.='<form onsubmit="return finalDeletion()" id="select_admin_buttons" action="delete_user.php" method="post">';
 
-    $dati.='<input type="submit" class="admin_button" name="cancel" id="cancel" value="Annulla Eliminazione" />';
-    $dati.='<input type="submit" class="admin_button" name="confirm" id="confirm" value="Conferma Eliminazione" /></div>';
+    $dati.='<input type="submit" class="admin_button" name="cancel" id="cancel" value="Annulla Eliminazione" onclick="goBackWines()"/>';
+    $dati.='<input type="submit" class="admin_button" name="confirm" id="confirm" value="Conferma Eliminazione" onclick="confirmDeletion()"/></div>';
 
     //controllo che nell'url abbia un array serializzato o un singolo dato
     //quindi provo a fare unserialize e se fallisce allora deduco di avere un dato unico
@@ -89,7 +89,9 @@ else if(!empty($_GET['users'])){
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $dati.="<div class='admin_tr'>";
-            $dati.="<div class ='admin_td delete_user_checkbox_column'><input id='delete_user_checkbox' type='checkbox' name='users[]' value='".$row['id_user']."' checked='checked'></div>"; 
+            $dati.="<div class ='admin_td delete_user_checkbox_column'>
+            <input id='delete_user_checkbox' type='checkbox' name='users[]' value='".$row['id_user']."'
+             checked='checked' onclick='removeErrorMessage()'></div>"; 
             $dati.="<div class ='admin_td delete_user_name_column'>".$row['nome']."</div>";
             $dati.="<div class ='admin_td delete_user_username_column'>".$row['username']."</div>";
             $dati.="<div class ='admin_td delete_user_email_column'>".$row['email']."</div>";

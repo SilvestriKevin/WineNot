@@ -29,23 +29,34 @@ if(!empty($_COOKIE['error'])){
 
             $user.='<h1 id="admin_title">Inserisci un nuovo utente</h1>';
 
-            $user.='<form id="admin_profile_page" action="add_user.php" method="post">';        
+            $user.='<form onsubmit="return fullyCheckUser()" id="admin_profile_page" action="add_user.php" method="post">';        
 
             if($row['admin'] == 1) { 
 
                 $user.= '<fieldset>
                     <ul>
                     <li id="important_message_user"><span>Tutti i campi sono obbligatori</span></li>
+
                     <li><label>Nome</label></li>
-                    <li><input type="text" maxlength="50" name="nome" id="nome" title="nome" tabindex="1"/></li>
+                    <li><span id="firstname_error" class="js_error"></span>
+                    <li><input id="firstname" type="text" maxlength="50" name="nome" id="nome" title="nome" tabindex="1"
+                    onfocusout="checkUserFirstName()"/></li>
+                    
                     <li><label>Username</label></li>
-                    <li><input type="text" maxlength="50" name="username" id="username" title="username" tabindex="1"/>
-                        </li><li><label>Indirizzo email</label>
-                    </li><li><input type="text" maxlength="50" name="email" id="email" title="email" value="example@gmail.com" onfocus="placeHolder(this);" tabindex="5"/>
-                        </li><li><label>Password</label>
-                    </li><li><input type="password" maxlength="100" name="password" id="password_user" title="password" tabindex="6"/>
-                        </li><li><label>Conferma Password</label>
-                    </li><li><input type="password" maxlength="100" name="conferma_password" id="conferma_password" title="conferma_password" tabindex="7"/></li>
+                    <li><span id="username_error" class="js_error"></span>                    
+                    <li><input id="username" type="text" maxlength="50" name="username" id="username" title="username" tabindex="1"onfocusout="checkUsername()"/>
+                    
+                    </li><li><label>Indirizzo email</label>
+                    <li><span id="mail_error" id="mail_error" class="js_error"></span>                    
+                    </li><li><input id="email" type="text" maxlength="50" name="email" id="email" title="email" tabindex="5" onfocusout="checkEmail()"/>
+                    
+                    </li><li><label>Password</label>
+                    <li><span id="password_error" class="js_error"></span>                    
+                    </li><li><input id="password" type="password" maxlength="100" name="password" id="password_user" title="password" tabindex="6"onfocusout="checkPassword()"/>
+                    
+                    </li><li><label>Conferma Password</label>
+                    <li><span id="confirm_password_error" class="js_error"></span>                    
+                    </li><li><input id="password_confirmation" type="password" maxlength="100" name="conferma_password" id="conferma_password" title="conferma_password" tabindex="7"onfocusout="checkPasswordConfirmation()"/></li>
                     </ul>
                         <input type="submit" class="search_button" name="register" value="Salva" id="save_admin_profile" accesskey="s" tabindex="8"/>
 

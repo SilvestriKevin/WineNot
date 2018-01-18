@@ -42,12 +42,21 @@ if($row['admin'] == 1) {
         }
     }
 
-    $dati.='<form action="admin_users.php" method="post">'; 
+    $dati.='<form onsubmit="return deleteSelected()" action="admin_users.php" method="post">'; 
 
-    $dati.='<div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" id="all_selected" value="Seleziona Tutti" />';
+    $dati.='<noscript><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" 
+            id="all_selected" value="Seleziona Tutti" />';
     $dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
     $dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionati" />';
+    $dati.="<a title='Aggiungi utente' class='' href='./add_user.php' tabindex='' accesskey=''>Aggiungi Utente</a></div></noscript>";
+
+    $dati.='<div id="select_admin_buttons"><input type="button" class="admin_button" name="all_selected" 
+            id="all_selected" value="Seleziona Tutti" onclick="checkThemAll()"/>';
+    $dati.='<input type="button" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutti" onclick="uncheckThemAll()" />';
+    $dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionati" />';
     $dati.="<a title='Aggiungi utente' class='' href='./add_user.php' tabindex='' accesskey=''>Aggiungi Utente</a></div>";
+
+
 
     //STAMPA GLI UTENTI
     $sql = "SELECT utenti.* FROM utenti WHERE admin=0";
@@ -65,9 +74,9 @@ if($row['admin'] == 1) {
                     </div>';
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $dati.="<div class='admin_tr'>";  
-            $dati.="<div class ='admin_td admin_users_checkbox_column'><input class='admin_users_checkbox' type='checkbox' name='users[]' value='".$row['id_user'];
+            $dati.="<div class ='admin_td admin_users_checkbox_column'><input class='admin_users_checkbox admin_checkboxes' type='checkbox' name='users[]' value='".$row['id_user'];
             if(isset($_POST['all_selected'])) $dati.="' checked='checked";
-            $dati.="'></div>";          
+            $dati.="' onclick='removeErrorMessage()'></div>";          
             $dati.="<div class ='admin_td admin_users_name_column'>".$row['nome']."</div>";
             $dati.="<div class ='admin_td admin_users_username_column'>".$row['username']."</div>";
             $dati.="<div class ='admin_td admin_users_email_column'>".$row['email']."</div>";

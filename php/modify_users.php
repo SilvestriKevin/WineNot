@@ -113,7 +113,7 @@ $annata='';
 
 $user.='<h3 id="admin_title">Modifica utente</h3>';
 
-$user.='<form id="panel_admin_form" action="modify_users.php" method="post">';
+$user.='<form onsubmit="return checkModifyUser()" id="panel_admin_form" action="modify_users.php" method="post">';
 $user.='<input type="hidden" name="user" value="'.$id_user.'" />';
 
 if(mysqli_num_rows($result)!=0) {

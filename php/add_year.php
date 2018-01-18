@@ -39,7 +39,8 @@ $annata .= '<fieldset>
                         <span id="year_error" class="js_error"></span>
                     </li>
                     <li>
-                        <input id="check_year" type="text" maxlength="4" name="anno" title="anno" tabindex="1" onfocusout="checkYear()"/>
+                        <input id="check_year" type="text" maxlength="4" name="anno" title="anno" tabindex="1" 
+                        onfocusout="checkYear()"/>
                     </li>
 
                     <li>
@@ -49,7 +50,8 @@ $annata .= '<fieldset>
                         <span id="description_error" class="js_error"></span>
                     </li>
                     <li>
-                        <input id="check_description" type="textarea" maxlength="50" name="descrizione" title="descrizione" tabindex="1" onfocusout="checkYearDescription()"/>
+                        <input id="check_description" type="textarea" maxlength="50" name="descrizione"
+                         title="descrizione" tabindex="1" onfocusout="checkYearDescription()"/>
                     </li>
 
                     <li>
@@ -59,7 +61,8 @@ $annata .= '<fieldset>
                         <span id="quality_error" class="js_error"></span>
                     </li>
                     <li>
-                        <input id="check_quality" type="text" maxlength="100" name="qualita" title="qualita" tabindex="6" onfocusout="checkYearQuality()"/>
+                        <input id="check_quality" type="text" maxlength="100" name="qualita" title="qualita" tabindex="6" 
+                        onfocusout="checkYearQuality()"/>
                     </li>
 
                     <li>

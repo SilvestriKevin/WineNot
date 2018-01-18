@@ -66,7 +66,7 @@ if(mysqli_num_rows($result)!=0){
                         </div>';
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
         $dati.="<div class='admin_tr'>";
-        $dati.="<div class ='admin_td admin_years_checkbox_column'><input class='admin_years_checkbox' type='checkbox' name='years[]' value='".$row['anno'];
+        $dati.="<div class ='admin_td admin_years_checkbox_column'><input class='admin_years_checkbox admin_checkboxes' type='checkbox' name='years[]' value='".$row['anno'];
         if(isset($_POST['all_selected'])) $dati.="' checked='checked";
         $dati.="' onclick='removeErrorMessage()'></div>";
         $dati.="<div class ='admin_td admin_years_year_column'>".$row['anno']."</div>";

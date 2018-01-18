@@ -187,7 +187,7 @@ if (mysqli_num_rows($result) != 0) {
                     </div>';
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $dati .= "<div class='admin_tr'>";
-        $dati .= "<div class ='admin_td admin_wines_checkbox_column'><input class='admin_wines_checkbox'
+        $dati .= "<div class ='admin_td admin_wines_checkbox_column'><input class='admin_wines_checkbox admin_checkboxes'
         type='checkbox'name='wines[]' value='" . $row['id_wine'];
         if (isset($_POST['all_selected'])) {
             $dati .= "' checked='checked";
