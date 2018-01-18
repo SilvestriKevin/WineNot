@@ -345,8 +345,16 @@ function checkThemAll() {
 function uncheckThemAll() {
     var checkboxes = document.getElementsByClassName("admin_wines_checkbox");
 
-    for (var i = 0; i < checkboxes.length; i++) {
-        checkboxes[i].checked = false;
+    var checkboxes_years = document.getElementsByClassName("admin_years_checkbox");
+    
+    if(checkboxes.length > 0) {
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = false;
+        }   
+    } else if(checkboxes_years.length > 0) {
+        for (var i = 0; i < checkboxes_years.length; i++) {
+            checkboxes_years[i].checked = false;
+        }
     }
 }
 

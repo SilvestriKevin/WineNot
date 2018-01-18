@@ -36,7 +36,7 @@ if(isset($_POST['delete_selected'])){
     }
 }
 
-$dati.='<form action="admin_years.php" method="post">';
+$dati.='<form onsubmit="return deleteSelected()" action="admin_years.php" method="post">';
 
 $dati.='<noscript><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" id="all_selected"
         value="Seleziona Tutte" onclick="checkThemAll() />';
@@ -68,7 +68,7 @@ if(mysqli_num_rows($result)!=0){
         $dati.="<div class='admin_tr'>";
         $dati.="<div class ='admin_td admin_years_checkbox_column'><input class='admin_years_checkbox' type='checkbox' name='years[]' value='".$row['anno'];
         if(isset($_POST['all_selected'])) $dati.="' checked='checked";
-        $dati.="'></div>";
+        $dati.="' onclick='removeErrorMessage()'></div>";
         $dati.="<div class ='admin_td admin_years_year_column'>".$row['anno']."</div>";
         $dati.="<div class ='admin_td admin_years_quantity_column'>".$row['qualita']."</div>";
         $dati.="<div class ='admin_td admin_years_best_column'>";
