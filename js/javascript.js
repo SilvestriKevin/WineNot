@@ -476,12 +476,31 @@ function checkPasswordConfirmation() {
     return isFieldCorrect;
 }
 
+function checkPasswordPanel() {
+    var password_reg = /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/i;
+    var password = document.getElementById("password").value;
+
+    var isFieldCorrect = checkPassword();
+
+    if(isFieldCorrect) { // i soliti controlli sono andati a buon fine
+        if(!password_reg.test(password)) { // se fallisce il controllo del formato
+            document.getElementById("password_error").innerHTML = "La password deve essere lunga almeno 8 caratteri," +
+            "contenere almeno una lettera minuscola, almeno una maiuscola e almeno un numero";
+            isFieldCorrect = false;
+        } else {
+            isFieldCorrect = true;
+        }
+    } 
+
+    return isFieldCorrect;
+}
+
 function fullyCheckUser() {
 
     var firstname = checkUserFirstName();
     var username = checkUsername();
     var email = checkEmail();
-    var password = checkPassword();
+    var password = checkPasswordPanel();
     var confirm_password = checkPasswordConfirmation();
 
     if (firstname && username && email && password && confirm_password) {
@@ -497,7 +516,7 @@ function checkModifyUser() {
     var firstname = checkUserFirstName();
     var username = checkUsername();
     var email = checkEmail();
-    var password = checkPassword();
+    var password = checkPasswordPanel();
 
     if (firstname && username && email && password) {
         return true;

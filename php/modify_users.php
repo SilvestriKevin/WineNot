@@ -117,10 +117,11 @@ $user.='<form onsubmit="return checkModifyUser()" id="panel_admin_form" action="
 $user.='<input type="hidden" name="user" value="'.$id_user.'" />';
 
 if(mysqli_num_rows($result)!=0) {
-    $user.='<ul><li><label>Username: </label><input type="text" maxlength="100" name="username" id="" title="username" value="'.$row['username'].'"/></li>
-                    <li><label>Nome: </label><input type="text" maxlength="100" name="nome" id="" title="nome" value="'.$row['nome'].'"/></li>
-                    <li><label>Email: </label><input type="text" maxlength="100" name="email" id="" title="email" value="'.$row['email'].'"/></li>
-                    <li><label>Password: </label><input type="text" maxlength="100" name="password" id="" title="password" value=""/></li>';
+    $user.='<ul>
+        <li><label>Username</label></li><li><span id="username_error" class="js_error"></span></li><li><input id="username" type="text" maxlength="100" name="username" id="" title="username" value="'.$row['username'].'" onfocusout="checkUsername()"/></li>
+        <li><label>Nome</label></li><li><span id="firstname_error" class="js_error"></span></li><li><input id="firstname" type="text" maxlength="100" name="nome" id="" title="nome" value="'.$row['nome'].'" onfocusout="checkUserFirstName()"/></li>
+        <li><label>Email</label></li><li><span id="mail_error" class="js_error"></span></li><li><input id="email" type="text" maxlength="100" name="email" id="" title="email" value="'.$row['email'].'" onfocusout="checkEmail()"/></li>
+        <li><label>Password</label></li><li><span id="password_error" class="js_error"></span></li><li><input id="password" type="text" maxlength="100" name="password" id="" title="password" value="" onfocusout="checkPasswordPanel()"/></li>';
     $user.='<input type="submit" class="search_button" name="save_user" id="save_modify_users" value="Salva" />';
     // provo a modificare i campi dati
 } else $user.='<h2>Non ho trovato informazioni riguardo a questo utente.</h2>';
