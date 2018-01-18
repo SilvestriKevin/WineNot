@@ -83,10 +83,10 @@ else if(!empty($_POST['years']) && !empty($_POST['confirm'])){
 //in $_GET['years'] sono contenuti tutti gli id dei vini che si vogliono eliminare
 //se è settato solo $_GET['years'] allora mostro la richiesta di conferma per l'eliminazione
 else if(!empty($_GET['years'])){
-    $dati.='<form id="select_admin_buttons" action="delete_year.php" method="post">';
+    $dati.='<form onsubmit="return finalDeletion()" id="select_admin_buttons" action="delete_year.php" method="post">';
 
-    $dati.='<input type="submit" class="admin_button" name="cancel" id="cancel" value="Annulla Eliminazione" />';
-    $dati.='<input type="submit" class="admin_button" name="confirm" id="confirm" value="Conferma Eliminazione" /></div>';
+    $dati.='<input type="submit" class="admin_button" name="cancel" id="cancel" value="Annulla Eliminazione" onclick="goBackWines()"/>';
+    $dati.='<input type="submit" class="admin_button" name="confirm" id="confirm" value="Conferma Eliminazione" onclick="confirmDeletion()"/></div>';
 
     //controllo che nell'url abbia un array serializzato o un singolo dato
     //quindi provo a fare unserialize e se fallisce allora deduco di avere un dato unico
@@ -119,7 +119,7 @@ else if(!empty($_GET['years'])){
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $dati.="<div class='admin_tr'>";
-            $dati.="<div class ='admin_td delete_year_checkbox_column'><input id='delete_year_checkbox' type='checkbox' name='years[]' value='".$row['anno']."' checked='checked'></div>";
+            $dati.="<div class ='admin_td delete_year_checkbox_column'><input id='delete_year_checkbox' type='checkbox' name='years[]' value='".$row['anno']."' checked='checked' onclick='removeErrorMessage()'></div>";
             $dati.="<div class ='admin_td delete_year_year_column'>".$row['anno']."</div>";
             $dati.="<div class ='admin_td delete_year_quality_column'>".$row['qualita']."</div>";
             $dati.="<div class ='admin_td delete_year_best_column'>";

@@ -47,12 +47,7 @@ function checkMailMessage() {
 
 function checkContactForm() {
     // invoco le altre tre funzioni per controllare se c'é qualcosa che non va
-
-    var check = checkEmail();
-    check = checkMailObject();
-    check = checkMailMessage();
-    return check;
-
+    return checkEmail() && checkMailObject() && checkMailMessage();
 }
 
 /* FORM LOGIN */
@@ -90,9 +85,7 @@ function checkPassword() {
 }
 
 function checkLoginForm() {
-    var check = checkUsername();
-    check = checkPassword();
-    return check;
+    return checkUsername() && checkPassword();
 }
 
 
@@ -100,12 +93,8 @@ function checkLoginForm() {
 /* RECUPERO PASSWORD */
 
 function checkEmailRecoverPassword() {
-    var check = checkEmail();
-    return check;
+    return checkEmail();
 }
-
-
-
 
 
 /* Wines - Inserimento e Modifica Vino */
@@ -275,30 +264,13 @@ function checkInputPicture() {
 }
 
 function checkWine() {
-    var check = checkNome();
-    check = checkTipologia();
-    check = checkVitigno();
-    check = checkDenominazione();
-    check = checkGradazione();
-    check = checkFormato();
-    check = checkDescrizione();
-    check = checkAbbinamento();
-    check = checkDegustazione();
-    check = checkInputPicture();
-    return check;
+    return checkNome() && checkTipologia() && checkVitigno() && checkDenominazione() && checkGradazione() &&
+            checkFormato() && checkDescrizione() && checkAbbinamento() && checkDegustazione() && checkInputPicture();
 }
 
 function checkModifyWine() {
-    var check = checkNome();
-    check = checkTipologia();
-    check = checkVitigno();
-    check = checkDenominazione();
-    check = checkGradazione();
-    check = checkFormato();
-    check = checkDescrizione();
-    check = checkAbbinamento();
-    check = checkDegustazione();
-    return check;
+    return checkNome() && checkTipologia() && checkVitigno() && checkDenominazione() && checkGradazione() &&
+            checkFormato() && checkDescrizione() && checkAbbinamento() && checkDegustazione();
 }
 
 /* Rimozione dei vini */
@@ -317,7 +289,7 @@ function isAnyWineChecked() {
     }
 
     if (!isFieldCorrect) {
-        document.getElementById("check_table").innerHTML = "Nessun vino è stato selezionato";
+        document.getElementById("check_table").innerHTML = "Nessun elemento è stato selezionato";
     }
 
     return isFieldCorrect;
@@ -331,12 +303,12 @@ function checkThemAll() {
 
     removeErrorMessage();
 
-    if (checkboxes.length > 0) {    // allora vuol dire che abbiamo siamo nella pagina dei vini
+    if (checkboxes.length > 0) { // allora vuol dire che abbiamo siamo nella pagina dei vini
         for (var i = 0; i < checkboxes.length; i++) {
             checkboxes[i].checked = true;
         }
     } else if (checkboxes_years.length > 0) { // altrimenti siamo nella pagina delle annate
-        for (var i = 0; i < checkboxes_years.length; i++) { 
+        for (var i = 0; i < checkboxes_years.length; i++) {
             checkboxes_years[i].checked = true;
         }
     }
@@ -346,12 +318,12 @@ function uncheckThemAll() {
     var checkboxes = document.getElementsByClassName("admin_wines_checkbox");
 
     var checkboxes_years = document.getElementsByClassName("admin_years_checkbox");
-    
-    if(checkboxes.length > 0) {
+
+    if (checkboxes.length > 0) {
         for (var i = 0; i < checkboxes.length; i++) {
             checkboxes[i].checked = false;
-        }   
-    } else if(checkboxes_years.length > 0) {
+        }
+    } else if (checkboxes_years.length > 0) {
         for (var i = 0; i < checkboxes_years.length; i++) {
             checkboxes_years[i].checked = false;
         }
@@ -394,4 +366,60 @@ function finalDeletion() {
 // - ho premuto seleziona tutti, nel menu' principale
 function removeErrorMessage() {
     document.getElementById("check_table").innerHTML = " ";
+}
+
+/* GESTIONE ANNATE - ADMIN PANEL */
+
+function checkYear() {
+    var year = document.getElementById("check_year").value;
+    var isFieldCorrect = true;
+    var currentYear = (new Date()).getFullYear();
+
+    if (!year) {
+        //document.getElementById("username").style.borderColor = "red";
+        document.getElementById("year_error").innerHTML = "Il campo 'Anno' non può essere vuoto";
+        isFieldCorrect = false;
+    } else if (year.length < 4) {
+        document.getElementById("year_error").innerHTML = "Formato sbagliato. Es: '2014'";
+        isFieldCorrect = false;
+    } else if (year > currentYear) {
+        document.getElementById("year_error").innerHTML = "Il campo 'Anno' non può essere maggiore dell'anno corrente: " + currentYear;
+        isFieldCorrect = false;
+    } else {
+        // document.getElementById("username").style.border = "1px inset";
+        document.getElementById("year_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkYearDescription() {
+    var description = document.getElementById("check_description").value;
+    var isFieldCorrect = true;
+
+    if (!description) {
+        document.getElementById("description_error").innerHTML = "Il campo 'Descrizione' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        document.getElementById("description_error").innerHTML = " ";
+    }
+
+    return isFieldCorrect;
+}
+
+function checkYearQuality() {
+    var quality = document.getElementById("check_quality").value;
+    var isFieldCorrect = true;
+
+    if (!quality) {
+        document.getElementById("quality_error").innerHTML = "Il campo 'Qualità' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        document.getElementById("quality_error").innerHTML = " ";
+    }
+    return isFieldCorrect;
+}
+
+function fullyCheckYear() {
+    return checkYear() && checkYearDescription() && checkYearQuality();
 }

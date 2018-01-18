@@ -79,18 +79,21 @@ $annata='';
 
 $annata.='<h3 id="admin_title">Modifica annata</h3>';
 
-$annata.='<form id="panel_admin_form" action="modify_year.php" method="post">';
+$annata.='<form onsubmit="return fullyCheckYear()" id="panel_admin_form" action="modify_year.php" method="post">';
 
 $annata.='<input type="hidden" name="save_year" value="'.$year.'" />';
 
 if(mysqli_num_rows($result)!=0) {
-    $annata.='<ul>';
-
-    $annata.='<li><label>Anno: </label><input type="text" maxlength="4" name="anno" title="anno" value="'.$row['anno'].' "/></li>';
-    $annata.='<li><label>Descrizione: </label></li><li><textarea  rows="5" cols="50" name="descrizione" title="descrizione">'.$row['descrizione'].'</textarea></li> ';
-    $annata.='<li><label>Qualit&agrave;: </label><input type="text" maxlength="30" name="qualita" title="qualita" value="'.$row['qualita'].'"/></li>';
-
-    $annata.='<li><label>Migliore: </label><input type="checkbox" maxlength="30" name="migliore" title="migliore"';
+    $annata.='<li><label>Anno</label></li><li><span id="year_error" class="js_error"></span></li>
+    <li><input id="check_year" type="text" maxlength="4" name="anno" title="anno" value="'.$row['anno'].' " 
+    onfocusout="checkYear()"/></li>';
+    $annata.='<li><label>Descrizione</label></li><li><span id="description_error" class="js_error"></span></li>
+    <li><textarea id="check_description" rows="5" cols="50" name="descrizione" title="descrizione" 
+    onfocusout="checkYearDescription()">'.$row['descrizione'].'</textarea></li> ';
+    $annata.='<li><label>Qualit&agrave;</label></li><li><span id="quality_error" class="js_error"></span></li>
+    <li><input id="check_quality" type="text" maxlength="30" name="qualita" title="qualita" 
+    value="'.$row['qualita'].'" onfocusout="checkYearQuality()"/></li>';
+    $annata.='<li><label>Migliore  </label><input type="checkbox" maxlength="30" name="migliore" title="migliore"';
 
     if($row['migliore'] == 1)
         $annata.='checked="checked" /></li>';
