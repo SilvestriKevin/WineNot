@@ -8,6 +8,7 @@ include_once("../include/config.php");
 //inclusione file per funzioni ausiliarie
 include_once("../include/lib.php");
 
+//dichiarazione variabili
 $vini='';
 $annata='';
 $tipologia='';
@@ -16,6 +17,7 @@ $improved_search='';
 $text_searched='';
 $lista='';
 
+//stampo i messaggi informativi e/o di errore
 if(!empty($_COOKIE['error'])){
     $lista.="<h1 id='error_message'>".$_COOKIE['error']."</h1><br></br>";
     setcookie('error',null);

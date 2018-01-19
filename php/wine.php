@@ -8,6 +8,7 @@ include_once("../include/config.php");
 //inclusione file per funzioni ausiliarie
 include_once("../include/lib.php");
 
+//dichiarazione variabili
 $immagine='';
 $descrizione='';
 $informazioni='';
@@ -20,6 +21,7 @@ if(isset($_COOKIE['indietro'])){
 }
 //se ricado in questo caso significa che l'utente ha scritto direttamente l'url della pagina del vino specifico
 //es.http://localhost/WineNot/php/wine.php?id_wine=3 senza passare per la pagina dei vini o delle annate
+//allora imposto l'href verso la pagina iniziale
 else $indietro='../index.html';
 
 if(!empty($_GET['id_wine'])){

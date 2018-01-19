@@ -57,7 +57,7 @@ else if(!empty($_POST['years']) && !empty($_POST['confirm'])){
         if ($result) {
             $message = "Eliminazione avvenuta con successo. ";
             if($num_elem == 1) $message .= "Eliminato 1 annata.";
-            else $message .= "Eliminati ".$num_elem." annate.";
+            else $message .= "Eliminate ".$num_elem." annate.";
             setcookie('info',$message);
         }
         else setcookie('error',"Si è verificato un errore. La preghiamo di riprovare");
