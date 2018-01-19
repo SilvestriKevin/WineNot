@@ -44,13 +44,13 @@ if($row['admin'] == 1) {
 
     $dati.='<form onload="start()" onsubmit="return deleteSelected()" action="admin_users.php" method="post">'; 
 
-    $dati.='<noscript><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" 
+    $dati.='<div class="hide_content"><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" 
             id="all_selected" value="Seleziona Tutti" />';
     $dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
     $dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionati" />';
-    $dati.="<a title='Aggiungi utente' class='' href='./add_user.php' tabindex='' accesskey=''>Aggiungi Utente</a></div></noscript>";
+    $dati.="<a title='Aggiungi utente' class='' href='./add_user.php' tabindex='' accesskey=''>Aggiungi Utente</a></div></div>";
 
-    $dati.='<div id="select_admin_buttons"><input type="button" class="admin_button" name="all_selected" 
+    $dati.='<div id="select_admin_buttons" class="hide_js"><input type="button" class="admin_button" name="all_selected" 
             id="all_selected" value="Seleziona Tutti" onclick="checkThemAll()"/>';
     $dati.='<input type="button" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutti" onclick="uncheckThemAll()" />';
     $dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionati" />';

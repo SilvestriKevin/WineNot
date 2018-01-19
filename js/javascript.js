@@ -2,16 +2,18 @@
 
 
 function start() {
-    // prima dovrei cercare se esiste nella pagina "hide_js" e poi mostrarlo
-    var php_content = document.getElementsByClassName("hide_content")[0].value;
-    //if(php_content)
-        document.getElementsByClassName("hide_content")[0].style.display = "none";
     
-    alert("culo");
-
-    var js_content = document.getElementsByClassName("hide_js")[0].value;
-    //if(js_content)
-        document.getElementsByClassName("hide_js")[0].style.display = "block";
+    // controlli necessari per far sì che tutto funzioni con e senza javascript
+    var php_content = document.getElementsByClassName("hide_content");
+    var element = php_content[0];
+    if(element){
+        element.style.display = "none";
+    }
+    
+    var js_content = document.getElementsByClassName("hide_js");
+    var element = js_content[0];    
+    if(element)
+        element.style.display = "block";
 }
 
 function checkEmail() {
