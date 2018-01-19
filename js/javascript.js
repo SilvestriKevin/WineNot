@@ -1,5 +1,17 @@
 /* FORM CONTACTS */
 
+
+function start() {
+    // prima dovrei cercare se esiste nella pagina "hide_js" e poi mostrarlo
+    var php_content = document.getElementsByClassName("hide_content")[0].value;
+    if(php_content)
+        document.getElementsByClassName("hide_content")[0].style.display = "none";
+    
+    var js_content = document.getElementsByClassName("hide_js")[0].value;
+    if(js_content)
+        document.getElementsByClassName("hide_js")[0].style.display = "block";
+}
+
 function checkEmail() {
     var email = document.getElementById("email").value;
     var email_reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i;
@@ -482,15 +494,15 @@ function checkPasswordPanel() {
 
     var isFieldCorrect = checkPassword();
 
-    if(isFieldCorrect) { // i soliti controlli sono andati a buon fine
-        if(!password_reg.test(password)) { // se fallisce il controllo del formato
+    if (isFieldCorrect) { // i soliti controlli sono andati a buon fine
+        if (!password_reg.test(password)) { // se fallisce il controllo del formato
             document.getElementById("password_error").innerHTML = "La password deve essere lunga almeno 8 caratteri," +
-            "contenere almeno una lettera minuscola, almeno una maiuscola e almeno un numero";
+                "contenere almeno una lettera minuscola, almeno una maiuscola e almeno un numero";
             isFieldCorrect = false;
         } else {
             isFieldCorrect = true;
         }
-    } 
+    }
 
     return isFieldCorrect;
 }

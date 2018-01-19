@@ -1689,3 +1689,7 @@ textarea {
     color: red;
     font-size: 0.85em;
 }
+
+.hide_js {
+    display: none;
+}

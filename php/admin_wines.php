@@ -142,7 +142,8 @@ if (!empty($_POST['sql'])) {
 
 $result = mysqli_query($conn, $sql);
 
-$dati .= '<form onsubmit="return deleteSelected()" action="admin_wines.php" method="post" >';
+//$dati .= '<div class="hide_content"><form action="admin_wines.php" method="post"></div>';
+$dati .= '<form onsubmit="return deleteSelected()" action="admin_wines.php" method="post">';
 
 //se è stata salvata in precedenza la query, allora mantengo i dati della query e della ricerca (annat  a, tipologia, ordine)
 if (!empty($salva_sql)) {
@@ -157,15 +158,16 @@ if (!empty($salva_sql)) {
     }
 }
 
-$dati .= '<noscript><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected"
+$dati .= '<div class="hide_content"><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected"
         id="all_selected" value="Seleziona Tutti"/>';
 $dati .= '<input type="submit" class="admin_button" name="none_selected" id="none_selected"
         value="Deseleziona Tutti"/>';
 $dati .= '<input type="submit" class="admin_button" name="delete_selected" id="delete_selected"
         value="Elimina Selezionati" />';
-$dati .= "<a title='Aggiungi vino' class='' href='./add_wine.php' tabindex='' accesskey=''>Aggiungi Vino</a></div></noscript>";
+$dati .= "<a title='Aggiungi vino' class='' href='./add_wine.php' tabindex='' accesskey=''>Aggiungi Vino</a></div></div>";
 
-$dati .= '<div id="select_admin_buttons">
+
+$dati .= '<div id="select_admin_buttons" class="hide_js">
 <input type="button" class="admin_button" name="all_selected"
 id="all_selected" value="Seleziona Tutti" onclick="checkThemAll()"/>
 <input type="button" class="admin_button" name="none_selected" id="none_selected"
@@ -184,7 +186,7 @@ if (mysqli_num_rows($result) != 0) {
                             <div class="admin_td">Annata</div>
                             <div class="admin_td modify_column">Modifica</div>
                             <div class="admin_td remove_column">Elimina</div>
-                    </div>';
+                </div>';
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $dati .= "<div class='admin_tr'>";
         $dati .= "<div class ='admin_td admin_wines_checkbox_column'><input class='admin_wines_checkbox admin_checkboxes'
