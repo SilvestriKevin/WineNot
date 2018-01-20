@@ -42,7 +42,7 @@ if($row['admin'] == 1) {
         }
     }
 
-    $dati.='<form onload="start()" onsubmit="return deleteSelected()" action="admin_users.php" method="post">'; 
+    $dati.='<form onsubmit="return deleteSelected()" action="admin_users.php" method="post">'; 
 
     $dati.='<div class="hide_content"><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" 
             id="all_selected" value="Seleziona Tutti" />';

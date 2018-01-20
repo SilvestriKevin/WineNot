@@ -2,17 +2,17 @@
 
 
 function start() {
-    
+
     // controlli necessari per far sì che tutto funzioni con e senza javascript
     var php_content = document.getElementsByClassName("hide_content");
     var element = php_content[0];
-    if(element){
+    if (element) {
         element.style.display = "none";
     }
-    
+
     var js_content = document.getElementsByClassName("hide_js");
-    var element = js_content[0];    
-    if(element)
+    var element = js_content[0];
+    if (element)
         element.style.display = "block";
 }
 
@@ -496,6 +496,8 @@ function checkPasswordPanel() {
     var password_reg = /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/i;
     var password = document.getElementById("password").value;
 
+    var new_password = document.getElementById("new_password");
+
     var isFieldCorrect = checkPassword();
 
     if (isFieldCorrect) { // i soliti controlli sono andati a buon fine
@@ -539,4 +541,63 @@ function checkModifyUser() {
     } else {
         return false;
     }
+}
+
+/* Modifica Profilo */
+
+function checkNewPassword() {
+    // controllo il solito formato e che NON siano uguali
+    var password_reg = /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/i;
+    var new_password = document.getElementById("new_password").value;
+    var password = document.getElementById("password").value;
+
+    var isFieldCorrect = true;
+
+    if (!new_password) {
+        //document.getElementById("password").style.borderColor = "red";
+        document.getElementById("new_password_error").innerHTML = "Il campo 'Nuova Password' non può essere vuoto";
+        isFieldCorrect = false;
+    } else {
+        // document.getElementById("password").style.border = "1px inset";
+        document.getElementById("new_password_error").innerHTML = " ";
+
+        if (!password_reg.test(new_password)) { // se fallisce il controllo del formato
+            document.getElementById("new_password_error").innerHTML = "La password deve essere lunga almeno 8 caratteri," +
+                "contenere almeno una lettera minuscola, almeno una maiuscola e almeno un numero";
+            isFieldCorrect = false;
+        } else if (password == new_password) {
+            document.getElementById("new_password_error").innerHTML = "La nuova password non può essere uguale a quella precedente";
+            isFieldCorrect = false;
+        } else {
+            isFieldCorrect = true;
+        }
+
+    }
+
+    return isFieldCorrect;
+
+}
+
+function checkModifyProfile() {
+    var firstname = checkUserFirstName();
+    var username = checkUsername();
+    var email = checkEmail();
+    var password = document.getElementById("password").value;
+    var new_password =  document.getElementById("new_password").value;
+    // se uno dei due campi password risulta inserito, allora devo fare il controllo password
+    
+    if (password || new_password ) {
+        var password = checkPasswordPanel();
+        var new_password = checkNewPassword();
+
+        if (firstname && username && email && password && new_password)
+            return true;
+        else return false;
+    }
+
+    if (firstname && username && email)
+        return true;
+    else
+        return false;
+
 }
