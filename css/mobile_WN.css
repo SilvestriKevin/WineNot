@@ -43,11 +43,11 @@
         margin-bottom: 0em;
     }
     
-    #title_best_annate h1, #title_our_wines h1, #history_description h1, #register_fieldset h1, #presentation_events h1, #container_wine h1, #howto_contacts h1 {
+    #title_best_annate h1, #title_our_wines h1, #history_description h1, #register_fieldset h1, #register_fieldset_recover h1, #presentation_events h1, #container_wine h1, #howto_contacts h1 {
     font-size: 1.6em;
     }
     
-    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after, #register_fieldset h1:after, #presentation_events h1:after, #howto_contacts h1:after {
+    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after, #register_fieldset h1:after, #register_fieldset_recover h1:after, #presentation_events h1:after, #howto_contacts h1:after {
     width: 90%;
     }
     
@@ -171,10 +171,14 @@
     }
     
 /*----------------------  VINI  -------------------------*/   
+    #external_search_div {
+        margin-top: 0.8em;
+    }
     
     #search_wines ul {
         margin-top: 0em;
         margin-bottom: 1em;
+        text-align: center;
     }
     
     #search_wines li {
@@ -182,32 +186,27 @@
         width: 100%;
     }
     
-    #search {
-        height: 1.5em;
-        width: 65%;
-        margin-left: 17%;
-        margin-bottom: 1em;
-        padding-left: 0.4em;
-    }
-    
     #filter_by, #order_by {
         padding-top: 0.6em;
         padding-bottom: 0.3em;
-        font-size: 1em;
-        font-weight: 600;
+        padding-left: 0em;
     }
     
     #search_wines select {
-        width: 50%;
+        width: 10em;
         padding: 0.1em 0.2em;
-        font-size: 0.8em;
     }
     
-    #filter_order, #search_line {
-        text-align: center;
+    #search {
+        height: 1.5em;
+        width: 12em;
+        margin-left: 4%;
+        margin-top: 1em;
+        margin-bottom: 1.5em;
+        padding-left: 0.4em;
     }
     
-    .search_button {
+    #go_button {
         font-size: 0.7em;
     }
     
@@ -441,7 +440,6 @@
     
 /*---------------------  CONTATTACI  -----------------------*/    
     #content_contacts_external {
-        
         background-size: cover;
     }
     
@@ -456,39 +454,29 @@
         margin-left: 10%;
         margin-right: 10%;
     }
+    #howto_contacts legend {
+        font-size: 1.1em;
+        padding-top: 0em;
+    }
     
     #howto_contacts ul {
         width: 100%;
         margin-left: 0em;
     }
     
-    #howto_contacts legend {
-        font-size: 1em;
-        margin-bottom: 0.5em;
-        text-align: center;
-    }
-    
     #howto_contacts li {
-        margin-left: 6%;
-        padding-left: 0em;
-        font-size: 0.8em;
+        padding-left: 20%;
+        padding-right: 10%;
+        font-size: 0.9em;
     }
     
-    #howto_contacts input {
+    #howto_contacts input, #textarea_form_help {
         padding: 0em;
-        padding-left: 0.2em;
-        margin-right: 6%;
-        width: 92%;
-    }
-    
-    #textarea_form_help {
-        width: 92%;
-        margin-top: 0em;
-        padding: 0.1em 0.2em;
+        padding-left: 0.3em;
+        width: 85%;
     }
     
     #send_request {
-        text-align: center;
         padding: 0.2em 0.3em !important;
         font-size: 0.9em !important;
         width: 10em !important;
@@ -496,7 +484,7 @@
     
     #personal_contacts {
         padding: 0.6em 0em;
-        margin-top: 1em;
+        margin-top: 2em;
         margin-bottom: 1.5em;
     }
     
@@ -556,12 +544,20 @@
     }
     
     #register_fieldset li {
-        margin-left: 5%;
-        margin-right: 5%;
+        margin-left: 23%;
+    }
+    
+    #register_fieldset input {
+        width: 10em;
     }
     
     #register_fieldset a {
         font-size: 1em;
+    }
+    
+    #register_fieldset_recover ul {
+        margin-left: 10%;
+        width: 60%;
     }
     
 /*----------------------  ADMIN WINES  ---------------------*/    
@@ -634,7 +630,12 @@
     }
     
     #admin_profile_page input, #panel_admin_form_add_year input, #panel_admin_form_add_year select, #panel_admin_form_add_wine input, #panel_admin_form_add_wine select {
-    margin-bottom: 0.7em;
+        margin-bottom: 0.7em;
+        width: 12em;
+    }
+    
+    #required_fields_profile {
+        margin-left: 5%;
     }
     
     #save_admin_profile {
@@ -648,14 +649,11 @@
         text-align: center;
     }
     
-    #panel_admin_form_add_year li {
-    margin-left: 10%;
-    }
     
-/*---------------------  MODIFY YEAR  --------------------*/   
-    #panel_admin_form textarea {
-        width: 12em;
-    }
+/*-----------------  MODIFY YEAR & WINE  --------------------*/   
+    #panel_admin_form li {
+    margin-right: 30%;
+}
     
 }
 
@@ -703,11 +701,11 @@
         margin-bottom: 0em;
     }
     
-    #title_best_annate h1, #title_our_wines h1, #history_description h1, #container_wine h1, #register_fieldset h1, #presentation_events h1, #howto_contacts h1 {
+    #title_best_annate h1, #title_our_wines h1, #history_description h1, #container_wine h1, #register_fieldset h1, #register_fieldset_recover h1, #presentation_events h1, #howto_contacts h1 {
     font-size: 1.7em;
     }
     
-    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after,  #container_wine h1:after, #register_fieldset h1:after, #presentation_events h1:after, #howto_contacts h1:after {
+    #title_best_annate h1:after, #title_our_wines h1:after, #history_description h1:after,  #container_wine h1:after, #register_fieldset h1:after, #register_fieldset_recover:after h1, #presentation_events h1:after, #howto_contacts h1:after {
     width: 90%;
     }
     
@@ -836,24 +834,43 @@
     
 /*----------------------  VINI  -------------------------*/ 
     
-    #filter_by, #order_by {
-        padding-top: 0.6em;
-        margin-left: 6%;
+    #external_search_div {
+        margin-top: 0.8em;
     }
     
-    #search_wines select {
-        margin-right: 0.5em;
-    }
-    
-    #search_line {
+    #search_wines ul {
+        margin-top: 0em;
+        margin-bottom: 1em;
         text-align: center;
     }
     
+    #search_wines li {
+        margin: 0em;
+        width: 100%;
+    }
+    
+    #filter_by, #order_by {
+        padding-top: 0.6em;
+        padding-bottom: 0.3em;
+        padding-left: 0em;
+    }
+    
+    #search_wines select {
+        width: 10em;
+        padding: 0.1em 0.2em;
+    }
+    
     #search {
-        width: 20em;
-        margin-left: 6%;
-        margin-bottom: 0.4em;
-        padding-left: 0.6em;
+        height: 1.5em;
+        width: 12em;
+        margin-left: 3%;
+        margin-top: 1em;
+        margin-bottom: 1.5em;
+        padding-left: 0.4em;
+    }
+    
+    #go_button {
+        font-size: 0.75em;
     }
     
     #wine_results {
@@ -1069,10 +1086,10 @@
         background-size: cover;
     }
     
-    #content_contacts {
-        width: 80%;
-        margin-left: 10%;
-        margin-right: 10%;
+    #content_contacts{
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
     }
     
     #howto_contacts form {
@@ -1086,33 +1103,13 @@
         margin-left: 0em;
     }
     
-    #howto_contacts legend {
-        font-size: 1.1em;
-        margin-bottom: 0.5em;
-        text-align: center;
-    }
-    
     #howto_contacts li {
-        margin-left: 6%;
-        padding-left: 0em;
+        padding-left: 23%;
+        padding-right: 20%;
     }
     
-    #howto_contacts input {
-        padding: 0em;
-        padding-left: 0.2em;
-    }
-    
-    #textarea_form_help {
-        width: 91%;
-        margin-top: 0em;
-        padding: 0.1em 0.2em;
-    }
-    
-    #send_request {
-        text-align: center;
-        padding: 0.2em 0.3em !important;
-        font-size: 0.9em !important;
-        margin-left: 25%;
+    #howto_contacts input, #textarea_form_help {
+        width: 78%;
     }
     
     #personal_contacts {
@@ -1170,9 +1167,9 @@
         padding-top: 1.5em;
     }
     
-    #register_fieldset li {
-        margin-left: 10%;
-        margin-right: 10%;
+    #register_fieldset_recover ul {
+        margin-left: 20%;
+        width: 50%;
     }
     
 /*----------------------  ADMIN WINES  ---------------------*/
@@ -1224,8 +1221,21 @@
         margin-left: 10%;
     }
     
-    #admin_profile_page li, #panel_admin_form_add_wine li {
+    #panel_admin_form_add_wine li {
         margin-left: 30%;
+    }
+    
+    #admin_profile_page li {
+        margin-left: 28%;
+    }
+    
+    #admin_profile_page input {
+        width: 15em;
+    }
+    
+    #required_fields_profile {
+        margin-left: 8%;
+        font-size: 0.9em;
     }
     
     #save_admin_profile {
@@ -1239,16 +1249,14 @@
         text-align: center;
     }    
     
-    #panel_admin_form_add_year li {
-    margin-left: 25%;
+/*------------------  MODIFY YEAR & WINE  --------------------*/   
+    #panel_admin_form li {
+        margin-right: 5%;
     }
     
-/*---------------------  MODIFY YEAR  --------------------*/   
-    #panel_admin_form textarea {
-        width: 12em;
+    #panel_admin_form input {
+        margin-right: 30%;
     }
-        
-    
 }
 
 /*--------------------------------------------------------------*/                                  /*  769 - 1024  */
@@ -1378,23 +1386,29 @@
 /*----------------------  VINI  -------------------------*/    
     
     #search_wines li {
-        margin-right: 0em;
+        margin-left: 0em;
+    }
+    
+    #order_by, #filter_by {
+        font-size: 1.1em;
+        letter-spacing: 0em;
     }
     
     #search {
         padding-left: 0.6em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        width: 11em;
+        font-size: 0.8em;
     }
     
     #search_wines select {
-        margin-left: 0.5em;
+        margin-left: 0em;
+        font-size: 0.8em;
     }
     
-    #filter_by {
-        padding-left: 2.5em;
-    }
-    
-    #order_by {
-        margin-left: 1em;
+    #go_button {
+        font-size: 0.7em;
     }
     
     .specific_wine img {
@@ -1529,14 +1543,18 @@
         background-size: cover;
     }
     
-    #textarea_form_help {
+    #content_contacts{
         width: 70%;
-        margin-top: 0em;
+        margin-left: 15%;
+        margin-right: 15%;
     }
     
-    #send_request {
-        text-align: center;
-        margin-left: 13%;
+    #howto_contacts li {
+        padding-left: 22%;
+    }
+    
+    #howto_contacts input, #textarea_form_help {
+        width: 70%;
     }
     
     #personal_contacts {
@@ -1548,30 +1566,31 @@
     }  
 /*----------------------  LOGIN  -----------------------*/     
     
-    #register_fieldset ul {
-        width: 65%;
-        margin-left: 17.5%;
-        padding: inherit;
-        padding-top: 1.5em;
-    }
-    
     #register_fieldset li {
-        margin-left: 15%;
-        margin-right: 15%;
+        margin-left: 21%;
     }
     
+    #register_fieldset_recover ul {
+        margin-left: 20%;
+        width: 50%;
+    }
+
 /*----------------  ADMIN PROFILE  &  ADD WINE -----------------*/    
-    #admin_content {
-        margin-bottom: 0em;
-    }
-    
     #admin_profile_page ul, #panel_admin_form_add_wine ul {
         width: 70%;
         margin-left: 15%;
     }
     
-    #admin_profile_page li, #panel_admin_form_add_wine li {
+    #admin_profile_page li {
+        margin-left: 28%;
+    }
+    
+    #panel_admin_form_add_wine li {
         margin-left: 30%;
+    }
+    
+    #required_fields_profile {
+        margin-left: 15%;
     }
     
     #admin_profile_page li:last-child, #panel_admin_form_add_wine li:last-child {
@@ -1585,14 +1604,13 @@
         text-align: center;
     }
     
-    #panel_admin_form_add_year li {
-    margin-left: 30%;
-    }
+    
     
 /*---------------------  MODIFY YEAR  --------------------*/   
-#panel_admin_form textarea {
-    width: 12em;
-} 
+#panel_admin_form li {
+    margin-left: 20%;
+    margin-right: 5%;
+}
 }
 
 /*--------------------------------------------------------------*/                                    /*  min 1025  */

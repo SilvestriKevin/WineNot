@@ -250,7 +250,7 @@ if (mysqli_num_rows($result) != 0) {
                 <li><label>Password nuova*</label></li><li><span id="new_password_error" class="js_error"></span></li><li><input id="new_password" type="password" maxlength="100" name="new_password" id=""
                 title="password nuova" value=""/></li>
             </ul>
-                    <label>*Campi obbligatori UNICAMENTE per il cambio password</label>';
+                    <label id="required_fields_profile">*Campi obbligatori UNICAMENTE per il cambio password</label>';
     $dati .= '<input type="submit" class="search_button" name="save_profile" id="save_admin_profile" value="Salva" />';
 } else {
     $dati .= '<h2>Ci sono stati dei problemi con il database. La preghiamo di ricaricare la pagina.</h2>';

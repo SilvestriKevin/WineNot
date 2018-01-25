@@ -145,6 +145,7 @@ textarea {
 #history_description h1,
 #container_wine h1,
 #register_fieldset h1,
+#register_fieldset_recover h1,
 #presentation_events h1,
 #howto_contacts h1 {
     padding-top: 1em;
@@ -159,6 +160,7 @@ textarea {
 #history_description h1:after,
 #container_wine h1:after,
 #register_fieldset h1:after,
+#register_fieldset_recover h1:after,
 #presentation_events h1:after,
 #howto_contacts h1:after {
     display: block;
@@ -539,20 +541,21 @@ textarea {
     border-bottom: 0.01em solid #c9ccce;
 }
 
+#external_search_div {
+    margin: 2.5em 0em 1.5em 0em;
+}
+
 #search_wines ul {
-    margin: 1.5em 0em 2em 0em;
+    text-align: center;
 }
 
 #search_wines li {
     list-style-type: none;
-    display: inline-block;
-    margin-left: 1em;
 }
 
-#search {
-    width: 25em;
-    font-size: 1em;
-    margin: 0em 2em 0em 4em;
+#search_wines li {
+    display: inline-block;
+    margin-left: 0.5em;
 }
 
 #search_wines select {
@@ -564,6 +567,7 @@ textarea {
 #order_by,
 #filter_by {
     font-size: 1.2em;
+    margin-bottom: 2em;
 }
 
 
@@ -1056,8 +1060,8 @@ textarea {
 
 #howto_contacts li {
     list-style-type: none;
-    margin-bottom: 0.3em;
-    padding-left: 25%;
+    margin-bottom: 0.2em;
+    padding-left: 27%;
 }
 
 #howto_contacts li:first-child {
@@ -1066,20 +1070,26 @@ textarea {
 
 #howto_contacts input {
     padding: 0.2em 0.3em;
+    width: 61%;
 }
 
 #object_send {
     margin-right: 1.7em;
 }
 
+#send_request_line {
+    text-align: center;
+    padding-left: 0em !important;
+    padding-right: 0em !important;
+}
+
 #send_request {
-    margin-left: 20%;
     margin-bottom: 1em;
     margin-top: 1em;
+    width: auto !important;
 }
 
 #textarea_form_help {
-    margin-top: 0.5em;
     padding: 0.3em 0.5em;
     width: 61%;
 }
@@ -1135,8 +1145,6 @@ textarea {
 
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
-
 /* REGISTER CONTENT */
 
 
@@ -1150,15 +1158,14 @@ textarea {
     color: red;
 }
 
-
 /* REGISTER FIELDSET */
 
 #register_fieldset,
-#panel_admin_form fieldset {
+#panel_admin_form fieldset, #register_fieldset_recover {
     border: 0em;
 }
 
-#register_fieldset ul {
+#register_fieldset ul, #register_fieldset_recover ul {
     margin-top: 3em;
     margin-left: 27%;
     width: 40%;
@@ -1168,11 +1175,17 @@ textarea {
 
 #register_fieldset li {
     list-style-type: none;
-    margin-bottom: 1.5em;
+    margin-bottom: 0.5em;
+    margin-left: 28%;
+}
+
+#register_fieldset_recover li {
+    list-style-type: none;
+    margin-bottom: 0.5em;
     text-align: center;
 }
 
-#register_fieldset label {
+#register_fieldset label, #register_fieldset_recover label {
     font-size: 1.2em;
 }
 
@@ -1184,11 +1197,19 @@ textarea {
     margin-right: 0.4em;
 }
 
-#register_fieldset input {
-    margin-left: 0.5em;
+#register_fieldset input, #register_fieldset_recover input {
     font-size: 1em;
     padding: 0.15em 0.6em;
     border-radius: 0.18em;
+    margin-bottom: 0.5em;
+}
+#login_button_line {
+    text-align: center;
+    margin-left: 0em !important;
+}
+
+#login_button {
+    margin-top: 1em;
 }
 
 #login_button,
@@ -1304,6 +1325,7 @@ textarea {
 #admin_content fieldset {
     border-left: 0.01em solid;
     border-right: 0.01em solid;
+    margin-bottom: 0.5em;
 }
 
 #admin_after_menu ul {
@@ -1320,8 +1342,12 @@ textarea {
 
 /* SELECT ADMIN BUTTONS */
 
+#check_table {
+    margin-left: 1.5em;
+}
+
 #select_admin_buttons {
-    margin: 1.3em 0em 0.7em 1em;
+    margin: 0.8em 0em 0.7em 1em;
 }
 
 #select_admin_buttons a {
@@ -1476,8 +1502,8 @@ textarea {
 
 #admin_profile_page li {
     list-style-type: none;
+    margin-bottom: 0.2em;
     margin-left: 30%;
-    margin-bottom: 0.1em;
 }
 
 #admin_profile_page li:first-child,
@@ -1491,9 +1517,9 @@ textarea {
     margin-bottom: 1.5em;
 }
 
-#admin_profile_page ul {
-    width: 40%;
-    margin-left: 30%;
+#admin_profile_page ul, #panel_admin_form ul, #panel_admin_form_add_year ul {
+    width: 60%;
+    margin-left: 20%;
     border: 0.01em solid black;
 }
 
@@ -1512,10 +1538,18 @@ textarea {
     padding: 0.2em 0.3em;
     margin-bottom: 0.8em;
     font-size: 0.9em;
+    width: 17em;
+}
+
+#required_fields_profile {
+    margin-left: 20%;
+    font-size: 1em !important;
 }
 
 #save_admin_profile {
     margin-left: 47.5%;
+    width: auto !important;
+    margin-top: 1em;
 }
 
 
@@ -1536,15 +1570,11 @@ textarea {
 #panel_admin_form_add_wine li,
 #panel_admin_form_add_year li {
     list-style-type: none;
-    margin-right: 5em;
     margin-bottom: 0.3em;
+    text-align: center;
 }
 
-#panel_admin_form_add_wine li {
-    margin-left: 12em;
-}
-
-#panel_admin_form_add_wine select {
+#panel_admin_form select {
     margin-right: 1.5em;
 }
 
@@ -1559,13 +1589,8 @@ textarea {
 
 /**********************************************  ADD YEAR  ****************************************************/
 
-#important_message_year {
-    margin-left: 12% !important;
-}
-
 #save_add_year {
     margin-top: 1em;
-    margin-left: 15%;
 }
 
 #error_admin_message {
@@ -1613,7 +1638,7 @@ textarea {
 }
 
 #panel_admin_form textarea {
-    width: 70%;
+    width: 16em;
     height: 5.8em;
     padding: 0.2em 0.3em 0.3em 0.4em;
     font-family: 'Lato', Verdana, Arial, Helvetica sans-serif;
@@ -1622,7 +1647,7 @@ textarea {
 }
 
 #panel_admin_form img {
-    margin-left: 28%;
+    margin-left: 20%;
     margin-bottom: 1em;
 }
 
@@ -1630,7 +1655,6 @@ textarea {
 /**********************************************  MODIFY YEAR  ****************************************************/
 
 #save_modify_year {
-    margin-left: 30%;
 }
 
 

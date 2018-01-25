@@ -45,34 +45,32 @@
     <div id="search_wines" class="">
         <form action="wines.php" method="get">
             <fieldset>
-                <ul>
-                    <li id='filter_order'>
-                        <ul>   
-                            <li id='filter_by'>Filtra per: </li>
-                            <li>
-                                <select name='annata'>
-                                    <option value='All'>Tutte le annate</option>
+                <div id='external_search_div'>
+                    <ul>   
+                        <li id='filter_by'>Filtra per: </li>
+                        <li>
+                            <select name='annata'>
+                                <option value='All'>Tutte le annate</option>
                                 [ANNATA]
-                                </select>
-                            </li>
-                            <li>
-                                <select name='tipologia'>
-                                    <option value='All'>Tutte le tipologie</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select name='tipologia'>
+                                <option value='All'>Tutte le tipologie</option>
                                 [TIPOLOGIA]
-                                </select>
-                            </li>
-                            <li id='order_by'>Ordina per: </li>
-                            <li>
-                                <select name='ordine'>
+                            </select>
+                        </li>
+                        <li id='order_by'>Ordina per: </li>
+                        <li>
+                            <select name='ordine'>
                                     [ORDINE]
-                                </select>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><input type="text" maxlength="100" name="search" id="search" title="Testo di ricerca" /></li>
-
-                    <li id='search_line'><input id='go_button' type="submit" class="search_button" value="Cerca" /></li>
-                </ul>
+                            </select>
+                        </li>
+                        <li id="bar_line"><input type="text" maxlength="100" name="search" id="search" title="Testo di ricerca" />
+                                
+                         <li id="button_line"><input id='go_button' type="submit" class="search_button" value="Cerca" /></li>
+                    </ul>
+                </div>
             </fieldset>
         </form>
     </div>
