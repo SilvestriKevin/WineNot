@@ -714,13 +714,14 @@ textarea {
 #list_annate {
     text-align: center;
     background-image: linear-gradient(rgba(252, 239, 223, 0.53), rgba(252, 239, 223, 0.53)), url(../img/background_annata.png);
-    height: 9em;
     background-position: center;
     background-repeat: no-repeat;
     box-shadow: 0em 0em 1.5em rgba(97, 106, 111, 0.44);
 }
 
 #list_annate ul {
+    padding-top: 3em;
+    padding-bottom: 2em; 
     margin-left: 8%;
 }
 
@@ -734,7 +735,6 @@ textarea {
 }
 
 #list_annate li {
-    margin-top: 1.8em;
     margin-bottom: 1em;
     font-size: 2em;
     font-family: 'Dancing Script', sans-serif;
