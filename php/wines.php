@@ -61,7 +61,7 @@ for($i=0 ; $i<$num_elementi ; $i++){
 }
 
 $text_search = 'vini';
-
+$counter_tabindex = 10;
 
 //STAMPA I VINI SECONDO I PARAMETRI DI RICERCA
 if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine'])){
@@ -109,8 +109,8 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $vini.="<li>
             <div class='specific_result specific_wine'>
-            <a title='".$row['nome']."' href='../phsp/wine.php?id_wine=".$row['id_wine']."' tabindex=''>
-            <img alt='' src='../img/".$row['id_wine'].".png'/></a>";
+            <a title='".$row['nome']."' href='../phsp/wine.php?id_wine=".$row['id_wine']."' tabindex='".$counter_tabindex++."'>
+            <img alt='".$row['nome']."' src='../img/".$row['id_wine'].".png'/></a>";
             $vini.="<ul><li><label>Nome: </label>".$row['nome']."</li>";
             $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
             $vini.="<li><label>Annata: </label>".$row['annata']."</li>";
@@ -129,8 +129,8 @@ else {
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
            $vini.="<li>
            <div class='specific_result specific_wine'>
-           <a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''>
-            <img alt='' src='../img/".$row['id_wine'].".png'/></a>";
+           <a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex='".$counter_tabindex++."'>
+            <img alt='".$row['nome']."' src='../img/".$row['id_wine'].".png' /></a>";
             $vini.="<ul><li><label>Nome: </label>".$row['nome']."</li>";
             $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
             $vini.="<li><label>Annata: </label>".$row['annata']."</li>";
