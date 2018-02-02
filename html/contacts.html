@@ -60,7 +60,6 @@
             <div id="howto_contacts">
                 <h1>Come contattarci</h1>
                 <form onsubmit="return checkContactForm()" action="contacts.php" method="post">
-                    <legend>Invia un messaggio</legend>
                     <ul>
                         <li>
                             <label>La tua email </label>
@@ -69,7 +68,7 @@
                             <span id="mail_error" class="js_error"></span>
                         </li>
                         <li>
-                            <input id="email" type="text" name="email" onfocusout="checkEmail()" tabindex="1" />
+                            <input type="text" id="email"  name="email" onblur="checkEmail()" tabindex="1" />
                         </li>
                         <li>
                             <label id='object_send'>Oggetto </label>
@@ -78,7 +77,7 @@
                             <span id="mail_object_error" class="js_error"></span>
                         </li>
                         <li>
-                            <input type="text" name="object" onfocusout="checkMailObject()" tabindex="2" />
+                            <input type="text" name="object" onblur="checkMailObject()" tabindex="2" />
                         </li>
                         <li>
                             <label>Messaggio </label>
@@ -87,7 +86,7 @@
                             <span id="mail_content_error" class="js_error"></span>
                         </li>
                         <li>
-                            <textarea id='textarea_form_help' name="msg" onfocusout="checkMailMessage()" cols='40' rows='5' tabindex="3"></textarea>
+                            <textarea id='textarea_form_help' name="msg" onblur="checkMailMessage()" cols='40' rows='5' tabindex="3"></textarea>
                         </li>
                         <li id='send_request_line'>
                             <input id='send_request' class="search_button" type="submit" name="send_message" value="Invia Richiesta" tabindex="4" />
@@ -111,7 +110,7 @@
                     <a tabindex='' href="https://www.google.it/maps/place/Stradella+dei+Pini,+25,+93100+Caltanissetta+CL/@37.4814307,14.0388199,17z/data=!3m1!4b1!4m13!1m7!3m6!1s0x1310ec3ddad9c3dd:0x79040b61f8867315!2sSP127,+93100+Caltanissetta+CL!3b1!8m2!3d37.3974346!4d13.9854762!3m4!1s0x1310c2708e68df3d:0x4cdfeb459eae1722!8m2!3d37.4814265!4d14.0410086">Stradella dei Pini, 25 - 93100 Caltanissetta CL</a>
                 </p>
                 <div id="googleMap"></div>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaUkxp5oyLvwG5UI0jY5EmMg2InF-uMUA&callback=myMap"></script>
+                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaUkxp5oyLvwG5UI0jY5EmMg2InF-uMUA&amp;callback=myMap"></script>
             </div>
         </div>
     </div>

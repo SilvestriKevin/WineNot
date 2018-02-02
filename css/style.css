@@ -589,17 +589,17 @@ textarea {
     float: left;
 }
 
-#specific_result ul {
+.specific_result ul {
     margin-bottom: 2em;
 }
 
-#specific_result li {
+.specific_result li {
     margin-bottom: 0.2em;
     margin-left: 2em;
     color: black;
 }
 
-#specific_result label {
+.specific_result label {
     color: #5F021F;
 }
 

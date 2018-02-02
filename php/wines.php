@@ -107,12 +107,15 @@ if(!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordine
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0) {
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $vini.="<li><a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''><div id='specific_result' class='specific_wine'><img alt='' src='../img/".$row['id_wine'].".png'/><ul>";
-            $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
+            $vini.="<li>
+            <div class='specific_result specific_wine'>
+            <a title='".$row['nome']."' href='../phsp/wine.php?id_wine=".$row['id_wine']."' tabindex=''>
+            <img alt='' src='../img/".$row['id_wine'].".png'/></a>";
+            $vini.="<ul><li><label>Nome: </label>".$row['nome']."</li>";
             $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
             $vini.="<li><label>Annata: </label>".$row['annata']."</li>";
             $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
-            $vini.="</ul></div></a></li>";
+            $vini.="</ul></div></li>";
         }
         $vini.="</ul>";
     }
@@ -124,12 +127,15 @@ else {
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)!=0) {
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $vini.="<li><a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''><div id='specific_result' class='specific_wine'><img alt='' src='../img/".$row['id_wine'].".png'/><ul>";
-            $vini.="<li><label>Nome: </label>".$row['nome']."</li>";
+           $vini.="<li>
+           <div class='specific_result specific_wine'>
+           <a title='".$row['nome']."' href='../php/wine.php?id_wine=".$row['id_wine']."' tabindex=''>
+            <img alt='' src='../img/".$row['id_wine'].".png'/></a>";
+            $vini.="<ul><li><label>Nome: </label>".$row['nome']."</li>";
             $vini.="<li><label>Tipologia: </label>".$row['tipologia']."</li>";
             $vini.="<li><label>Annata: </label>".$row['annata']."</li>";
             $vini.="<li><label>Gradazione: </label>".$row['gradazione']."</li>";
-            $vini.="</ul></div></a></li>";
+            $vini.="</ul></div></li>";
         }
         $vini.="</ul>";
     } else $vini.="</ul><h2>Non sono presenti vini.</h2>";
