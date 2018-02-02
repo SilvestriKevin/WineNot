@@ -191,13 +191,13 @@ if (!empty($_POST['save_profile'])) {
         //gradazione: il formato consentito è di 1 o 2 interi seguiti dal punto seguito poi da 1 sola cifra decimale
         //es. 7.5  oppure  13.5
         if (!preg_match('/^\d{1,2}\.\d$/', strval($gradazione))) {
-            $error .= 'Gradazione non è nel formato corretto (es.: 7.5% o 13.5%).<br />';
+            $error .= 'Gradazione non è nel formato corretto (es. 7.5% o 13.5%).<br />';
         }
 
         //formato: il formato corretto è 1 intero seguito dal punto seguito poi da 2 cifre decimali
         //es. 1.75  opuure  2.00  
         if (!preg_match('/^\d\.\d{2}$/', $formato)) {
-            $error .= 'Formato non è nel formato corretto (es.: 1.75L).<br />';
+            $error .= 'Formato non è nel formato corretto (es. 1.75L).<br />';
         }
 
         //immagine: controllo che sia stata caricata correttamente l'immagine
@@ -280,6 +280,7 @@ if (!empty($_POST['save_profile'])) {
             }
         }
     } 
+    //controllo il caso in cui i campi non sono vuoti ma non è stata inserita l'immagine o è stata inserita un'immagine del formato sbagliato
     else if(!empty($_POST['nome']) && !preg_match('/^(\s)+$/', $_POST['nome']) && !empty($_POST['tipologia']) && 
     !preg_match('/^(\s)+$/', $_POST['tipologia']) && !empty($_POST['descrizione']) && !preg_match('/^(\s)+$/', $_POST['descrizione']) 
     && !empty($_POST['denominazione']) && !preg_match('/^(\s)+$/', $_POST['denominazione']) && !empty($_POST['annata']) 
