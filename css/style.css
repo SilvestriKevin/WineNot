@@ -243,10 +243,15 @@ textarea {
     text-decoration: none;
 }
 
+#header a:not(:first-child) {
+    display: none;
+}
+
 #logo_alt,
 #logo_alt_mobile {
     display: none;
 }
+
 
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/

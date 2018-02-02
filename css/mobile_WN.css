@@ -11,12 +11,20 @@
         display: none;
     }
     
+    #header a:first-child {
+        display: none;
+    }
+
     #logo_alt_mobile {
         margin-left: 0.2em;
         display: inline;
         float: left;
     }
     
+    #header a:nth-child(1) {
+        display: inline;
+    }
+
     #header, #footer {
         height: 8%;
     }
