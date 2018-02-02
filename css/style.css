@@ -243,12 +243,9 @@ textarea {
     text-decoration: none;
 }
 
-#header a:not(:first-child) {
-    display: none;
-}
 
 #logo_alt,
-#logo_alt_mobile {
+#logo_alt_mobile,#logo_alt_link,#logo_alt_mobile_link {
     display: none;
 }
 

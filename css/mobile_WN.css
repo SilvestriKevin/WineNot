@@ -7,21 +7,17 @@
     
 /*--------------  HEADER & FOOTER & GENERAL ------------------*/
     
-    #logo{
+    #logo,#logo_link{
         display: none;
     }
     
-    #header a:first-child {
-        display: none;
-    }
-
     #logo_alt_mobile {
         margin-left: 0.2em;
         display: inline;
         float: left;
     }
     
-    #header a:nth-child(1) {
+    #logo_alt_mobile_link {
         display: inline;
     }
 
@@ -671,7 +667,7 @@
     
 /*---------------  HEADER & FOOTER & GENERAL  ----------------*/
     
-    #logo {
+    #logo,#logo_link {
         display: none;
     }
     
@@ -681,6 +677,11 @@
         float: left;
     }
     
+    #logo_alt_link {
+        display: inline;
+    }
+
+
     #header ul {
         width: 75%;
         text-align: right;
