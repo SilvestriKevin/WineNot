@@ -89,7 +89,7 @@
         margin-top: 0.6em;
     }
     
-    #short_description h2, #tasting h6 {
+    #short_description h2, #tasting h2 {
         font-size: 2em;
         margin-top: 0em;
     }
@@ -135,16 +135,15 @@
         width: 65%;
     }
     
-    .preview_wine_description h3, .preview_wine_description h4, .preview_wine_description h5 {
+    #red_wine a, #rose_wine a, #white_wine a {
         font-size: 1.8em;
-        padding-bottom: 0em;
     }
     
     .preview_wine_description p {
         font-size: 0.8em;
     }
     
-    #tasting h6:after {
+    #tasting h2:after {
         margin-top: 0.1em;
         width: 7em;
     }
@@ -163,7 +162,7 @@
         padding-top: 5%;
     }
     
-    #history_preview h7 {
+    #history_paragraph h3 {
         margin-left: 1em;
         font-size: 2em;
     }
@@ -203,8 +202,7 @@
     
     #search {
         height: 1.5em;
-        width: 12em;
-        margin-left: 4%;
+        width: 10em;
         margin-top: 1em;
         margin-bottom: 1.5em;
         padding-left: 0.4em;
@@ -750,7 +748,7 @@
         margin-top: 0.6em;
     }
     
-    #short_description h2, #tasting h6 {
+    #short_description h2, #tasting h2 {
         font-size: 2.4em;
         margin-top: 0em;
     }
@@ -800,7 +798,7 @@
         height: 12.5em;
     }
     
-    .preview_wine_description h3, .preview_wine_description h4, .preview_wine_description h5 {
+     #red_wine a, #rose_wine a, #white_wine a {
         font-size: 1.7em;
         padding-bottom: 0em;
     }
@@ -809,7 +807,7 @@
         font-size: 0.8em;
     }
     
-    #tasting h6:after {
+    #tasting h2:after {
         margin-top: 0.1em;
         width: 9em;
     }
@@ -827,7 +825,7 @@
         padding-top: 5%;
     }
     
-    #history_preview h7 {
+    #history_paragraph h3 {
         margin-left: 2.5em;
         font-size: 2.2em;
     }
@@ -1309,7 +1307,7 @@
         font-size: 1.1em;
     }
     
-    #short_description h2, #tasting h6 {
+    #short_description h2, #tasting h2 {
         font-size: 2.6em;
     }
     
@@ -1354,7 +1352,7 @@
         height: 12.5em;  
     }
     
-    .preview_wine_description h3, .preview_wine_description h4, .preview_wine_description h5 {
+     #red_wine a, #rose_wine a, #white_wine a {
         font-size: 2em;
         padding-bottom: 0.2em;
     }
@@ -1363,7 +1361,7 @@
         font-size: 1em;
     }
     
-    #tasting h6:after {
+    #tasting h2:after {
         margin-top: 0.1em;
     }
     
@@ -1379,8 +1377,9 @@
         padding-top: 5%;
     }
     
-    #history_preview h7 {
+    #history_paragraph h3 {
         margin-left: 2.5em;
+        font-size: 2.5em;
     }
     
     #history_preview p {

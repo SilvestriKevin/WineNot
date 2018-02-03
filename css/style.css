@@ -337,7 +337,6 @@ textarea {
     padding-top: 1.3em;
 }
 
-
 /* SHORT DESCRIPTION */
 
 #short_description {
@@ -373,7 +372,6 @@ textarea {
     margin-left: 16%;
     margin-bottom: 4em;
 }
-
 
 /* WINE PREVIEW */
 
@@ -423,6 +421,7 @@ textarea {
 
 .preview_wine_description p {
     padding-right: 1em;
+    margin-top: 1em;
 }
 
 .preview_wine_description a {
@@ -433,16 +432,12 @@ textarea {
     border-bottom: 0.5em solid #5F021F;
 }
 
-.preview_wine_description h3,
-.preview_wine_description h4,
-.preview_wine_description h5 {
-    margin-bottom: 0.3em;
-    padding-bottom: 0.1em;
+#red_wine a, #rose_wine a, #white_wine a {
     font-family: 'Dancing Script', sans-serif;
     font-size: 2.2em;
     color: #5F021F;
+    border-bottom: 0.05em solid #5F021F;
 }
-
 
 /*
 .preview_wine_description h3:after, .preview_wine_description h4:after, .preview_wine_description h5:after {
@@ -455,17 +450,16 @@ textarea {
 }
 */
 
-
 /* TASTING */
 
-#tasting h6 {
+#tasting h2 {
     margin-top: 1em;
     font-family: 'Dancing Script', sans-serif;
     font-size: 3em;
     color: #5F021F;
 }
 
-#tasting h6:after {
+#tasting h2:after {
     display: block;
     height: 0.03em;
     background-color: #000;
@@ -475,7 +469,7 @@ textarea {
     margin-top: 0.3em;
 }
 
-#tasting h6,
+#tasting h2,
 #tasting p {
     text-align: center;
 }
@@ -509,7 +503,7 @@ textarea {
     margin-right: 20%;
 }
 
-#history_preview h7 {
+#history_paragraph h3 {
     color: #fff;
     font-family: 'Dancing Script', sans-serif;
     font-size: 2.8em;
