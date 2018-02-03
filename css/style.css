@@ -1166,12 +1166,12 @@ textarea {
     margin-left: 27%;
     width: 40%;
     border: 0.02em solid grey;
-    padding: 2.5em 3em 1.5em 2em;
+    padding: 2.5em 3em 1.5em 3em;
 }
 
 #register_fieldset li {
     list-style-type: none;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.4em;
     margin-left: 28%;
 }
 
@@ -1263,18 +1263,19 @@ textarea {
 }
 
 #not_found h1 {
-    font-size: 3.5em;
+    font-size: 2.6em;
     color: #524f4f;
 }
 
 #not_found p {
     margin-top: 0.4em;
-    font-size: 1.2em;
+    font-size: 1.1em;
     margin-bottom: 1.4em;
 }
 
 #not_found a {
     color: #5F021F;
+    font-size: 1.1em;
 }
 
 
@@ -1526,13 +1527,15 @@ textarea {
     font-size: 1.1em;
 }
 
+.label_add {
+    margin-top: 1.3em;
+}
+
 #admin_profile_page input,
-#panel_admin_form_add_wine input,
+.input_add input,
 #panel_admin_form_add_wine select,
-#panel_admin_form_add_year select,
-#panel_admin_form_add_year input {
+#panel_admin_form_add_year select {
     padding: 0.2em 0.3em;
-    margin-bottom: 0.8em;
     font-size: 0.9em;
     width: 17em;
 }
@@ -1561,6 +1564,7 @@ textarea {
     width: 60%;
     margin-left: 20%;
     border: 0.01em solid black;
+    padding-bottom: 1em;
 }
 
 #panel_admin_form_add_wine li,
@@ -1579,14 +1583,13 @@ textarea {
 }
 
 #save_add_wine {
-    margin-left: 35%;
+    margin-left: 48%;
 }
-
 
 /**********************************************  ADD YEAR  ****************************************************/
 
 #save_add_year {
-    margin-top: 1em;
+    margin-left: 46%;
 }
 
 #error_admin_message {
@@ -1597,11 +1600,6 @@ textarea {
     font-size: 1.3em;
     font-weight: 600;
 }
-
-#panel_admin_form_add_year li {
-    margin-left: 35%;
-}
-
 
 /**********************************************  ADD USERS  ****************************************************/
 

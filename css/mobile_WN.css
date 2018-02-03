@@ -225,17 +225,16 @@
         height: 10em;
     }
     
-    #specific_result {
+    .specific_result {
         margin-bottom: 1em;
     }
     
-    #specific_result li {
+    .specific_result li {
         margin-left: 8%;
     }
     
-    #specific_result ul {
+    .specific_result ul {
         width: 80%;
-        float: right;
         margin: 0em;
         margin-right: 0.5em;
         margin-top: 2.5em;
@@ -265,12 +264,12 @@
         margin-top: 1em;
     }
     
-    #title_details {
+    .title_details {
         font-size: 1.6em !important;
         border-bottom: 0.01em solid #5F021F;
     }
     
-     #title_details:after {
+    #title_details:after {
         content: none;
     }
     
@@ -520,11 +519,11 @@
         padding-top: 2em;
         float: right;
         width: 80%;
-        margin-right: 2em;
+        margin-right: 1em;
     }
     
     #not_found h1 {
-        font-size: 2.7em;
+        font-size: 2.1em;
     }
     
     #not_found p {
@@ -630,9 +629,14 @@
         margin-right: 26%;
     }
     
-    #admin_profile_page input, #panel_admin_form_add_year input, #panel_admin_form_add_year select, #panel_admin_form_add_wine input, #panel_admin_form_add_wine select {
+    #admin_profile_page input, #panel_admin_form_add_year select, .input_add input, #panel_admin_form_add_wine select {
         margin-bottom: 0.7em;
         width: 12em;
+    }
+    
+    #panel_admin_form_add_wine textarea, #panel_admin_form_add_year textarea
+    {
+        width: 14em;
     }
     
     #required_fields_profile {
@@ -650,12 +654,19 @@
         text-align: center;
     }
     
+    #panel_admin_form_add_year ul {
+        width: 80%;
+        margin-left: 10%;
+    }
     
+    #save_add_year {
+        margin-left: 38%;
+    }
+
 /*-----------------  MODIFY YEAR & WINE  --------------------*/   
     #panel_admin_form li {
-    margin-right: 30%;
-}
-    
+        margin-right: 30%;
+    }
 }
 
 /*--------------------------------------------------------------*/                                   /*  481 - 768  */
@@ -868,8 +879,7 @@
     
     #search {
         height: 1.5em;
-        width: 12em;
-        margin-left: 3%;
+        width: 11em;
         margin-top: 1em;
         margin-bottom: 1.5em;
         padding-left: 0.4em;
@@ -887,7 +897,7 @@
         width: 33%;
     }
     
-    #specific_result.specific_wine {
+    .specific_result.specific_wine {
         margin-left: 1%;
     }
     
@@ -901,16 +911,16 @@
         margin-right: 0em;
     }
     
-    #specific_result ul {
+    .specific_result ul {
         margin: 0em;
         margin-bottom: 1em;
     }
     
-    #specific_result li {
+    .specific_result li {
         margin: 0em;
     }
     
-    #specific_result ul {
+    .specific_result ul {
         font-size: 0.9em;
     }   
     
@@ -937,7 +947,7 @@
         margin-top: 2em;
     }
     
-    #title_details {
+    .title_details {
         font-size: 2em !important;
         border-bottom: 0.01em solid #5F021F;
     }
@@ -955,6 +965,10 @@
 /*------------------  ANNATE MIGLIORI  -----------------------*/     
     #title_best_annate p {
         font-size: 1.4em;
+    }
+    
+    #year_quality p, #year_description p {
+        font-size: 1em;
     }
     
     #list_annate {
@@ -1150,17 +1164,17 @@
     }
     
     #not_found {
-        width: 50%;
+        width: 45%;
         margin-left: 0.5em;
     }
     
     #not_found h1 {
-        font-size: 2.9em;
-        margin-right: 1em;
+        margin-top: 1em;
+        font-size: 2.1em;
     }
     
     #not_found p {
-        font-size: 1.1em;
+        font-size: 1em;
     }
     
 /*----------------------  LOGIN  -----------------------*/     
@@ -1226,8 +1240,8 @@
         margin-left: 10%;
     }
     
-    #panel_admin_form_add_wine li {
-        margin-left: 30%;
+    #save_add_wine {
+        margin-left: 45%;
     }
     
     #admin_profile_page li {
@@ -1254,6 +1268,10 @@
         text-align: center;
     }    
     
+    #save_add_year {
+        margin-left: 43%;
+    }
+
 /*------------------  MODIFY YEAR & WINE  --------------------*/   
     #panel_admin_form li {
         margin-right: 5%;
@@ -1422,12 +1440,12 @@
         padding: 0em;
     }
     
-    #specific_result ul {
+    .specific_result ul {
         margin: 0em;
         margin-bottom: 2em;
     }
     
-    #specific_result li {
+    .specific_result li {
         margin: 0em;
     }
     
@@ -1438,7 +1456,7 @@
     
     #wine_img {
         height: 37em;
-        margin-left: 30%;
+        margin-left: 45%;
     }
     
     #details_wine p {
@@ -1591,12 +1609,12 @@
         margin-left: 28%;
     }
     
-    #panel_admin_form_add_wine li {
-        margin-left: 30%;
-    }
-    
     #required_fields_profile {
         margin-left: 15%;
+    }
+    
+    #save_add_wine {
+        margin-left: 46%;
     }
     
     #admin_profile_page li:last-child, #panel_admin_form_add_wine li:last-child {

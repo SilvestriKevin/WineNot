@@ -52,27 +52,27 @@ setcookie('addWine', $_SERVER['PHP_SELF']);
 
 //CAMPI DEL FORM
 $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tabindex="" accesskey="">Aggiungi Annata</a></li>
-<li>
+<li class="label_add">
 <label>Nome</label>
 </li>
 <li>
 <span id="wine_name_error" class="js_error"></span>
 </li>
-<li>
+<li class="input_add">
 <input type="text" maxlength="30" name="nome" title="nome" onfocusout="checkNome()" />
 </li>
 
-<li>
+<li class="label_add">
 <label>Tipologia</label>
 </li>
 <li>
 <span id="wine_tipologia_error" class="js_error"></span>
 </li>
-<li>
+<li class="input_add">
 <input type="text" maxlength="30" name="tipologia" title="tipologia" onfocusout="checkTipologia()" />
 </li>
 
-<li>
+<li class="label_add">
 <label>Vitigno</label>
 </li>
 <li>
@@ -83,37 +83,37 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 </textarea>
 </li>
 
-<li>
+<li class="label_add">
 <label>Denominazione</label>
 </li>
 <li>
 <span id="wine_denominazione_error" class="js_error"></span>
 </li>
-<li>
+<li class="input_add">
 <input type="text" maxlength="30" name="denominazione" title="denominazione" onfocusout="checkDenominazione()"/>
 </li>
 
-<li>
+<li class="label_add">
 <label>Gradazione(%)</label>
 </li>
 <li>
 <span id="wine_gradazione_error" class="js_error"></span>
 </li>
-<li>
+<li class="input_add">
 <input type="text" maxlength="4" name="gradazione" title="gradazione" onfocusout="checkGradazione()" />
 </li>
 
-<li>
+<li class="label_add">
 <label>Formato(L)</label>
 </li>
 <li>
 <span id="wine_formato_error" class="js_error"></span>
 </li>
-<li>
+<li class="input_add">
 <input type="text" maxlength="4" name="formato" title="formato" onfocusout="checkFormato()"/>
 </li>
 
-<li>
+<li class="label_add">
 <label>Descrizione</label>
 </li>
 <li>
@@ -124,7 +124,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 </textarea>
 </li>
 
-<li>
+<li class="label_add">
 <label>Abbinamento</label>
 </li>
 <li>
@@ -135,7 +135,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 </textarea>
 </li>
 
-<li>
+<li class="label_add">
 <label>Degustazione</label>
 </li>
 <li>
@@ -146,7 +146,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 </textarea>
 </li>
 
-<li>
+<li class="label_add">
 <label>Immagine</label>
 </li>
 <li>
@@ -155,11 +155,9 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <li>
 <input id="select_file" type="file" name="wine_img" />
 </li>
-
-<li>
+</ul>
 <input type="submit" class="search_button" name="save_profile" id="save_add_wine" value="Salva" />
-</li>
-</ul></fieldset>';
+</fieldset>';
 
 //controllo se l'utente ha provato a salvare i dati del form
 if (!empty($_POST['save_profile'])) {

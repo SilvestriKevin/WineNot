@@ -33,18 +33,18 @@ $annata .= '<form onsubmit="return fullyCheckYear()" id="panel_admin_form_add_ye
 $annata .= '<fieldset>
                     <ul>
                     <li id="important_message_year"><span>Tutti i campi sono obbligatori</span></li>
-                    <li>
+                    <li class="label_add">
                         <label>Anno</label>
                     </li>
                     <li>
                         <span id="year_error" class="js_error"></span>
                     </li>
-                    <li>
+                    <li class="input_add">
                         <input id="check_year" type="text" maxlength="4" name="anno" title="anno" tabindex="1"
                         onfocusout="checkYear()"/>
                     </li>
 
-                    <li>
+                    <li class="label_add">
                         <label>Descrizione</label>
                     </li>
                     <li>
@@ -56,27 +56,25 @@ $annata .= '<fieldset>
                         </textarea>
                     </li>
 
-                    <li>
+                    <li class="label_add">
                         <label>Qualit&agrave;</label>
                     </li>
                     <li>
                         <span id="quality_error" class="js_error"></span>
                     </li>
-                    <li>
+                    <li class="input_add">
                         <input id="check_quality" type="text" maxlength="100" name="qualita" title="qualita" tabindex="6"
                         onfocusout="checkYearQuality()"/>
                     </li>
 
-                    <li>
+                    <li class="label_add">
                         <label>Migliore</label>
                         <input type="checkbox" name="migliore" title="migliore" value="migliore" tabindex="7"/>
                     </li>
-
-                    <li>
-                        <input type="submit" class="search_button" name="salva" id="save_add_year" value="Aggiungi"
-                        accesskey="s" tabindex="8"/>
-                    </li>
                     </ul>
+                    
+                    <input type="submit" class="search_button" name="salva" id="save_add_year" value="Aggiungi"
+                        accesskey="s" tabindex="8"/>
 
                 </fieldset>';
 
