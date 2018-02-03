@@ -9,25 +9,25 @@ include_once("../include/config.php");
 include_once("../include/lib.php");
 
 //per uscire dal pannello d'amministrazione
-if(!empty($_SESSION['id']) && !empty($_GET['esci']) && $_GET['esci']==1){
-    unset($_SESSION['id']);
-    header('Location: ../index.html');
+if(!empty($_SESSION["id"]) && !empty($_GET["esci"]) && $_GET["esci"]==1){
+    unset($_SESSION["id"]);
+    header("Location: ../index.html");
 }
-else if(!empty($_SESSION['id'])) header("Location: admin_wines.php");
+else if(!empty($_SESSION["id"])) header("Location: admin_wines.php");
 
 
-$stampa='';
+$stampa="";
 
 //per stampare messaggi d'errore
-if(!empty($_COOKIE['error'])){
-    $stampa.="<h2 id='gonna_delete_user'>".$_COOKIE['error']."</h2>";
-    setcookie('error',null);
+if(!empty($_COOKIE["error"])){
+    $stampa.='<h2 id="gonna_delete_user">'.$_COOKIE["error"].'</h2>';
+    setcookie("error",null);
 }
 
 //controllo dell'username e password
-if(isset($_POST['username']) && isset($_POST['password'])){
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+if(isset($_POST["username"]) && isset($_POST["password"])){
+    $username = $_POST["username"];
+    $password = $_POST["password"];
     if(!empty($username) && !empty($password)){
 
         $sql = "SELECT id_user AS id FROM utenti
@@ -35,17 +35,17 @@ if(isset($_POST['username']) && isset($_POST['password'])){
         $result = mysqli_query($conn, $sql);
 
         if(mysqli_num_rows($result) == 0){
-            setcookie('error','Hai inserito le credenziali errate');
+            setcookie("error","Hai inserito le credenziali errate");
             header("Location: login.php");
         }
         else{
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            $_SESSION['id'] = $row['id'];
+            $_SESSION["id"] = $row["id"];
             header("Location: ./admin_wines.php");
         }
     }
     else{
-        setcookie('error','Alcuni campi risultano vuoti');
+        setcookie("error","Alcuni campi risultano vuoti");
         header("Location: login.php");
     }
 }

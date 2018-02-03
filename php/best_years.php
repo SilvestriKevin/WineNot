@@ -60,8 +60,8 @@ if(mysqli_num_rows($result)!=0){
     if(mysqli_num_rows($result)!=0)
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
             $vini.='<li><div class="specific_wine specific_result">
-            <a title="'.$row["nome"].'" href="../php/wine.php?id_wine='.$row["id_wine"].'" tabindex="">
-            <img alt="" src="../img/'.$row["id_wine"].'.png"/></a><ul>';
+            <a title="'.$row["nome"].'" href="../php/wine.php?id_wine='.$row["id_wine"].'" tabindex="'.$cont.'">
+            <img alt="'.$row["nome"].'" src="../img/'.$row["id_wine"].'.png"/></a><ul>';
             $vini.='<li><label>Nome: </label>'.$row["nome"].'</li>';
             $vini.='<li><label>Tipologia: </label>'.$row["tipologia"].'</li>';
             $vini.='<li><label>Vitigno: </label>'.$row["vitigno"].'</li>';

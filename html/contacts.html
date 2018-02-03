@@ -29,33 +29,30 @@
 
 <body>
     <div id="header">
-        <a title='Home' class='' href='../index.html' tabindex='1' accesskey='h'>
-            <img id="logo" alt="Logo WineNot" src="../img/logo.png" />
-        </a>
-        <a title='Home' class='' href='../index.html' tabindex='0' accesskey='h'>
-            <img id="logo_alt" alt="Logo WineNot" src="../img/logo_alt.png" />
-        </a>
-        <a title='Home' class='' href='../index.html' tabindex='0' accesskey='h'>
-            <img id="logo_alt_mobile" alt="Logo WineNot" src="../img/logo_alt_mobile.png" />
-        </a>
+        <a id="logo_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img id="logo" 
+            alt="Logo WineNot" src="../img/logo.png" /></a>
+        <a id="logo_alt_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img id="logo_alt" 
+            alt="Logo WineNot" src="../img/logo_alt.png" /></a>
+        <a id="logo_alt_mobile_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img 
+            id="logo_alt_mobile" alt="Logo WineNot" src="../img/logo_alt_mobile.png" /></a>
         <ul>
             <li>
-                <a title='Vini' class='' href='../php/wines.php' tabindex='2' accesskey='v'>Vini</a>
+                <a title="Vini" href="../php/wines.php" tabindex="2" accesskey="v">Vini</a>
             </li>
             <li>
-                <a title='Annate Migliori' class='' href="../php/best_years.php" tabindex='3'>Annate Migliori</a>
+                <a title="Annate Migliori" href="../php/best_years.php" tabindex="3" accesskey="a">Annate Migliori</a>
             </li>
             <li>
-                <a title='Eventi' class='' href='../html/events.html' tabindex='2' accesskey='v'>Eventi</a>
+                <a title="Eventi" href="../html/events.html" tabindex="4" accesskey="e">Eventi</a>
             </li>
             <li>
-                <a title='Storia' class='' href='../html/history.html' tabindex='4' accesskey='s'>Storia</a>
+                <a title="Storia" href="../html/history.html" tabindex="5" accesskey="s">Storia</a>
             </li>
         </ul>
     </div>
 
     <div id="content_contacts_external">
-        <div id='content_contacts'>
+        <div id="content_contacts">
             [ERRORE] [INFO]
             <div id="howto_contacts">
                 <h1>Come contattarci</h1>
@@ -68,16 +65,16 @@
                             <span id="mail_error" class="js_error"></span>
                         </li>
                         <li>
-                            <input type="text" id="email"  name="email" onblur="checkEmail()" tabindex="1" />
+                            <input type="text" id="email"  name="email" onblur="checkEmail()" tabindex="6" />
                         </li>
                         <li>
-                            <label id='object_send'>Oggetto </label>
+                            <label id="object_send">Oggetto </label>
                         </li>
                         <li>
                             <span id="mail_object_error" class="js_error"></span>
                         </li>
                         <li>
-                            <input type="text" name="object" onblur="checkMailObject()" tabindex="2" />
+                            <input type="text" name="object" onblur="checkMailObject()" tabindex="7" />
                         </li>
                         <li>
                             <label>Messaggio </label>
@@ -86,16 +83,16 @@
                             <span id="mail_content_error" class="js_error"></span>
                         </li>
                         <li>
-                            <textarea id='textarea_form_help' name="msg" onblur="checkMailMessage()" cols='40' rows='5' tabindex="3"></textarea>
+                            <textarea id="textarea_form_help" name="msg" onblur="checkMailMessage()" cols="40" rows="5" tabindex="8"></textarea>
                         </li>
-                        <li id='send_request_line'>
-                            <input id='send_request' class="search_button" type="submit" name="send_message" value="Invia Richiesta" tabindex="4" />
+                        <li id="send_request_line">
+                            <input id="send_request" class="search_button" type="submit" name="send_message" value="Invia Richiesta" tabindex="9" />
                         </li>
                     </ul>
                 </form>
 
             </div>
-            <div id='personal_contacts'>
+            <div id="personal_contacts">
                 <ul>
                     <li>Telefono: (+39) 0934/301521</li>
                     <li>Cell: (+39) 3343954755</li>
@@ -107,7 +104,7 @@
             <div id="position_contacts">
                 <h2>Dove siamo</h2>
                 <p>
-                    <a tabindex='' href="https://www.google.it/maps/place/Stradella+dei+Pini,+25,+93100+Caltanissetta+CL/@37.4814307,14.0388199,17z/data=!3m1!4b1!4m13!1m7!3m6!1s0x1310ec3ddad9c3dd:0x79040b61f8867315!2sSP127,+93100+Caltanissetta+CL!3b1!8m2!3d37.3974346!4d13.9854762!3m4!1s0x1310c2708e68df3d:0x4cdfeb459eae1722!8m2!3d37.4814265!4d14.0410086">Stradella dei Pini, 25 - 93100 Caltanissetta CL</a>
+                    <a tabindex="10" href="https://www.google.it/maps/place/Stradella+dei+Pini,+25,+93100+Caltanissetta+CL/@37.4814307,14.0388199,17z/data=!3m1!4b1!4m13!1m7!3m6!1s0x1310ec3ddad9c3dd:0x79040b61f8867315!2sSP127,+93100+Caltanissetta+CL!3b1!8m2!3d37.3974346!4d13.9854762!3m4!1s0x1310c2708e68df3d:0x4cdfeb459eae1722!8m2!3d37.4814265!4d14.0410086">Stradella dei Pini, 25 - 93100 Caltanissetta CL</a>
                 </p>
                 <div id="googleMap"></div>
                 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaUkxp5oyLvwG5UI0jY5EmMg2InF-uMUA&amp;callback=myMap"></script>
@@ -116,11 +113,11 @@
     </div>
 
 
-    <div id='footer'>
+    <div id="footer">
         <ul>
             <li>Contattaci</li>
             <li>
-                <a title='Mappa del sito' class='' href='../html/sitemap.html' tabindex='' accesskey=''>Mappa del sito</a>
+                <a title="Mappa del sito" href="../html/sitemap.html" tabindex="999" accesskey="m">Mappa del sito</a>
             </li>
         </ul>
     </div>
