@@ -39,7 +39,7 @@ if(isset($_POST["delete_selected"])){
 $dati.='<form onsubmit="return deleteSelected()" action="admin_years.php" method="post">';
 
 $dati.='<div class="hide_content"><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" id="all_selected"
-        value="Seleziona Tutte" onclick="checkThemAll() />';
+        value="Seleziona Tutte" />';
 $dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutte" />';
 $dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionate" />';
 $dati.='<a title="Aggiungi Annata" href="./add_year.php" tabindex="" accesskey="">Aggiungi Annata</a></div></div>';

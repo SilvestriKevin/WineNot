@@ -592,18 +592,18 @@
         margin-left: 14%;
     }
     
-    #select_admin_buttons {
+    .select_admin_buttons {
         margin-left: 2%;
         text-align: center;
     }
     
-    #select_admin_buttons input {
+    .select_admin_buttons input {
         margin-bottom: 0.5em;
         margin-right: 2%;
         font-size:0.8em;
     }
     
-    #select_admin_buttons a {
+    .select_admin_buttons a {
         float: left;
         margin-left: 30%;
         margin-top: 0.5em;
@@ -1214,12 +1214,12 @@
         border-right: none;
     }
     
-    #select_admin_buttons {
+    .select_admin_buttons {
         margin-left: 2%;
         text-align: center;
     }
     
-    #select_admin_buttons a {
+    .select_admin_buttons a {
         float: left;
         margin-left: 35%;
         margin-top: 1em;

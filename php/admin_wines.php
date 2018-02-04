@@ -22,11 +22,11 @@ $salva_sql = false;
 
 //stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['info'])) {
-    $info_errore .= "<div id='top_message'>" . $_COOKIE['info'] . "</div>";
+    $info_errore .= '<div id="top_message">' . $_COOKIE['info'] . '</div>';
     setcookie('info', null);
 }
 if (!empty($_COOKIE['error'])) {
-    $info_errore .= "<div id='top_message'>" . $_COOKIE['error'] . "</div>";
+    $info_errore .= '<div id="top_message">' . $_COOKIE['error'] . '</div>';
     setcookie('error', null);
 }
 
@@ -37,7 +37,7 @@ if (isset($_POST['delete_selected'])) {
 
     //se non sono stati selezionati vini stampo un messaggio d'errore
     if (!count($wines)) {
-        $info_errore .= "<div id='top_message'>Selezionare almeno un vino</div>";
+        $info_errore .= '<div id="top_message">Selezionare almeno un vino</div>';
     } else {
         //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  
         // serialize/unserialize o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni
@@ -51,12 +51,12 @@ $sql = "SELECT annata FROM vini GROUP BY annata ORDER BY annata";
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) != 0) {
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        $annata .= "<option value='" . $row['annata'] . "'";
+        $annata .= '<option value="' . $row['annata'] . '"';
         if (!empty($_POST['annata']) && $_POST['annata'] == $row['annata']) {
-            $annata .= " selected='selected'";
+            $annata .= ' selected="selected"';
         }
 
-        $annata .= ">" . $row['annata'] . "</option>";
+        $annata .= '>' . $row['annata'] . '</option>';
     }
 }
 
@@ -64,24 +64,24 @@ if (mysqli_num_rows($result) != 0) {
 $array_tipologie = array('bianco', 'rosso', 'ros&egrave;');
 $num_elementi = count($array_tipologie);
 for ($i = 0; $i < $num_elementi; $i++) {
-    $tipologia .= "<option value='" . $array_tipologie[$i] . "'";
+    $tipologia .= '<option value="' . $array_tipologie[$i] . '"';
     if (!empty($_POST['tipologia']) && entityAccentedVowels($_POST['tipologia']) == $array_tipologie[$i]) {
-        $tipologia .= " selected='selected'";
+        $tipologia .= ' selected="selected"';
     }
 
-    $tipologia .= ">" . $array_tipologie[$i] . "</option>";
+    $tipologia .= '>' . $array_tipologie[$i] . '</option>';
 }
 
 //SELECT ORDINE NEL FORM
 $array_ordine = array('nome', 'denominazione', 'tipologia', 'annata');
 $num_elementi = count($array_ordine);
 for ($i = 0; $i < $num_elementi; $i++) {
-    $ordine .= "<option value='" . $array_ordine[$i] . "'";
+    $ordine .= '<option value="' . $array_ordine[$i] . '"';
     if (!empty($_POST['ordine']) && $_POST['ordine'] == $array_ordine[$i]) {
-        $ordine .= " selected='selected'";
+        $ordine .= ' selected="selected"';
     }
 
-    $ordine .= ">" . $array_ordine[$i] . "</option>";
+    $ordine .= '>' . $array_ordine[$i] . '</option>';
 }
 
 $text_search = 'vini';
@@ -142,7 +142,6 @@ if (!empty($_POST['sql'])) {
 
 $result = mysqli_query($conn, $sql);
 
-//$dati .= '<div class="hide_content"><form action="admin_wines.php" method="post"></div>';
 $dati .= '<form onsubmit="return deleteSelected()" action="admin_wines.php" method="post">';
 
 //se è stata salvata in precedenza la query, allora mantengo i dati della query e della ricerca (annat  a, tipologia, ordine)
@@ -154,27 +153,22 @@ if (!empty($salva_sql)) {
     if (!empty($_POST['search'])) {
         //utilizzo la funzione htmlentities per ricaricare sul valore search l'input testuale corretto
         $dati .= '<input type="hidden" name="search" value="' . htmlentities($_POST['search']) . '" />';
-        $dati .= "<div>Hai cercato: '" . $_POST['search'] . "'</div>";
+        $dati .= '<div>Hai cercato: "' . $_POST['search'] . '"</div>';
     }
 }
 
-$dati .= '<div class="hide_content"><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected"
-        id="all_selected" value="Seleziona Tutti"/>';
-$dati .= '<input type="submit" class="admin_button" name="none_selected" id="none_selected"
-        value="Deseleziona Tutti"/>';
-$dati .= '<input type="submit" class="admin_button" name="delete_selected" id="delete_selected"
-        value="Elimina Selezionati" />';
-$dati .= "<a title='Aggiungi vino' class='' href='./add_wine.php' tabindex='' accesskey=''>Aggiungi Vino</a></div></div>";
+$dati .= '<div class="hide_content"><div class="select_admin_buttons">
+<input type="submit" class="admin_button all_selected" name="all_selected" value="Seleziona Tutti" tabindex="11"/>';
+$dati .= '<input type="submit" class="admin_button none_selected" name="none_selected" value="Deseleziona Tutti" tabindex="12"/>';
+$dati .= '<input type="submit" class="admin_button delete_selected" name="delete_selected" value="Elimina Selezionati" tabindex="13" />';
+$dati .= '<a title="Aggiungi vino" href="./add_wine.php" tabindex="14">Aggiungi Vino</a></div></div>';
 
 
-$dati .= '<div id="select_admin_buttons" class="hide_js">
-<input type="button" class="admin_button" name="all_selected"
-id="all_selected" value="Seleziona Tutti" onclick="checkThemAll()"/>
-<input type="button" class="admin_button" name="none_selected" id="none_selected"
-value="Deseleziona Tutti" onclick="uncheckThemAll()"/>
-<input type="submit" class="admin_button" name="delete_selected" id="delete_selected"
-value="Elimina Selezionati" />
-<a title="Aggiungi vino" href="./add_wine.php" tabindex="" accesskey="">Aggiungi Vino</a>
+$dati .= '<div class="select_admin_buttons hide_js">
+<input type="button" class="admin_button all_selected" name="all_selected" value="Seleziona Tutti" onclick="checkThemAll()" tabindex="11"/>
+<input type="button" class="admin_button none_selected" name="none_selected" value="Deseleziona Tutti" onclick="uncheckThemAll()" tabindex="12"/>
+<input type="submit" class="admin_button delete_selected" name="delete_selected" value="Elimina Selezionati" tabindex="13"/>
+<a title="Aggiungi vino" href="./add_wine.php" tabindex="14">Aggiungi Vino</a>
 </div>';
 
 if (mysqli_num_rows($result) != 0) {
@@ -187,30 +181,31 @@ if (mysqli_num_rows($result) != 0) {
                             <div class="admin_td modify_column">Modifica</div>
                             <div class="admin_td remove_column">Elimina</div>
                 </div>';
+
+    $counter_index = 15;            
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-        $dati .= "<div class='admin_tr'>";
-        $dati .= "<div class ='admin_td admin_wines_checkbox_column'><input class='admin_wines_checkbox admin_checkboxes'
-        type='checkbox'name='wines[]' value='" . $row['id_wine'];
+        $dati .= '<div class="admin_tr">';
+        $dati .= '<div class ="admin_td admin_wines_checkbox_column"><input class="admin_wines_checkbox admin_checkboxes" 
+        type="checkbox" name="wines[]" value="' . $row['id_wine'];
         if (isset($_POST['all_selected'])) {
-            $dati .= "' checked='checked";
+            $dati .= '" checked="checked';
         }
 
-        $dati .= "' onclick='removeErrorMessage()'/></div>";
-        $dati .= "<div class ='admin_td admin_wines_name_column'>" . $row['nome'] . "</div>";
-        $dati .= "<div class ='admin_td admin_wines_denomination_column'>" . $row['denominazione'] . "</div>";
-        $dati .= "<div class ='admin_td admin_wines_tipology_column'>" . $row['tipologia'] . "</div>";
-        $dati .= "<div class ='admin_td admin_wines_year_column'>" . $row['annata'] . "</div>";
-        $dati .= "<div class ='admin_td admin_wines_modify_column'><a title='Modifica vino' class=''
-        href='./modify_wine.php?idwine=" . $row['id_wine'] . "' tabindex='' accesskey=''>Modifica</a></div>";
-        $dati .= "<div class ='admin_td admin_wines_remove_column'><a title='Elimina vino' class=''
-         href='./delete_wine.php?wines=" . $row['id_wine'] . "' tabindex='' accesskey=''>X</a></div>";
-        $dati .= "</div>";
+        $dati .= '" onclick="removeErrorMessage()" tabindex="'. $counter_index++.'"/></div>';
+        $dati .= '<div class ="admin_td admin_wines_name_column">' . $row['nome'] . '</div>';
+        $dati .= '<div class ="admin_td admin_wines_denomination_column">' . $row['denominazione'] . '</div>';
+        $dati .= '<div class ="admin_td admin_wines_tipology_column">' . $row['tipologia'] . '</div>';
+        $dati .= '<div class ="admin_td admin_wines_year_column">' . $row['annata'] . '</div>';
+        $dati .= '<div class ="admin_td admin_wines_modify_column"><a title="Modifica vino"
+        href="./modify_wine.php?idwine=' . $row['id_wine'] . '" tabindex="'. $counter_index++.'">Modifica</a></div>';
+        $dati .= '<div class ="admin_td admin_wines_remove_column"><a title="Elimina vino" href="./delete_wine.php?wines=' . $row['id_wine'] . '" tabindex="'. $counter_index++.'">X</a></div>';
+        $dati .= '</div>';
     }
 } else {
-    $dati .= "<h2 id='no_elements'>Non sono presenti vini.</h2>";
+    $dati .= '<h2 id="no_elements">Non sono presenti vini.</h2>';
 }
 
-$dati .= "</form>";
+$dati .= '</form>';
 
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
