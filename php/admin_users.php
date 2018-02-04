@@ -15,11 +15,11 @@ $info_errore='';
 
 //stampo i messaggi informativi e/o di errore
 if(!empty($_COOKIE['info'])){
-    $info_errore.="<div id='top_message'>".$_COOKIE['info']."</div>";
+    $info_errore.='<div id="top_message">'.$_COOKIE['info'].'</div>';
     setcookie('info',null);
 }
 if(!empty($_COOKIE['error'])){
-    $info_errore.="<div id='top_message'>".$_COOKIE['error']."</div>";
+    $info_errore.='<div id="top_message">'.$_COOKIE['error'].'</div>';
     setcookie('error',null);
 }
 
@@ -35,7 +35,7 @@ if($row['admin'] == 1) {
         $users = isset($_POST['users']) ? $_POST['users'] : array();
         
         //se non sono stati selezionati utenti stampo un messaggio d'errore
-        if (!count($users)) $info_errore.="<div id='top_message'>Selezionare almeno un utente</div>";   
+        if (!count($users)) $info_errore.='<div id="top_message">Selezionare almeno un utente</div>';   
         else{
             //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  serialize/unserialize o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni elemento singolarmente in questo modo key[indice]=valore
             header("Location: delete_user.php?users=".serialize($users));
@@ -44,17 +44,16 @@ if($row['admin'] == 1) {
 
     $dati.='<form onsubmit="return deleteSelected()" action="admin_users.php" method="post">'; 
 
-    $dati.='<div class="hide_content"><div id="select_admin_buttons"><input type="submit" class="admin_button" name="all_selected" 
-            id="all_selected" value="Seleziona Tutti" />';
-    $dati.='<input type="submit" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutti" />';
-    $dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionati" />';
-    $dati.="<a title='Aggiungi utente' class='' href='./add_user.php' tabindex='' accesskey=''>Aggiungi Utente</a></div></div>";
+    $dati.='<div class="hide_content"><div id="select_admin_buttons"><input type="submit" class="admin_button all_selected" name="all_selected" value="Seleziona Tutti" tabindex="11"/>';
+    $dati.='<input type="submit" class="admin_button none_selected" name="none_selected"  value="Deseleziona Tutti" tabindex="12"/>';
+    $dati.='<input type="submit" class="admin_button delete_selected" name="delete_selected"  value="Elimina Selezionati" tabindex="13"/>';
+    $dati.='<a title="Aggiungi utente" href="./add_user.php" tabindex="14">Aggiungi Utente</a></div></div>';
 
-    $dati.='<div id="select_admin_buttons" class="hide_js"><input type="button" class="admin_button" name="all_selected" 
-            id="all_selected" value="Seleziona Tutti" onclick="checkThemAll()"/>';
-    $dati.='<input type="button" class="admin_button" name="none_selected" id="none_selected" value="Deseleziona Tutti" onclick="uncheckThemAll()" />';
-    $dati.='<input type="submit" class="admin_button" name="delete_selected" id="delete_selected" value="Elimina Selezionati" />';
-    $dati.="<a title='Aggiungi utente' class='' href='./add_user.php' tabindex='' accesskey=''>Aggiungi Utente</a></div>";
+    $dati.='<div class="select_admin_buttons hide_js"><input type="button" class="admin_button all_selected" name="all_selected" 
+             value="Seleziona Tutti" onclick="checkThemAll()" tabindex="11"/>';
+    $dati.='<input type="button" class="admin_button none_selected" name="none_selected" value="Deseleziona Tutti" onclick="uncheckThemAll()" tabindex="12"/>';
+    $dati.='<input type="submit" class="admin_button delete_selected" name="delete_selected" value="Elimina Selezionati" tabindex="13"/>';
+    $dati.='<a title="Aggiungi utente" href="./add_user.php" tabindex="14">Aggiungi Utente</a></div>';
 
 
 
@@ -72,24 +71,25 @@ if($row['admin'] == 1) {
                             <div class="admin_td remove_column">Elimina</div>
 
                     </div>';
+        $counter_index = 15; 
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-            $dati.="<div class='admin_tr'>";  
-            $dati.="<div class ='admin_td admin_users_checkbox_column'><input class='admin_users_checkbox admin_checkboxes' type='checkbox' name='users[]' value='".$row['id_user'];
-            if(isset($_POST['all_selected'])) $dati.="' checked='checked";
-            $dati.="' onclick='removeErrorMessage()'></div>";          
-            $dati.="<div class ='admin_td admin_users_name_column'>".$row['nome']."</div>";
-            $dati.="<div class ='admin_td admin_users_username_column'>".$row['username']."</div>";
-            $dati.="<div class ='admin_td admin_users_email_column'>".$row['email']."</div>";
-            $dati.="<div class ='admin_td admin_users_modify_column'><a title='Modifica utente' class='' href='./modify_users.php?user=".$row['id_user']."' tabindex='' accesskey=''>Modifica</a></div>";
-            $dati.="<div class ='admin_td admin_users_remove_column'><a title='Elimina utente' class='' href='./delete_user.php?users=".$row['id_user']."' tabindex='' accesskey=''>X</a></div>";
-            $dati.="</div>";
+            $dati.='<div class="admin_tr">';  
+            $dati.='<div class ="admin_td admin_users_checkbox_column"><input class="admin_users_checkbox admin_checkboxes" type="checkbox" name="users[]" value="'.$row["id_user"];
+            if(isset($_POST["all_selected"])) $dati.='" checked="checked';
+            $dati.='" onclick="removeErrorMessage()" tabindex="'. $counter_index++.'"/></div>';          
+            $dati.='<div class ="admin_td admin_users_name_column">'.$row["nome"].'</div>';
+            $dati.='<div class ="admin_td admin_users_username_column">'.$row["username"].'</div>';
+            $dati.='<div class ="admin_td admin_users_email_column">'.$row["email"].'</div>';
+            $dati.='<div class ="admin_td admin_users_modify_column"><a title="Modifica utente" href="/modify_users.php?user='.$row["id_user"].'" tabindex="'. $counter_index++.'">Modifica</a></div>';
+            $dati.='<div class ="admin_td admin_users_remove_column"><a title="Elimina utente" href="./delete_user.php?users='.$row["id_user"].'" tabindex="'. $counter_index++.'">X</a></div>';
+            $dati.='</div>';
         }
     }
-    else $dati.="<h2 id='no_elements'>Non sono presenti utenti.</h2>";
-    $dati.="</form>";
+    else $dati.='<h2 id="no_elements">Non sono presenti utenti.</h2>';
+    $dati.='</form>';
 
 } 
-else $dati.="<h2>Non hai diritti di accesso a questa sezione.</h2>";
+else $dati.='<h2>Non hai diritti di accesso a questa sezione.</h2>';
 
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
