@@ -38,7 +38,7 @@ $sql = 'SELECT anno FROM annate ORDER BY anno';
 $result = mysqli_query($conn, $sql);
 //se ci sono annate allora le stampo in una select
 if (mysqli_num_rows($result) != 0) {
-    $vino .= '<select name="annata">';
+    $vino .= '<select name="annata" tabindex="6">';
     while ($subrow = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $vino .= '<option value="' . $subrow['anno'] . '">' . $subrow['anno'] . '</option>';
     }
@@ -51,7 +51,7 @@ if (mysqli_num_rows($result) != 0) {
 setcookie('addWine', $_SERVER['PHP_SELF']);
 
 //CAMPI DEL FORM
-$vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tabindex="" accesskey="">Aggiungi Annata</a></li>
+$vino .= '</li><li><a title="Aggiungi annata" href="./add_year.php" tabindex="7" accesskey="n">Aggiungi Annata</a></li>
 <li class="label_add">
 <label>Nome</label>
 </li>
@@ -59,7 +59,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <span id="wine_name_error" class="js_error"></span>
 </li>
 <li class="input_add">
-<input type="text" maxlength="30" name="nome" title="nome" onfocusout="checkNome()" />
+<input type="text" maxlength="30" name="nome" title="nome" tabindex="8" onblur="checkNome()" />
 </li>
 
 <li class="label_add">
@@ -69,7 +69,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <span id="wine_tipologia_error" class="js_error"></span>
 </li>
 <li class="input_add">
-<input type="text" maxlength="30" name="tipologia" title="tipologia" onfocusout="checkTipologia()" />
+<input type="text" maxlength="30" name="tipologia" title="tipologia" tabindex="9" onblur="checkTipologia()" />
 </li>
 
 <li class="label_add">
@@ -79,7 +79,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <span id="wine_vitigno_error" class="js_error"></span>
 </li>
 <li>
-<textarea maxlength="30" name="vitigno" title="vitigno" onblur="checkVitigno()" rows="4" cols="34">
+<textarea name="vitigno" title="vitigno" onblur="checkVitigno()" tabindex="10" rows="4" cols="34">
 </textarea>
 </li>
 
@@ -90,7 +90,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <span id="wine_denominazione_error" class="js_error"></span>
 </li>
 <li class="input_add">
-<input type="text" maxlength="30" name="denominazione" title="denominazione" onfocusout="checkDenominazione()"/>
+<input type="text" maxlength="30" name="denominazione" title="denominazione" tabindex="11" onblur="checkDenominazione()"/>
 </li>
 
 <li class="label_add">
@@ -100,7 +100,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <span id="wine_gradazione_error" class="js_error"></span>
 </li>
 <li class="input_add">
-<input type="text" maxlength="4" name="gradazione" title="gradazione" onfocusout="checkGradazione()" />
+<input type="text" maxlength="4" name="gradazione" title="gradazione" tabindex="12" onblur="checkGradazione()" />
 </li>
 
 <li class="label_add">
@@ -110,7 +110,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <span id="wine_formato_error" class="js_error"></span>
 </li>
 <li class="input_add">
-<input type="text" maxlength="4" name="formato" title="formato" onfocusout="checkFormato()"/>
+<input type="text" maxlength="4" name="formato" title="formato" tabindex="13" onblur="checkFormato()"/>
 </li>
 
 <li class="label_add">
@@ -120,7 +120,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <span id="wine_descrizione_error" class="js_error"></span>
 </li>
 <li>
-<textarea name="descrizione" title="descrizione" onblur="checkDescrizione()" rows="4" cols="34">
+<textarea name="descrizione" title="descrizione" onblur="checkDescrizione()" tabindex="14" rows="4" cols="34">
 </textarea>
 </li>
 
@@ -131,7 +131,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <span id="wine_abbinamento_error" class="js_error"></span>
 </li>
 <li>
-<textarea name="abbinamento" title="abbinamento" onblur="checkAbbinamento()" rows="4" cols="34">
+<textarea name="abbinamento" title="abbinamento" onblur="checkAbbinamento()" tabindex="15" rows="4" cols="34">
 </textarea>
 </li>
 
@@ -142,7 +142,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <span id="wine_degustazione_error" class="js_error"></span>
 </li>
 <li>
-<textarea name="degustazione" title="degustazione" onblur="checkDegustazione()" rows="4" cols="34">
+<textarea name="degustazione" title="degustazione" onblur="checkDegustazione()" tabindex="16" rows="4" cols="34">
 </textarea>
 </li>
 
@@ -153,10 +153,10 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <span id="wine_picture_error" class="js_error"></span>
 </li>
 <li>
-<input id="select_file" type="file" name="wine_img" />
+<input id="select_file" type="file" name="wine_img" tabindex="17"/>
 </li>
 </ul>
-<input type="submit" class="search_button" name="save_profile" id="save_add_wine" value="Salva" />
+<input type="submit" class="search_button" name="save_profile" id="save_add_wine" tabindex="18" value="Salva" />
 </fieldset>';
 
 //controllo se l'utente ha provato a salvare i dati del form
@@ -189,13 +189,13 @@ if (!empty($_POST['save_profile'])) {
         //gradazione: il formato consentito è di 1 o 2 interi seguiti dal punto seguito poi da 1 sola cifra decimale
         //es. 7.5  oppure  13.5
         if (!preg_match('/^\d{1,2}\.\d$/', strval($gradazione))) {
-            $error .= 'Gradazione non è nel formato corretto (es. 7.5% o 13.5%).<br />';
+            $error .= 'Gradazione non è nel formato corretto (es. 7.5 o 13.5).<br />';
         }
 
         //formato: il formato corretto è 1 intero seguito dal punto seguito poi da 2 cifre decimali
         //es. 1.75  opuure  2.00
         if (!preg_match('/^\d\.\d{2}$/', $formato)) {
-            $error .= 'Formato non è nel formato corretto (es. 1.75L).<br />';
+            $error .= 'Formato non è nel formato corretto (es. 1.7).<br />';
         }
 
         //immagine: controllo che sia stata caricata correttamente l'immagine

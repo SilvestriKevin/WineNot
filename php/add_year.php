@@ -40,8 +40,8 @@ $annata .= '<fieldset>
                         <span id="year_error" class="js_error"></span>
                     </li>
                     <li class="input_add">
-                        <input id="check_year" type="text" maxlength="4" name="anno" title="anno" tabindex="1"
-                        onfocusout="checkYear()"/>
+                        <input id="check_year" type="text" maxlength="4" name="anno" title="anno" tabindex="6"
+                        onblur="checkYear()"/>
                     </li>
 
                     <li class="label_add">
@@ -51,9 +51,7 @@ $annata .= '<fieldset>
                         <span id="description_error" class="js_error"></span>
                     </li>
                     <li>
-                        <textarea id="check_description" maxlength="50" name="descrizione"
-                         title="descrizione" tabindex="1" onblur="checkYearDescription()" rows="4" cols="34">
-                        </textarea>
+                        <textarea id="check_description" name="descrizione" title="descrizione" onblur="checkYearDescription()" tabindex="7" rows="4" cols="34"></textarea>
                     </li>
 
                     <li class="label_add">
@@ -63,18 +61,18 @@ $annata .= '<fieldset>
                         <span id="quality_error" class="js_error"></span>
                     </li>
                     <li class="input_add">
-                        <input id="check_quality" type="text" maxlength="100" name="qualita" title="qualita" tabindex="6"
-                        onfocusout="checkYearQuality()"/>
+                        <input id="check_quality" type="text" maxlength="100" name="qualita" title="qualita" tabindex="8"
+                        onblur="checkYearQuality()"/>
                     </li>
 
                     <li class="label_add">
                         <label>Migliore</label>
-                        <input type="checkbox" name="migliore" title="migliore" value="migliore" tabindex="7"/>
+                        <input type="checkbox" name="migliore" title="migliore" value="migliore" tabindex="9"/>
                     </li>
                     </ul>
 
                     <input type="submit" class="search_button" name="salva" id="save_add_year" value="Aggiungi"
-                        accesskey="s" tabindex="8"/>
+                        accesskey="s" tabindex="10"/>
 
                 </fieldset>';
 

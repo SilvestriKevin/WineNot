@@ -28,20 +28,23 @@
 
 <body onload="start()">
     <div id="header">
-        <a title='Home' class='' href='../index.html' tabindex='1' accesskey='h'><img id="logo" alt="Logo WineNot" src="../img/logo.png"/></a>
-        <a title='Home' class='' href='../index.html' tabindex='0' accesskey='h'><img id="logo_alt" alt="Logo WineNot" src="../img/logo_alt.png" /></a>
-        <a title='Home' class='' href='../index.html' tabindex='0' accesskey='h'><img id="logo_alt_mobile" alt="Logo WineNot" src="../img/logo_alt_mobile.png" /></a>
+        <a id="logo_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img id="logo" 
+            alt="Logo WineNot" src="../img/logo.png" /></a>
+        <a id="logo_alt_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img id="logo_alt" 
+            alt="Logo WineNot" src="../img/logo_alt.png" /></a>
+        <a id="logo_alt_mobile_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img 
+            id="logo_alt_mobile" alt="Logo WineNot" src="../img/logo_alt_mobile.png" /></a>
         <ul>
-            <li><a title="Esci dall' Area Riservata" class='' href='./login.php?esci=1' tabindex='' accesskey='q'>Esci</a></li>
+            <li><a title="Esci dall&apos; Area Riservata" href="./login.php?esci=1" tabindex="2" accesskey="q">Esci</a></li>
         </ul>
     </div>
     <div id="admin_content">
         <div id="horizontal_menu">
             <ul>
-                <li><a title='' class='' href='admin_wines.php' tabindex='' accesskey=''>Gestione Vini</a></li>
-                <li><a title='' class='' href='admin_years.php' tabindex='' accesskey=''>Gestione Annate</a></li>
-                <li><a title='' class='' href='admin_users.php' tabindex='' accesskey=''>Gestione Utenti</a></li>
-                <li><a title='' class='' href='admin_profile.php' tabindex='' accesskey=''>Dati Profilo</a></li>
+                <li><a title="gestione vini" href="admin_wines.php" tabindex="2" accesskey="v">Gestione Vini</a></li>
+                <li><a title="gestione annate" href="admin_years.php" tabindex="3" accesskey="a">Gestione Annate</a></li>
+                <li><a title="gestione utenti" href="admin_users.php" tabindex="4" accesskey="u">Gestione Utenti</a></li>
+                <li><a title="dati profilo" href="admin_profile.php" tabindex="5" accesskey="p">Dati Profilo</a></li>
             </ul>
         </div>
 

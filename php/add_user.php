@@ -42,33 +42,31 @@ if ($row['admin'] == 1) {
                     <li id="important_message_user"><span>Tutti i campi sono obbligatori</span></li>
 
                     <li><label>Nome Completo</label></li>
-                    <li><span id="firstname_error" class="js_error"></span>
-                    <li><input id="firstname" type="text" maxlength="50" name="nome" id="nome" title="nome" tabindex="1"
-                    onfocusout="checkUserFirstName()"/></li>
+                    <li><span id="firstname_error" class="js_error"></span></li>
+                    <li><input id="firstname" type="text" maxlength="50" name="nome" title="nome" tabindex="6"
+                    onblur="checkUserFirstName()"/></li>
 
                     <li><label>Username</label></li>
-                    <li><span id="username_error" class="js_error"></span>
-                    <li><input id="username" type="text" maxlength="50" name="username" id="username" title="username"
-                    tabindex="1" onfocusout="checkUsername()"/>
+                    <li><span id="username_error" class="js_error"></span></li>
+                    <li><input id="username" type="text" maxlength="50" name="username" title="username"
+                    tabindex="7" onblur="checkUsername()"/>
 
-                    </li><li><label>Indirizzo email</label>
-                    <li><span id="mail_error" id="mail_error" class="js_error"></span>
-                    </li><li><input id="email" type="text" maxlength="50" name="email" id="email" title="email"
-                    tabindex="5" onfocusout="checkEmail()"/>
+                    </li><li><label>Indirizzo email</label></li>
+                    <li><span id="mail_error" class="js_error"></span>
+                    </li><li><input id="email" type="text" maxlength="50" name="email" title="email"
+                    tabindex="8" onblur="checkEmail()"/>
 
-                    </li><li><label>Password</label>
+                    </li><li><label>Password</label></li>
                     <li><span id="password_error" class="js_error"></span>
-                    </li><li><input id="password" type="password" maxlength="100" name="password" id="password_user"
-                    title="password" tabindex="6"onfocusout=" checkPasswordPanel()"/>
+                    </li><li><input id="password" type="password" maxlength="100" name="password" title="password" tabindex="9" onblur="checkPasswordPanel()"/>
 
-                    </li><li><label>Conferma Password</label>
+                    </li><li><label>Conferma Password</label></li>
                     <li><span id="confirm_password_error" class="js_error"></span>
-                    </li><li><input id="password_confirmation" type="password" maxlength="100" name="conferma_password"
-                    id="conferma_password" title="conferma_password" tabindex="7" onfocusout="checkPasswordConfirmation()"/></li>
+                    </li><li><input id="password_confirmation" type="password" maxlength="100" name="conferma_password" title="conferma_password" tabindex="10" onblur="checkPasswordConfirmation()"/></li>
 
                     </ul>
                     <input type="submit" class="search_button" name="register" value="Salva" id="save_admin_profile"
-                    accesskey="s" tabindex="8"/>
+                    accesskey="s" tabindex="11"/>
 
                 </fieldset>
                 </form>';
