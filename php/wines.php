@@ -50,7 +50,7 @@ if (mysqli_num_rows($result) != 0) {
 }
 
 //SELECT TIPOLOGIA NEL FORM
-$array_tipologie = array('bianco', 'rosso', 'ros&egrave;');
+$array_tipologie = array('bianco', 'rosso', 'ros&eacute;');
 $num_elementi = count($array_tipologie);
 for ($i = 0; $i < $num_elementi; $i++) {
     $tipologia .= '<option value="' . $array_tipologie[$i] . '"';
