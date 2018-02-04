@@ -234,24 +234,20 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
 $dati .= '<h1 id="admin_title">Dati del profilo</h1>';
-
 $dati .= '<form onsubmit="return checkModifyProfile()" id="admin_profile_page" action="admin_profile.php" method="post">';
 
 if (mysqli_num_rows($result) != 0) {
     $dati .= '<ul>
-                <li><label>Username</label></li><li><span id="username_error" class="js_error"></span></li><li><input id="username" type="text" maxlength="100" name="username" id=""
-                title="username" value="' . $row['username'] . '" onfocusout="checkUsername()"/></li>
-                <li><label>Nome</label></li><li><span id="firstname_error" class="js_error"></span></li><li><input id="firstname" type="text" maxlength="100" name="nome" id="" title="nome"
-                value="' . $row['nome'] . '" onfocusout="checkUserFirstName()"/></li>
-                <li><label>Email</label></li><li><span id="mail_error" class="js_error"></span></li><li><input id="email" type="text" maxlength="100" name="email" id="" title="email"
-                value="' . $row['email'] . '" onfocusout="checkEmail()"/></li>
-                <li><label>Password attuale*</label></li><li><span id="password_error" class="js_error"></span></li><li><input id="password" type="password" maxlength="100" name="actual_password"
-                id="" title="password attuale" value=""/></li>
-                <li><label>Password nuova*</label></li><li><span id="new_password_error" class="js_error"></span></li><li><input id="new_password" type="password" maxlength="100" name="new_password" id=""
-                title="password nuova" value=""/></li>
-            </ul>
-                    <label id="required_fields_profile">*Campi obbligatori UNICAMENTE per il cambio password</label>';
-    $dati .= '<input type="submit" class="search_button" name="save_profile" id="save_admin_profile" value="Salva" />';
+                <li><label>Username</label></li><li><span id="username_error" class="js_error"></span></li><li><input id="username" type="text" maxlength="100" name="username" title="username" value="' . $row['username'] . '" onblur="checkUsername()" tabindex="7"/></li>
+                <li><label>Nome</label></li><li><span id="firstname_error" class="js_error"></span></li><li><input id="firstname" type="text" maxlength="100" name="nome" title="nome"
+                value="' . $row['nome'] . '" onblur="checkUserFirstName()" tabindex="8"/></li>
+                <li><label>Email</label></li><li><span id="mail_error" class="js_error"></span></li><li><input id="email" type="text" maxlength="100" name="email" title="email"
+                value="' . $row['email'] . '" onblur="checkEmail()" tabindex="9"/></li>
+                <li><label>Password attuale*</label></li><li><span id="password_error" class="js_error"></span></li><li><input id="password" type="password" maxlength="100" name="actual_password" title="password attuale" tabindex="10"/></li>
+                <li><label>Password nuova*</label></li><li><span id="new_password_error" class="js_error"></span></li><li><input id="new_password" type="password" maxlength="100" name="new_password" title="password nuova" tabindex="11"/></li>';
+    $dati .= '<li><input type="submit" class="search_button" name="save_profile" id="save_admin_profile" value="Salva" tabindex="12" /></li>
+    <li><span id="required_fields_profile">*Campi obbligatori UNICAMENTE per il cambio password</span></li>
+    </ul>';
 } else {
     $dati .= '<h2>Ci sono stati dei problemi con il database. La preghiamo di ricaricare la pagina.</h2>';
 }
