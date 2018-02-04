@@ -65,8 +65,8 @@ if($row['admin'] == 1) {
     if(mysqli_num_rows($result)!=0){
         $dati.='<div class="admin_tr" id="admin_header">
                             <div id="menu_select" class="admin_td">Selezione</div>
+                            <div class="admin_td">Nome Completo</div> 
                             <div class="admin_td">Username</div>
-                            <div class="admin_td">Nome</div> 
                             <div class="admin_td">Email</div>                            
                             <div class="admin_td modify_column">Modifica</div>
                             <div class="admin_td remove_column">Elimina</div>

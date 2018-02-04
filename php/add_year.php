@@ -19,11 +19,11 @@ $info_errore = '';
 
 //stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['info'])) {
-    $info_errore .= '<li>' . $_COOKIE['info'] . '</li>';
+    $info_errore .= '<div>' . $_COOKIE['info'] . '</div>';
     setcookie('info', null);
 }
 if (!empty($_COOKIE['error'])) {
-    $info_errore .= '<li id="error_admin_message">' . $_COOKIE['error'] . '</li>';
+    $info_errore .= '<div id="error_admin_message">' . $_COOKIE['error'] . '</div>';
     setcookie('error', null);
 }
 
@@ -72,7 +72,7 @@ $annata .= '<fieldset>
                         <input type="checkbox" name="migliore" title="migliore" value="migliore" tabindex="7"/>
                     </li>
                     </ul>
-                    
+
                     <input type="submit" class="search_button" name="salva" id="save_add_year" value="Aggiungi"
                         accesskey="s" tabindex="8"/>
 
@@ -82,8 +82,8 @@ $annata .= '<fieldset>
 if (isset($_POST['anno']) && isset($_POST['descrizione']) && isset($_POST['qualita'])) {
 
     //controllo che non siano stati lasciati campi vuoti
-    if (!empty($_POST['anno']) && !preg_match('/^(\s)+$/', $_POST['anno']) && !empty($_POST['descrizione']) && 
-    !preg_match('/^(\s)+$/', $_POST['descrizione']) && !empty($_POST['qualita']) && !preg_match('/^(\s)+$/', $_POST['qualita'])) {
+    if (!empty($_POST['anno']) && !preg_match('/^(\s)+$/', $_POST['anno']) && !empty($_POST['descrizione']) &&
+        !preg_match('/^(\s)+$/', $_POST['descrizione']) && !empty($_POST['qualita']) && !preg_match('/^(\s)+$/', $_POST['qualita'])) {
 
         //dichiarazione variabili
         $anno = $_POST['anno'];
@@ -101,8 +101,7 @@ if (isset($_POST['anno']) && isset($_POST['descrizione']) && isset($_POST['quali
             if (mysqli_num_rows($result) != 0) {
                 setcookie('error', 'L&apos;anno inserito &egrave; gi&agrave; presente nel database.');
                 header('Location: add_year.php');
-            } 
-            else {
+            } else {
                 //inserisco i dati nel database
                 if (!isset($_POST['migliore'])) {
                     $sql = 'INSERT INTO annate (anno, descrizione,qualita) VALUES ("' . $anno . '","' . $descrizione . '", "' . $qualita . '")';
@@ -119,35 +118,32 @@ if (isset($_POST['anno']) && isset($_POST['descrizione']) && isset($_POST['quali
                         unset($_COOKIE['addWine']);
                         setcookie('addWine', '', time() - 3600);
                         header('Location:' . $addWine);
-                    } 
+                    }
                     //altrimenti riporto alla pagina di gestione annate
                     else {
                         header('Location: admin_years.php');
                     }
-                } 
-                else {
-                    setcookie('error', 'Si &egrave; verificato un errore. La preghiamo di riprovare'.$sql);
+                } else {
+                    setcookie('error', 'Si &egrave; verificato un errore. La preghiamo di riprovare' . $sql);
                     header('Location: add_year.php');
                 }
             }
-        } 
+        }
         //controllo il caso in cui l'anno sia maggiore dell'anno corrente
-        else if(preg_match('/^\d{4}$/', $anno) && $anno > date('Y')){
-            setcookie('error', 'Anno deve essere minore o uguale dell&apos;anno corrente ('.date('Y').').');
-            header('Location: add_year.php');
-        } 
-        //controllo il caso in cui l'anno sia minore o uguale di 1900
-        else if(preg_match('/^\d{4}$/', $anno) && $anno <= 1900){
-            setcookie('error', 'Anno deve essere maggiore dell&apos;anno 1900.');
+        else if (preg_match('/^\d{4}$/', $anno) && $anno > date('Y')) {
+            setcookie('error', 'Anno deve essere minore o uguale dell&apos;anno corrente (' . date('Y') . ').');
             header('Location: add_year.php');
         }
-        else {
+        //controllo il caso in cui l'anno sia minore o uguale di 1900
+        else if (preg_match('/^\d{4}$/', $anno) && $anno <= 1900) {
+            setcookie('error', 'Anno deve essere maggiore dell&apos;anno 1900.');
+            header('Location: add_year.php');
+        } else {
             setcookie('error', 'Anno non è nel formato corretto (es. 1994).');
             header('Location: add_year.php');
         }
 
-    } 
-    else {
+    } else {
         setcookie('error', 'Alcuni campi risultano vuoti.');
         header('Location: add_year.php');
     }

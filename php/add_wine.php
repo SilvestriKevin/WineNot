@@ -19,7 +19,7 @@ $info_errore = '';
 
 //stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['info'])) {
-    $info_errore .= '<li>' . $_COOKIE['info'] . '</li>';
+    $info_errore .= '<div>' . $_COOKIE['info'] . '</div>';
     setcookie('info', null);
 }
 if (!empty($_COOKIE['error'])) {
@@ -79,7 +79,7 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 <span id="wine_vitigno_error" class="js_error"></span>
 </li>
 <li>
-<textarea maxlength="30" name="vitigno" title="vitigno" onblur="checkVitigno()" rows="4" cols="34"> 
+<textarea maxlength="30" name="vitigno" title="vitigno" onblur="checkVitigno()" rows="4" cols="34">
 </textarea>
 </li>
 
@@ -162,13 +162,13 @@ $vino .= '</li><li><a title="Aggiungi annata" class="" href="./add_year.php" tab
 //controllo se l'utente ha provato a salvare i dati del form
 if (!empty($_POST['save_profile'])) {
     //controllo che tutti i campi siano non vuoti e non contengano solo spazi ('   ')
-    if (!empty($_POST['nome']) && !preg_match('/^(\s)+$/', $_POST['nome']) && !empty($_POST['tipologia']) && 
-    !preg_match('/^(\s)+$/', $_POST['tipologia']) && !empty($_POST['descrizione']) && !preg_match('/^(\s)+$/', $_POST['descrizione']) 
-    && !empty($_POST['denominazione']) && !preg_match('/^(\s)+$/', $_POST['denominazione']) && !empty($_POST['annata']) 
-    && !empty($_POST['vitigno']) && !preg_match('/^(\s)+$/', $_POST['vitigno']) && !empty($_POST['abbinamento']) && 
-    !preg_match('/^(\s)+$/', $_POST['abbinamento']) && !empty($_POST['degustazione']) && !preg_match('/^(\s)+$/', $_POST['degustazione']) 
-    && !empty($_POST['gradazione']) && !preg_match('/^(\s)+$/', $_POST['gradazione']) && !empty($_POST['formato']) && 
-    !preg_match('/^(\s)+$/', $_POST['formato']) && !empty($_FILES['wine_img']) && $_FILES['wine_img']['type'] == 'image/png') {
+    if (!empty($_POST['nome']) && !preg_match('/^(\s)+$/', $_POST['nome']) && !empty($_POST['tipologia']) &&
+        !preg_match('/^(\s)+$/', $_POST['tipologia']) && !empty($_POST['descrizione']) && !preg_match('/^(\s)+$/', $_POST['descrizione'])
+        && !empty($_POST['denominazione']) && !preg_match('/^(\s)+$/', $_POST['denominazione']) && !empty($_POST['annata'])
+        && !empty($_POST['vitigno']) && !preg_match('/^(\s)+$/', $_POST['vitigno']) && !empty($_POST['abbinamento']) &&
+        !preg_match('/^(\s)+$/', $_POST['abbinamento']) && !empty($_POST['degustazione']) && !preg_match('/^(\s)+$/', $_POST['degustazione'])
+        && !empty($_POST['gradazione']) && !preg_match('/^(\s)+$/', $_POST['gradazione']) && !empty($_POST['formato']) &&
+        !preg_match('/^(\s)+$/', $_POST['formato']) && !empty($_FILES['wine_img']) && $_FILES['wine_img']['type'] == 'image/png') {
 
         //dichiarazione variabili
         $nome = $_POST['nome'];
@@ -193,7 +193,7 @@ if (!empty($_POST['save_profile'])) {
         }
 
         //formato: il formato corretto è 1 intero seguito dal punto seguito poi da 2 cifre decimali
-        //es. 1.75  opuure  2.00  
+        //es. 1.75  opuure  2.00
         if (!preg_match('/^\d\.\d{2}$/', $formato)) {
             $error .= 'Formato non è nel formato corretto (es. 1.75L).<br />';
         }
@@ -207,25 +207,23 @@ if (!empty($_POST['save_profile'])) {
         if (!empty($error)) {
             setcookie('error', $error);
             header('Location: add_wine.php');
-        } 
-        else {
+        } else {
 
-            //controllo che non sia presente nel database lo stesso vino che sto cercando di inserire 
-            $sql = 'SELECT * FROM vini WHERE annata="' . $annata . '" AND nome="' . $nome . '" AND tipologia="' . $tipologia . 
-            '" AND denominazione="' . $denominazione . '"';
+            //controllo che non sia presente nel database lo stesso vino che sto cercando di inserire
+            $sql = 'SELECT * FROM vini WHERE annata="' . $annata . '" AND nome="' . $nome . '" AND tipologia="' . $tipologia .
+                '" AND denominazione="' . $denominazione . '"';
 
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) != 0) {
                 setcookie('error', 'Un vino con questi dati &egrave; gi&agrave; presente nel database.');
                 header('Location: add_wine.php');
-            } 
-            else {
+            } else {
                 //posso procedere all'inserimento del vino nel database
-                $sql = 'INSERT INTO vini (nome, tipologia, descrizione, denominazione, annata, vitigno, abbinamento, degustazione, 
-                gradazione, formato) VALUES ("' . $nome . '","' . $tipologia . '", "' . $descrizione . '","' . $denominazione . 
-                '","' . $annata . '","' . $vitigno . '","' . $abbinamento . '","' . $degustazione . '","' . $gradazione . '","' . 
-                $formato . '")';
+                $sql = 'INSERT INTO vini (nome, tipologia, descrizione, denominazione, annata, vitigno, abbinamento, degustazione,
+                gradazione, formato) VALUES ("' . $nome . '","' . $tipologia . '", "' . $descrizione . '","' . $denominazione .
+                    '","' . $annata . '","' . $vitigno . '","' . $abbinamento . '","' . $degustazione . '","' . $gradazione . '","' .
+                    $formato . '")';
 
                 //controllo la connessione
                 if (mysqli_query($conn, $sql)) {
@@ -241,9 +239,8 @@ if (!empty($_POST['save_profile'])) {
 
                     if (mysqli_num_rows($result) != 0) {
                         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-                    } 
-                    else {
-                        setcookie('C&apos;&egrave; stato un errore con l&apos;inserimento dell&apos;immagine, la preghiamo di riprovare 
+                    } else {
+                        setcookie('C&apos;&egrave; stato un errore con l&apos;inserimento dell&apos;immagine, la preghiamo di riprovare
                         provando a fare la Modifica del vino.');
                         header('Location: add_wine.php');
                     }
@@ -263,33 +260,30 @@ if (!empty($_POST['save_profile'])) {
 
                         //ritorno alla pagina della gestione vini
                         header('Location: admin_wines.php');
-                    } 
-                    else { // il caricamento del file non è andato a buon fine
-                        setcookie('error', 'Il caricamento dell&apos;immagine non &egrave; andato a buon fine. La preghiamo di 
+                    } else { // il caricamento del file non è andato a buon fine
+                        setcookie('error', 'Il caricamento dell&apos;immagine non &egrave; andato a buon fine. La preghiamo di
                         riprovare ad inserire l&apos;immagine attraverso la Modifica del vino.');
                         header('Location: modify_wine.php?idwine=' . $row['id_wine']);
                     }
 
-                } 
-                else {
+                } else {
                     setcookie('error', 'Si &egrave; verificato un errore. La preghiamo di riprovare');
                     header('Location: add_wine.php');
                 }
             }
         }
-    } 
+    }
     //controllo il caso in cui i campi non sono vuoti ma non è stata inserita l'immagine o è stata inserita un'immagine del formato sbagliato
-    else if(!empty($_POST['nome']) && !preg_match('/^(\s)+$/', $_POST['nome']) && !empty($_POST['tipologia']) && 
-    !preg_match('/^(\s)+$/', $_POST['tipologia']) && !empty($_POST['descrizione']) && !preg_match('/^(\s)+$/', $_POST['descrizione']) 
-    && !empty($_POST['denominazione']) && !preg_match('/^(\s)+$/', $_POST['denominazione']) && !empty($_POST['annata']) 
-    && !empty($_POST['vitigno']) && !preg_match('/^(\s)+$/', $_POST['vitigno']) && !empty($_POST['abbinamento']) && 
-    !preg_match('/^(\s)+$/', $_POST['abbinamento']) && !empty($_POST['degustazione']) && !preg_match('/^(\s)+$/', $_POST['degustazione']) 
-    && !empty($_POST['gradazione']) && !preg_match('/^(\s)+$/', $_POST['gradazione']) && !empty($_POST['formato']) && 
-    !preg_match('/^(\s)+$/', $_POST['formato']) && !empty($_FILES['wine_img']) && $_FILES['wine_img']['type'] != 'image/png'){
+    else if (!empty($_POST['nome']) && !preg_match('/^(\s)+$/', $_POST['nome']) && !empty($_POST['tipologia']) &&
+        !preg_match('/^(\s)+$/', $_POST['tipologia']) && !empty($_POST['descrizione']) && !preg_match('/^(\s)+$/', $_POST['descrizione'])
+        && !empty($_POST['denominazione']) && !preg_match('/^(\s)+$/', $_POST['denominazione']) && !empty($_POST['annata'])
+        && !empty($_POST['vitigno']) && !preg_match('/^(\s)+$/', $_POST['vitigno']) && !empty($_POST['abbinamento']) &&
+        !preg_match('/^(\s)+$/', $_POST['abbinamento']) && !empty($_POST['degustazione']) && !preg_match('/^(\s)+$/', $_POST['degustazione'])
+        && !empty($_POST['gradazione']) && !preg_match('/^(\s)+$/', $_POST['gradazione']) && !empty($_POST['formato']) &&
+        !preg_match('/^(\s)+$/', $_POST['formato']) && !empty($_FILES['wine_img']) && $_FILES['wine_img']['type'] != 'image/png') {
         setcookie('error', 'Deve essere inserita un&apos;immagine con estensione ".png" .');
         header('Location: add_wine.php');
-    }
-    else{
+    } else {
         setcookie('error', 'Alcuni campi risultano vuoti.');
         header('Location: add_wine.php');
     }
