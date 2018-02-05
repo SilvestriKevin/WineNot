@@ -228,6 +228,12 @@ if (!empty($_POST['save_profile'])) {
                 //controllo la connessione
                 if (mysqli_query($conn, $sql)) {
 
+                    //se il cookie è settato, lo unsetto
+                    if (isset($_COOKIE['addWine'])) {
+                        unset($_COOKIE['addWine']);
+                        setcookie('addWine', '', time() - 3600);
+                    }
+
                     // ho aggiunto il vino al database
                     // ora posso far sì che venga aggiunta anche la foto
                     // N.B.: non serve salvare alcun dato nel db dato che ci servirà solamente l'id_wine
@@ -240,29 +246,22 @@ if (!empty($_POST['save_profile'])) {
                     if (mysqli_num_rows($result) != 0) {
                         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                     } else {
-                        setcookie('C&apos;&egrave; stato un errore con l&apos;inserimento dell&apos;immagine, la preghiamo di riprovare
-                        provando a fare la Modifica del vino.');
-                        header('Location: add_wine.php');
+                        setcookie('Il caricamento dell&apos;immagine non &egrave; andato a buon fine. La preghiamo di
+                        riprovare ad inserire l&apos;immagine attraverso la modifica del vino.');
+                        header('Location: modify_wine.php?idwine=' . $row['id_wine']);
                     }
-                    // dò il nome che mi serve alla foto (cioè l'id_wine)
+                    //assegno il nome che mi serve alla foto (cioè l'id_wine)
                     $file['name'] = $row['id_wine'];
 
-                    // e lo sposto nella cartella corretta
-                    // move_uploaded_file ritorna TRUE se tutto va bene
+                    //e lo sposto nella cartella corretta
+                    //move_uploaded_file ritorna TRUE se tutto va bene
                     if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/WineNot/img/' . $file['name'] . '.png')) {
                         setcookie('info', 'Vino aggiunto con successo.');
-
-                        //se il cookie è settato, lo unsetto
-                        if (isset($_COOKIE['addWine'])) {
-                            unset($_COOKIE['addWine']);
-                            setcookie('addWine', '', time() - 3600);
-                        }
-
                         //ritorno alla pagina di gestione vini
                         header('Location: admin_wines.php');
                     } else { // il caricamento del file non è andato a buon fine
                         setcookie('error', 'Il caricamento dell&apos;immagine non &egrave; andato a buon fine. La preghiamo di
-                        riprovare ad inserire l&apos;immagine attraverso la Modifica del vino.');
+                        riprovare ad inserire l&apos;immagine attraverso la modifica del vino.');
                         header('Location: modify_wine.php?idwine=' . $row['id_wine']);
                     }
 

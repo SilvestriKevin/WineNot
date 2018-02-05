@@ -94,6 +94,15 @@ if (!empty($_POST['save_wine'])) {
             if ($file['error'] != UPLOAD_ERR_OK && !is_uploaded_file($file['tmp_name'])) {
                 $error .= 'C&apos;&egrave; stato un problema con il caricamento dell&apos;immagine. La preghiamo di riprovare.<br />';
             }
+        } 
+        //se inserisco un'immagine con estensione diversa da '.png'
+        else if(!empty($_FILES['wine_img']) && $_FILES['wine_img']['type'] != 'image/png'){
+            $error .= 'Deve essere inserita un&apos;immagine con estensione ".png" 1.';
+        }
+        //controllo se mi trovo nel caso in cui l'inserimento vino è riuscito però l'inserimento immagine è fallito.
+        //in questo caso l'utente deve inserire un'immagine
+        else if(!file_exists('/WineNot/img/' . $id_wine . '.png') && empty($_FILES['wine_img'])){
+            $error .= 'Deve essere inserita un&apos;immagine con estensione ".png" .';
         }
 
         //se $error non è vuota allora ricarico la pagina mostrando gli errori rilevati
@@ -101,14 +110,18 @@ if (!empty($_POST['save_wine'])) {
             setcookie('error', $error);
             header('Location: modify_wine.php?idwine=' . $id_wine);
         } else {
+            //controllo che sia stato modificato almeno un campo, altrimenti non serve fare l'update nel database
             $sql = 'SELECT * FROM vini WHERE id_wine="' . $id_wine . '" AND annata="' . $annata . '"
             AND nome="' . htmlentities($nome, ENT_QUOTES) . '" AND tipologia="' . htmlentities($tipologia, ENT_QUOTES) . '" AND
-            denominazione="' . htmlentities($denominazione, ENT_QUOTES) . '"';
+            vitigno="' . htmlentities($vitigno, ENT_QUOTES) . '" AND denominazione="' . htmlentities($denominazione, ENT_QUOTES) .
+            '" AND gradazione="' . $gradazione . '" AND formato="' . $formato . '" AND descrizione="' . htmlentities($descrizione, ENT_QUOTES)
+            . '" AND abbinamento="' . htmlentities($abbinamento, ENT_QUOTES) . '" AND degustazione="' . htmlentities($degustazione, ENT_QUOTES)
+                . '"';
 
             $result = mysqli_query($conn, $sql);
-            //controllo che sia stato modificato almeno un campo, altrimenti non serve fare l'update nel database
+
             if (mysqli_num_rows($result) == 0) {
-                //posso ora controllare che questo vino modificato non esista già nel database (escludendo il vino prima delle
+                //controllo che questo vino modificato non esista già nel database (escludendo il vino prima delle
                 //modifiche ovviamente)
                 $sql = 'SELECT * FROM (SELECT * FROM vini WHERE id_wine!="' . $id_wine . '") WHERE annata="' . $annata . '"
                 AND nome="' . htmlentities($nome, ENT_QUOTES) . '" AND tipologia="' . htmlentities($tipologia, ENT_QUOTES) . '" AND
@@ -117,34 +130,39 @@ if (!empty($_POST['save_wine'])) {
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) != 0) {
-                    $error .= 'Un vino con queste informazioni &egrave; gi&agrave; presente nel database.<br />';
-                } else { //posso ora aggiornare il vino nel database
+                    $error .= 'Un altro vino con queste informazioni &egrave; gi&agrave; presente nel database.<br />';
+                } else { //aggiorno il vino nel database
                     $sql = 'UPDATE vini SET nome="' . htmlentities($nome, ENT_QUOTES) . '", tipologia="' . htmlentities($tipologia, ENT_QUOTES)
                     . '", descrizione="' . htmlentities($descrizione, ENT_QUOTES) . '", denominazione="' . htmlentities($denominazione, ENT_QUOTES)
                     . '", annata="' . $annata . '", vitigno="' . htmlentities($vitigno, ENT_QUOTES) . '", abbinamento="' .
                     htmlentities($abbinamento, ENT_QUOTES) . '", degustazione="' . htmlentities($degustazione, ENT_QUOTES) .
-                        '",gradazione="' . $gradazione . '", formato="' . $formato .
-                        '" WHERE id_wine="' . $id_wine . '"';
+                    '",gradazione="' . $gradazione . '", formato="' . $formato .'" WHERE id_wine="' . $id_wine . '"';
 
                     //se la query è stata eseguita con successo
                     if (mysqli_query($conn, $sql)) {
-                        $file['name'] = $id_wine;
+                        //se il cookie è settato, lo unsetto
+                        if (isset($_COOKIE['modifyWine'])) {
+                            unset($_COOKIE['modifyWine']);
+                            setcookie('modifyWine', '', time() - 3600);
+                        }
+                        //controllo che sia stata inserita un'immagine nuova
+                        if(!empty($file)){
+                            //assegno il nome che mi serve alla foto (cioè l'id_wine)
+                            $file['name'] = $id_wine;
 
-                        //controllo che l'immagine sia stata caricata nella cartella correttamente
-                        if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/WineNot/img/' . $file['name'] . '.png')) {
-                            setcookie('info', 'Modifica dei dati avvenuta con successo.');
-
-                            //se il cookie è settato, lo unsetto
-                            if (isset($_COOKIE['modifyWine'])) {
-                                unset($_COOKIE['modifyWine']);
-                                setcookie('modifyWine', '', time() - 3600);
+                            //controllo che l'immagine sia stata caricata nella cartella correttamente
+                            if (move_uploaded_file($file['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . '/WineNot/img/' . $file['name'] . '.png')) {
+                                setcookie('info', 'Modifica dei dati avvenuta con successo.');
+                                //ritorno alla pagina di gestione vini
+                                header('Location: admin_wines.php');
+                            } else { // il caricamento file non è andato a buon fine, tuttavia la query è stata eseguita
+                                $error .= 'Il caricamento dell&apos;immagine non &egrave; andato a buon fine. Tuttavia gli altri
+                                dati sono stati aggiornati correttamente.<br />';
                             }
-
+                        } else{
+                            setcookie('info', 'Modifica dei dati avvenuta con successo.');
                             //ritorno alla pagina di gestione vini
                             header('Location: admin_wines.php');
-                        } else { // il caricamento file non è andato a buon fine, tuttavia la query è stata eseguita
-                            $error .= 'Il caricamento dell&apos;immagine non &egrave; andato a buon fine. Tuttavia gli altri
-                        dati sono stati aggiornati correttamente.<br />';
                         }
                     } else { // la modifica dati non è andata a buon fine
                         $error .= 'La modifica dei dati non &egrave; andata a buon fine. La preghiamo di riprovare.<br />' . $sql;
@@ -154,7 +172,7 @@ if (!empty($_POST['save_wine'])) {
             //il messaggio di 'modifica dati avvenuta con successo' per evitare il caso di metafora visiva
             else {
                 setcookie('info', 'Modifica dati avvenuta con successo');
-                header('Location: modify_wine.php?idwine=' . $id_wine);
+                header('Location: admin_wines.php');
             }
         }
 
