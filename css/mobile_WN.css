@@ -624,12 +624,12 @@
         margin-left: 5%;
     }
     
-    #admin_profile_page li, #panel_admin_form_add_wine li {
+    #panel_admin_form_add_wine li {
         margin-left: 20%;
         margin-right: 26%;
     }
     
-    #admin_profile_page input, #panel_admin_form_add_year select, .input_add input, #panel_admin_form_add_wine select {
+    #panel_admin_form_add_year select, .input_add input, #panel_admin_form_add_wine select {
         margin-bottom: 0.7em;
         width: 12em;
     }
@@ -640,11 +640,7 @@
     }
     
     #required_fields_profile {
-        margin-left: 5%;
-    }
-    
-    #save_admin_profile {
-        margin-left: 40%;
+        margin-left: 2%;
     }
     
 /*----------------------  ADD YEAR  --------------------*/    
@@ -657,10 +653,6 @@
     #panel_admin_form_add_year ul {
         width: 80%;
         margin-left: 10%;
-    }
-    
-    #save_add_year {
-        margin-left: 38%;
     }
 
 /*-----------------  MODIFY YEAR & WINE  --------------------*/   
@@ -1240,36 +1232,15 @@
         margin-left: 10%;
     }
     
-    #save_add_wine {
-        margin-left: 45%;
-    }
-    
-    #admin_profile_page li {
-        margin-left: 28%;
-    }
-    
-    #admin_profile_page input {
-        width: 15em;
-    }
-    
     #required_fields_profile {
-        margin-left: 8%;
         font-size: 0.9em;
     }
-    
-    #save_admin_profile {
-        margin-left: 42%;
-    }
-    
+
 /*----------------------  ADD YEAR  --------------------*/    
     #important_message_user, #important_message_year {
         margin-left: 0em !important;
         margin-right: 0em !important;
         text-align: center;
-    }    
-    
-    #save_add_year {
-        margin-left: 43%;
     }
 
 /*------------------  MODIFY YEAR & WINE  --------------------*/   
@@ -1604,22 +1575,6 @@
         width: 70%;
         margin-left: 15%;
     }
-    
-    #admin_profile_page li {
-        margin-left: 28%;
-    }
-    
-    #required_fields_profile {
-        margin-left: 15%;
-    }
-    
-    #save_add_wine {
-        margin-left: 46%;
-    }
-    
-    #admin_profile_page li:last-child, #panel_admin_form_add_wine li:last-child {
-        margin-bottom: 0.5em;
-    }
 
 /*----------------------  ADD YEAR  --------------------*/    
     #important_message_user, #important_message_year {
@@ -1627,14 +1582,11 @@
         margin-right: 0em !important;
         text-align: center;
     }
-    
-    
-    
 /*---------------------  MODIFY YEAR  --------------------*/   
-#panel_admin_form li {
-    margin-left: 20%;
-    margin-right: 5%;
-}
+    #panel_admin_form li {
+        margin-left: 20%;
+        margin-right: 5%;
+    }
 }
 
 /*--------------------------------------------------------------*/                                    /*  min 1025  */

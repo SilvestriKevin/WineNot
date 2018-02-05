@@ -19,11 +19,11 @@ $info_errore = '';
 
 //stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['info'])) {
-    $info_errore .= '<div>' . $_COOKIE['info'] . '</div>';
+    $info_errore .= '<div class="info_sentence">' . $_COOKIE['info'] . '</div>';
     setcookie('info', null);
 }
 if (!empty($_COOKIE['error'])) {
-    $info_errore .= '<div id="error_admin_message">' . $_COOKIE['error'] . '</div>';
+    $info_errore .= '<div class="error_sentence">' . $_COOKIE['error'] . '</div>';
     setcookie('error', null);
 }
 
@@ -41,33 +41,63 @@ if ($row['admin'] == 1) {
                     <ul>
                     <li id="important_message_user"><span>Tutti i campi sono obbligatori</span></li>
 
-                    <li><label>Nome Completo</label></li>
-                    <li><span id="firstname_error" class="js_error"></span></li>
-                    <li><input id="firstname" type="text" maxlength="50" name="nome" title="nome" tabindex="6"
-                    onblur="checkUserFirstName()"/></li>
+                    <li class="label_add">
+                    <label>Nome Completo</label>
+                    </li>
+                    <li>
+                    <span id="firstname_error" class="js_error"></span>
+                    </li>
+                    <li>
+                    <input class="input_add" id="firstname" type="text" maxlength="50" name="nome" title="nome" tabindex="6"
+                    onblur="checkUserFirstName()"/>
+                    </li>
 
-                    <li><label>Username</label></li>
-                    <li><span id="username_error" class="js_error"></span></li>
-                    <li><input id="username" type="text" maxlength="50" name="username" title="username"
+                    <li class="label_add">
+                    <label>Username</label>
+                    </li>
+                    <li>
+                    <span id="username_error" class="js_error"></span>
+                    </li>
+                    <li>
+                    <input class="input_add" id="username" type="text" maxlength="50" name="username" title="username"
                     tabindex="7" onblur="checkUsername()"/>
-
-                    </li><li><label>Indirizzo email</label></li>
-                    <li><span id="mail_error" class="js_error"></span>
-                    </li><li><input id="email" type="text" maxlength="50" name="email" title="email"
+                    </li>
+                    
+                    <li class="label_add">
+                    <label>Indirizzo email</label>
+                    </li>
+                    <li>
+                    <span id="mail_error" class="js_error"></span>
+                    </li>
+                    <li><input class="input_add" id="email" type="text" maxlength="50" name="email" title="email"
                     tabindex="8" onblur="checkEmail()"/>
-
-                    </li><li><label>Password</label></li>
-                    <li><span id="password_error" class="js_error"></span>
-                    </li><li><input id="password" type="password" maxlength="100" name="password" title="password" tabindex="9" onblur="checkPasswordPanel()"/>
-
-                    </li><li><label>Conferma Password</label></li>
-                    <li><span id="confirm_password_error" class="js_error"></span>
-                    </li><li><input id="password_confirmation" type="password" maxlength="100" name="conferma_password" title="conferma_password" tabindex="10" onblur="checkPasswordConfirmation()"/></li>
-
-                    </ul>
+                    </li>
+                    
+                    <li class="label_add">
+                    <label>Password</label>
+                    </li>
+                    <li>
+                    <span id="password_error" class="js_error"></span>
+                    </li>
+                    <li>
+                    <input class="input_add" id="password" type="password" maxlength="100" name="password" title="password" tabindex="9" onblur="checkPasswordPanel()"/>
+                    </li>
+                    
+                    <li class="label_add">
+                    <label>Conferma Password</label>
+                    </li>
+                    <li>
+                    <span id="confirm_password_error" class="js_error">
+                    </span>
+                    </li>
+                    <li>
+                    <input class="input_add" id="password_confirmation" type="password" maxlength="100" name="conferma_password" title="conferma_password" tabindex="10" onblur="checkPasswordConfirmation()"/>
+                    </li>
+                    
                     <input type="submit" class="search_button" name="register" value="Salva" id="save_admin_profile"
                     accesskey="s" tabindex="11"/>
 
+                    </ul>
                 </fieldset>
                 </form>';
 } else {

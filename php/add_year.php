@@ -19,11 +19,11 @@ $info_errore = '';
 
 //stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['info'])) {
-    $info_errore .= '<div>' . $_COOKIE['info'] . '</div>';
+    $info_errore .= '<div class="info_sentence">' . $_COOKIE['info'] . '</div>';
     setcookie('info', null);
 }
 if (!empty($_COOKIE['error'])) {
-    $info_errore .= '<div id="error_admin_message">' . $_COOKIE['error'] . '</div>';
+    $info_errore .= '<div class="error_sentence">' . $_COOKIE['error'] . '</div>';
     setcookie('error', null);
 }
 
@@ -39,8 +39,8 @@ $annata .= '<fieldset>
                     <li>
                         <span id="year_error" class="js_error"></span>
                     </li>
-                    <li class="input_add">
-                        <input id="check_year" type="text" maxlength="4" name="anno" title="anno" tabindex="6"
+                    <li>
+                        <input class="input_add" id="check_year" type="text" maxlength="4" name="anno" title="anno" tabindex="6"
                         onblur="checkYear()"/>
                     </li>
 
@@ -60,8 +60,8 @@ $annata .= '<fieldset>
                     <li>
                         <span id="quality_error" class="js_error"></span>
                     </li>
-                    <li class="input_add">
-                        <input id="check_quality" type="text" maxlength="100" name="qualita" title="qualita" tabindex="8"
+                    <li>
+                        <input class="input_add" id="check_quality" type="text" maxlength="100" name="qualita" title="qualita" tabindex="8"
                         onblur="checkYearQuality()"/>
                     </li>
 
@@ -69,11 +69,9 @@ $annata .= '<fieldset>
                         <label>Migliore</label>
                         <input type="checkbox" name="migliore" title="migliore" value="migliore" tabindex="9"/>
                     </li>
-                    </ul>
-
                     <input type="submit" class="search_button" name="salva" id="save_add_year" value="Aggiungi"
                         accesskey="s" tabindex="10"/>
-
+                    </ul>
                 </fieldset>';
 
 //controllo che i campi del form siano stati settati

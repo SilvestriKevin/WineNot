@@ -20,11 +20,11 @@ $error = '';
 
 //stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['info'])) {
-    $info_errore .= '<div>' . $_COOKIE['info'] . '</div>';
+    $info_errore .= '<div class="info_sentence">' . $_COOKIE['info'] . '</div>';
     setcookie('info', null);
 }
 if (!empty($_COOKIE['error'])) {
-    $info_errore .= '<div>' . $_COOKIE['error'] . '</div>';
+    $info_errore .= '<div class="error_sentence">' . $_COOKIE['error'] . '</div>';
     setcookie('error', null);
 }
 
@@ -236,28 +236,56 @@ $dati .= '<form onsubmit="return checkModifyProfile()" id="admin_profile_page" a
 
 if (mysqli_num_rows($result) != 0) {
     $dati .= '<ul>
-                <li><label>Nome completo</label></li>
-                <li><span id="firstname_error" class="js_error"></span></li>
-                <li><input id="firstname" type="text" maxlength="100" name="nome" title="nome"
+                <li class="label_add">
+                <label>Nome completo</label>
+                </li>
+                <li>
+                <span id="firstname_error" class="js_error"></span>
+                </li>
+                <li>
+                <input id="firstname" class="input_add" type="text" maxlength="100" name="nome" title="nome"
                 value="' . $row['nome'] . '" onblur="checkUserFirstName()" tabindex="7"/></li>
 
-                <li><label>Username</label></li>
-                <li><span id="username_error" class="js_error"></span></li>
-                <li><input id="username" type="text" maxlength="100" name="username" title="username" value="' . 
-                $row['username'] . '" onblur="checkUsername()" tabindex="8"/></li>
+                <li class="label_add">
+                <label>Username</label>
+                </li>
+                <li>
+                <span id="username_error" class="js_error"></span>
+                </li>
+                <li>
+                <input id="username" class="input_add" type="text" maxlength="100" name="username" title="username" value="' . 
+                $row['username'] . '" onblur="checkUsername()" tabindex="8"/>
+                </li>
 
-                <li><label>Email</label></li>
-                <li><span id="mail_error" class="js_error"></span></li>
-                <li><input id="email" type="text" maxlength="100" name="email" title="email"
-                value="' . $row['email'] . '" onblur="checkEmail()" tabindex="9"/></li>
+                <li class="label_add">
+                <label>Email</label>
+                </li>
+                <li><span id="mail_error" class="js_error"></span>
+                </li>
+                <li>
+                <input id="email" class="input_add" type="text" maxlength="100" name="email" title="email"
+                value="' . $row['email'] . '" onblur="checkEmail()" tabindex="9"/>
+                </li>
 
-                <li><label>Password attuale*</label></li>
-                <li><span id="password_error" class="js_error"></span></li>
-                <li><input id="password" type="password" maxlength="100" name="actual_password" title="password attuale" tabindex="10"/></li>
+                <li class="label_add">
+                <label>Password attuale*</label>
+                </li>
+                <li>
+                <span id="password_error" class="js_error"></span>
+                </li>
+                <li>
+                <input id="password" class="input_add" type="password" maxlength="100" name="actual_password" title="password attuale" tabindex="10"/>
+                </li>
                 
-                <li><label>Password nuova*</label></li>
-                <li><span id="new_password_error" class="js_error"></span></li>
-                <li><input id="new_password" type="password" maxlength="100" name="new_password" title="password nuova" tabindex="11"/></li>';
+                <li class="label_add">
+                <label>Password nuova*</label>
+                </li>
+                <li>
+                <span id="new_password_error" class="js_error"></span>
+                </li>
+                <li>
+                <input id="new_password" class="input_add" type="password" maxlength="100" name="new_password" title="password nuova" tabindex="11"/>
+                </li>';
     $dati .= '<li><input type="submit" class="search_button" name="save_profile" id="save_admin_profile" value="Salva" tabindex="12" /></li>
     <li><span id="required_fields_profile">*Campi obbligatori UNICAMENTE per il cambio password</span></li>
     </ul>';
