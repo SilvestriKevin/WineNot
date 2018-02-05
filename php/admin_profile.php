@@ -230,15 +230,15 @@ $dati .= '<form onsubmit="return checkModifyProfile()" id="admin_profile_page" a
 
 if (mysqli_num_rows($result) != 0) {
     $dati .= '<ul>
+                <li><label>Nome completo</label></li>
+                <li><span id="firstname_error" class="js_error"></span></li>
+                <li><input id="firstname" type="text" maxlength="100" name="nome" title="nome"
+                value="' . $row['nome'] . '" onblur="checkUserFirstName()" tabindex="7"/></li>
+
                 <li><label>Username</label></li>
                 <li><span id="username_error" class="js_error"></span></li>
                 <li><input id="username" type="text" maxlength="100" name="username" title="username" value="' . 
-                $row['username'] . '" onblur="checkUsername()" tabindex="7"/></li>
-
-                <li><label>Nome</label></li>
-                <li><span id="firstname_error" class="js_error"></span></li>
-                <li><input id="firstname" type="text" maxlength="100" name="nome" title="nome"
-                value="' . $row['nome'] . '" onblur="checkUserFirstName()" tabindex="8"/></li>
+                $row['username'] . '" onblur="checkUsername()" tabindex="8"/></li>
 
                 <li><label>Email</label></li>
                 <li><span id="mail_error" class="js_error"></span></li>

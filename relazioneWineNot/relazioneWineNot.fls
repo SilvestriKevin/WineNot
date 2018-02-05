@@ -1,6 +1,6 @@
-PWD c:/Users/kevin/Desktop/UNI/TECWEB/relazioneWineNot
+PWD c:/Program Files (x86)/EasyPHP-Devserver-16.1/eds-www/WineNot/relazioneWineNot
 INPUT C:/Users/kevin/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt
-INPUT c:/Users/kevin/Desktop/UNI/TECWEB/relazioneWineNot/relazioneWineNot.tex
+INPUT c:/Program Files (x86)/EasyPHP-Devserver-16.1/eds-www/WineNot/relazioneWineNot/relazioneWineNot.tex
 OUTPUT relazioneWineNot.log
 INPUT StyleLatex/global.tex
 INPUT StyleLatex/global.tex
