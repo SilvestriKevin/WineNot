@@ -26,16 +26,22 @@ function entityAccentedVowels($stringa)
 //pulisce l'input ricavando un array formato dalle parole chiavi e importanti
 function cleanInput($input)
 {
-    //non viene usata questa funzione perchè prima di tutto mysql fa il confronto anche tra lettere minuscole e maiuscole e viceversa e secondo con le lettere accentate dà problemi perchè altera la loro corretta codifica 
+    //non viene usata questa funzione perchè prima di tutto mysql fa il confronto anche tra lettere minuscole e maiuscole 
+    //e viceversa e secondo con le lettere accentate dà problemi perchè altera la loro corretta codifica 
     //$input = strtolower($input);
 
-    $preposizioni_articoli = array('è','é','e','ed','o','od','il','la','lo','i','gli','le','di','del','della','dello','dei','degli','delle','a','al','alla','allo','ai','agli','alle','da','dal','dalla','dallo','dai','dagli','dalle','in','nel','nella','nello','nei','negli','nelle','con','col','su','sul','sulla','sullo','sui','sugli','sulle','per','tra','fra','sotto','sopra');
+    $preposizioni_articoli = array('è','é','e','ed','o','od','il','la','lo','i','gli','le','di','del','della','dello','dei',
+    'degli','delle','a','al','alla','allo','ai','agli','alle','da','dal','dalla','dallo','dai','dagli','dalle','in','nel',
+    'nella','nello','nei','negli','nelle','con','col','su','sul','sulla','sullo','sui','sugli','sulle','per','tra','fra','sotto','sopra');
 
     //tolgo tutte le preposizioni, gli articoli e le varie combinazioni dalla stringa di ricerca
-    //uso un ciclo while perchè se in input ci sono più preposizioni/articoli di fila, non vengono tolti tutti in un singolo passaggio.  ES: ' a del lo il ' --> ' del il ' (1° passaggio) --> ' ' (2° passaggio)
-    //Quindi finchè trovo corrispondenza con la mia espressione regolare, sostituisco. 
+    //uso un ciclo while perchè se in input ci sono più preposizioni/articoli di fila, non vengono tolti tutti in un 
+    //singolo passaggio.  ES: ' a del lo il ' --> ' del il ' (1° passaggio) --> ' ' (2° passaggio)
+    //Quindi finchè trovo corrispondenza con l'espressione regolare, sostituisco. 
     while(preg_match('/\s('.implode('|',$preposizioni_articoli).')\s/',$input))
     $input = preg_replace('/\s('.implode('|',$preposizioni_articoli).')\s/',' ',$input);
+
+    //tolgo un eventuale preposizione o articolo rimasto all'inizio della stringa
     $input = preg_replace('/^('.implode('|',$preposizioni_articoli).')\s/',' ',$input);
 
     //tolgo i comandi di escape dalla stringa di ricerca
@@ -51,7 +57,7 @@ function cleanInput($input)
     //[:punct:] è un array che contiene !"#$%&'()*+,\-./:;<=>?@[]^_`{|}~
     $input = preg_replace('/(?!&|;)[[:punct:]]/',' ',$input);
     
-    //tolgo i simboli che ho escluso prima (& e ;). Questo per evitare di togliere i simboli quando mi servono. es. &egrave; 
+    //tolgo i simboli che non ho considerato prima (& e ;). Questo per evitare di togliere i simboli quando mi servono. es. &egrave; 
     $input = preg_replace('/\s(&|;)\s/',' ',$input); //' & '
     $input = preg_replace('/^(&|;)\s/',' ',$input);  //'& '
     $input = preg_replace('/\s(&|;)$/',' ',$input);  //' &'
@@ -68,23 +74,5 @@ function cleanInput($input)
 
     return $input;
 }
-
-//NON SO DOVE VENGA UTILIZZATA
-//toglie le parentesi triangolari per evitare injection code nei campi testuali dei form
-function controlText($string)
-{
-    $string = str_replace(array('<','>'),' ',$string);
-    return $string;
-}
-
-//funzione per fare l'escaping degli apici negli input testuali che sono sensibili ad injection code
-function escapingText($string)
-{
-    //eventualmente c'è la funzione mysqli_real_escape_string($conn,$voce) da usare direttamente nel file .php
-    
-    $string = str_replace("'","\'",$string);
-    return $string;
-}
-
 
 ?>

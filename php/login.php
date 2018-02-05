@@ -31,11 +31,11 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
     if(!empty($username) && !empty($password)){
 
         $sql = "SELECT id_user AS id FROM utenti
-	WHERE username='".escapingText($username)."' AND password=MD5('".escapingText($password)."')";
+	WHERE username='".htmlentities($username, ENT_QUOTES)."' AND password=MD5('".htmlentities($password, ENT_QUOTES)."')";
         $result = mysqli_query($conn, $sql);
 
         if(mysqli_num_rows($result) == 0){
-            setcookie("error","Hai inserito le credenziali errate");
+            setcookie("error","Hai inserito le credenziali errate".$sql);
             header("Location: login.php");
         }
         else{

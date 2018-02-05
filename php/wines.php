@@ -17,6 +17,14 @@ $improved_search = '';
 $text_searched = '';
 $lista = '';
 
+//assegno la query string nell'url ad un cookie che mi servirà per tornare alla ricerca da dentro la pagina di un vino specifico
+$url = $_SERVER['PHP_SELF'];
+if (!empty($_SERVER['QUERY_STRING'])) {
+    $url .= '?' . $_SERVER['QUERY_STRING'];
+}
+
+setcookie('indietro', $url);
+
 //stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['error'])) {
     $lista .= '<h1 id="error_message">' . $_COOKIE['error'] . '</h1><br></br>';
@@ -26,14 +34,6 @@ if (!empty($_COOKIE['info'])) {
     $lista .= '<h1 id="error_message">' . $_COOKIE['info'] . '</h1><br></br>';
     setcookie('info', null);
 }
-
-//assegno la query string nell'url ad un cookie che mi servirà per tornare alla ricerca da dentro la pagina di un vino specifico
-$url = $_SERVER['PHP_SELF'];
-if (!empty($_SERVER['QUERY_STRING'])) {
-    $url .= '?' . $_SERVER['QUERY_STRING'];
-}
-
-setcookie('indietro', $url);
 
 //SELECT ANNATA NEL FORM
 $sql = 'SELECT annata FROM vini GROUP BY annata ORDER BY annata';

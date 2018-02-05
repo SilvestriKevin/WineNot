@@ -117,6 +117,13 @@ if (isset($_POST['anno']) && isset($_POST['descrizione']) && isset($_POST['quali
                         setcookie('addWine', '', time() - 3600);
                         header('Location:' . $addWine);
                     }
+                    //se il cookie è settato, assegno alla variabile $modifyWine l'indirizzo della pagina di modifica vino
+                    else if (isset($_COOKIE['modifyWine'])) {
+                        $modifyWine = $_COOKIE['modifyWine'];
+                        unset($_COOKIE['modifyWine']);
+                        setcookie('modifyWine', '', time() - 3600);
+                        header('Location:' . $modifyWine);
+                    }
                     //altrimenti riporto alla pagina di gestione annate
                     else {
                         header('Location: admin_years.php');

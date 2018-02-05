@@ -81,7 +81,7 @@ if (!empty($_POST['username']) && !preg_match('/^(\s)+$/', $_POST['username']) &
 
                             //se la query è andata a buon fine
                             if ($result) {
-                                setcookie('info', 'Modifica dati eseguita con successo');
+                                setcookie('info', 'Modifica dati avvenuta con successo');
                                 header('Location: admin_profile.php');
                             } else { //se non sono riuscito a cambiare dati nel database
                                 $error = 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
@@ -104,7 +104,7 @@ if (!empty($_POST['username']) && !preg_match('/^(\s)+$/', $_POST['username']) &
                         $result = mysqli_query($conn, $sql);
 
                         if ($result) { // se c'è stata una modifica allora tutto ok
-                            setcookie('info', 'Modifica dati eseguita con successo');
+                            setcookie('info', 'Modifica dati avvenuta con successo');
                             header('Location: admin_profile.php');
                         } else { // se non sono riuscito a cambiare dati nel database
                             $error .= 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
@@ -133,7 +133,7 @@ if (!empty($_POST['username']) && !preg_match('/^(\s)+$/', $_POST['username']) &
 
                 //se la query è andata a buon fine
                 if ($result) {
-                    setcookie('info', 'Modifica dati eseguita con successo');
+                    setcookie('info', 'Modifica dati avvenuta con successo');
                     header('Location: admin_profile.php');
                 } else { // se non sono riuscito a cambiare dati nel database
                     $error .= 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
@@ -174,7 +174,7 @@ if (!empty($_POST['username']) && !preg_match('/^(\s)+$/', $_POST['username']) &
 
                         //se la query è andata a buon fine
                         if ($result) {
-                            setcookie('info', 'Modifica dati eseguita con successo');
+                            setcookie('info', 'Modifica dati avvenuta con successo');
                             header('Location: admin_profile.php');
                         } else { //se non sono riuscito a cambiare dati nel database
                             $error .= 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
@@ -199,6 +199,12 @@ if (!empty($_POST['username']) && !preg_match('/^(\s)+$/', $_POST['username']) &
     //nel caso in cui non ci siano modifiche nei dati ma l'utente abbia compilato un solo campo password, setto la variabile $error
     else if (!empty($_POST['new_password']) || !empty($_POST['actual_password'])) {
         $error .= 'Entrambi i campi password devono essere compilati.<br />';
+    }
+    //nel caso in cui l'utente abbia cercato di salvare, non avendo però modificato nessun dato, viene mostrato a video  
+    //il messaggio di 'modifica dati avvenuta con successo' per evitare il caso di metafora visiva
+    else {
+        setcookie('info', 'Modifica dati avvenuta con successo');
+        header('Location: admin_profile.php');
     }
 
 } else {

@@ -17,6 +17,9 @@ if (!isset($_SESSION['id'])) {
 $vino = '';
 $info_errore = '';
 
+//setto un cookie che mi servirà per tornare a questo form dopo aver inserito una nuova annata
+setcookie('addWine', $_SERVER['PHP_SELF']);
+
 //stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['info'])) {
     $info_errore .= '<div>' . $_COOKIE['info'] . '</div>';
@@ -28,7 +31,7 @@ if (!empty($_COOKIE['error'])) {
 }
 
 //FORM INSERIMENTO VINO - qualsiasi tipo di utente può aggiungere un nuovo vino
-$vino .= '<h1 id="admin_title">Inserisci un nuovo vino</h1>';
+$vino .= '<h1 id="admin_title">Inserimento vino</h1>';
 $vino .= '<form onsubmit="return checkWine()" id="panel_admin_form_add_wine" enctype="multipart/form-data" action="add_wine.php" method="post">';
 $vino .= '<fieldset><ul>';
 $vino .= '<li><label>Annata</label></li><li>';
@@ -46,9 +49,6 @@ if (mysqli_num_rows($result) != 0) {
 } else {
     $vino .= '<label>Non sono presenti annate. </label>';
 }
-
-//setto un cookie che mi servirà per tornare a questo form dopo aver inserito una nuova annata
-setcookie('addWine', $_SERVER['PHP_SELF']);
 
 //CAMPI DEL FORM
 $vino .= '</li><li><a title="Aggiungi annata" href="./add_year.php" tabindex="7" accesskey="n">Aggiungi Annata</a></li>
@@ -258,7 +258,7 @@ if (!empty($_POST['save_profile'])) {
                             setcookie('addWine', '', time() - 3600);
                         }
 
-                        //ritorno alla pagina della gestione vini
+                        //ritorno alla pagina di gestione vini
                         header('Location: admin_wines.php');
                     } else { // il caricamento del file non è andato a buon fine
                         setcookie('error', 'Il caricamento dell&apos;immagine non &egrave; andato a buon fine. La preghiamo di
