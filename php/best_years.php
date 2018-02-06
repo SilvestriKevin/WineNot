@@ -63,7 +63,16 @@ if (mysqli_num_rows($result) != 0) {
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $vini .= '<li><div class="specific_wine specific_result">
             <a title="' . $row['nome'] . '" href="../php/wine.php?id_wine=' . $row['id_wine'] . '" tabindex="' . $cont . '">
-            <img alt="' . $row['nome'] . '" src="../img/' . $row['id_wine'] . '.png"/></a><ul>';
+            <img alt="' . $row['nome'] . '" src="../img/';
+
+            //controllo che sia presente l'immagine del vino nel server, altrimenti mostro l'immagine di default
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/WineNot/img/' . $row["id_wine"] . '.png')) {
+                $vini .= $row["id_wine"];
+            } else {
+                $vini .= 'default_wine';
+            }
+
+            $vini .= '.png"/></a><ul>';
             $vini .= '<li><label>Nome: </label>' . $row['nome'] . '</li>';
             $vini .= '<li><label>Tipologia: </label>' . $row['tipologia'] . '</li>';
             $vini .= '<li><label>Gradazione: </label>' . $row['gradazione'] . '</li>';

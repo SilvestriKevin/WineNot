@@ -125,7 +125,16 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
             $vini .= '<li>
             <div class="specific_result specific_wine">
             <a title="' . $row['nome'] . '" href="../php/wine.php?id_wine=' . $row['id_wine'] . '" tabindex="' . $counter_tabindex++ . '">
-            <img alt="' . $row['nome'] . '" src="../img/' . $row['id_wine'] . '.png"/></a>';
+            <img alt="' . $row['nome'] . '" src="../img/';
+
+            //controllo che sia presente l'immagine del vino nel server, altrimenti mostro l'immagine di default
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/WineNot/img/' . $row["id_wine"] . '.png')) {
+                $vino .= $row["id_wine"];
+            } else {
+                $vino .= 'default_wine';
+            }
+
+            $vino .= '.png"/></a>';
             $vini .= '<ul><li><label>Nome: </label>' . $row['nome'] . '</li>';
             $vini .= '<li><label>Tipologia: </label>' . $row['tipologia'] . '</li>';
             $vini .= '<li><label>Annata: </label>' . $row['annata'] . '</li>';
@@ -146,7 +155,16 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
             $vini .= '<li>
             <div class="specific_result specific_wine">
             <a title="' . $row['nome'] . '" href="../php/wine.php?id_wine=' . $row['id_wine'] . '" tabindex="' . $counter_tabindex++ . '">
-            <img alt="' . $row['nome'] . '" src="../img/' . $row['id_wine'] . '.png"/></a>';
+            <img alt="' . $row['nome'] . '" src="../img/';
+
+            //controllo che sia presente l'immagine del vino nel server, altrimenti mostro l'immagine di default
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/WineNot/img/' . $row["id_wine"] . '.png')) {
+                $vini .= $row["id_wine"];
+            } else {
+                $vini .= 'default_wine';
+            }
+
+            $vini .= '.png"/></a>';
             $vini .= '<ul><li><label>Nome: </label>' . $row['nome'] . '</li>';
             $vini .= '<li><label>Tipologia: </label>' . $row['tipologia'] . '</li>';
             $vini .= '<li><label>Annata: </label>' . $row['annata'] . '</li>';
