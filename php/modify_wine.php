@@ -32,7 +32,7 @@ if (!empty($_COOKIE['info'])) {
     setcookie('info', null);
 }
 if (!empty($_COOKIE['error'])) {
-    $info_errore .= '<div id="error_admin_message">' . $_COOKIE['error'] . '</div>';
+    $info_errore .= '<div class="error_sentence">' . $_COOKIE['error'] . '</div>';
     setcookie('error', null);
 }
 
@@ -87,7 +87,7 @@ if (!empty($_POST['save_wine'])) {
         }
 
         //se ho caricato un'immagine, dò la possibilità di poterla cambiare
-        if (!empty($_FILES['wine_img']) && $_FILES['wine_img']['type'] == 'image/png') {
+        if ($_FILES['wine_img']['size']!=0 && $_FILES['wine_img']['type'] == 'image/png') {
             $file = $_FILES['wine_img'];
 
             //immagine: controllo che sia stata caricata correttamente l'immagine
@@ -96,13 +96,13 @@ if (!empty($_POST['save_wine'])) {
             }
         } 
         //se inserisco un'immagine con estensione diversa da '.png'
-        else if(!empty($_FILES['wine_img']) && $_FILES['wine_img']['type'] != 'image/png'){
-            $error .= 'Deve essere inserita un&apos;immagine con estensione ".png" 1.';
+        else if($_FILES['wine_img']['size']!=0 && $_FILES['wine_img']['type'] != 'image/png'){
+            $error .= 'Deve essere inserita un&apos;immagine con estensione ".png".';
         }
         //controllo se mi trovo nel caso in cui l'inserimento vino è riuscito però l'inserimento immagine è fallito.
         //in questo caso l'utente deve inserire un'immagine
-        else if(!file_exists('/WineNot/img/' . $id_wine . '.png') && empty($_FILES['wine_img'])){
-            $error .= 'Deve essere inserita un&apos;immagine con estensione ".png" .';
+        else if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/WineNot/img/' . $id_wine . '.png') && $_FILES['wine_img']['size']==0){
+            $error .= 'Deve essere inserita un&apos;immagine con estensione ".png" 2.';
         }
 
         //se $error non è vuota allora ricarico la pagina mostrando gli errori rilevati
@@ -226,8 +226,8 @@ if (mysqli_num_rows($result) != 0) {
     <li>
         <span id="wine_name_error" class="js_error"></span>
     </li>
-    <li class="input_add">
-        <input type="text" maxlength="30" name="nome" title="nome" value="' . $row['nome'] . '" onfocusout="checkNome()" />
+    <li>
+        <input class="input_add" type="text" maxlength="30" name="nome" title="nome" value="' . $row['nome'] . '" onfocusout="checkNome()" />
     </li>
 
     <li class="label_add">
@@ -236,8 +236,8 @@ if (mysqli_num_rows($result) != 0) {
     <li>
         <span id="wine_tipologia_error" class="js_error"></span>
     </li>
-    <li class="input_add">
-        <input type="text" maxlength="30" name="tipologia" title="tipologia" value="' . $row['tipologia'] . '" onfocusout="checkTipologia()"
+    <li>
+        <input class="input_add" type="text" maxlength="30" name="tipologia" title="tipologia" value="' . $row['tipologia'] . '" onfocusout="checkTipologia()"
         />
     </li>
 
@@ -257,8 +257,8 @@ if (mysqli_num_rows($result) != 0) {
     <li>
         <span id="wine_denominazione_error" class="js_error"></span>
     </li>
-    <li class="input_add">
-        <input type="text" maxlength="30" name="denominazione" title="denominazione" value="' . $row['denominazione'] . '" onfocusout="checkDenominazione()"
+    <li>
+        <input class="input_add" type="text" maxlength="30" name="denominazione" title="denominazione" value="' . $row['denominazione'] . '" onfocusout="checkDenominazione()"
         />
     </li>
 
@@ -268,8 +268,8 @@ if (mysqli_num_rows($result) != 0) {
     <li>
         <span id="wine_gradazione_error" class="js_error"></span>
     </li>
-    <li class="input_add">
-        <input type="text" maxlength="30" name="gradazione" title="gradazione" value="' . $row['gradazione'] . '" onfocusout="checkGradazione()"
+    <li>
+        <input class="input_add" type="text" maxlength="30" name="gradazione" title="gradazione" value="' . $row['gradazione'] . '" onfocusout="checkGradazione()"
         />
     </li>
 
@@ -279,8 +279,8 @@ if (mysqli_num_rows($result) != 0) {
     <li>
         <span id="wine_formato_error" class="js_error"></span>
     </li>
-    <li class="input_add">
-        <input type="text" maxlength="30" name="formato" title="formato" value="' . $row['formato'] . '" onfocusout="checkFormato()"
+    <li>
+        <input class="input_add" type="text" maxlength="30" name="formato" title="formato" value="' . $row['formato'] . '" onfocusout="checkFormato()"
         />
     </li>
 
@@ -321,7 +321,16 @@ if (mysqli_num_rows($result) != 0) {
         <label>Immagine attuale</label>
     </li>
     <li>
-        <img id="modify_wine_img" alt="immagine del vino" src="../img/' . $row["id_wine"] . '.png" />
+        <img id="modify_wine_img" alt="immagine del vino" src="../img/';
+
+        //controllo che sia presente l'immagine del vino nel server, altrimenti mostro l'immagine di default
+        if(file_exists($_SERVER['DOCUMENT_ROOT'].'/WineNot/img/' . $row["id_wine"] . '.png')){
+            $vino .= $row["id_wine"];
+        } else{
+            $vino .= 'default_wine';
+        }
+        
+        $vino .= '.png" />
     </li>
 
     <li class="label_add">
