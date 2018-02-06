@@ -1650,7 +1650,7 @@ textarea {
     width: 10%;
 }
 
-#delete_wine_checkbox {
+.delete_wine_checkbox {
     margin-left: 22%;
 }
 

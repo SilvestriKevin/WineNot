@@ -67,10 +67,10 @@ else if (!empty($_POST['wines']) && !empty($_POST['confirm'])) {
 else if (!empty($_GET['wines'])) {
     $dati .= '<form onsubmit="return finalDeletion()" id="select_admin_buttons" action="delete_wine.php" method="post">';
 
-    $dati .= '<input type="submit" id="cancel_deletion" class="admin_button" name="cancel" id="cancel"
-     value="Annulla Eliminazione" onclick="goBackWines()" />';
-    $dati .= '<input type="submit" id="confirm_deletion" class="admin_button" name="confirm" id="confirm"
-     value="Conferma Eliminazione" onclick="confirmDeletion()" /></div>';
+    $dati .= '<div><input type="submit" id="cancel_deletion" class="admin_button" name="cancel" 
+     value="Annulla Eliminazione" onclick="goBackWines()" tabindex="7" />';
+    $dati .= '<input type="submit" id="confirm_deletion" class="admin_button" name="confirm" 
+     value="Conferma Eliminazione" onclick="confirmDeletion()" tabindex="8" /></div>';
 
     //controllo che nell'url abbia un array serializzato o un singolo dato
     //quindi provo a fare unserialize e se fallisce allora deduco di avere un dato unico
@@ -103,12 +103,12 @@ else if (!empty($_GET['wines'])) {
                             <div class="admin_td">Tipologia</div>
                             <div class="admin_td">Annata</div>
                     </div>';
-
+    $counter_index = 9;
     if (mysqli_num_rows($result) != 0) {
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $dati .= '<div class="admin_tr">';
-            $dati .= '<div class ="admin_td delete_wine_checkbox_column"><input id="delete_wine_checkbox" type="checkbox"
-            name="wines[]" value="' . $row['id_wine'] . '" checked="checked" onclick="removeErrorMessage()"></div>';
+            $dati .= '<div class ="admin_td delete_wine_checkbox_column">
+            <input class="delete_wine_checkbox" type="checkbox" name="wines[]" value="' . $row['id_wine'] . '" checked="checked" onclick="removeErrorMessage()" tabindex="'.$counter_index++.'"/></div>';
             $dati .= '<div class ="admin_td delete_wine_name_column">' . $row['nome'] . '</div>';
             $dati .= '<div class ="admin_td delete_wine_denomination_column">' . $row['denominazione'] . '</div>';
             $dati .= '<div class ="admin_td delete_wine_tipology_column">' . $row['tipologia'] . '</div>';
