@@ -198,11 +198,11 @@ if (mysqli_num_rows($result) != 0) {
     $vino .= '<h1 id="admin_title">Modifica vino</h1>';
     $vino .= '<form onsubmit="return checkModifyWine()" id="panel_admin_form_add_wine" enctype="multipart/form-data"
     action="modify_wine.php" method="post">';
-    $vino .= '<input type="hidden" name="idwine" value="' . $id_wine . '" /><ul>';
+    $vino .= '<ul><li><input type="hidden" name="idwine" value="' . $id_wine . '" /></li>';
     $annata = $row['annata'];
 
     //aggiungo tutte le annate
-    $vino .= '<li><label>Annata</label></li><li><select name="annata">';
+    $vino .= '<li><label>Annata</label></li><li><select name="annata" tabindex="7">';
     $sql = 'SELECT anno FROM annate ORDER BY anno';
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) != 0) {
@@ -218,8 +218,8 @@ if (mysqli_num_rows($result) != 0) {
     }
 
     $vino .= '</select></li><li>
-    <a title="Aggiungi annata" class="" href="./add_year.php" tabindex="" accesskey="">Aggiungi Annata</a></li>
-    <input type="hidden" name="action" value="upload" />
+    <a title="Aggiungi annata" href="./add_year.php" tabindex="8" accesskey="a">Aggiungi Annata</a></li>
+    <li><input type="hidden" name="action" value="upload" /></li>
     <li class="label_add">
         <label>Nome</label>
     </li>
@@ -227,7 +227,7 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_name_error" class="js_error"></span>
     </li>
     <li>
-        <input class="input_add" type="text" maxlength="30" name="nome" title="nome" value="' . $row['nome'] . '" onfocusout="checkNome()" />
+        <input class="input_add" type="text" maxlength="30" name="nome" title="nome" value="' . $row['nome'] . '" onblur="checkNome()" tabindex="9" />
     </li>
 
     <li class="label_add">
@@ -237,8 +237,8 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_tipologia_error" class="js_error"></span>
     </li>
     <li>
-        <input class="input_add" type="text" maxlength="30" name="tipologia" title="tipologia" value="' . $row['tipologia'] . '" onfocusout="checkTipologia()"
-        />
+        <input class="input_add" type="text" maxlength="30" name="tipologia" title="tipologia" value="' . $row['tipologia'] . '" onblur="checkTipologia()"
+        tabindex="10"/>
     </li>
 
     <li class="label_add">
@@ -248,7 +248,7 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_vitigno_error" class="js_error"></span>
     </li>
     <li>
-        <textarea name="vitigno" title="vitigno" onblur="checkVitigno()" rows="4" cols="34">' . $row['vitigno'] . '</textarea>
+        <textarea name="vitigno" title="vitigno" onblur="checkVitigno()" rows="4" cols="34" tabindex="11">' . $row['vitigno'] . '</textarea>
     </li>
 
     <li class="label_add">
@@ -258,8 +258,8 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_denominazione_error" class="js_error"></span>
     </li>
     <li>
-        <input class="input_add" type="text" maxlength="30" name="denominazione" title="denominazione" value="' . $row['denominazione'] . '" onfocusout="checkDenominazione()"
-        />
+        <input class="input_add" type="text" maxlength="30" name="denominazione" title="denominazione" value="' . $row['denominazione'] . '" onblur="checkDenominazione()"
+        tabindex="12"/>
     </li>
 
     <li class="label_add">
@@ -269,8 +269,8 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_gradazione_error" class="js_error"></span>
     </li>
     <li>
-        <input class="input_add" type="text" maxlength="30" name="gradazione" title="gradazione" value="' . $row['gradazione'] . '" onfocusout="checkGradazione()"
-        />
+        <input class="input_add" type="text" maxlength="30" name="gradazione" title="gradazione" value="' . $row['gradazione'] . '" onblur="checkGradazione()"
+        tabindex="13"/>
     </li>
 
     <li class="label_add">
@@ -280,8 +280,8 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_formato_error" class="js_error"></span>
     </li>
     <li>
-        <input class="input_add" type="text" maxlength="30" name="formato" title="formato" value="' . $row['formato'] . '" onfocusout="checkFormato()"
-        />
+        <input class="input_add" type="text" maxlength="30" name="formato" title="formato" value="' . $row['formato'] . '" onblur="checkFormato()"
+        tabindex="14"/>
     </li>
 
     <li class="label_add">
@@ -291,7 +291,7 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_descrizione_error" class="js_error"></span>
     </li>
     <li>
-        <textarea name="descrizione" title="descrizione" onblur="checkDescrizione()" rows="4" cols="34">' . $row['descrizione'] . '
+        <textarea name="descrizione" title="descrizione" onblur="checkDescrizione()" rows="4" cols="34" tabindex="15">' . $row['descrizione'] . '
         </textarea>
     </li>
 
@@ -302,7 +302,7 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_abbinamento_error" class="js_error"></span>
     </li>
     <li>
-        <textarea name="abbinamento" title="abbinamento" onblur="checkAbbinamento()" rows="4" cols="34">' . $row['abbinamento'] . '
+        <textarea name="abbinamento" title="abbinamento" onblur="checkAbbinamento()" rows="4" cols="34" tabindex="16">' . $row['abbinamento'] . '
         </textarea>
     </li>
 
@@ -313,7 +313,7 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_degustazione_error" class="js_error"></span>
     </li>
     <li>
-        <textarea name="degustazione" title="degustazione" onblur="checkDegustazione()" rows="4" cols="34">' . $row['degustazione'] . '
+        <textarea name="degustazione" title="degustazione" onblur="checkDegustazione()" rows="4" cols="34" tabindex="17">' . $row['degustazione'] . '
         </textarea>
     </li>
 
@@ -340,10 +340,10 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_picture_error" class="js_error"></span>
     </li>
     <li>
-        <input id="select_file" type="file" name="wine_img" />
+        <input id="select_file" type="file" name="wine_img" tabindex="18" />
     </li>
 
-    <input type="submit" class="search_button" name="save_wine" id="save_modify_wine" value="Salva" />
+    <li><input type="submit" class="search_button" name="save_wine" id="save_modify_wine" value="Salva" tabindex="19"/></li>
     </ul></form>';
 } else {
     $vino .= '<h2>Non sono state trovate informazioni riguardo il vino selezionato.</h2>';
