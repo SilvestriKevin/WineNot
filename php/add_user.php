@@ -27,87 +27,8 @@ if (!empty($_COOKIE['error'])) {
     setcookie('error', null);
 }
 
-//prendo dal database il valore del campo booleano 'admin' dell'utente
-$sql = 'SELECT admin FROM utenti WHERE id_user="' . $_SESSION['id'] . '"';
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result, MYSQL_ASSOC);
-
-//controllo che l'utente sia l'admin perchè solo l'admin può aggiungere un nuovo utente
-if ($row['admin'] == 1) {
-    //FORM INSERIMENTO UTENTE
-    $user .= '<h1 id="admin_title">Inserimento utente</h1>
-                <form onsubmit="return fullyCheckUser()" id="admin_profile_page" action="add_user.php" method="post">
-                    <fieldset>
-                    <ul>
-                    <li id="important_message_user"><span>Tutti i campi sono obbligatori</span></li>
-
-                    <li class="label_add">
-                    <label>Nome Completo</label>
-                    </li>
-                    <li>
-                    <span id="firstname_error" class="js_error"></span>
-                    </li>
-                    <li>
-                    <input class="input_add" id="firstname" type="text" maxlength="50" name="nome" title="nome" tabindex="6"
-                    onblur="checkUserFirstName()"/>
-                    </li>
-
-                    <li class="label_add">
-                    <label>Username</label>
-                    </li>
-                    <li>
-                    <span id="username_error" class="js_error"></span>
-                    </li>
-                    <li>
-                    <input class="input_add" id="username" type="text" maxlength="50" name="username" title="username"
-                    tabindex="7" onblur="checkUsername()"/>
-                    </li>
-                    
-                    <li class="label_add">
-                    <label>Indirizzo email</label>
-                    </li>
-                    <li>
-                    <span id="mail_error" class="js_error"></span>
-                    </li>
-                    <li><input class="input_add" id="email" type="text" maxlength="50" name="email" title="email"
-                    tabindex="8" onblur="checkEmail()"/>
-                    </li>
-                    
-                    <li class="label_add">
-                    <label>Password</label>
-                    </li>
-                    <li>
-                    <span id="password_error" class="js_error"></span>
-                    </li>
-                    <li>
-                    <input class="input_add" id="password" type="password" maxlength="100" name="password" title="password" tabindex="9" onblur="checkPasswordPanel()"/>
-                    </li>
-                    
-                    <li class="label_add">
-                    <label>Conferma Password</label>
-                    </li>
-                    <li>
-                    <span id="confirm_password_error" class="js_error">
-                    </span>
-                    </li>
-                    <li>
-                    <input class="input_add" id="password_confirmation" type="password" maxlength="100" name="conferma_password" title="conferma_password" tabindex="10" onblur="checkPasswordConfirmation()"/>
-                    </li>
-                    
-                    <input type="submit" class="search_button" name="register" value="Salva" id="save_admin_profile"
-                    accesskey="s" tabindex="11"/>
-
-                    </ul>
-                </fieldset>
-                </form>';
-} else {
-    $user .= '<h2>Non hai diritti di accesso a questa pagina.</h2>';
-}
-
-//controllo che i campi del form siano stati settati
-if (isset($_POST['nome']) && isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password']) &&
-    isset($_POST['conferma_password'])) {
-
+//controllo che sia stata inviata la submit
+if (!empty($_POST['add_user'])) {
     //controllo che non sia stati lasciati campi vuoti
     if (!empty($_POST['nome']) && !preg_match('/^(\s)+$/', $_POST['nome']) && !empty($_POST['username']) &&
         !preg_match('/^(\s)+$/', $_POST['username']) && !empty($_POST['email']) && !preg_match('/^(\s)+$/', $_POST['email'])
@@ -124,7 +45,7 @@ if (isset($_POST['nome']) && isset($_POST['username']) && isset($_POST['email'])
 
         //controllo che la mail rispetti il formato corretto (es. example@dominio.com)
         if (!preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i', $email)) {
-            $message = 'Indirizzo email non è nel formato corretto (es. example@dominio.com).<br />';
+            $message = 'Email non è nel formato corretto (es. example@dominio.com).<br />';
         }
 
         //controllo che la password rispetti il formato corretto (es. Esempio1)
@@ -178,6 +99,85 @@ if (isset($_POST['nome']) && isset($_POST['username']) && isset($_POST['email'])
         setcookie('error', 'Alcuni campi risultano vuoti');
         header('Location: add_user.php');
     }
+}
+
+//prendo dal database il valore del campo booleano 'admin' dell'utente
+$sql = 'SELECT admin FROM utenti WHERE id_user="' . $_SESSION['id'] . '"';
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result, MYSQL_ASSOC);
+
+//controllo che l'utente sia l'admin perchè solo l'admin può aggiungere un nuovo utente
+if ($row['admin'] == 1) {
+    //FORM INSERIMENTO UTENTE
+    $user .= '<h1 id="admin_title">Inserimento utente</h1>
+                <form onsubmit="return fullyCheckUser()" id="admin_profile_page" action="add_user.php" method="post">
+                    <fieldset>
+                    <ul>
+                    <li id="important_message_user"><span>Tutti i campi sono obbligatori</span></li>
+
+                    <li class="label_add">
+                    <label>Nome Completo</label>
+                    </li>
+                    <li>
+                    <span id="firstname_error" class="js_error"></span>
+                    </li>
+                    <li>
+                    <input class="input_add" id="firstname" type="text" maxlength="50" name="nome" title="nome" tabindex="6"
+                    onblur="checkUserFirstName()"/>
+                    </li>
+
+                    <li class="label_add">
+                    <label>Username</label>
+                    </li>
+                    <li>
+                    <span id="username_error" class="js_error"></span>
+                    </li>
+                    <li>
+                    <input class="input_add" id="username" type="text" maxlength="50" name="username" title="username"
+                    tabindex="7" onblur="checkUsername()"/>
+                    </li>
+
+                    <li class="label_add">
+                    <label>Email</label>
+                    </li>
+                    <li>
+                    <span id="mail_error" class="js_error"></span>
+                    </li>
+                    <li><input class="input_add" id="email" type="text" maxlength="50" name="email" title="email"
+                    tabindex="8" onblur="checkEmail()"/>
+                    </li>
+
+                    <li class="label_add">
+                    <label>Password</label>
+                    </li>
+                    <li>
+                    <span id="password_error" class="js_error"></span>
+                    </li>
+                    <li>
+                    <input class="input_add" id="password" type="password" maxlength="100" name="password" title="password"
+                    tabindex="9" onblur="checkPasswordPanel()"/>
+                    </li>
+
+                    <li class="label_add">
+                    <label>Conferma Password</label>
+                    </li>
+                    <li>
+                    <span id="confirm_password_error" class="js_error">
+                    </span>
+                    </li>
+                    <li>
+                    <input class="input_add" id="password_confirmation" type="password" maxlength="100" name="conferma_password"
+                    title="conferma_password" tabindex="10" onblur="checkPasswordConfirmation()"/>
+                    </li>
+
+                    <input type="submit" class="search_button" name="add_user" value="Salva" id="save_admin_profile"
+                    accesskey="s" tabindex="11"/>
+
+                    </ul>
+                </fieldset>
+                </form>';
+} else {
+    $user .= '<h2>Non hai diritti di accesso a questa pagina.</h2>';
 }
 
 //creazione della pagina web
