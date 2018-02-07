@@ -141,7 +141,7 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
             $vini .= '<li><label>Gradazione: </label>' . $row['gradazione'] . '</li>';
             $vini .= '</ul></div></li>';
         }
-        $vini .= '</ul> <a href="#header" id="go_up">Torna su</a>';
+        $vini .= '</ul><a title="Torna Su" href="#header" id="go_up" tabindex="998" accesskey="g">Torna su</a>';
     } else {
         $vini .= '</ul><h2>Non sono presenti vini per questa ricerca. Riprova cambiando i parametri.</h2>';
     }
@@ -171,7 +171,7 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
             $vini .= '<li><label>Gradazione: </label>' . $row['gradazione'] . '</li>';
             $vini .= '</ul></div></li>';
         }
-        $vini .= '</ul> <a href="#header" id="go_up">Torna su</a>';
+        $vini .= '</ul><a title="Torna Su" href="#header" id="go_up" tabindex="998" accesskey="g">Torna su</a>';
     } else {
         $vini .= '</ul><h2>Non sono presenti vini.</h2>';
     }
