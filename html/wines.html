@@ -9,7 +9,7 @@
     <link type="text/css" rel="stylesheet" href="../css/print_WN.css" media="print" />
     <link type="text/css" rel="stylesheet" href="../css/screenreader.css" media="speech" />
     <link rel="stylesheet" type="text/css" href="../css/mobile.css" media="screen" />
-    <link href="https://fonts.googleapis.com/css?family=Lato|Dancing+Script" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Dancing+Script" rel="stylesheet" />
 
     <script type="text/javascript" src="../js/javascript.js"></script>
 
@@ -28,25 +28,34 @@
 
 <body>
     <div id="header">
-        <a id="logo_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img id="logo" 
-            alt="Logo WineNot" src="../img/logo.png" /></a>
-        <a id="logo_alt_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img id="logo_alt" 
-            alt="Logo WineNot" src="../img/logo_alt.png" /></a>
-        <a id="logo_alt_mobile_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img 
-            id="logo_alt_mobile" alt="Logo WineNot" src="../img/logo_alt_mobile.png" /></a>
+        <a id="logo_link" title="Home" href="../index.html" tabindex="1" accesskey="h">
+            <img id="logo" alt="Logo WineNot" src="../img/logo.png" />
+        </a>
+        <a id="logo_alt_link" title="Home" href="../index.html" tabindex="1" accesskey="h">
+            <img id="logo_alt" alt="Logo WineNot" src="../img/logo_alt.png" />
+        </a>
+        <a id="logo_alt_mobile_link" title="Home" href="../index.html" tabindex="1" accesskey="h">
+            <img id="logo_alt_mobile" alt="Logo WineNot" src="../img/logo_alt_mobile.png" />
+        </a>
         <ul>
             <li>Vini</li>
-            <li><a title="Annate Migliori"  href="../php/best_years.php" tabindex="2" accesskey="a">Annate
-                 Migliori</a></li>
-            <li><a title="Eventi"  href="../html/events.html" tabindex="3" accesskey="e">Eventi</a></li>
-            <li><a title="Storia"  href="../html/history.html" tabindex="4" accesskey="s">Storia</a></li>
+            <li>
+                <a title="Annate Migliori" href="../php/best_years.php" tabindex="2" accesskey="a">Annate Migliori
+                </a>
+            </li>
+            <li>
+                <a title="Eventi" href="../html/events.html" tabindex="3" accesskey="e">Eventi</a>
+            </li>
+            <li>
+                <a title="Storia" href="../html/history.html" tabindex="4" accesskey="s">Storia</a>
+            </li>
         </ul>
     </div>
-    <div id="search_wines" >
+    <div id="search_wines">
         <form action="wines.php" method="get">
             <fieldset>
                 <div id="external_search_div">
-                    <ul>   
+                    <ul>
                         <li id="filter_by">Filtra per: </li>
                         <li>
                             <select name="annata" tabindex="5">
@@ -60,17 +69,20 @@
                                 [TIPOLOGIA]
                             </select>
                         </li>
-                        <li id="order_by" >Ordina per: </li>
+                        <li id="order_by">Ordina per: </li>
                         <li>
                             <select name="ordine" tabindex="7">
-                                    [ORDINE]
+                                [ORDINE]
                             </select>
                         </li>
-                        <li id="bar_line"><input type="text" maxlength="100" name="search" id="search" 
-                            title="Testo di ricerca" tabindex="8" accesskey="r"/> </li>
-                                
-                         <li id="button_line"><input id="go_button" type="submit" class="search_button" 
-                            value="Cerca" tabindex="9" accesskey="i"/></li>
+                        <li id="bar_line">
+                            <input type="text" maxlength="100" name="search" id="search" title="Testo di ricerca" tabindex="8"
+                                accesskey="r" /> </li>
+
+                        <li id="button_line">
+                            <input id="go_button" type="submit" class="search_button" value="Cerca" tabindex="9" accesskey="i"
+                            />
+                        </li>
                     </ul>
                 </div>
             </fieldset>
@@ -79,16 +91,19 @@
     <div id="wine_results">
         [TESTO_CERCATO]
         <div id="title_our_wines">
-        <h1>I nostri vini</h1>
+            <h1>I nostri vini</h1>
         </div>
         <ul>
             [VINI]
     </div>
     <div id="footer">
         <ul>
-            <li><a title="Contattaci"  href="./contacts.php" tabindex="999" accesskey="c">Contattaci</a></li>
-            <li><a title="Mappa del sito"  href="../html/sitemap.html" tabindex="1000"
-                 accesskey="m">Mappa del sito</a></li>
+            <li>
+                <a title="Contattaci" href="./contacts.php" tabindex="999" accesskey="c">Contattaci</a>
+            </li>
+            <li>
+                <a title="Mappa del sito" href="../html/sitemap.html" tabindex="1000" accesskey="m">Mappa del sito</a>
+            </li>
         </ul>
     </div>
 </body>

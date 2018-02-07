@@ -129,19 +129,19 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
 
             //controllo che sia presente l'immagine del vino nel server, altrimenti mostro l'immagine di default
             if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/WineNot/img/' . $row["id_wine"] . '.png')) {
-                $vino .= $row["id_wine"];
+                $vini .= $row["id_wine"];
             } else {
-                $vino .= 'default_wine';
+                $vini .= 'default_wine';
             }
 
-            $vino .= '.png"/></a>';
+            $vini .= '.png"/></a>';
             $vini .= '<ul><li><label>Nome: </label>' . $row['nome'] . '</li>';
             $vini .= '<li><label>Tipologia: </label>' . $row['tipologia'] . '</li>';
             $vini .= '<li><label>Annata: </label>' . $row['annata'] . '</li>';
             $vini .= '<li><label>Gradazione: </label>' . $row['gradazione'] . '</li>';
             $vini .= '</ul></div></li>';
         }
-        $vini .= '</ul>';
+        $vini .= '</ul> <a href="#header" id="go_up">Torna su</a>';
     } else {
         $vini .= '</ul><h2>Non sono presenti vini per questa ricerca. Riprova cambiando i parametri.</h2>';
     }
@@ -171,7 +171,7 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
             $vini .= '<li><label>Gradazione: </label>' . $row['gradazione'] . '</li>';
             $vini .= '</ul></div></li>';
         }
-        $vini .= '</ul>';
+        $vini .= '</ul> <a href="#header" id="go_up">Torna su</a>';
     } else {
         $vini .= '</ul><h2>Non sono presenti vini.</h2>';
     }

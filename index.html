@@ -30,10 +30,18 @@
         <img id="logo_alt" alt="Logo WineNot" src="./img/logo_alt.png" />
         <img id="logo_alt_mobile" alt="Logo WineNot" src="./img/logo_alt_mobile.png" />
         <ul>
-            <li><a title="Vini" href="./php/wines.php" tabindex="1" accesskey="v">Vini</a></li>
-            <li><a title="Annate Migliori" href="./php/best_years.php" tabindex="2" accesskey="a">Annate Migliori</a></li>
-            <li><a title="Eventi" href="./html/events.html" tabindex="3" accesskey="e">Eventi</a></li>
-            <li><a title="Storia" href="./html/history.html" tabindex="4" accesskey="s">Storia</a></li>
+            <li>
+                <a title="Vini" href="./php/wines.php" tabindex="1" accesskey="v">Vini</a>
+            </li>
+            <li>
+                <a title="Annate Migliori" href="./php/best_years.php" tabindex="2" accesskey="a">Annate Migliori</a>
+            </li>
+            <li>
+                <a title="Eventi" href="./html/events.html" tabindex="3" accesskey="e">Eventi</a>
+            </li>
+            <li>
+                <a title="Storia" href="./html/history.html" tabindex="4" accesskey="s">Storia</a>
+            </li>
         </ul>
     </div>
     <div id="presentation">
@@ -43,37 +51,35 @@
 
     <div id="short_description">
         <h2>Enoteca</h2>
-        <p>Ubicata nei pressi di Caltanissetta in Sicilia, WineNot &eacute; un&apos;Enoteca che vanta una modesta ma
-             significativa esposizione di etichette fra vini e distillati: la passione per questa materia ci porta a
-              scoprire i migliori vini siciliani prodotti nelle province di tutta la regione, che lavorano con grande 
-              passione dando vita a vini di altissima qualit&agrave;.</p>
+        <p>Ubicata nei pressi di Caltanissetta in Sicilia, WineNot &eacute; un&apos;Enoteca che vanta una modesta ma significativa
+            esposizione di etichette fra vini e distillati: la passione per questa materia ci porta a scoprire i migliori
+            vini siciliani prodotti nelle province di tutta la regione, che lavorano con grande passione dando vita a vini
+            di altissima qualit&agrave;.</p>
     </div>
 
     <div id="wine_preview">
         <div id="red_wine" class="preview_wine" onmouseout="hide(this)" onmouseover="show(this)">
             <img class="wine_preview_img" alt="Esempio di vino Rosso" src="./img/vino_rosso.png" />
             <div class="preview_wine_description">
-                <a title="Vini Rossi" href="./php/wines.php?search=&amp;annata=All&amp;tipologia=rosso&amp;ordine=nome" 
-                tabindex="5" accesskey="r" >Vini Rossi</a>
-                <p>I nostri rossi sono vellutati, intensi ed aromatici, richiamano i frutti rossi del bosco e le spezie molto erbose.
-                     All&apos;assaggio risultano profondi, persistenti e avvolgenti.</p>
+                <a title="Vini Rossi" href="./php/wines.php?search=&amp;annata=All&amp;tipologia=rosso&amp;ordine=nome" tabindex="5" accesskey="r">Vini Rossi</a>
+                <p>I nostri rossi sono vellutati, intensi ed aromatici, richiamano i frutti rossi del bosco e le spezie molto
+                    erbose. All&apos;assaggio risultano profondi, persistenti e avvolgenti.</p>
             </div>
         </div>
         <div id="rose_wine" class="preview_wine" onmouseout="hide(this)" onmouseover="show(this)">
             <img class="wine_preview_img" alt="Esempio di vino Ros&eacute;" src="./img/vino_rose.png" />
             <div class="preview_wine_description">
-                <a title="Vini Ros&eacute;" href="./php/wines.php?search=&amp;annata=All&amp;tipologia=ros&eacute;&amp;ordine=nome"
-                 tabindex="6" accesskey="p" >Vini Ros&eacute;</a>
-                <p>I nostri ros&eacute; dal colore delicato risultano al palato morbidi e poco corposi; al momento 
-                    della degustazione &eacute; possibile riconoscere le note floreali ed il retrogusto fruttato.</p>
+                <a title="Vini Ros&eacute;" href="./php/wines.php?search=&amp;annata=All&amp;tipologia=ros&eacute;&amp;ordine=nome" tabindex="6"
+                    accesskey="p">Vini Ros&eacute;</a>
+                <p>I nostri ros&eacute; dal colore delicato risultano al palato morbidi e poco corposi; al momento della degustazione
+                    &eacute; possibile riconoscere le note floreali ed il retrogusto fruttato.</p>
             </div>
         </div>
         <div id="white_wine" class="preview_wine" onmouseout="hide(this)" onmouseover="show(this)">
             <img class="wine_preview_img" alt="Esempio di vino Bianco" src="./img/vino_bianco.png" />
             <div class="preview_wine_description">
-                <a title="Vini Bianchi" href="./php/wines.php?search=&amp;annata=All&amp;tipologia=bianco&amp;ordine=nome"
-                 tabindex="7" accesskey="b" >Vini Bianchi</a>
-                <p>I nostri bianchi presentano un colore giallo prevalentemente paglierino e un aroma delicato agli agrumi, 
+                <a title="Vini Bianchi" href="./php/wines.php?search=&amp;annata=All&amp;tipologia=bianco&amp;ordine=nome" tabindex="7" accesskey="b">Vini Bianchi</a>
+                <p>I nostri bianchi presentano un colore giallo prevalentemente paglierino e un aroma delicato agli agrumi,
                     molto profumato ed armonioso.</p>
             </div>
         </div>
@@ -81,26 +87,30 @@
 
     <div id="tasting">
         <h2>Degustazione</h2>
-        <p>Una festa per i sensi: la nostra Carta dei Vini propone una serie di degustazioni uniche nel loro genere per 
-            variet&agrave; e prestigio, accompagnate da preziosi assaggi gourmet, ideali per un aperitivo in compagnia.
-            Vi aspettiamo! </p>
+        <p>Una festa per i sensi: la nostra Carta dei Vini propone una serie di degustazioni uniche nel loro genere per variet&agrave;
+            e prestigio, accompagnate da preziosi assaggi gourmet, ideali per un aperitivo in compagnia. Vi aspettiamo! </p>
     </div>
 
     <div id="history_preview">
         <div id="history_paragraph">
             <h3>Storia</h3>
-            <p>L’Enoteca WineNot nasce nel 2009 nei pressi di Caltanissetta in Sicilia e a distanza di anni &eacute; 
-                tuttora un punto di riferimento per gli amanti del buon bere. Gestita tutt’oggi dalla famiglia Vanucci,
-                 si presenta con una struttura elegante ma al tempo stesso calorosa e amichevole. Con il passare degli 
-                 anni si sono stappate migliaia di bottiglie ma soprattutto Winenot &eacute; diventata un crocevia di
-                  storie di vita e di cultura.</p>
+            <p>L’Enoteca WineNot nasce nel 2009 nei pressi di Caltanissetta in Sicilia e a distanza di anni &eacute; tuttora
+                un punto di riferimento per gli amanti del buon bere. Gestita tutt’oggi dalla famiglia Vanucci, si presenta
+                con una struttura elegante ma al tempo stesso calorosa e amichevole. Con il passare degli anni si sono stappate
+                migliaia di bottiglie ma soprattutto Winenot &eacute; diventata un crocevia di storie di vita e di cultura.</p>
         </div>
     </div>
-
+    <div>
+        <a href="#header" id="go_up">Torna su</a>
+    </div>
     <div id="footer">
         <ul>
-            <li><a title="Contattaci" href="./php/contacts.php" tabindex="8" accesskey="c">Contattaci</a></li>
-            <li><a title="Mappa del sito" href="./html/sitemap.html" tabindex="9" accesskey="m">Mappa del sito</a></li>
+            <li>
+                <a title="Contattaci" href="./php/contacts.php" tabindex="8" accesskey="c">Contattaci</a>
+            </li>
+            <li>
+                <a title="Mappa del sito" href="./html/sitemap.html" tabindex="9" accesskey="m">Mappa del sito</a>
+            </li>
         </ul>
     </div>
 </body>

@@ -78,6 +78,7 @@ if (mysqli_num_rows($result) != 0) {
             $vini .= '<li><label>Gradazione: </label>' . $row['gradazione'] . '</li>';
             $vini .= '</ul></div></li>';
         }
+        
     } else {
         $vini .= '<li><h3>Non sono presenti vini per questa annata.</h3></li>';
     }
