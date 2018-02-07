@@ -1,120 +1,202 @@
-<?php 
+<?php
 //apro la sessione
-session_start(); 
+session_start();
 
 //inclusione file di connessione
-include_once("../include/config.php");
-
-
+include_once '../include/config.php';
 
 //inclusione file per funzioni ausiliarie
-include_once("../include/lib.php");
+include_once '../include/lib.php';
 
-if(!isset($_SESSION['id'])) header("Location: ../index.php");
-
-$info_errore='';
-if(!empty($_COOKIE['info'])){
-    $info_errore.="<h1>".$_COOKIE['info']."</h1>";
-    setcookie('info',null);
-}
-if(!empty($_COOKIE['error'])){
-    $info_errore.="<h1>".$_COOKIE['error']."</h1>";
-    setcookie('error',null);
+//controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
+if (!isset($_SESSION['id'])) {
+    header('Location: ../index.php');
 }
 
-if(empty($_GET['year'])) {
-    $year = $_POST['anno'];
-} else $year = $_GET['year'];
+//dichiarazione variabili
+$annata = '';
+$info_errore = '';
 
+//stampo i messaggi informativi e/o di errore
+if (!empty($_COOKIE['info'])) {
+    $info_errore .= '<div>' . $_COOKIE['info'] . '</div>';
+    setcookie('info', null);
+}
+if (!empty($_COOKIE['error'])) {
+    $info_errore .= '<div class="error_sentence">' . $_COOKIE['error'] . '</div>';
+    setcookie('error', null);
+}
 
+//se è settato il cookie, mi salvo il suo valore in una variabile
+if (!empty($_COOKIE['modifyYear'])) {
+    $year = $_COOKIE['modifyYear'];
+}
+//altrimenti recupero l'anno dall'url e setto il cookie
+else if (!empty($_GET['year'])) {
+    //per evitare sql injection uso la funzione htmlentities() che converte ogni possibile carattere con l'entità HTML relativa
+    $year = htmlentities($_GET['year'], ENT_QUOTES);
+    setcookie('modifyYear', $year);
+}
+//infine se non è presente nessun riferimento all'anno, riporto alla pagina di gestione annate
+else {
+    header('Location: admin_years.php');
+}
 
-if(!empty($_POST['save_year'])) {
-    // controllo che non siano stati lasciati spazi vuoti all'interno di anno e che tutti i campi siano non vuoti.
-    
-    if(!empty($_POST['descrizione']) &&
-       !empty($_POST['qualita'])) {
-    
-    //dichiaro le variabili
-    $descrizione = $_POST['descrizione'];
-    $qualita = $_POST['qualita'];
+//controllo che sia stata inviata la submit
+if (!empty($_POST['save_year'])) {
+    //controllo che non siano stati lasciati campi vuoti
+    if (!empty($_POST['anno']) && !preg_match('/^(\s)+$/', $_POST['anno']) && !empty($_POST['descrizione']) &&
+        !preg_match('/^(\s)+$/', $_POST['descrizione']) && !empty($_POST['qualita']) && !preg_match('/^(\s)+$/', $_POST['qualita'])) {
 
-    // controllo che l'anno sia del formato giusto
+        //dichiarazione variabili
+        $anno = $_POST['anno'];
+        $descrizione = $_POST['descrizione'];
+        $qualita = $_POST['qualita'];
+        if ($_POST['migliore'] == false) {
+            $migliore = 0;
+        } else {
+            $migliore = 1;
+        }
 
-    //inserisco i dati nel database
+        //controllo che l'anno sia del formato corretto oltre ad essere maggiore di 1900 e minore uguale dell'anno corrente
+        //es. 2004
+        if (preg_match('/^\d{4}$/', $anno) && $anno > 1900 && $anno <= date('Y')) {
 
-    if($_POST['migliore'] == FALSE)
-    {   
-        $sql = "UPDATE annate SET descrizione='".$descrizione."', qualita='".$qualita."', migliore=0 WHERE anno=".$year."";
-        
-        $result = mysqli_query($conn,$sql);
-    } else { 
-        $sql = "UPDATE annate SET descrizione='".$descrizione."', qualita='".$qualita."', migliore=1 WHERE anno=".$year."";
-        $result = mysqli_query($conn,$sql);
-        
-    }
-    //controllo la connessione
-    if ($result) {
-        setcookie('info',"Modifica avvenuta con successo.");
-        header("Location: admin_years.php");
+            //controllo che sia stato modificato almeno un campo, altrimenti non serve fare l'update nel database
+            $sql = 'SELECT * FROM annate WHERE anno=' . $anno . ' AND descrizione="' . htmlentities($descrizione, ENT_QUOTES)
+            . '" AND qualita="' . htmlentities($qualita, ENT_QUOTES) . '" AND migliore=' . $migliore;
+
+            $result = mysqli_query($conn, $sql);
+
+            if (mysqli_num_rows($result) == 0) {
+                //controllo che questa annata modificata non esista già nel database (escludendo l'annata prima delle
+                //modifiche ovviamente)
+                $sql = 'SELECT * FROM (SELECT * FROM annate WHERE anno!=' . $year . ') AS anni WHERE anno=' . $anno;
+
+                $result = mysqli_query($conn, $sql);
+
+                if (mysqli_num_rows($result) != 0) {
+                    setcookie('error', 'Questa annata &egrave; gi&agrave; presente nel database.');
+                    header('Location: modify_year.php?year=' . $year);
+                } else {
+
+                    //aggiorno l'annata nel database
+                    $sql = 'UPDATE annate SET anno="' . $anno . '", descrizione="' . htmlentities($descrizione, ENT_QUOTES)
+                    . '", qualita="' . htmlentities($qualita, ENT_QUOTES) . '", migliore=' . $migliore . ' WHERE anno=' . $year;
+
+                    //controllo la connessione
+                    if (mysqli_query($conn, $sql)) {
+                        //se il cookie è settato, lo unsetto
+                        if (isset($_COOKIE['modifyYear'])) {
+                            unset($_COOKIE['modifyYear']);
+                            setcookie('modifyYear', '', time() - 3600);
+                        }
+
+                        setcookie('info', 'Modifica dei dati avvenuta con successo.');
+                        //ritorno alla pagina di gestione annate
+                        header('Location: admin_years.php ');
+                    } else {
+                        setcookie('error', 'Si &egrave; verificato un errore. La preghiamo di riprovare.');
+                        header('Location: modify_year.php?year=' . $year);
+                    }
+
+                }
+            } //nel caso in cui l'utente abbia cercato di salvare, non avendo però modificato nessun dato, viene mostrato a video
+            //il messaggio di 'modifica dati avvenuta con successo' per evitare il caso di metafora visiva
+            else {
+                setcookie('info', 'Modifica dati avvenuta con successo');
+                header('Location: admin_years.php');
+            }
+        }
+        //controllo il caso in cui l'anno sia maggiore dell'anno corrente
+        else if (preg_match('/^\d{4}$/', $anno) && $anno > date('Y')) {
+            setcookie('error', 'Anno deve essere minore o uguale dell&apos;anno corrente (' . date('Y') . ').');
+            header('Location: modify_year.php?year=' . $year);
+        }
+        //controllo il caso in cui l'anno sia minore o uguale di 1900
+        else if (preg_match('/^\d{4}$/', $anno) && $anno <= 1900) {
+            setcookie('error', 'Anno deve essere maggiore dell&apos;anno 1900.');
+            header('Location: modify_year.php?year=' . $year);
+        } else {
+            setcookie('error', 'Anno non è nel formato corretto (es. 1994).');
+            header('Location: modify_year.php?year=' . $year);
+        }
+
     } else {
-        echo $sql;
-        setcookie('error',"Si &egrave; verificato un errore. La preghiamo di riprovare");
-        header("Location: modify_year.php?year=".$year."");
+        setcookie('error', 'Alcuni campi risultano vuoti.');
+        header('Location: modify_year.php?year=' . $year);
     }
-
-} else {
-        setcookie('error','Alcuni campi risultano vuoti.');
-        header("Location: modify_year.php?year=".$year.""); 
-    }  
 }
 
+//FORM DATI ANNATA
+$sql = 'SELECT * FROM annate WHERE anno="' . $year . '"';
 
-$sql = "SELECT * FROM annate WHERE anno='".$year."'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result, MYSQL_ASSOC);
 
+if (mysqli_num_rows($result) != 0) {
+    $annata .= '<h1 id="admin_title">Modifica annata</h1>
+    <form onsubmit="return fullyCheckYear()" id="panel_admin_form_add_wine" action="modify_year.php"
+        method="post">
+        <input type="hidden" name="year" value="' . $year . '" />
+        <li class="label_add">
+            <label>Anno</label>
+        </li>
+        <li>
+            <span id="year_error" class="js_error"></span>
+        </li>
+        <li>
+            <input class="input_add" id="check_year" type="text" maxlength="4" name="anno" title="anno" value="' .
+        $row['anno'] . '" onfocusout="checkYear()"
+            />
+        </li>
 
-$result = mysqli_query($conn,$sql);
-$row = mysqli_fetch_array($result,MYSQL_ASSOC);
+        <li class="label_add">
+            <label>Descrizione</label>
+        </li>
+        <li>
+            <span id="description_error" class="js_error"></span>
+        </li>
+        <li>
+            <textarea id="check_description" name="descrizione" title="descrizione" onblur="checkYearDescription()" rows="4" cols="34">'
+        . $row['descrizione'] . '</textarea>
+        </li>
 
-$annata='';
+        <li class="label_add">
+            <label>Qualit&agrave;</label>
+        </li>
+        <li>
+            <span id="quality_error" class="js_error"></span>
+        </li>
+        <li>
+            <input class="input_add" id="check_quality" type="text" maxlength="30" name="qualita" title="qualita" value="' .
+        $row['qualita'] . '" onfocusout="checkYearQuality()"
+            />
+        </li>
 
-$annata.='<h3 id="admin_title">Modifica annata</h3>';
+        <li class="label_add">
+            <label>Migliore </label>
+            <input type="checkbox" name="migliore" title="migliore" ';
 
-$annata.='<form onsubmit="return fullyCheckYear()" id="panel_admin_form" action="modify_year.php" method="post">';
+    if ($row['migliore'] == 1) {
+        $annata .= 'checked="checked" /></li>';
+    } else {
+        $annata .= '/></li>';
+    }
 
-$annata.='<input type="hidden" name="save_year" value="'.$year.'" />';
-
-if(mysqli_num_rows($result)!=0) {
-    $annata.='<li><label>Anno</label></li><li><span id="year_error" class="js_error"></span></li>
-    <li><input id="check_year" type="text" maxlength="4" name="anno" title="anno" value="'.$row['anno'].' " 
-    onfocusout="checkYear()"/></li>';
-    $annata.='<li><label>Descrizione</label></li><li><span id="description_error" class="js_error"></span></li>
-    <li><textarea id="check_description" rows="5" cols="50" name="descrizione" title="descrizione" 
-    onfocusout="checkYearDescription()">'.$row['descrizione'].'</textarea></li> ';
-    $annata.='<li><label>Qualit&agrave;</label></li><li><span id="quality_error" class="js_error"></span></li>
-    <li><input id="check_quality" type="text" maxlength="30" name="qualita" title="qualita" 
-    value="'.$row['qualita'].'" onfocusout="checkYearQuality()"/></li>';
-    $annata.='<li><label>Migliore  </label><input type="checkbox" maxlength="30" name="migliore" title="migliore"';
-
-    if($row['migliore'] == 1)
-        $annata.='checked="checked" /></li>';
-    else $annata.='/></li>';
-
-    $annata.='<li><input type="submit" class="search_button" name="save_year" id="save_modify_year" value="Salva" /></li>';
-    $annata.='</ul>';
-} else { $annata.='<h2>Ci sono dei problemi con il database.</h2>'; }
-
-
-$annata.='</form>';
-
-
+    $annata .= '<li><input type="submit" class="search_button" name="save_year" id="save_modify_year" value="Salva" /></li>';
+    $annata .= '</ul></form>';
+} else {
+    $annata .= '<h2>Non sono state trovate informazioni riguardo l&apos;annata selezionata.</h2>';
+}
 
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
-$pagina = file_get_contents("../html/admin_panel.html");
+$pagina = file_get_contents('../html/admin_panel.html ');
+//rimpiazzo i segnaposto e stampo in output la pagina
+$pagina = str_replace('[SEARCH_WINE]', '', $pagina);
+$pagina = str_replace('[INFO/ERRORE]', $info_errore, $pagina);
+echo str_replace('[DATI]', $annata, $pagina);
 
-$pagina = str_replace("[SEARCH_WINE]", '', $pagina);
-$pagina = str_replace("[INFO/ERRORE]",$info_errore,$pagina);
-//rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
-echo str_replace("[DATI]", $annata, $pagina);
+//chiudo la connessione
 mysqli_close($conn);
-?>
