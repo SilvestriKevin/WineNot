@@ -170,9 +170,10 @@ if ($row['admin'] == 1) {
                     title="conferma_password" tabindex="10" onblur="checkPasswordConfirmation()"/>
                     </li>
 
+                    <li>
                     <input type="submit" class="search_button" name="add_user" value="Salva" id="save_admin_profile"
                     accesskey="s" tabindex="11"/>
-
+                    </li>
                     </ul>
                 </fieldset>
                 </form>';
