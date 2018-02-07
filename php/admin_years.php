@@ -3,36 +3,46 @@
 session_start(); 
 
 //inclusione file di connessione
-include_once("../include/config.php");
+include_once('../include/config.php');
 
 //inclusione file per funzioni ausiliarie
-include_once("../include/lib.php");
+include_once('../include/lib.php');
 
-if(!isset($_SESSION["id"])) header("Location: ../index.php");
+//controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
+if (!isset($_SESSION['id'])) {
+    header('Location: ../index.php');
+}
 
+//se il cookie è settato, lo unsetto
+if (isset($_COOKIE['modifyYear'])) {
+    unset($_COOKIE['modifyYear']);
+    setcookie('modifyYear', '', time() - 3600);
+}
+
+//dichiarazione variabili
 $dati='';
 $info_errore='';
 
 //stampo i messaggi informativi e/o di errore
-if(!empty($_COOKIE["info"])){
-    $info_errore.='<div id="top_message">'.$_COOKIE["info"].'</div>';
-    setcookie("info",null);
+if(!empty($_COOKIE['info'])){
+    $info_errore.='<div id="top_message">'.$_COOKIE['info'].'</div>';
+    setcookie('info',null);
 }
-if(!empty($_COOKIE["error"])){
-    $info_errore.='<div id="top_message">'.$_COOKIE["error"].'</div>';
-    setcookie("error",null);
+if(!empty($_COOKIE['error'])){
+    $info_errore.='<div id="top_message">'.$_COOKIE['error'].'</div>';
+    setcookie('error',null);
 }
 
-//se è stato cliccato "Elimina selezionate"
-if(isset($_POST["delete_selected"])){
+//se è stato cliccato 'Elimina selezionate'
+if(isset($_POST['delete_selected'])){
 
-    $years = isset($_POST["years"]) ? $_POST["years"] : array();
+    $years = isset($_POST['years']) ? $_POST['years'] : array();
     
     //se non sono state selezionate annate stampo un messaggio d'errore
     if (!count($years))  $info_errore.='<div id="top_message">Selezionare almeno un&apos;annata</div>';   
     else{
         //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  serialize/unserialize o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni elemento singolarmente in questo modo key[indice]=valore
-        header("Location: delete_year.php?years=".serialize($years));
+        header('Location: delete_year.php?years='.serialize($years));
     }
 }
 
@@ -51,7 +61,7 @@ $dati.='<input type="submit" class="admin_button delete_selected" name="delete_s
 $dati.='<a title="Aggiungi Annata" href="./add_year.php" tabindex="14">Aggiungi Annata</a></div>';
 
 //STAMPA LE ANNATE
-$sql = "SELECT annate.* FROM annate";
+$sql = 'SELECT annate.* FROM annate';
 $result=mysqli_query($conn,$sql);
 
 if(mysqli_num_rows($result)!=0){
@@ -69,19 +79,19 @@ if(mysqli_num_rows($result)!=0){
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
         $dati.='<div class="admin_tr">';
         $dati.='<div class ="admin_td admin_years_checkbox_column"><input class="admin_years_checkbox admin_checkboxes"
-         type="checkbox" name="years[]" value="'.$row["anno"];
-        if(isset($_POST["all_selected"])) $dati.='" checked="checked';
+         type="checkbox" name="years[]" value="'.$row['anno'];
+        if(isset($_POST['all_selected'])) $dati.='" checked="checked';
         $dati.='" onclick="removeErrorMessage()" tabindex="'. $counter_index++.'"/></div>';
-        $dati.='<div class ="admin_td admin_years_year_column">'.$row["anno"].'</div>';
-        $dati.='<div class ="admin_td admin_years_quantity_column">'.$row["qualita"].'</div>';
+        $dati.='<div class ="admin_td admin_years_year_column">'.$row['anno'].'</div>';
+        $dati.='<div class ="admin_td admin_years_quantity_column">'.$row['qualita'].'</div>';
         $dati.='<div class ="admin_td admin_years_best_column">';
-        if($row["migliore"] == 0) $dati.='No';
+        if($row['migliore'] == 0) $dati.='No';
         else $dati.='Si';
         $dati.='</div>';
         $dati.='<div class ="admin_td admin_years_modify_column"><a title="Modifica annata" 
-        href="./modify_year.php?year='.$row["anno"].'" tabindex="'. $counter_index++.'">Modifica</a></div>';
+        href="./modify_year.php?year='.$row['anno'].'" tabindex="'. $counter_index++.'">Modifica</a></div>';
         $dati.='<div class ="admin_td admin_years_remove_column"><a title="Elimina annata" 
-         href="./delete_year.php?years='.$row["anno"].'" tabindex="'. $counter_index++.'">X</a></div>';
+         href="./delete_year.php?years='.$row['anno'].'" tabindex="'. $counter_index++.'">X</a></div>';
         $dati.='</div>';
     }
 }
@@ -94,10 +104,10 @@ $dati.='</form>';
 
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
-$pagina = file_get_contents("../html/admin_panel.html");
+$pagina = file_get_contents('../html/admin_panel.html');
 //rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
-$pagina = str_replace("[SEARCH_WINE]", '', $pagina);
-$pagina = str_replace("[INFO/ERRORE]", $info_errore, $pagina);
-echo str_replace("[DATI]", $dati, $pagina);
+$pagina = str_replace('[SEARCH_WINE]', '', $pagina);
+$pagina = str_replace('[INFO/ERRORE]', $info_errore, $pagina);
+echo str_replace('[DATI]', $dati, $pagina);
 mysqli_close($conn);
 ?>
