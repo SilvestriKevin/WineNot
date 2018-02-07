@@ -1664,7 +1664,7 @@ textarea {
     width: 6%;
 }
 
-#delete_year_checkbox {
+.delete_year_checkbox {
     margin-left: 18%;
 }
 
@@ -1678,7 +1678,7 @@ textarea {
     width: 8%;
 }
 
-#delete_user_checkbox {
+.delete_user_checkbox {
     margin-left: 19%;
 }
 

@@ -103,10 +103,10 @@ else if (!empty($_POST['years']) && !empty($_POST['confirm'])) {
 else if (!empty($_GET['years'])) {
     $dati .= '<form onsubmit="return finalDeletion()" id="select_admin_buttons" action="delete_year.php" method="post">';
 
-    $dati .= '<input type="submit" class="admin_button" name="cancel" id="cancel" value="Annulla Eliminazione"
-    onclick="goBackWines()"/>';
+    $dati .= '<div><input type="submit" class="admin_button" name="cancel" id="cancel" value="Annulla Eliminazione"
+    onclick="goBackWines()" tabindex="7"/>';
     $dati .= '<input type="submit" class="admin_button" name="confirm" id="confirm" value="Conferma Eliminazione"
-    onclick="confirmDeletion()"/></div>';
+    onclick="confirmDeletion()" tabindex="8"/></div>';
 
     //controllo che nell'url abbia un array serializzato o un singolo dato
     //quindi provo a fare unserialize e se fallisce allora deduco di avere un dato unico
@@ -139,11 +139,13 @@ else if (!empty($_GET['years'])) {
                             <div class="admin_td">Migliore</div>
                     </div>';
 
+    $counter_index = 9;
+
     if (mysqli_num_rows($result) != 0) {
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $dati .= '<div class="admin_tr">';
-            $dati .= '<div class ="admin_td delete_year_checkbox_column"><input id="delete_year_checkbox" type="checkbox"
-            name="years[]" value="' . $row['anno'] . '" checked="checked" onclick="removeErrorMessage()"></div>';
+            $dati .= '<div class ="admin_td delete_year_checkbox_column"><input class="delete_year_checkbox" type="checkbox"
+            name="years[]" value="' . $row['anno'] . '" checked="checked" onclick="removeErrorMessage()" tabindex="'.$counter_index++.'"/></div>';
             $dati .= '<div class ="admin_td delete_year_year_column">' . $row['anno'] . '</div>';
             $dati .= '<div class ="admin_td delete_year_quality_column">' . $row['qualita'] . '</div>';
             $dati .= '<div class ="admin_td delete_year_best_column">';
