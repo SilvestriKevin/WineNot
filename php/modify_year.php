@@ -147,11 +147,21 @@ if (mysqli_num_rows($result) != 0) {
         </li>
         <li>
             <input class="input_add" id="check_year" type="text" maxlength="4" name="anno" title="anno" value="' .
-        $row['anno'] . '" onfocusout="checkYear()"
-            />
-        </li>
+        $row['anno'] . '" onfocusout="checkYear()"';
 
-        <li class="label_add">
+    $sql2 = 'SELECT id_wine FROM vini INNER JOIN annate ON vini.annata = annate.anno WHERE anno = ' . $year;
+
+    $result2 = mysqli_query($conn, $sql2);
+
+    //controllo che non ci siano vini di quest'annata, altrimenti disabilito la casella di testo
+    if (mysqli_num_rows($result2) != 0) {
+        $annata .= ' disabled="disabled" /></li>
+            <li>Sono presenti vini per quest&apos;annata. La modifica anno &egrave dunque disabilitata.';
+    } else {
+        $annata .= '/>';
+    }
+
+    $annata .= '</li><li class="label_add">
             <label>Descrizione</label>
         </li>
         <li>
