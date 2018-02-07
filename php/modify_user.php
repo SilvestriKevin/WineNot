@@ -42,163 +42,269 @@ if (!empty($_POST['user'])) {
 
 //controllo che sia stata inviata la submit
 if (!empty($_POST['save_user'])) {
-    //controllo che non siano stati lasciati campi vuoti
-    if (!empty($_POST['nome']) && !preg_match('/^(\s)+$/', $_POST['nome']) && !empty($_POST['email']) && !empty($_POST['username']) && !preg_match('/^(\s)+$/', $_POST['username'])) {
+    //controllo i campi del form (nome completo, username, email) e verifico che non siano vuoti
+    if (!empty($_POST['username']) && !preg_match('/^(\s)+$/', $_POST['username']) && !empty($_POST['nome']) &&
+        !preg_match('/^(\s)+$/', $_POST['nome']) && !empty($_POST['email']) && !preg_match('/^(\s)+$/', $_POST['email'])) {
 
+        //dichiarazione variabili
         $username = $_POST['username'];
         $nome = $_POST['nome'];
         $email = $_POST['email'];
-        // siccome tutti i campi non sono vuoti allora potrò procedere con i controlli all'interno del database
 
-        $sql = 'SELECT * FROM utenti WHERE id_user="' . $id_user . '" AND username="' . $username . '" AND nome="' . $nome
-            . '" AND email="' . $email . '"';
+        //controllo che i dati non siano uguali a quelli già presenti nel database
+        $sql = 'SELECT * FROM utenti WHERE id_user="' . $id_user . '" AND username="' . $username . '" AND nome="' . $nome . '"
+        AND email="' . $email . '"';
 
         $result = mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($result) == 0) { // dati diversi, quindi da cambiare
+        if (mysqli_num_rows($result) == 0) { //i dati inseriti dall'utente non sono uguali a quelli già presenti nel database,
+            //quindi l'utente vuole modificare almeno un campo dato
 
-            // controllo che la mail sia del formato giusto
-
+            //controllo che la mail sia del formato corretto
             if (!preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/', $email)) {
-                $error .= 'L&apos;email inserita non rispetta il formato corretto.<br />';
+                $error .= 'L&apos;email inserita non rispetta il formato corretto (es. example@domain.com).<br />';
             }
 
-            if (!empty($_POST['password'])) {
-                // allora cambio anche la password
+            //controllo che l'username inserito non sia già presente nel database
+            $sql = 'SELECT username FROM (SELECT username FROM utenti WHERE id_user!=' . $id_user . ') AS users WHERE
+            username="' . $username . '"';
+            $result = mysqli_query($conn, $sql);
 
-                if (empty($error)) {
-                    $password = $_POST['password'];
+            if (mysqli_num_rows($result) != 0) {
+                $error .= 'L&apos;username inserito &egrave; gi&agrave; presente nel database.';
+            } else {
+                //controllo che la email inserita non sia già presente nel database
+                $sql = 'SELECT email FROM (SELECT email FROM utenti WHERE id_user!=' . $id_user . ') AS users WHERE
+                email="' . $email . '"';
+                $result = mysqli_query($conn, $sql);
 
-                    if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $password)) { // password del formato giusto
+                if (mysqli_num_rows($result) != 0) {
+                    $error .= 'L&apos;email inserita &egrave; gi&agrave; presente nel database.';
+                } else {
+                    //controllo se anche i campi password sono settati e non vuoti
+                    if (!empty($_POST['new_password']) && !empty($_POST['confirm_password'])) {
 
-                        $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '", password=MD5("' . $password
-                            . '"), email="' . $email . '" WHERE id_user="' . $id_user . '"';
+                        //dichiarazione varibili
+                        $new_password = $_POST['new_password'];
+                        $confirm_password = $_POST['confirm_password'];
 
-                        $result = mysqli_query($conn, $sql);
+                        //controllo che la nuova password e quella di conferma siano uguali
+                        if ($confirm_password == $new_password) {
+                            //se non ci sono errori precedenti procedo
+                            if (empty($error)) {
+                                //controllo il formato della nuova password
+                                if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $new_password)) {
 
-                        if ($result) {
-                            setcookie('info', 'Modifica dati eseguita con successo');
-                            header('Location: admin_users.php');
+                                    //posso salvare anche la nuova password nel database
+                                    $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '",
+                            password=MD5("' . $new_password . '"), email="' . $email . '" WHERE id_user="' . $id_user . '"';
+
+                                    $result = mysqli_query($conn, $sql);
+
+                                    //se la query è andata a buon fine
+                                    if ($result) {
+                                        setcookie('info', 'Modifica dati avvenuta con successo');
+                                        header('Location: admin_users.php');
+                                    } else { //se non sono riuscito a cambiare dati nel database
+                                        $error = 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
+                                    }
+
+                                } else {
+                                    $error = 'La nuova password non rispetta il giusto formato. Deve essere lunga almeno 8
+                        caratteri e contenere almeno una lettera maiuscola, almeno una lettera minuscola ed almeno un
+                        numero.<br />';
+                                }
+
+                            }
+
                         } else {
-                            $error .= 'Si è verificato un errore. La preghiamo di riprovare.<br />';
+                            $error .= 'Le password non corrispondono.<br />';
                         }
 
-                    } else {
-                        $error .= 'La nuova password è in un formato sbagliato.<br />';
-                    }
+                    } else { // salvo solo i dati relativi a nome completo, username ed email
 
-                }
+                        //nel caso in cui solo un campo password sia stato scritto, setto la variabile $error
+                        if (!empty($_POST['confirm_password']) || !empty($_POST['new_password'])) {
+                            $error .= 'Entrambi i campi password devono essere compilati.<br />';
+                        }
 
-            } else { //cambio solo la i dati principali
-                if (empty($error)) {
+                        //se la variabile $error è vuota allora procedo all'update nel database
+                        if (empty($error)) {
+                            $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '", email="' . $email . '" WHERE
+                        id_user="' . $id_user . '"';
 
-                    $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '", email="' . $email . '"
-                    WHERE id_user="' . $id_user . '"';
+                            $result = mysqli_query($conn, $sql);
 
-                    $result = mysqli_query($conn, $sql);
+                            //se la query è andata a buon fine
+                            if ($result) {
+                                setcookie('info', 'Modifica dati avvenuta con successo');
+                                header('Location: admin_users.php');
+                            } else { // se non sono riuscito a cambiare dati nel database
+                                $error .= 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
 
-                    if ($result) { // se c'è stata una modifica allora tutto ok
-                        setcookie('info', 'Modifica dati eseguita con successo');
-                        header('Location: admin_users.php');
-                    } else { // se non sono riuscito a cambiare dati nel database
-                        $error .= 'Si è verificato un errore. La preghiamo di riprovare.<br />';
+                            }
 
+                        }
                     }
                 }
             }
         }
+        //nel caso in cui non ci siano modifiche nei dati, controllo solo se i campi password sono settati e non vuoti
+        else if (!empty($_POST['new_password']) && !empty($_POST['confirm_password'])) {
+
+            //dichiarazione varibili
+            $new_password = $_POST['new_password'];
+            $confirm_password = $_POST['confirm_password'];
+
+            //controllo che la nuova password e quella di conferma siano uguali
+            if ($confirm_password == $new_password) {
+                //controllo il formato della nuova password
+                if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $new_password)) {
+
+                    //posso salvare anche la nuova password nel database
+                    $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '",
+                        password=MD5("' . $new_password . '"), email="' . $email . '" WHERE id_user="' . $id_user . '"';
+
+                    $result = mysqli_query($conn, $sql);
+
+                    //se la query è andata a buon fine
+                    if ($result) {
+                        setcookie('info', 'Modifica dati avvenuta con successo');
+                        header('Location: admin_users.php');
+                    } else { //se non sono riuscito a cambiare dati nel database
+                        $error .= 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
+                    }
+
+                } else {
+                    $error .= 'La nuova password non rispetta il giusto formato. Deve essere lunga almeno 8
+                    caratteri e contenere almeno una lettera maiuscola, almeno una lettera minuscola ed almeno un
+                    numero.<br />';
+                }
+
+            } else { //le password sono uguali quindi non aggiorno il database
+                $error .= 'Le password non corrispondono.<br />';
+            }
+
+        }
+        //nel caso in cui non ci siano modifiche nei dati ma l'utente abbia compilato un solo campo password, setto la variabile $error
+        else if (!empty($_POST['confirm_password']) || !empty($_POST['new_password'])) {
+            $error .= 'Entrambi i campi password devono essere compilati.<br />';
+        }
+        //nel caso in cui l'utente abbia cercato di salvare, non avendo però modificato nessun dato, viene mostrato a video
+        //il messaggio di 'modifica dati avvenuta con successo' per evitare il caso di metafora visiva
+        else {
+            setcookie('info', 'Modifica dati avvenuta con successo');
+            header('Location: admin_users.php');
+        }
 
     } else {
-        $error .= 'Alcuni campi dati sono stati lasciati vuoti o non sono del formato giusto.';
+        $error .= 'Alcuni campi risultano vuoti.<br />';
     }
-
 }
 
+//se la variabile $error non è vuota, ricarico la pagina per mostrare i messaggi d'errore
 if (!empty($error)) {
     setcookie('error', $error);
-    header('Location: modify_users.php?user=' . $id_user);
+    header('Location: modify_user.php?user=' . $id_user);
 }
 
-//FORM DATI UTENTE
-$sql = 'SELECT * FROM utenti WHERE id_user="' . $id_user . '"';
-
+//prendo dal database il valore del campo booleano 'admin' dell'utente
+$sql = 'SELECT admin FROM utenti WHERE id_user="' . $_SESSION['id'] . '"';
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result, MYSQL_ASSOC);
 
-if (mysqli_num_rows($result) != 0) {
-    $user .= '<h1 id="admin_title">Modifica utente</h1>
-    <form onsubmit="return checkModifyUser()" id="admin_profile_page" action="modify_users.php" method="post">
-    <ul>
-    <li>
-    <input type="hidden" name="user" value="' . $id_user . '" />
-    </li>
-    <li class="label_add">
+//controllo che l'utente sia l'admin perchè solo l'admin può modificare un utente
+if ($row['admin'] == 1) {
+    //controllo che l'amministratore non abbia modificato l'url con il proprio id e nel caso lo invito ad usare
+    //l'apposita sezione 'dati profilo'
+    if ($id_user != 1) {
+        //FORM DATI UTENTE
+        $sql = 'SELECT * FROM utenti WHERE id_user="' . $id_user . '"';
+        $result = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_array($result, MYSQL_ASSOC);
+
+        //se esiste un utente con questo id procedo
+        if (mysqli_num_rows($result) != 0) {
+            $user .= '<h1 id="admin_title">Modifica utente</h1>
+        <form onsubmit="return checkModifyUser()" id="admin_profile_page" action="modify_user.php" method="post">
+        <ul>
+        <li>
+        <input type="hidden" name="user" value="' . $id_user . '" />
+        </li>
+        <li class="label_add">
         <label>Nome Completo</label>
-    </li>
-    <li>
+        </li>
+        <li>
         <span id="firstname_error" class="js_error"></span>
-    </li>
-    <li>
+        </li>
+        <li>
         <input class="input_add" id="firstname" type="text" maxlength="100" name="nome" title="nome" value="' .
-        $row['nome'] . '" onblur="checkUserFirstName()"
+                $row['nome'] . '" onblur="checkUserFirstName()"
         tabindex="7"/>
-    </li>
+        </li>
 
-    <li class="label_add">
+        <li class="label_add">
         <label>Username</label>
-    </li>
-    <li>
+        </li>
+        <li>
         <span id="username_error" class="js_error"></span>
-    </li>
-    <li>
+        </li>
+        <li>
         <input class="input_add" id="username" type="text" maxlength="100" name="username" title="username" value="'
-        . $row['username'] . '"
+                . $row['username'] . '"
             onblur="checkUsername()"  tabindex="8" />
-    </li>
+        </li>
 
 
-    <li class="label_add">
+        <li class="label_add">
         <label>Email</label>
-    </li>
-    <li>
+        </li>
+        <li>
         <span id="mail_error" class="js_error"></span>
-    </li>
-    <li>
+        </li>
+        <li>
         <input class="input_add" id="email" type="text" maxlength="100" name="email" title="email" value="' .
-        $row['email'] . '" onblur="checkEmail()"
+                $row['email'] . '" onblur="checkEmail()"
         tabindex="9"/>
-    </li>
+        </li>
 
-    <li class="label_add">
-        <label>Password</label>
-    </li>
-    <li>
+        <li class="label_add">
+        <label>Password nuova*</label>
+        </li>
+        <li>
         <span id="password_error" class="js_error"></span>
-    </li>
-    <li>
-        <input class="input_add" id="password" type="password" maxlength="100" name="password" title="password"
+        </li>
+        <li>
+        <input class="input_add" id="password" type="password" maxlength="100" name="new_password" title="nuova password"
         onblur="checkPasswordPanel()" tabindex="10"
         />
-    </li>
+        </li>
 
-    <li class="label_add">
-        <label>Conferma Password</label>
-    </li>
-    <li>
+        <li class="label_add">
+        <label>Conferma Password*</label>
+        </li>
+        <li>
         <span id="confirm_password_error" class="js_error">
          </span>
-    </li>
-    <li>
-        <input class="input_add" id="password_confirmation" type="password" maxlength="100" name="conferma_password"
-        title="conferma_password" tabindex="11" onblur="checkPasswordConfirmation()"/>
-    </li>
+        </li>
+        <li>
+        <input class="input_add" id="password_confirmation" type="password" maxlength="100" name="confirm_password"
+        title="conferma password" tabindex="11" onblur="checkPasswordConfirmation()"/>
+        </li>
 
-    <li>
-    <input type="submit" class="search_button" name="save_user" id="save_admin_profile" value="Salva" tabindex="12"/>
-    </li>
-    </ul></form>';
+        <li>
+        <input type="submit" class="search_button" name="save_user" id="save_admin_profile" value="Salva" tabindex="12"/>
+        </li>
+        <li><span id="required_fields_profile">*Campi obbligatori UNICAMENTE per il cambio password</span></li>
+        </ul></form>';
+        } else {
+            $user .= '<h2>Non sono state trovate informazioni riguardo l&apos;utente selezionato.</h2>';
+        }
+    } else {
+        $user .= '<h2>Per modificare i propri dati utilizzare l&apos;apposita sezione "dati profilo".</h2>';
+    }
 } else {
-    $user .= '<h2>Non sono state trovate informazioni riguardo l&apos;utente selezionato.</h2>';
+    $user .= '<h2>Non hai diritti di accesso a questa pagina.</h2>';
 }
 
 //creazione della pagina web
