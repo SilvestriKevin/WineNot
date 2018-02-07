@@ -134,6 +134,7 @@ $sql = 'SELECT * FROM annate WHERE anno="' . $year . '"';
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result, MYSQL_ASSOC);
 
+//se esiste un'annata con questo anno procedo
 if (mysqli_num_rows($result) != 0) {
     $annata .= '<h1 id="admin_title">Modifica annata</h1>
     <form onsubmit="return fullyCheckYear()" id="panel_admin_form_add_wine" action="modify_year.php"
