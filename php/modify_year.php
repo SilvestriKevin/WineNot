@@ -137,8 +137,8 @@ $row = mysqli_fetch_array($result, MYSQL_ASSOC);
 if (mysqli_num_rows($result) != 0) {
     $annata .= '<h1 id="admin_title">Modifica annata</h1>
     <form onsubmit="return fullyCheckYear()" id="panel_admin_form_add_wine" action="modify_year.php"
-        method="post">
-        <input type="hidden" name="year" value="' . $year . '" />
+        method="post"><ul>
+        <li><input type="hidden" name="year" value="' . $year . '" /></li>
         <li class="label_add">
             <label>Anno</label>
         </li>
@@ -147,7 +147,7 @@ if (mysqli_num_rows($result) != 0) {
         </li>
         <li>
             <input class="input_add" id="check_year" type="text" maxlength="4" name="anno" title="anno" value="' .
-        $row['anno'] . '" onfocusout="checkYear()"';
+        $row['anno'] . '" onblur="checkYear()" tabindex="7"';
 
     $sql2 = 'SELECT id_wine FROM vini INNER JOIN annate ON vini.annata = annate.anno WHERE anno = ' . $year;
 
@@ -156,7 +156,7 @@ if (mysqli_num_rows($result) != 0) {
     //controllo che non ci siano vini di quest'annata, altrimenti disabilito la casella di testo
     if (mysqli_num_rows($result2) != 0) {
         $annata .= ' disabled="disabled" /></li>
-            <li>Sono presenti vini per quest&apos;annata. La modifica anno &egrave dunque disabilitata.';
+            <li>Sono presenti vini per quest&apos;annata. La modifica anno &egrave; dunque disabilitata.';
     } else {
         $annata .= '/>';
     }
@@ -168,7 +168,7 @@ if (mysqli_num_rows($result) != 0) {
             <span id="description_error" class="js_error"></span>
         </li>
         <li>
-            <textarea id="check_description" name="descrizione" title="descrizione" onblur="checkYearDescription()" rows="4" cols="34">'
+            <textarea id="check_description" name="descrizione" title="descrizione" onblur="checkYearDescription()" rows="4" cols="34" tabindex="8">'
         . $row['descrizione'] . '</textarea>
         </li>
 
@@ -180,13 +180,13 @@ if (mysqli_num_rows($result) != 0) {
         </li>
         <li>
             <input class="input_add" id="check_quality" type="text" maxlength="30" name="qualita" title="qualita" value="' .
-        $row['qualita'] . '" onfocusout="checkYearQuality()"
+        $row['qualita'] . '" onblur="checkYearQuality()" tabindex="9"
             />
         </li>
 
         <li class="label_add">
             <label>Migliore </label>
-            <input type="checkbox" name="migliore" title="migliore" ';
+            <input type="checkbox" name="migliore" title="migliore" tabindex="10" ';
 
     if ($row['migliore'] == 1) {
         $annata .= 'checked="checked" /></li>';
@@ -194,7 +194,7 @@ if (mysqli_num_rows($result) != 0) {
         $annata .= '/></li>';
     }
 
-    $annata .= '<li><input type="submit" class="search_button" name="save_year" id="save_modify_year" value="Salva" /></li>';
+    $annata .= '<li><input type="submit" class="search_button" name="save_year" id="save_modify_year" value="Salva" tabindex="11"/></li>';
     $annata .= '</ul></form>';
 } else {
     $annata .= '<h2>Non sono state trovate informazioni riguardo l&apos;annata selezionata.</h2>';
