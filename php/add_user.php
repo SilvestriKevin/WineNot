@@ -35,7 +35,7 @@ $row = mysqli_fetch_array($result, MYSQL_ASSOC);
 //controllo che l'utente sia l'admin perchè solo l'admin può aggiungere un nuovo utente
 if ($row['admin'] == 1) {
     //FORM INSERIMENTO UTENTE
-    $user .= '<h1 id="admin_title">Inserisci un nuovo utente</h1>
+    $user .= '<h1 id="admin_title">Inserimento utente</h1>
                 <form onsubmit="return fullyCheckUser()" id="admin_profile_page" action="add_user.php" method="post">
                     <fieldset>
                     <ul>
