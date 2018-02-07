@@ -128,9 +128,10 @@ $row = mysqli_fetch_array($result, MYSQL_ASSOC);
 if (mysqli_num_rows($result) != 0) {
     $user .= '<h1 id="admin_title">Modifica utente</h1>
     <form onsubmit="return checkModifyUser()" id="admin_profile_page" action="modify_users.php" method="post">
-    <input type="hidden" name="user" value="' . $id_user . '" />
     <ul>
-
+    <li>
+    <input type="hidden" name="user" value="' . $id_user . '" />
+    </li>
     <li class="label_add">
         <label>Nome Completo</label>
     </li>
@@ -138,9 +139,9 @@ if (mysqli_num_rows($result) != 0) {
         <span id="firstname_error" class="js_error"></span>
     </li>
     <li>
-        <input class="input_add" id="firstname" type="text" maxlength="100" name="nome" id="" title="nome" value="' .
-        $row['nome'] . '" onfocusout="checkUserFirstName()"
-        />
+        <input class="input_add" id="firstname" type="text" maxlength="100" name="nome" title="nome" value="' .
+        $row['nome'] . '" onblur="checkUserFirstName()"
+        tabindex="7"/>
     </li>
 
     <li class="label_add">
@@ -150,9 +151,9 @@ if (mysqli_num_rows($result) != 0) {
         <span id="username_error" class="js_error"></span>
     </li>
     <li>
-        <input class="input_add" id="username" type="text" maxlength="100" name="username" id="" title="username" value="'
+        <input class="input_add" id="username" type="text" maxlength="100" name="username" title="username" value="'
         . $row['username'] . '"
-            onfocusout="checkUsername()" />
+            onblur="checkUsername()"  tabindex="8" />
     </li>
 
 
@@ -163,9 +164,9 @@ if (mysqli_num_rows($result) != 0) {
         <span id="mail_error" class="js_error"></span>
     </li>
     <li>
-        <input class="input_add" id="email" type="text" maxlength="100" name="email" id="" title="email" value="' .
-        $row['email'] . '" onfocusout="checkEmail()"
-        />
+        <input class="input_add" id="email" type="text" maxlength="100" name="email" title="email" value="' .
+        $row['email'] . '" onblur="checkEmail()"
+        tabindex="9"/>
     </li>
 
     <li class="label_add">
@@ -176,7 +177,7 @@ if (mysqli_num_rows($result) != 0) {
     </li>
     <li>
         <input class="input_add" id="password" type="password" maxlength="100" name="password" title="password"
-        onblur="checkPasswordPanel()"
+        onblur="checkPasswordPanel()" tabindex="10"
         />
     </li>
 
@@ -189,10 +190,12 @@ if (mysqli_num_rows($result) != 0) {
     </li>
     <li>
         <input class="input_add" id="password_confirmation" type="password" maxlength="100" name="conferma_password"
-        title="conferma_password" tabindex="10" onblur="checkPasswordConfirmation()"/>
+        title="conferma_password" tabindex="11" onblur="checkPasswordConfirmation()"/>
     </li>
 
-    <input type="submit" class="search_button" name="save_user" id="save_admin_profile" value="Salva" />
+    <li>
+    <input type="submit" class="search_button" name="save_user" id="save_admin_profile" value="Salva" tabindex="12"/>
+    </li>
     </ul></form>';
 } else {
     $user .= '<h2>Non sono state trovate informazioni riguardo l&apos;utente selezionato.</h2>';
