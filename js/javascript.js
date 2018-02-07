@@ -22,7 +22,7 @@ function checkEmail() {
     var isFieldCorrect = true;
     if (!email_reg.test(email)) { // la mail non è quindi del formato giusto
         // document.getElementById("email").style.borderColor = "red";
-        document.getElementById("mail_error").innerHTML = "Formato 'e-mail' non corretto";
+        document.getElementById("mail_error").innerHTML = "Email non è nel formato corretto (es. example@dominio.com)";
         isFieldCorrect = false;
     } else if (!email) {
         document.getElementById("mail_error").innerHTML = "Il campo mail non può essere lasciato vuoto";
@@ -66,9 +66,15 @@ function checkMailMessage() {
 
 function checkContactForm() {
     // invoco le altre tre funzioni per controllare se c'é qualcosa che non va
-    return checkEmail() && checkMailObject() && checkMailMessage();
-}
+    var email = checkEmail();
+    var check_mail_object = checkMailObject();
+    var check_mail_message = checkMailMessage();
 
+    if (email && check_mail_message && check_mail_object)
+        return true;
+    else
+        return false;
+}
 /* FORM LOGIN */
 
 function checkUsername() {
@@ -400,7 +406,7 @@ function removeErrorMessage() {
 
 function checkYear() {
     var year = document.getElementById("check_year").value;
-    var year_reg = /^\d{4}$/i;    
+    var year_reg = /^\d{4}$/i;
     var isFieldCorrect = true;
     var currentYear = (new Date()).getFullYear();
 
@@ -586,10 +592,10 @@ function checkModifyProfile() {
     var username = checkUsername();
     var email = checkEmail();
     var password = document.getElementById("password").value;
-    var new_password =  document.getElementById("new_password").value;
+    var new_password = document.getElementById("new_password").value;
     // se uno dei due campi password risulta inserito, allora devo fare il controllo password
-    
-    if (password || new_password ) {
+
+    if (password || new_password) {
         var password = checkPasswordPanel();
         var new_password = checkNewPassword();
 

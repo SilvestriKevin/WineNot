@@ -321,7 +321,7 @@ if (mysqli_num_rows($result) != 0) {
         <label>Immagine attuale</label>
     </li>
     <li>
-        <img id="modify_wine_img" alt="immagine del vino" src="../img/';
+        <img id="modify_wine_img" alt="immagine del vino '.$row["nome"].'" src="../img/';
 
         //controllo che sia presente l'immagine del vino nel server, altrimenti mostro l'immagine di default
         if(file_exists($_SERVER['DOCUMENT_ROOT'].'/WineNot/img/' . $row["id_wine"] . '.png')){
