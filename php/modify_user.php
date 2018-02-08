@@ -276,7 +276,7 @@ if ($row['admin'] == 1) {
         </li>
         <li>
         <input class="input_add" id="password" type="password" maxlength="100" name="new_password" title="nuova password"
-        onblur="checkPasswordPanel()" tabindex="10"
+         tabindex="10"
         />
         </li>
 
@@ -289,7 +289,7 @@ if ($row['admin'] == 1) {
         </li>
         <li>
         <input class="input_add" id="password_confirmation" type="password" maxlength="100" name="confirm_password"
-        title="conferma password" tabindex="11" onblur="checkPasswordConfirmation()"/>
+        title="conferma password" tabindex="11"/>
         </li>
 
         <li>

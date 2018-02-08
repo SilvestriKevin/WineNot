@@ -503,20 +503,22 @@ function checkPasswordConfirmation() {
 
 function checkPasswordPanel() {
     var password_reg = /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/i;
-    var password = document.getElementById("password").value;
-
-    var new_password = document.getElementById("new_password");
+    var password = document.getElementById("password_confirmation").value;
+    var new_password = document.getElementById("password").value;
 
     var isFieldCorrect = checkPassword();
 
-    if (isFieldCorrect) { // i soliti controlli sono andati a buon fine
-        if (!password_reg.test(password)) { // se fallisce il controllo del formato
+    if (isFieldCorrect && password) { // i soliti controlli sono andati a buon fine
+        if (!password_reg.test(new_password)) { // se fallisce il controllo del formato
             document.getElementById("password_error").innerHTML = "La password deve essere lunga almeno 8 caratteri," +
                 "contenere almeno una lettera minuscola, almeno una maiuscola e almeno un numero";
             isFieldCorrect = false;
         } else {
             isFieldCorrect = true;
         }
+    } else {
+        document.getElementById("password_error").innerHTML = "Entrambi i campi password devono essere riempiti per il cambio password";
+        isFieldCorrect = false;
     }
 
     return isFieldCorrect;
@@ -543,13 +545,23 @@ function checkModifyUser() {
     var firstname = checkUserFirstName();
     var username = checkUsername();
     var email = checkEmail();
-    var password = checkPasswordPanel();
 
-    if (firstname && username && email && password) {
-        return true;
-    } else {
-        return false;
-    }
+    var new_password = document.getElementById("password").value;
+    var password = document.getElementById("password_confirmation").value;
+
+    if (!password && !new_password) { // allora non voglio cambiare password, quindi ho lasciato i campi vuoti
+        if (firstname && username && email) {
+            return true;
+        } else {
+            return false;
+        }
+    } else if (checkPasswordPanel()) {
+        if (firstname && username && email) { // voglio anche cambiare password
+            return true;
+        } else {
+            return false;
+        }
+    } else return false;
 }
 
 /* Modifica Profilo */
