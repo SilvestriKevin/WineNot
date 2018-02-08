@@ -61,9 +61,9 @@ if(!empty($_POST["email"]) ){
         
     } else {
         $email= 'info@winenot.it';
-        $header= 'From: '.$_POST["email"].'>\n';
-        $header .= 'Content-Type: text/html; charset=\'iso-8859-1\'\n';
-        $header .= 'Content-Transfer-Encoding: 7bit\n\n';
+        $header= 'From: '.$_POST["email"].'><br />';
+        $header .= 'Content-Type: text/html; charset=\'iso-8859-1\'<br />';
+        $header .= 'Content-Transfer-Encoding: 7bit<br /><br />';
         $subject= 'WineNot.it - ';
         $subject.=$_POST["object"];
         $mess_invio='<html><body>';

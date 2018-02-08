@@ -37,9 +37,9 @@ if(empty($_POST["email"])){
 }
    //se non ci sono stati errori, invio l’email all’utente con il link da confermare
    if($errore==0){
-       $header= 'From: WineNot.it <info@WineNot.it>\n';
-       $header .= 'Content-Type: text/html; charset=\'iso-8859-1\'\n';
-       $header .= 'Content-Transfer-Encoding: 7bit\n\n';
+       $header= 'From: WineNot.it <info@WineNot.it><br />';
+       $header .= 'Content-Type: text/html; charset=\'iso-8859-1\'<br />';
+       $header .= 'Content-Transfer-Encoding: 7bit<br /><br />';
        $subject= 'WineNot.it - Conferma nuova password utente';
        $mess_invio='<html><body>';
        $mess_invio.=' Clicca sul <a href=\"http://localhost/WineNot/php/new_password.php?hash='.$hash.'\">link</a>

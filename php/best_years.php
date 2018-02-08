@@ -60,6 +60,7 @@ if (mysqli_num_rows($result) != 0) {
     $sql = 'SELECT vini.* FROM vini WHERE annata="' . $row['anno'] . '"';
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) != 0) {
+        $vini.='<h2>I vini di questa annata:</h2><ul>';
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $vini .= '<li><div class="specific_wine specific_result">
             <a title="' . $row['nome'] . '" href="../php/wine.php?id_wine=' . $row['id_wine'] . '" tabindex="' . $cont . '">
@@ -78,9 +79,14 @@ if (mysqli_num_rows($result) != 0) {
             $vini .= '<li><label>Gradazione: </label>' . $row['gradazione'] . '</li>';
             $vini .= '</ul></div></li>';
         }
+        $vini.='</ul>';
+
+        if (mysqli_num_rows($result) > 4) {
+        $vini.='<a title="Torna Su" href="#header" id="go_up" tabindex="998" accesskey="g">Torna su</a>';
+        }
         
     } else {
-        $vini .= '<li><h3>Non sono presenti vini per questa annata.</h3></li>';
+        $vini .= '<h3>Non sono presenti vini per questa annata.</h3>';
     }
 
 }

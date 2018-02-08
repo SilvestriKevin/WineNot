@@ -20,9 +20,9 @@ if(isset($_GET['hash'])){
     //salvo la nuova password al posto della vecchia (in md5)
         $sql="update utenti set password='".md5($password)."' where id_user=".$id." and password='".$password_old."'";
     $result=mysqli_query($conn,$sql);
-    $header= "From: WineNot.it <info@WineNot.it>\n";
-    $header .= "Content-Type: text/html; charset=\"iso-8859-1\"\n";
-    $header .= "Content-Transfer-Encoding: 7bit\n\n";
+    $header= "From: WineNot.it <info@WineNot.it><br />";
+    $header .= "Content-Type: text/html; charset=\"iso-8859-1\"<br />";
+    $header .= "Content-Transfer-Encoding: 7bit<br /><br />";
     $subject= "WineNot.it - Nuova password utente";
     $mess_invio="<html><body>";
     $mess_invio.=" La sua nuova password utente &egrave; ".$password."<br /> Ora puoi accedere all'area <a href=\"http://localhost/WineNot/php/login.php\">Login</a>. ";
