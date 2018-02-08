@@ -3,14 +3,15 @@
     LISTE: list-style-type: none;
 */
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /*  GENERAL  */
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
+img,a img,a{
+    border-style: none;
+}
 
 * {
     margin: 0;
@@ -19,7 +20,7 @@
 
 html,
 body {
-    font-family: 'Lato', Verdana, Arial, Helvetica sans-serif;
+    font-family: 'Lato', 'Verdana', 'Arial', 'Helvetica sans-serif';
     max-width: 100%;
     height: 100%;
     margin: auto;
@@ -34,7 +35,7 @@ textarea {
 .inv_search_button {
     padding: 0.4em;
     border-radius: 0.4em;
-    font-family: 'Lato', Verdana, Arial, Helvetica sans-serif;
+    font-family: 'Lato', 'Verdana', 'Arial', 'Helvetica sans-serif';
     color: #5F021F;
     font-size: 0.8em;
     letter-spacing: 0.03em;
@@ -47,13 +48,15 @@ textarea {
 .inv_search_button:hover {
     color: #fff;
     background-color: #5F021F;
+    -webkit-transition: 0.7s;
+    -o-transition: 0.7s;
     transition: 0.7s;
 }
 
 .search_button {
     padding: 0.4em;
     border-radius: 0.4em;
-    font-family: 'Lato', Verdana, Arial, Helvetica sans-serif;
+    font-family: 'Lato', 'Verdana', 'Arial', 'Helvetica sans-serif';
     color: #fff;
     font-size: 0.8em;
     letter-spacing: 0.03em;
@@ -66,6 +69,8 @@ textarea {
 .search_button:hover {
     color: #5F021F;
     background-color: #fff;
+    -webkit-transition: 0.7s;
+    -o-transition: 0.7s;
     transition: 0.7s;
 }
 
@@ -97,10 +102,10 @@ textarea {
     height: 2em;
     border-radius: 0.25em;
     border: none;
+    -webkit-box-shadow: 0 0.1em 0.5em 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     box-shadow: 0 0.1em 0.5em 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
     padding-left: 0.7em;
 }
-
 
 /* HEADER & FOOTER */
 
@@ -134,9 +139,10 @@ textarea {
 #horizontal_menu a:hover {
     margin: 0em !important;
     color: #fff;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
     transition: 0.2s;
 }
-
 
 /* TITOLI */
 
@@ -173,7 +179,6 @@ textarea {
     margin-bottom: 0.8em;
 }
 
-
 /* PANNELLO ADMIN */
 
 .admin_button {
@@ -188,6 +193,8 @@ textarea {
 .admin_button:hover {
     color: #fff;
     background-color: #5F021F;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
     transition: 0.5s;
 }
 
@@ -205,7 +212,8 @@ textarea {
     font-weight: 600;
 }
 
-.info_sentence, .error_sentence {
+.info_sentence,
+.error_sentence {
     padding: 0.2em 0em;
     background-color: rgba(226, 211, 201, 0.71);
     text-align: center;
@@ -225,13 +233,12 @@ textarea {
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-
 /*  HEADER  */
-
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 #header {
+    -webkit-box-shadow: 0 0.15em 0.7em rgba(41, 51, 57, .5);
     box-shadow: 0 0.15em 0.7em rgba(41, 51, 57, .5);
 }
 
@@ -248,23 +255,21 @@ textarea {
     text-decoration: none;
 }
 
-
 #logo_alt,
-#logo_alt_mobile,#logo_alt_link,#logo_alt_mobile_link {
+#logo_alt_mobile,
+#logo_alt_link,
+#logo_alt_mobile_link {
     display: none;
 }
 
-
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-
 /*  FOOTER  */
-
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
 #footer {
+    -webkit-box-shadow: 0em -0.15em 0.7em rgba(41, 51, 57, .5);
     box-shadow: 0em -0.15em 0.7em rgba(41, 51, 57, .5);
     width: 100%;
     position: relative;
@@ -288,12 +293,9 @@ textarea {
     color: #fff;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-
 /*  INDEX  */
-
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -305,16 +307,20 @@ textarea {
     display: block;
 }
 
-
 /* PRESENTATION */
 
 #presentation {
+    background: url("../img/background_index.png");
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.38)), to(rgba(0, 0, 0, 0.38))), url("../img/background_index.png");
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)), url("../img/background_index.png");
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)), url("../img/background_index.png");
     background-image: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)), url("../img/background_index.png");
     background-position: center;
     background-repeat: no-repeat;
     height: 27em;
     max-height: 100%;
     width: 100%;
+    -webkit-box-shadow: 0em -0.15em 2em rgba(41, 51, 57, .5);
     box-shadow: 0em -0.15em 2em rgba(41, 51, 57, .5);
 }
 
@@ -400,7 +406,11 @@ textarea {
     -webkit-transform: scale(1.20);
     -ms-transform: scale(1.20);
     transform: scale(1.20);
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: -webkit-transform 0.5s;
+    -o-transition: transform 0.5s;
     transition: transform 0.5s;
+    transition: transform 0.5s, -webkit-transform 0.5s;
 }
 
 #wine_preview .preview_wine:first-child {
@@ -437,7 +447,9 @@ textarea {
     border-bottom: 0.5em solid #5F021F;
 }
 
-#red_wine a, #rose_wine a, #white_wine a {
+#red_wine a,
+#rose_wine a,
+#white_wine a {
     font-family: 'Dancing Script', sans-serif;
     font-size: 2.2em;
     color: #5F021F;
@@ -487,10 +499,13 @@ textarea {
     margin-bottom: 4em;
 }
 
-
 /* HISTORY PREVIEW */
 
 #history_preview {
+    background: url("../img/background-storia.jpg");
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.32)), to(rgba(0, 0, 0, 0.32))), url("../img/background-storia.jpg");
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32)), url("../img/background-storia.jpg");
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32)), url("../img/background-storia.jpg");
     background-image: linear-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.32)), url("../img/background-storia.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -522,20 +537,20 @@ textarea {
     font-style: italic;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /*  VINI  */
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /* SEARCH_WINES */
 
 #search_wines fieldset {
     border: none;
+    background: url("../img/background_search.png");
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.29)), to(rgba(255, 255, 255, 0.29))), url(../img/background_search.png);
+    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.29), rgba(255, 255, 255, 0.29)), url(../img/background_search.png);
+    background-image: -o-linear-gradient(rgba(255, 255, 255, 0.29), rgba(255, 255, 255, 0.29)), url(../img/background_search.png);
     background-image: linear-gradient(rgba(255, 255, 255, 0.29), rgba(255, 255, 255, 0.29)), url(../img/background_search.png);
     background-position: center;
     background-repeat: no-repeat;
@@ -571,7 +586,6 @@ textarea {
     margin-bottom: 2em;
 }
 
-
 /* WINE_RESULTS */
 
 #wine_results {
@@ -604,15 +618,11 @@ textarea {
     color: #5F021F;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /*  PAGINA SPECIFICA VINO  */
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /* CONTAINER WINE */
 
@@ -624,14 +634,12 @@ textarea {
     display: inline-block;
 }
 
-
 /* IMG DESCRIPTION WINE */
 
 #wine_img {
     margin-left: 6em;
     height: 40em;
 }
-
 
 /* DETAILS WINE */
 
@@ -683,15 +691,11 @@ textarea {
     font-size: 1.1em;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /*  ANNATE MIGLIORI  */
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /* TITLE BEST ANNATE */
 
@@ -709,20 +713,24 @@ textarea {
     font-family: 'Dancing Script', sans-serif;
 }
 
-
 /* LIST ANNATE */
 
 #list_annate {
     text-align: center;
+    background: url("../img/background_annata_ie.png");
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(252, 239, 223, 0.53)), to(rgba(252, 239, 223, 0.53))), url(../img/background_annata.png);
+    background-image: -webkit-linear-gradient(rgba(252, 239, 223, 0.53), rgba(252, 239, 223, 0.53)), url(../img/background_annata.png);
+    background-image: -o-linear-gradient(rgba(252, 239, 223, 0.53), rgba(252, 239, 223, 0.53)), url(../img/background_annata.png);
     background-image: linear-gradient(rgba(252, 239, 223, 0.53), rgba(252, 239, 223, 0.53)), url(../img/background_annata.png);
-    background-position: center;
+    background-position: 50% 50%;
     background-repeat: no-repeat;
+    -webkit-box-shadow: 0em 0em 1.5em rgba(97, 106, 111, 0.44);
     box-shadow: 0em 0em 1.5em rgba(97, 106, 111, 0.44);
 }
 
 #list_annate ul {
     padding-top: 3em;
-    padding-bottom: 2em; 
+    padding-bottom: 2em;
     margin-left: 8%;
 }
 
@@ -748,14 +756,17 @@ textarea {
     -webkit-transform: scale(1.20);
     -ms-transform: scale(1.20);
     transform: scale(1.20);
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: -webkit-transform 0.5s;
+    -o-transition: transform 0.5s;
     transition: transform 0.5s;
+    transition: transform 0.5s, -webkit-transform 0.5s;
 }
 
 #current_year {
     color: #740e2e !important;
     border-bottom: 0em !important;
 }
-
 
 /* DESCRIPTION ANNATA */
 
@@ -806,7 +817,6 @@ textarea {
     width: 65%;
 }
 
-
 /* LIST WINES YEAR */
 
 #list_wines_year {
@@ -837,15 +847,11 @@ textarea {
     float: left;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /*  EVENTI  */
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /* PRESENTATION EVENTS */
 
@@ -863,7 +869,6 @@ textarea {
     text-transform: uppercase;
     color: #a31b46;
 }
-
 
 /* EVENT PREVIEW */
 
@@ -919,15 +924,11 @@ textarea {
     font-size: 1.4em;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /*  STORIA  */
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /* HISTORY DESCRIPTION */
 
@@ -948,7 +949,6 @@ textarea {
     margin-left: 5%;
     margin-right: 5%;
 }
-
 
 /* HISTORY FAMILY */
 
@@ -992,7 +992,6 @@ textarea {
     font-size: 1.1em;
 }
 
-
 /* HISTORY FUTURE */
 
 #history_future {
@@ -1012,26 +1011,25 @@ textarea {
     margin: 0% 5%;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /*  CONTATTACI  */
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /* CONTENT CONTACTS EXTERNAL */
 
 #content_contacts_external {
+    background: url("../img/background_contacts.png");
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.65)), to(rgba(0, 0, 0, 0.65))), url("../img/background_contacts.png");
+    background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("../img/background_contacts.png");
+    background-image: -o-linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("../img/background_contacts.png");
     background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url("../img/background_contacts.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     width: 100%;
 }
-
 
 /* CONTENT CONTACTS */
 
@@ -1040,7 +1038,6 @@ textarea {
     width: 60%;
     margin-left: 20%;
 }
-
 
 /* HOW TO CONTACTS */
 
@@ -1136,14 +1133,12 @@ textarea {
     width: 90%;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /*  LOGIN  */
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
 /* REGISTER CONTENT */
 
 /* messaggio di errore */
@@ -1159,11 +1154,13 @@ textarea {
 /* REGISTER FIELDSET */
 
 #register_fieldset,
-#panel_admin_form fieldset, #register_fieldset_recover {
+#panel_admin_form fieldset,
+#register_fieldset_recover {
     border: 0em;
 }
 
-#register_fieldset ul, #register_fieldset_recover ul {
+#register_fieldset ul,
+#register_fieldset_recover ul {
     margin-top: 3em;
     margin-left: 27%;
     width: 40%;
@@ -1183,7 +1180,8 @@ textarea {
     text-align: center;
 }
 
-#register_fieldset label, #register_fieldset_recover label {
+#register_fieldset label,
+#register_fieldset_recover label {
     font-size: 1.2em;
 }
 
@@ -1195,12 +1193,14 @@ textarea {
     margin-right: 0.4em;
 }
 
-#register_fieldset input, #register_fieldset_recover input {
+#register_fieldset input,
+#register_fieldset_recover input {
     font-size: 1em;
     padding: 0.15em 0.6em;
     border-radius: 0.18em;
     margin-bottom: 0.5em;
 }
+
 #login_button_line {
     text-align: center;
     margin-left: 0em !important;
@@ -1218,15 +1218,11 @@ textarea {
     padding: 0.4em !important;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /*  RECOVER  */
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /* RECOVER TEXT */
 
@@ -1234,15 +1230,11 @@ textarea {
     width: 17em !important;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /*  ERROR 404  */
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /* ERROR 404 */
 
@@ -1253,7 +1245,6 @@ textarea {
     height: 35.75em;
     width: 100%;
 }
-
 
 /* NOT FOUND */
 
@@ -1280,18 +1271,13 @@ textarea {
     font-size: 1.1em;
 }
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-
 
 /*ADMIN PANEL*/
 
-
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-
 /**********************************************  ADMIN WINES  ****************************************************/
-
 
 /* HORIZONTAL MENU */
 
@@ -1318,7 +1304,6 @@ textarea {
     margin-right: 3%;
 }
 
-
 /* ADMIN SEARCH */
 
 #admin_content fieldset {
@@ -1338,7 +1323,6 @@ textarea {
     margin-right: 5em;
     margin-bottom: 1em;
 }
-
 
 /* SELECT ADMIN BUTTONS */
 
@@ -1362,13 +1346,16 @@ textarea {
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
     transform: scale(1.05);
+    -webkit-transition: -webkit-transform 0.4s;
+    transition: -webkit-transform 0.4s;
+    -o-transition: transform 0.4s;
     transition: transform 0.4s;
+    transition: transform 0.4s, -webkit-transform 0.4s;
 }
 
 .select_admin_buttons input {
     margin-right: 1em;
 }
-
 
 /* ADMIN HEADER */
 
@@ -1383,7 +1370,6 @@ textarea {
     padding-top: 0.3em;
     padding-left: 2%;
 }
-
 
 /* WINES RESULTS */
 
@@ -1437,7 +1423,6 @@ textarea {
     color: red;
 }
 
-
 /**********************************************  ADMIN YEARS  ****************************************************/
 
 .admin_years_checkbox_column,
@@ -1474,7 +1459,6 @@ textarea {
     color: red;
 }
 
-
 /**********************************************  ADMIN USERS  ****************************************************/
 
 .admin_users_checkbox_column {
@@ -1497,7 +1481,6 @@ textarea {
     color: red;
 }
 
-
 /********************************************  ADMIN PROFILE  ****************************************************/
 
 #admin_profile_page li {
@@ -1516,7 +1499,9 @@ textarea {
     margin-bottom: 1.5em;
 }
 
-#admin_profile_page ul, #panel_admin_form ul, #panel_admin_form_add_year ul {
+#admin_profile_page ul,
+#panel_admin_form ul,
+#panel_admin_form_add_year ul {
     width: 60%;
     margin-left: 20%;
     border: 0.01em solid black;
@@ -1575,13 +1560,14 @@ textarea {
     padding-left: 0em !important;
 }
 
-#save_add_wine, #save_add_year, #save_admin_profile {
+#save_add_wine,
+#save_add_year,
+#save_admin_profile {
     margin-top: 1em;
     margin-bottom: 1em;
 }
 
 /**********************************************  ADD YEAR  ****************************************************/
-
 
 /**********************************************  ADD USERS  ****************************************************/
 
@@ -1601,7 +1587,6 @@ textarea {
     border: 0em;
 }
 
-
 /**********************************************  MODIFY WINE  ****************************************************/
 
 #modify_wine_img {
@@ -1617,7 +1602,7 @@ textarea {
     width: 16em;
     height: 5.8em;
     padding: 0.2em 0.3em 0.3em 0.4em;
-    font-family: 'Lato', Verdana, Arial, Helvetica sans-serif;
+    font-family: 'Lato', 'Verdana', 'Arial', 'Helvetica sans-serif';
     font-size: 0.9em;
     margin-bottom: 1em;
 }
@@ -1627,12 +1612,9 @@ textarea {
     margin-bottom: 1em;
 }
 
-
 /**********************************************  MODIFY YEAR  ****************************************************/
 
-#save_modify_year {
-}
-
+#save_modify_year {}
 
 /**********************************************  DELETE WINE  ****************************************************/
 
@@ -1654,7 +1636,6 @@ textarea {
     margin-left: 22%;
 }
 
-
 /**********************************************  DELETE YEAR  ****************************************************/
 
 .delete_year_checkbox_column,
@@ -1667,7 +1648,6 @@ textarea {
 .delete_year_checkbox {
     margin-left: 18%;
 }
-
 
 /**********************************************  DELETE USER  ****************************************************/
 
@@ -1701,3 +1681,6 @@ textarea {
 .hide_js {
     display: none;
 }
+
+/***** GENERAL FIXES FOR DIFFERENT BROWSERS *****/
+
