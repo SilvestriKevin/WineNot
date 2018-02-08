@@ -21,7 +21,7 @@ if(empty($_POST["email"])){
     setcookie("error","Il campo mail risulta vuoto");
     header("Location: recover.php");
 }else{
-    $sql="select id_user as id, password from utenti where email='".escapingText($_POST["email"])."'";
+    $sql="select id_user as id, password from utenti where email='".htmlentities($_POST["email"], ENT_QUOTES)"'";
     $result=mysqli_query($conn,$sql);
     if(mysqli_num_rows($result)>0){
         $row=mysqli_fetch_array($result, MYSQLI_ASSOC);

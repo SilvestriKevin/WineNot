@@ -150,7 +150,7 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
         }
         
     } else {
-        $vini .= '<h2>Non sono presenti vini per questa ricerca. Riprova cambiando i parametri.</h2>';
+        $vini .= '<h1>Non sono presenti vini per questa ricerca. Riprova cambiando i parametri.</h1>';
     }
 
 } else {
@@ -158,6 +158,9 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
     $sql = 'SELECT vini.* FROM vini ORDER BY nome';
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) != 0) {
+        $vini.='<div id="title_our_wines">
+        <h1>I nostri vini</h1>
+        </div><ul>';
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $vini .= '<li>
             <div class="specific_result specific_wine">
@@ -178,9 +181,14 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
             $vini .= '<li><label>Gradazione: </label>' . $row['gradazione'] . '</li>';
             $vini .= '</ul></div></li>';
         }
-        $vini .= '</ul><a title="Torna Su" href="#header" id="go_up" tabindex="998" accesskey="g">Torna su</a>';
+        $vini .= '</ul>';
+
+        if (mysqli_num_rows($result) > 4) {
+        $vini.='<a title="Torna Su" href="#header" id="go_up" tabindex="998" accesskey="g">Torna su</a>';
+        }
+        
     } else {
-        $vini .= '</ul><h2>Non sono presenti vini.</h2>';
+        $vini .= '<h1>Non sono presenti vini.</h1>';
     }
 
 }

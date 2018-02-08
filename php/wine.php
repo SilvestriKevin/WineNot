@@ -32,6 +32,11 @@ if (!empty($_GET["id_wine"])) {
     $sql = "SELECT vini.* FROM vini WHERE id_wine='" . $_GET['id_wine'] . "'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) != 0) {
+        $immagine='<div>
+        <a title="Torna indietro" href="[INDIETRO]" tabindex="6" accesskey="i">Torna indietro</a>
+        </div>
+        <h1>Descrizione</h1>
+        <div id="img_description_wine">';
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
         $immagine .= '<img id="wine_img" alt="Immagine vino ' . $row["nome"] . '" src="../img/';
@@ -47,7 +52,7 @@ if (!empty($_GET["id_wine"])) {
 
         $descrizione .= $row["descrizione"];
 
-        $informazioni .= '<li class="title_details"><label>Dettagli </label></li>';
+        $informazioni .= '<ol><li class="title_details"><label>Dettagli </label></li>';
 
         $informazioni .= '<li><label>Nome: </label>' . $row["nome"] . '</li>';
         $informazioni .= '<li><label>Denominazione: </label>' . $row["denominazione"] . '</li>';
@@ -65,11 +70,11 @@ if (!empty($_GET["id_wine"])) {
         $informazioni .= '<li><label>Formato: </label>' . $row["formato"] . '</li>';
         $informazioni .= '<li><label>Gradazione: </label>' . $row["gradazione"] . '</li>';
     } else {
-        $informazioni .= '<li><h2>Non sono presenti informazioni su questo vino.</h2></li>';
+        $informazioni .= '<h1>Non sono presenti informazioni su questo vino.</h1>';
     }
 
 } else {
-    $informazioni .= '<li><h2>Non ho capito a che vino ti stai riferendo.</h2></li>';
+    $informazioni .= '<h1>Non ho capito a che vino ti stai riferendo.</h1>';
 }
 
 //creazione della pagina web

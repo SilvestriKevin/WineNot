@@ -146,7 +146,7 @@ $dati .= '<form onsubmit="return deleteSelected()" action="admin_wines.php" meth
 
 //se è stata salvata in precedenza la query, allora mantengo i dati della query e della ricerca (annat  a, tipologia, ordine)
 if (!empty($salva_sql)) {
-    $dati .= '<input type="hidden" name="sql" value="' . htmlentities($sql) . '" />';
+    $dati .= '<input type="hidden" name="sql" value="' . htmlentities($sql, ENT_QUOTES) . '" />';
     $dati .= '<input type="hidden" name="annata" value="' . $_POST['annata'] . '" />';
     $dati .= '<input type="hidden" name="tipologia" value="' . $_POST['tipologia'] . '" />';
     $dati .= '<input type="hidden" name="ordine" value="' . $_POST['ordine'] . '" />';
