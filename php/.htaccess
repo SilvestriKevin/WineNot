@@ -3,7 +3,8 @@ AddType application/x-httpd-php .html .htm
 
 Options +FollowSymLinks
 RewriteEngine On
-RewriteRule ^(.*)/admin$ /WineNot/php/login.php [L,R=301]
+RewriteRule ^(.*)/admin$ /WineNot/php/login.php [R=301,L] [OR]
+RewriteRule ^(.*)/(.*)$ /WineNot/html/404.html [R=301,L]
 
 RewriteCond %{QUERY_STRING} ^(.*)/admin$
-RewriteRule ^(.*)$ /WineNot/php/login.php? [L,R=301]
+RewriteRule ^(.*)$ /WineNot/php/login.php? [R=301,L]
