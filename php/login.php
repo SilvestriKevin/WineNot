@@ -17,7 +17,7 @@ $stampa="";
 
 //per stampare messaggi d'errore
 if(!empty($_COOKIE["error"])){
-    $stampa.='<h2 id="gonna_delete_user">'.$_COOKIE["error"].'</h2>';
+    $stampa.='<div class="error_sentence">'.$_COOKIE["error"].'</div>';
     setcookie("error",null);
 }
 
@@ -32,7 +32,7 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
         $result = mysqli_query($conn, $sql);
 
         if(mysqli_num_rows($result) == 0){
-            setcookie("error","Hai inserito le credenziali errate".$sql);
+            setcookie("error","Hai inserito le credenziali errate");
             header("Location: login.php");
         }
         else{

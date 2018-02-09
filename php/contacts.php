@@ -23,8 +23,8 @@ if (!empty($_COOKIE['error'])) {
 if (!empty($_POST['send_message'])) {
 
     //controllo che non siano stati lasciati campi vuoti
-    if (!empty($_POST['email']) && !preg_match('/^(\s)+$/', $_POST['email']) && !empty($_POST['object']) && 
-    !preg_match('/^(\s)+$/', $_POST['object']) && !empty($_POST['msg']) && !preg_match('/^(\s)+$/', $_POST['msg'])) {
+    if (!empty($_POST['email']) && !preg_match('/^(\s)+$/', $_POST['email']) && !empty($_POST['object']) &&
+        !preg_match('/^(\s)+$/', $_POST['object']) && !empty($_POST['msg']) && !preg_match('/^(\s)+$/', $_POST['msg'])) {
 
         //dichiarazione variabili
         $email = $_POST['email'];
@@ -34,23 +34,26 @@ if (!empty($_POST['send_message'])) {
         //controllo che la mail rispetti il formato corretto (es. example@dominio.com)
         if (!preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i', $email)) {
             $error = 'Email non è nel formato corretto (es. example@dominio.com).<br />';
-        }  
+        }
 
         //se non ci sono stati problemi
-        if(empty($error)) {
-            $email = 'info@winenot.it';
-            $header = 'From: ' . $_POST['email'] . '><br />';
-            $header .= 'Content-Type: text/html; charset=\'iso-8859-1\'<br />';
-            $header .= 'Content-Transfer-Encoding: 7bit<br /><br />';
-            $subject = 'WineNot.it - ';
-            $subject .= $_POST['object'];
-            $mess_invio = $_POST['msg'];
+        if (empty($error)) {
+            $mail_destinatario = 'info@winenot.it';
+
+            //intestazioni della mail, dove deve essere definito il mittente (From) ed altri eventuali valori
+            //come Cc, Bcc, ReplyTo e X-Mailer
+            $mail_headers = 'From: ' . $email . '>\r\n';
+            $mail_headers .= 'Reply-To: ' . $email . '\r\n';
+            $mail_headers .= 'X-Mailer: PHP/' . phpversion();
+            
+            $mail_oggetto = $_POST['object'];
+            $mail_corpo = $_POST['msg'];
 
             //invio email
-            if (mail($email, $subject, $mess_invio, $header)) {
+            if (mail($mail_destinatario, $mail_oggetto, $mail_corpo, $mail_headers)) {
                 $info = '<div class="info_sentence">Richiesta inviata con successo. Grazie per averci contattato.</div>';
                 unset($_POST); //elimino le variabili post
-            } else{
+            } else {
                 setcookie('error', 'Si &egrave; verificato un errore. La preghiamo di riprovare.');
                 header('Location: contacts.php');
             }
