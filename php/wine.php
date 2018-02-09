@@ -48,11 +48,11 @@ if (!empty($_GET["id_wine"])) {
             $immagine .= 'default_wine';
         }
 
-        $immagine .= '.png" />';
+        $immagine .= '.png" /></div>';
 
         $descrizione .= $row["descrizione"];
 
-        $informazioni .= '</div><ul><li class="title_details"><label>Dettagli </label></li>';
+        $informazioni .= '<ul><li class="title_details"><label>Dettagli </label></li>';
 
         $informazioni .= '<li><label>Nome: </label>' . $row["nome"] . '</li>';
         $informazioni .= '<li><label>Denominazione: </label>' . $row["denominazione"] . '</li>';
