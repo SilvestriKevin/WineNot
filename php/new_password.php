@@ -42,7 +42,8 @@ if (isset($_GET['hash'])) {
             $mail_oggetto = 'Nuova password utente';
             $mail_corpo = '<html><body>';
             $mail_corpo .= 'La nuova password utente &egrave; ' . $password . '.<br />Ora puoi accedere tramite 
-            <a href="http://localhost/WineNot/php/login.php">Login</a>. ';
+            <a href="http://localhost/WineNot/php/login.php">Login</a>.<br /> Per una questione di sicurezza, consigliamo di 
+            cambiare la password con una a tua scelta tramite la sezione Dati Profilo.';
             $mail_corpo .= '</body></html>';
 
             if (mail($email, $mail_oggetto, $mail_corpo, $mail_headers)) {

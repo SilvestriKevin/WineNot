@@ -9,7 +9,7 @@ include_once '../include/config.php';
 include_once '../include/lib.php';
 
 if (!isset($_SESSION['id'])) {
-    header('Location: ../index.php');
+    header('Location: ../index.html');
 }
 
 $dati = '';

@@ -6,7 +6,7 @@ session_start();
 include_once "../include/config.php";
 
 if (!isset($_SESSION['id'])) {
-    header("Location: ../index.php");
+    header("Location: ../index.html");
 }
 
 $dati = '';
@@ -38,21 +38,25 @@ if ($row['admin'] == 1) {
         if (!count($users)) {
             $info_errore .= '<div id="top_message">Selezionare almeno un utente</div>';
         } else {
-            //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  serialize/unserialize o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni elemento singolarmente in questo modo key[indice]=valore
+            //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  serialize/unserialize 
+            //o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni elemento singolarmente
+            //in questo modo key[indice]=valore
             header("Location: delete_user.php?users=" . serialize($users));
         }
     }
 
     $dati .= '<form onsubmit="return deleteSelected()" action="admin_users.php" method="post">';
 
-    $dati .= '<div class="hide_content"><div id="select_admin_buttons"><input type="submit" class="admin_button all_selected" name="all_selected" value="Seleziona Tutti" tabindex="11"/>';
+    $dati .= '<div class="hide_content"><div class="select_admin_buttons"><input type="submit" class="admin_button all_selected"
+            name="all_selected" value="Seleziona Tutti" tabindex="11"/>';
     $dati .= '<input type="submit" class="admin_button none_selected" name="none_selected"  value="Deseleziona Tutti" tabindex="12"/>';
     $dati .= '<input type="submit" class="admin_button delete_selected" name="delete_selected"  value="Elimina Selezionati" tabindex="13"/>';
     $dati .= '<a title="Aggiungi utente" href="./add_user.php" tabindex="14">Aggiungi Utente</a></div></div>';
 
     $dati .= '<div class="select_admin_buttons hide_js"><input type="button" class="admin_button all_selected" name="all_selected"
              value="Seleziona Tutti" onclick="checkThemAll()" tabindex="11"/>';
-    $dati .= '<input type="button" class="admin_button none_selected" name="none_selected" value="Deseleziona Tutti" onclick="uncheckThemAll()" tabindex="12"/>';
+    $dati .= '<input type="button" class="admin_button none_selected" name="none_selected" value="Deseleziona Tutti" 
+            onclick="uncheckThemAll()" tabindex="12"/>';
     $dati .= '<input type="submit" class="admin_button delete_selected" name="delete_selected" value="Elimina Selezionati" tabindex="13"/>';
     $dati .= '<a title="Aggiungi utente" href="./add_user.php" tabindex="14">Aggiungi Utente</a></div>';
 

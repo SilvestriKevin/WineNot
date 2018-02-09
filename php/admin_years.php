@@ -7,7 +7,7 @@ include_once('../include/config.php');
 
 //controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
 if (!isset($_SESSION['id'])) {
-    header('Location: ../index.php');
+    header('Location: ../index.html');
 }
 
 //se il cookie è settato, lo unsetto
@@ -45,7 +45,7 @@ if(isset($_POST['delete_selected'])){
 
 $dati.='<form onsubmit="return deleteSelected()" action="admin_years.php" method="post">';
 
-$dati.='<div class="hide_content"><div id="select_admin_buttons"><input type="submit" class="admin_button all_selected" name="all_selected" 
+$dati.='<div class="hide_content"><div class="select_admin_buttons"><input type="submit" class="admin_button all_selected" name="all_selected" 
         value="Seleziona Tutte" tabindex="11" />';
 $dati.='<input type="submit" class="admin_button none_selected" name="none_selected" value="Deseleziona Tutte" tabindex="12" />';
 $dati.='<input type="submit" class="admin_button delete_selected" name="delete_selected" value="Elimina Selezionate" tabindex="13"/>';

@@ -5,7 +5,7 @@ session_start();
 //inclusione file di connessione
 include_once("../include/config.php");
 
-if(!isset($_SESSION['id'])) header("Location: ../index.php");
+if(!isset($_SESSION['id'])) header("Location: ../index.html");
 
 $dati='';
 $info_errore='';

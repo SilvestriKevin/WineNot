@@ -6,7 +6,7 @@ session_start();
 include_once '../include/config.php';
 
 if (!isset($_SESSION['id'])) {
-    header('Location: ../index.php');
+    header('Location: ../index.html');
 }
 
 $dati = '';

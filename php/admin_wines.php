@@ -9,7 +9,7 @@ include_once "../include/config.php";
 include_once "../include/lib.php";
 
 if (!isset($_SESSION['id'])) {
-    header("Location: ../index.php");
+    header("Location: ../index.html");
 }
 
 $dati = '';
@@ -152,7 +152,7 @@ if (!empty($salva_sql)) {
     $dati .= '<input type="hidden" name="ordine" value="' . $_POST['ordine'] . '" />';
     if (!empty($_POST['search'])) {
         //utilizzo la funzione htmlentities per ricaricare sul valore search l'input testuale corretto
-        $dati .= '<input type="hidden" name="search" value="' . htmlentities($_POST['search']) . '" />';
+        $dati .= '<input type="hidden" name="search" value="' . htmlentities($_POST['search'], ENT_QUOTES) . '" />';
         $dati .= '<div>Hai cercato: "' . $_POST['search'] . '"</div>';
     }
 }

@@ -7,7 +7,7 @@ include_once '../include/config.php';
 
 //controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
 if (!isset($_SESSION['id'])) {
-    header('Location: ../index.php');
+    header('Location: ../index.html');
 }
 
 //dichiarazione variabili
@@ -59,7 +59,7 @@ if (!empty($_POST['add_user'])) {
         if (empty($message)) {
 
             //controllo che l'username inserito non sia già presente nel database
-            $sql = 'SELECT username FROM utenti WHERE username="' . $username . '"';
+            $sql = 'SELECT username FROM utenti WHERE username="' . htmlentities($username, ENT_QUOTES) . '"';
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) != 0) {
@@ -68,7 +68,7 @@ if (!empty($_POST['add_user'])) {
             } else {
 
                 //controllo che la email inserita non sia già presente nel database
-                $sql = 'SELECT email FROM utenti WHERE email="' . $email . '"';
+                $sql = 'SELECT email FROM utenti WHERE email="' . htmlentities($email, ENT_QUOTES) . '"';
                 $result = mysqli_query($conn, $sql);
 
                 if (mysqli_num_rows($result) != 0) {
@@ -76,8 +76,9 @@ if (!empty($_POST['add_user'])) {
                     header('Location: add_user.php');
                 } else {
                     // inserisco i dati nel database
-                    $sql = 'INSERT INTO utenti (nome, username, password, email) VALUES ("' . $nome . '","' . $username . '",
-                MD5("' . $password . '"),"' . strtolower($email) . '")';
+                    $sql = 'INSERT INTO utenti (nome, username, password, email) VALUES ("' . htmlentities($nome, ENT_QUOTES) 
+                    . '","' . htmlentities($username, ENT_QUOTES) . '", MD5("' . $password . '"),"' . 
+                    htmlentities(strtolower($email), ENT_QUOTES) . '")';
 
                     //controllo la connessione
                     if (mysqli_query($conn, $sql)) {

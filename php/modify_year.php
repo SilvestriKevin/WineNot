@@ -7,7 +7,7 @@ include_once '../include/config.php';
 
 //controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
 if (!isset($_SESSION['id'])) {
-    header('Location: ../index.php');
+    header('Location: ../index.html');
 }
 
 //dichiarazione variabili
