@@ -150,7 +150,7 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
         }
         
     } else {
-        $vini .= '<h1 id="no_wine">Non sono presenti vini per questa ricerca. Riprova cambiando i parametri.</h1>';
+        $vini .= '<h1 id="no_results_page">Non sono presenti vini per questa ricerca. Riprova cambiando i parametri.</h1>';
     }
 
 } else {
@@ -188,7 +188,7 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
         }
         
     } else {
-        $vini .= '<h1>Non sono presenti vini.</h1>';
+        $vini .= '<h1 id="no_results_page">Non sono presenti vini.</h1>';
     }
 
 }

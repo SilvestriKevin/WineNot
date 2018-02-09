@@ -92,7 +92,7 @@ if (mysqli_num_rows($result) != 0) {
         $description_annata .= '<h2>L&apos;annata selezionata non risulta tra le migliori.</h2>';
     }
 } else {
-    $description_annata .= '<h2>Non sono presenti annate migliori.</h2>';
+    $description_annata .= '<h2 id="no_results_page">Non sono presenti annate migliori.</h2>';
 }
 
 //creazione della pagina web
