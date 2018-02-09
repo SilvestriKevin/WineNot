@@ -887,7 +887,8 @@ textarea {
 
 #tasting_tour p,
 #san_valenwine p,
-#apperitif_gourmet p {
+#apperitif_gourmet p,
+#san_valenwine figure {
     margin-left: 42%;
     margin-right: 2%;
     margin-bottom: 1em;

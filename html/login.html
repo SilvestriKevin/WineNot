@@ -3,6 +3,7 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="it" />
 
     <link type="text/css" rel="stylesheet" href="../css/style.css" />
     <link type="text/css" rel="stylesheet" href="../css/mobile_WN.css" media="screen" />
@@ -28,12 +29,15 @@
 
 <body>
     <div id="header">
-        <a id="logo_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img id="logo" 
-            alt="Logo WineNot" src="../img/logo.png" /></a>
-        <a id="logo_alt_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img id="logo_alt" 
-            alt="Logo WineNot" src="../img/logo_alt.png" /></a>
-        <a id="logo_alt_mobile_link" title="Home"  href="../index.html" tabindex="1" accesskey="h"><img 
-            id="logo_alt_mobile" alt="Logo WineNot" src="../img/logo_alt_mobile.png" /></a>
+        <a id="logo_link" title="Home" href="../index.html" tabindex="1" accesskey="h">
+            <img id="logo" alt="Logo WineNot" src="../img/logo.png" />
+        </a>
+        <a id="logo_alt_link" title="Home" href="../index.html" tabindex="1" accesskey="h">
+            <img id="logo_alt" alt="Logo WineNot" src="../img/logo_alt.png" />
+        </a>
+        <a id="logo_alt_mobile_link" title="Home" href="../index.html" tabindex="1" accesskey="h">
+            <img id="logo_alt_mobile" alt="Logo WineNot" src="../img/logo_alt_mobile.png" />
+        </a>
     </div>
     <div id="register_content">
         <form action="../php/login.php" onsubmit="return checkLoginForm()" method="post">
@@ -42,13 +46,27 @@
                 <h1>Accedi</h1>
                 [ERRORE]
                 <ul>
-                    <li><label>Username</label></li>
-                    <li><span id="username_error" class="js_error"></span></li>
-                    <li><input type="text" maxlength="100" name="username" id="username" title="username" onblur="checkUsername()" tabindex="2" accesskey="u" /></li>
-            
-                    <li><label id="password_label">Password</label></li>
-                    <li><span id="password_error" class="js_error"></span></li>
-                    <li><input type="password" maxlength="100" name="password" id="password" title="password" onblur="checkPassword()" tabindex="3" accesskey="p" /></li>
+                    <li>
+                        <label>Username</label>
+                    </li>
+                    <li>
+                        <span id="username_error" class="js_error"></span>
+                    </li>
+                    <li>
+                        <input type="text" maxlength="100" name="username" id="username" title="username" onblur="checkUsername()"
+                            tabindex="2" accesskey="u" />
+                    </li>
+
+                    <li>
+                        <label id="password_label">Password</label>
+                    </li>
+                    <li>
+                        <span id="password_error" class="js_error"></span>
+                    </li>
+                    <li>
+                        <input type="password" maxlength="100" name="password" id="password" title="password" onblur="checkPassword()"
+                            tabindex="3" accesskey="p" />
+                    </li>
 
                     <li>
                         <a id="box_center_recover" href="../php/recover.php" title="Hai dimenticato la password?" tabindex="4" accesskey="f">Hai dimenticato la password?</a>
