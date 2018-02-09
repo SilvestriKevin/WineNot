@@ -28,7 +28,7 @@ setcookie('modifyWine', $url);
 
 //stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['info'])) {
-    $info_errore .= '<div>' . $_COOKIE['info'] . '</div>';
+    $info_errore .= '<div class="info_sentence">' . $_COOKIE['info'] . '</div>';
     setcookie('info', null);
 }
 if (!empty($_COOKIE['error'])) {

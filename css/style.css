@@ -30,6 +30,9 @@ body {
 
 textarea {
     resize: none;
+    font: 400 13.3333px Arial;
+    font-size: 0.9em;
+    padding: 0.3em 0.2em 0.2em 0.3em;
 }
 
 .inv_search_button {
@@ -142,6 +145,21 @@ textarea {
     -webkit-transition: 0.2s;
     -o-transition: 0.2s;
     transition: 0.2s;
+}
+
+#go_up, #go_up_index {
+    margin: 0.5em 2em 1em 2em;
+    float: right;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+#go_up {
+    color: #5F021F;
+}
+
+#go_up_index {
+    color: #fff;
 }
 
 /* TITOLI */
@@ -1560,9 +1578,7 @@ textarea {
     padding-left: 0em !important;
 }
 
-#save_add_wine,
-#save_add_year,
-#save_admin_profile {
+#save_add_wine, #save_add_year, #save_admin_profile, #save_modify_wine {
     margin-top: 1em;
     margin-bottom: 1em;
 }
@@ -1593,11 +1609,6 @@ textarea {
     height: 15em;
 }
 
-#save_modify_wine,
-#save_modify_users {
-    margin-left: 45%;
-}
-
 #panel_admin_form textarea {
     width: 16em;
     height: 5.8em;
@@ -1613,8 +1624,6 @@ textarea {
 }
 
 /**********************************************  MODIFY YEAR  ****************************************************/
-
-#save_modify_year {}
 
 /**********************************************  DELETE WINE  ****************************************************/
 
@@ -1660,15 +1669,6 @@ textarea {
 
 .delete_user_checkbox {
     margin-left: 19%;
-}
-
-/************************************* GO UP *******************************************/
-
-#go_up {
-    margin: 1em;
-    float: right;
-    font-weight: 600;
-    color: #5F021F;
 }
 
 /************************************* JAVASCRIPT *******************************************/
