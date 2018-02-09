@@ -191,15 +191,15 @@ function checkDenominazione() {
 
 function checkGradazione() {
     var field = document.getElementsByName("gradazione")[0].value;
-    var gradazione_reg = /^\d{1,2}\.\d$/i;
+    var gradazione_reg = /^\d{1,2}\.\d$/;
     var isFieldCorrect = true;
 
     if (!field) {
         // document.getElementsByName("object")[0].style.borderColor = "red";
         document.getElementById("wine_gradazione_error").innerHTML = "Il campo 'Gradazione' non può essere vuoto";
         isFieldCorrect = false;
-    } else if (field.length != 4 || !gradazione_reg.test(field)) {
-        document.getElementById("wine_gradazione_error").innerHTML = "Gradazione non è nel formato corretto (es. 7.5 o 13.5)";
+    } else if (field.length < 3 || field.length > 4 || !gradazione_reg.test(field)) {
+        document.getElementById("wine_gradazione_error").innerHTML = "Gradazione non è nel formato corretto (es. 7.5% o 13.0%)";
         isFieldCorrect = false;
     } else {
         // document.getElementsByName("object")[0].style.border = "1px inset";
@@ -211,7 +211,7 @@ function checkGradazione() {
 
 function checkFormato() {
     var field = document.getElementsByName("formato")[0].value;
-    var formato_reg = /^\d\.\d{2}$/i;
+    var formato_reg = /^\d\.\d{2}$/;
     var isFieldCorrect = true;
 
     if (!field) {
@@ -219,7 +219,7 @@ function checkFormato() {
         document.getElementById("wine_formato_error").innerHTML = "Il campo 'Formato' non può essere vuoto";
         isFieldCorrect = false;
     } else if (field.length != 4 || !formato_reg.test(field)) {
-        document.getElementById("wine_formato_error").innerHTML = "Formato non è nel formato corretto (es. 1.75)";
+        document.getElementById("wine_formato_error").innerHTML = "Formato non è nel formato corretto (es. 2.00L)";
         isFieldCorrect = false;
     } else {
         // document.getElementsByName("object")[0].style.border = "1px inset";

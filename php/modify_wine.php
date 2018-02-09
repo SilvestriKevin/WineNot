@@ -10,7 +10,7 @@ include_once '../include/lib.php';
 
 //controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
 if (!isset($_SESSION['id'])) {
-    header('Location: ../index.php');
+    header('Location: ../index.html');
 }
 
 //dichiarazione variabili
@@ -77,13 +77,13 @@ if (!empty($_POST['save_wine'])) {
         //gradazione: il formato consentito è di 1 o 2 interi seguiti dal punto seguito poi da 1 sola cifra decimale
         //es. 7.5  oppure  13.5
         if (!preg_match('/^\d{1,2}\.\d$/', strval($gradazione))) {
-            $error .= 'Gradazione non è nel formato corretto (es. 7.5 o 13.5).<br />';
+            $error .= 'Gradazione non è nel formato corretto (es. 7.5% o 13.0%).<br />';
         }
 
         //formato: il formato corretto è 1 intero seguito dal punto seguito poi da 2 cifre decimali
-        //es. 1.75  opuure  2.00
+        //es. 1.75  oppure  2.00
         if (!preg_match('/^\d\.\d{2}$/', $formato)) {
-            $error .= 'Formato non è nel formato corretto (es. 1.7).<br />';
+            $error .= 'Formato non è nel formato corretto (es. 2.00L).<br />';
         }
 
         //se ho caricato un'immagine, dò la possibilità di poterla cambiare

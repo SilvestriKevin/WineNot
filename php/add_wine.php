@@ -7,7 +7,7 @@ include_once '../include/config.php';
 
 //controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
 if (!isset($_SESSION['id'])) {
-    header('Location: ../index.php');
+    header('Location: ../index.html');
 }
 
 //dichiarazione variabili
@@ -29,7 +29,8 @@ if (!empty($_COOKIE['error'])) {
 
 //FORM INSERIMENTO VINO - qualsiasi tipo di utente può aggiungere un nuovo vino
 $vino .= '<h1 id="admin_title">Inserimento vino</h1>';
-$vino .= '<form onsubmit="return checkWine()" id="panel_admin_form_add_wine" enctype="multipart/form-data" action="add_wine.php" method="post">';
+$vino .= '<form onsubmit="return checkWine()" id="panel_admin_form_add_wine" enctype="multipart/form-data" 
+action="add_wine.php" method="post">';
 $vino .= '<fieldset><ul>';
 $vino .= '<li><label>Annata</label></li><li>';
 
@@ -186,13 +187,13 @@ if (!empty($_POST['save_profile'])) {
         //gradazione: il formato consentito è di 1 o 2 interi seguiti dal punto seguito poi da 1 sola cifra decimale
         //es. 7.5  oppure  13.5
         if (!preg_match('/^\d{1,2}\.\d$/', strval($gradazione))) {
-            $error .= 'Gradazione non è nel formato corretto (es. 7.5 o 13.5).<br />';
+            $error .= 'Gradazione non è nel formato corretto (es. 7.5% o 13.0%).<br />';
         }
 
         //formato: il formato corretto è 1 intero seguito dal punto seguito poi da 2 cifre decimali
-        //es. 1.75  opuure  2.00
+        //es. 1.75  oppure  2.00
         if (!preg_match('/^\d\.\d{2}$/', $formato)) {
-            $error .= 'Formato non è nel formato corretto (es. 1.7).<br />';
+            $error .= 'Formato non è nel formato corretto (es. 2.00L).<br />';
         }
 
         //immagine: controllo che sia stata caricata correttamente l'immagine
