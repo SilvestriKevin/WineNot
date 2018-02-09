@@ -260,6 +260,11 @@
         margin-bottom: 0.3em;
         font-weight: 600;
     }
+
+    #error_message_fixer {
+        margin-bottom: 16.5em;
+    }
+
     /*------------------  ANNATE MIGLIORI  -----------------------*/
     #title_best_annate p {
         font-size: 1.2em;
@@ -846,6 +851,11 @@
         margin-bottom: 0.3em;
         font-weight: 600;
     }
+
+    #error_message_fixer {
+        margin-bottom: 14.5em;
+    }
+
     /*------------------  ANNATE MIGLIORI  -----------------------*/
     #title_best_annate p {
         font-size: 1.4em;
@@ -1259,6 +1269,11 @@
     #details_wine p {
         margin-top: 1em;
     }
+
+    #error_message_fixer {
+        margin-bottom: 18em;
+    }
+    
     /*------------------  ANNATE MIGLIORI  -----------------------*/
     #list_annate ul {
         margin-left: 0em;

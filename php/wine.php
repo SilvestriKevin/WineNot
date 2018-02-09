@@ -65,13 +65,13 @@ if (!empty($_GET["id_wine"])) {
         $informazioni .= '<li class="title_details"><label>Quantità</label></li>';
 
         $informazioni .= '<li><label>Formato: </label>' . $row["formato"] . '</li>';
-        $informazioni .= '<li><label>Gradazione: </label>' . $row["gradazione"] . '</li></ul>';
+        $informazioni .= '<li><label>Gradazione: </label>' . $row["gradazione"] . '</li></ul></div>';
     } else {
-        $informazioni .= '<h1>Non sono presenti informazioni su questo vino.</h1>';
+        $informazioni .= '</div><h1 id="error_message_fixer">Non sono presenti informazioni su questo vino.</h1>';
     }
 
 } else {
-    $informazioni .= '<h1>Non ho capito a che vino ti stai riferendo.</h1>';
+    $informazioni .= '</div><h1 id="error_message_fixer">Non ho capito a che vino ti stai riferendo.</h1>';
 }
 
 //creazione della pagina web

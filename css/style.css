@@ -1690,3 +1690,8 @@ textarea {
     padding: 0em 3em;
     font-size: 1.3em;
 }
+
+#error_message_fixer {
+    margin-bottom: 13em;
+    margin-left: 0em !important; 
+}
