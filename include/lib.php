@@ -1,5 +1,7 @@
 <?php
 
+//FUNZIONI AUSILIARIE
+
 //funzione che crea una password random
 function random($lunghezza=12)
 {

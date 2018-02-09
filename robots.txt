@@ -1,4 +1,6 @@
-User-agent: *
-Disallow: /admin/
+User-agent:*
+Disallow: /php/add_user.php
+Disallow: /php/add_wine.php
+
 
 Sitemap: http://www.winenot.it/sitemap.xml

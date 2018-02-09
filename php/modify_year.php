@@ -102,9 +102,9 @@ if (!empty($_POST['save_year'])) {
 
                 }
             } //nel caso in cui l'utente abbia cercato di salvare, non avendo però modificato nessun dato, viene mostrato a video
-            //il messaggio di 'modifica dati avvenuta con successo' per evitare il caso di metafora visiva
+            //il messaggio di 'modifica dei dati avvenuta con successo' per evitare il caso di metafora visiva
             else {
-                setcookie('info', 'Modifica dati avvenuta con successo');
+                setcookie('info', 'Modifica dei dati avvenuta con successo');
                 header('Location: admin_years.php');
             }
         }
