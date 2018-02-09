@@ -67,9 +67,9 @@ else if (!empty($_POST['wines']) && !empty($_POST['confirm'])) {
 else if (!empty($_GET['wines'])) {
     $dati .= '<form onsubmit="return finalDeletion()" id="select_admin_buttons" action="delete_wine.php" method="post">';
 
-    $dati .= '<div><input type="submit" id="cancel_deletion" class="admin_button" name="cancel" 
+    $dati .= '<div class="select_admin_buttons"><input type="submit" id="cancel" class="admin_button" name="cancel" 
      value="Annulla Eliminazione" onclick="goBackWines()" tabindex="7" />';
-    $dati .= '<input type="submit" id="confirm_deletion" class="admin_button" name="confirm" 
+    $dati .= '<input type="submit" id="confirm" class="admin_button" name="confirm" 
      value="Conferma Eliminazione" onclick="confirmDeletion()" tabindex="8" /></div>';
 
     //controllo che nell'url abbia un array serializzato o un singolo dato

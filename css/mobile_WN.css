@@ -551,10 +551,6 @@
             padding-top: 1em;
         }
         
-        #register_fieldset li {
-            margin-left: 23%;
-        }
-        
         #register_fieldset input {
             width: 10em;
         }
@@ -1573,11 +1569,6 @@
             margin-bottom: 1.5em;
         }  
     /*----------------------  LOGIN  -----------------------*/     
-        
-        #register_fieldset li {
-            margin-left: 21%;
-        }
-        
         #register_fieldset_recover ul {
             margin-left: 20%;
             width: 50%;

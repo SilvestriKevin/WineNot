@@ -157,7 +157,7 @@ if (mysqli_num_rows($result) != 0) {
     //controllo che non ci siano vini di quest'annata, altrimenti disabilito la casella di testo
     if (mysqli_num_rows($result2) != 0) {
         $annata .= ' disabled="disabled" /></li>
-            <li>Sono presenti vini per quest&apos;annata. La modifica anno &egrave; dunque disabilitata.';
+            <li id="exist_already_wines">Sono presenti vini per quest&apos;annata. La modifica anno &egrave; dunque disabilitata.';
     } else {
         $annata .= '/>';
     }
