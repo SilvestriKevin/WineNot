@@ -116,11 +116,17 @@ textarea {
 
 #header a,
 #footer a,
+#footer p,
 #horizontal_menu a {
     color: rgba(226, 211, 201, 0.71);
     text-decoration: none;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+}
+
+#footer_link {
+    padding-top:1.2em; 
+    text-align: center;
 }
 
 #header li {
@@ -133,8 +139,9 @@ textarea {
 }
 
 #header li a:hover,
-#footer li a:hover,
-#horizontal_menu a:hover {
+#footer_link a:hover,
+#horizontal_menu a:hover
+ {
     margin: 0em !important;
     color: #fff;
     -webkit-transition: 0.2s;
@@ -1668,5 +1675,19 @@ textarea {
     display: none;
 }
 
-/***** GENERAL FIXES FOR DIFFERENT BROWSERS *****/
+/******************** NO_DB *************/
 
+#error_nodb {
+    padding: 5em 0em;
+    text-align: center;
+}
+
+#error_nodb h1 {
+    margin-bottom: 0.5em;
+    color:rgb(189, 3, 3);
+}
+
+#error_nodb p {
+    padding: 0em 3em;
+    font-size: 1.3em;
+}

@@ -20,12 +20,13 @@ function checkEmail() {
     var email = document.getElementById("email").value;
     var email_reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i;
     var isFieldCorrect = true;
-    if (!email_reg.test(email)) { // la mail non è quindi del formato giusto
+
+    if (!email) {
+        document.getElementById("mail_error").innerHTML = "Il campo mail non può essere lasciato vuoto";
+        isFieldCorrect = false;
+    } else if (!email_reg.test(email)) { // la mail non è quindi del formato giusto
         // document.getElementById("email").style.borderColor = "red";
         document.getElementById("mail_error").innerHTML = "Email non è nel formato corretto (es. example@dominio.com)";
-        isFieldCorrect = false;
-    } else if (!email) {
-        document.getElementById("mail_error").innerHTML = "Il campo mail non può essere lasciato vuoto";
         isFieldCorrect = false;
     } else {
         // document.getElementById("email").style.border = "1px inset";
