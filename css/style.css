@@ -149,14 +149,14 @@ textarea {
     transition: 0.2s;
 }
 
-#go_up, #go_up_index {
+#go_up, #go_up_index,#go_back_link {
     margin: 0.5em 2em 1em 2em;
     float: right;
     font-weight: 600;
     font-size: 1.2em;
 }
 
-#go_up {
+#go_up,#go_back_link {
     color: #5F021F;
 }
 

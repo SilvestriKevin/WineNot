@@ -30,7 +30,7 @@ if (!empty($_GET["id_wine"])) {
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) != 0) {
         $immagine='<div>
-        <a title="Torna indietro" href="[INDIETRO]" tabindex="6" accesskey="i">Torna indietro</a>
+        <a id="go_back_link" title="Torna indietro" href="[INDIETRO]" tabindex="6" accesskey="i">Torna indietro</a>
         </div>
         <h1>Descrizione</h1>
         <div id="img_description_wine">';
