@@ -54,9 +54,7 @@
     margin-left: 0em;
 }
 
-#red_wine a,
-#rose_wine a,
-#white_wine a {
+#red_wine a, #rose_wine a, #white_wine a {
     font-size: 2em;
     font-weight: 100;
     border-bottom: 0em;
@@ -309,9 +307,3 @@
     margin-right: 5%;
     margin-left: 5%;
 }
-
-/*------------------------    --------------------------*/
-
-/*------------------------    --------------------------*/
-
-/*------------------------    --------------------------*/
