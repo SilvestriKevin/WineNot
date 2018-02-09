@@ -5,9 +5,6 @@ session_start();
 //inclusione file di connessione
 include_once '../include/config.php';
 
-//inclusione file per funzioni ausiliarie
-include_once '../include/lib.php';
-
 //dichiarazione variabili
 $vini = '';
 $annate = '';

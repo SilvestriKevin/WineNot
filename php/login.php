@@ -5,9 +5,6 @@ session_start();
 //inclusione file di connessione
 include_once("../include/config.php");
 
-//inclusione file per funzioni ausiliarie
-include_once("../include/lib.php");
-
 //per uscire dal pannello d'amministrazione
 if(!empty($_SESSION["id"]) && !empty($_GET["esci"]) && $_GET["esci"]==1){
     unset($_SESSION["id"]);

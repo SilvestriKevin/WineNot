@@ -2,9 +2,6 @@
 //inclusione file di connessione
 include_once("../include/config.php");
 
-//inclusione file per funzioni ausiliarie
-include_once("../include/lib.php");
-
 /* PARTE DELL’INVIO EMAIL. Si controlla che l'email (=user) sia presente nel db. Estraggo quindi id e password dell'utente e li unisco in un'unica stringa ($hash) da passare nel $_GET. La stringa su cui cliccare è inviata per email, come conferma, e rinvia al file “nuova_password.php”. */
 $stampa="";
 
