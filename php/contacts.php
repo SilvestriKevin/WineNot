@@ -31,11 +31,12 @@ if (!empty($_POST['send_message'])) {
         $object = $_POST['object'];
         $msg = $_POST['msg'];
 
-        //controllo che la password e la mail inseriti rispettino le policy
-        if (!preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i', $_POST['email'])) {
-            
+        //controllo che la mail rispetti il formato corretto (es. example@dominio.com)
+        if (!preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i', $email)) {
+            $error = 'Email non è nel formato corretto (es. example@dominio.com).<br />';
+        }  
 
-        } 
+        //se non ci sono stati problemi
         if(empty($error)) {
             $email = 'info@winenot.it';
             $header = 'From: ' . $_POST['email'] . '><br />';
@@ -43,15 +44,19 @@ if (!empty($_POST['send_message'])) {
             $header .= 'Content-Transfer-Encoding: 7bit<br /><br />';
             $subject = 'WineNot.it - ';
             $subject .= $_POST['object'];
-            $mess_invio = '<html><body>';
-            $mess_invio .= $_POST['msg'];
-            $mess_invio .= '</body></html>';
+            $mess_invio = $_POST['msg'];
 
             //invio email
             if (mail($email, $subject, $mess_invio, $header)) {
-                $info .= '<h1 id="info_message">Email inviata con successo. Grazie per averci contattato!</h1>';
+                $info = '<div class="info_sentence">Richiesta inviata con successo. Grazie per averci contattato.</div>';
                 unset($_POST); //elimino le variabili post
+            } else{
+                setcookie('error', 'Si &egrave; verificato un errore. La preghiamo di riprovare.');
+                header('Location: contacts.php');
             }
+        } else {
+            setcookie('error', $error);
+            header('Location: contacts.php');
         }
 
     } else {

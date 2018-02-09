@@ -55,7 +55,8 @@ if (!empty($_POST['add_user'])) {
             $message .= 'Le password non corrispondono.';
         }
 
-        if (empty($message)) { // se non ci sono stati problemi
+        //se non ci sono stati problemi
+        if (empty($message)) {
 
             //controllo che l'username inserito non sia già presente nel database
             $sql = 'SELECT username FROM utenti WHERE username="' . $username . '"';
