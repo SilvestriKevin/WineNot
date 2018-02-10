@@ -102,7 +102,7 @@ if ($row['admin'] == 1) {
     $dati .= '</form>';
 
 } else {
-    $dati .= '<h2>Non hai diritti di accesso a questa sezione.</h2>';
+    $dati .= '<h2 id="error_admin_users">Non hai diritti di accesso a questa sezione.</h2>';
 }
 
 //creazione della pagina web

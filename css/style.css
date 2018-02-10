@@ -1695,3 +1695,8 @@ textarea {
     margin-bottom: 13em;
     margin-left: 0em !important; 
 }
+
+#error_admin_users {
+    text-align: center;
+    color: rgb(189, 3, 3);
+}
