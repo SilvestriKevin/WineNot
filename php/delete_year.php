@@ -5,10 +5,12 @@ session_start();
 //inclusione file di connessione
 include_once '../include/config.php';
 
+//controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
 if (!isset($_SESSION['id'])) {
     header('Location: ../index.html');
 }
 
+//dichiarazione variabili
 $dati = '';
 $info_errore = '';
 
@@ -26,7 +28,6 @@ if (!empty($_COOKIE['error'])) {
 if (!empty($_POST['cancel'])) {
     header('Location: admin_years.php');
 }
-
 //in $_POST['years'] sono contenuti tutti gli id dei vini che si vogliono eliminare
 //se è settata anche $_POST['confirm'] allora procedo all'eliminazione
 else if (!empty($_POST['years']) && !empty($_POST['confirm'])) {
@@ -142,7 +143,7 @@ else if (!empty($_GET['years'])) {
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $dati .= '<div class="admin_tr">';
             $dati .= '<div class ="admin_td delete_year_checkbox_column"><input class="delete_year_checkbox" type="checkbox"
-            name="years[]" value="' . $row['anno'] . '" checked="checked" onclick="removeErrorMessage()" tabindex="'.$counter_index++.'"/></div>';
+            name="years[]" value="' . $row['anno'] . '" checked="checked" onclick="removeErrorMessage()" tabindex="' . $counter_index++ . '"/></div>';
             $dati .= '<div class ="admin_td delete_year_year_column">' . $row['anno'] . '</div>';
             $dati .= '<div class ="admin_td delete_year_quality_column">' . $row['qualita'] . '</div>';
             $dati .= '<div class ="admin_td delete_year_best_column">';
@@ -176,8 +177,10 @@ else {
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
 $pagina = file_get_contents('../html/admin_panel.html');
-//rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina
+//rimpiazzo i segnaposto e stampo in output la pagina
 $pagina = str_replace('[SEARCH_WINE]', '', $pagina);
 $pagina = str_replace('[INFO/ERRORE]', $info_errore, $pagina);
 echo str_replace('[DATI]', $dati, $pagina);
+
+//chiudo la connessione
 mysqli_close($conn);

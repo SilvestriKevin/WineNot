@@ -39,7 +39,7 @@ if (mysqli_num_rows($result) != 0) {
     //STAMPA LE INFORMAZIONI DELL'ANNATA
     $sql = 'SELECT annate.* FROM annate WHERE anno=';
     if (!empty($_GET['year'])) {
-        $sql .= '"' . $_GET['year'] . '" AND migliore=1';
+        $sql .= '"' . htmlentities($_GET['year'], ENT_QUOTES) . '" AND migliore=1';
     } else {
         $sql .= '(SELECT MAX(anno) FROM annate WHERE migliore=1)';
     }

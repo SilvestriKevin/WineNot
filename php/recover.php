@@ -5,15 +5,19 @@ session_start();
 //inclusione file di connessione
 include_once '../include/config.php';
 
-/*PARTE DELL’INVIO EMAIL. Si controlla che l'email (=user) sia presente nel db. Estraggo quindi id e password dell'utente e li unisco in un'unica stringa ($hash) da passare nel $_GET. La stringa su cui cliccare è inviata per email, come conferma, e rinvia al file “nuova_password.php”. */
-$stampa = '';
+//Si controlla che l'email sia presente nel db. Si estraggono quindi id e password dell'utente che vengono uniti in
+//un'unica stringa ($hash), poi passata come parametro di query string in un link inviato per email. L'utente cliccando il
+//link viene portato alla pagina “new_password.php”, confermando il cambio di password.
 
+//dichiarazione variabili
+$stampa = '';
+$errore = 0; //variabile di controllo errori (se rimane a 0 non ci sono errori)
+
+//stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['error'])) {
     $stampa .= '<div class="error_sentence">' . $_COOKIE['error'] . '</div>';
     setcookie('error', null);
 }
-
-$errore = 0; //variabile di controllo errori (se rimane a 0 non ci sono errori)
 
 if (isset($_POST['email'])) {
     if (empty($_POST['email'])) {
@@ -21,18 +25,26 @@ if (isset($_POST['email'])) {
         setcookie('error', 'Il campo email risulta vuoto.');
         header('Location: recover.php');
     } else {
-        $sql = 'select id_user as id, password from utenti where email="' . htmlentities($_POST['email'], ENT_QUOTES) . '"';
-        $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            //l’hash ci servirà per recuperare i dati utente e confermare la richiesta
-            //la password nel database si presume criptata, con md5 o altro algoritmo
-            //al posto di questi due dati, se ne possono usare altri legati all’utente, purché univoci
-            $hash = $row['password'] . '' . $row['id'];
-        } else {
+        //controllo che la mail sia del formato corretto
+        if (!preg_match('/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/', $_POST['email'])) {
             $errore = 1;
             setcookie('error', 'L&apos;email inserita non &egrave; stata trovata nel database.');
             header('Location: recover.php');
+        } else {
+
+            $sql = 'select id_user as id, password from utenti where email="' . htmlentities($_POST['email'], ENT_QUOTES) . '"';
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) != 0) {
+                $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+                //l’hash ci servirà per recuperare i dati utente e confermare la richiesta
+                //la password nel database si presume criptata, con md5 o altro algoritmo
+                //al posto di questi due dati, se ne possono usare altri legati all’utente, purché univoci
+                $hash = $row['password'] . '' . $row['id'];
+            } else {
+                $errore = 1;
+                setcookie('error', 'L&apos;email inserita non &egrave; stata trovata nel database.');
+                header('Location: recover.php');
+            }
         }
     }
     //se non ci sono stati errori, invio l’email all’utente con il link da confermare

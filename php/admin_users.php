@@ -3,12 +3,14 @@
 session_start();
 
 //inclusione file di connessione
-include_once "../include/config.php";
+include_once '../include/config.php';
 
+//controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
 if (!isset($_SESSION['id'])) {
-    header("Location: ../index.html");
+    header('Location: ../index.html');
 }
 
+//dichiarazione variabili
 $dati = '';
 $info_errore = '';
 
@@ -23,13 +25,13 @@ if (!empty($_COOKIE['error'])) {
 }
 
 //prendo dal database il valore del campo booleano 'admin' dell'utente
-$sql = "SELECT admin FROM utenti WHERE id_user='" . $_SESSION['id'] . "'";
+$sql = 'SELECT admin FROM utenti WHERE id_user="' . $_SESSION['id'] . '"';
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
 //controllo che l'utente sia l'admin perchè solo l'admin può visualizzare gli utenti
 if ($row['admin'] == 1) {
-    //se è stato cliccato "Elimina selezionate"
+    //se è stato cliccato 'Elimina selezionate'
     if (isset($_POST['delete_selected'])) {
 
         $users = isset($_POST['users']) ? $_POST['users'] : array();
@@ -41,7 +43,7 @@ if ($row['admin'] == 1) {
             //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  serialize/unserialize 
             //o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni elemento singolarmente
             //in questo modo key[indice]=valore
-            header("Location: delete_user.php?users=" . serialize($users));
+            header('Location: delete_user.php?users=' . serialize($users));
         }
     }
 
@@ -61,7 +63,7 @@ if ($row['admin'] == 1) {
     $dati .= '<a title="Aggiungi utente" href="./add_user.php" tabindex="14">Aggiungi Utente</a></div>';
 
     //STAMPA GLI UTENTI
-    $sql = "SELECT utenti.* FROM utenti WHERE admin=0";
+    $sql = 'SELECT utenti.* FROM utenti WHERE admin=0';
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) != 0) {
@@ -77,17 +79,20 @@ if ($row['admin'] == 1) {
         $counter_index = 15;
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $dati .= '<div class="admin_tr">';
-            $dati .= '<div class ="admin_td admin_users_checkbox_column"><input class="admin_users_checkbox admin_checkboxes" type="checkbox" name="users[]" value="' . $row["id_user"];
-            if (isset($_POST["all_selected"])) {
+            $dati .= '<div class ="admin_td admin_users_checkbox_column"><input class="admin_users_checkbox admin_checkboxes" 
+            type="checkbox" name="users[]" value="' . $row["id_user"];
+            if (isset($_POST['all_selected'])) {
                 $dati .= '" checked="checked';
             }
 
             $dati .= '" onclick="removeErrorMessage()" tabindex="' . $counter_index++ . '"/></div>';
-            $dati .= '<div class ="admin_td admin_users_name_column">' . $row["nome"] . '</div>';
-            $dati .= '<div class ="admin_td admin_users_username_column">' . $row["username"] . '</div>';
-            $dati .= '<div class ="admin_td admin_users_email_column">' . $row["email"] . '</div>';
-            $dati .= '<div class ="admin_td admin_users_modify_column"><a title="Modifica utente" href="./modify_user.php?user=' . $row["id_user"] . '" tabindex="' . $counter_index++ . '">Modifica</a></div>';
-            $dati .= '<div class ="admin_td admin_users_remove_column"><a title="Elimina utente" href="./delete_user.php?users=' . $row["id_user"] . '" tabindex="' . $counter_index++ . '">X</a></div>';
+            $dati .= '<div class ="admin_td admin_users_name_column">' . $row['nome'] . '</div>';
+            $dati .= '<div class ="admin_td admin_users_username_column">' . $row['username'] . '</div>';
+            $dati .= '<div class ="admin_td admin_users_email_column">' . $row['email'] . '</div>';
+            $dati .= '<div class ="admin_td admin_users_modify_column"><a title="Modifica utente" href="./modify_user.php?user=' 
+            . $row['id_user'] . '" tabindex="' . $counter_index++ . '">Modifica</a></div>';
+            $dati .= '<div class ="admin_td admin_users_remove_column"><a title="Elimina utente" href="./delete_user.php?users=' 
+            . $row['id_user'] . '" tabindex="' . $counter_index++ . '">X</a></div>';
             $dati .= '</div>';
         }
     } else {
@@ -102,9 +107,11 @@ if ($row['admin'] == 1) {
 
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
-$pagina = file_get_contents("../html/admin_panel.html");
-//rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina
-$pagina = str_replace("[SEARCH_WINE]", '', $pagina);
-$pagina = str_replace("[INFO/ERRORE]", $info_errore, $pagina);
-echo str_replace("[DATI]", $dati, $pagina);
+$pagina = file_get_contents('../html/admin_panel.html');
+//rimpiazzo i segnaposto e stampo in output la pagina
+$pagina = str_replace('[SEARCH_WINE]', '', $pagina);
+$pagina = str_replace('[INFO/ERRORE]', $info_errore, $pagina);
+echo str_replace('[DATI]', $dati, $pagina);
+
+//chiudo la connessione
 mysqli_close($conn);

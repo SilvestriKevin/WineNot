@@ -32,9 +32,9 @@ if (!empty($_POST['save_profile'])) {
         !preg_match('/^(\s)+$/', $_POST['nome']) && !empty($_POST['email']) && !preg_match('/^(\s)+$/', $_POST['email'])) {
 
         //dichiarazione variabili
-        $username = $_POST['username'];
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
+        $username = htmlentities($_POST['username'], ENT_QUOTES);
+        $nome = htmlentities($_POST['nome'], ENT_QUOTES);
+        $email = htmlentities($_POST['email'], ENT_QUOTES);
 
         //controllo che i dati non siano uguali a quelli già presenti nel database
         $sql = 'SELECT * FROM utenti WHERE id_user="' . $_SESSION['id'] . '" AND username="' . $username . '" AND nome="' . $nome . '"
@@ -50,98 +50,117 @@ if (!empty($_POST['save_profile'])) {
                 $error .= 'L&apos;email inserita non rispetta il formato corretto (es. example@domain.com).<br />';
             }
 
-            //controllo se anche i campi password sono settati e non vuoti
-            if (!empty($_POST['actual_password']) && !empty($_POST['new_password'])) {
+            //controllo che l'username inserito non sia già presente nel database
+            $sql = 'SELECT username FROM (SELECT username FROM utenti WHERE id_user!=' . $_SESSION['id'] . ') AS users WHERE
+            username="' . $username . '"';
+            $result = mysqli_query($conn, $sql);
 
-                //dichiarazione varibili
-                $current_password = $_POST['actual_password'];
-                $new_password = $_POST['new_password'];
-
-                // controllo se la 'actual_password' coincide con la password del database
-                $sql = 'SELECT * FROM utenti WHERE id_user="' . $_SESSION['id'] . '" AND password=MD5("' . $current_password . '")';
-
+            if (mysqli_num_rows($result) != 0) {
+                $error .= 'L&apos;username inserito &egrave; gi&agrave; presente nel database.';
+            } else {
+                //controllo che la email inserita non sia già presente nel database
+                $sql = 'SELECT email FROM (SELECT email FROM utenti WHERE id_user!=' . $_SESSION['id'] . ') AS users WHERE
+                email="' . $email . '"';
                 $result = mysqli_query($conn, $sql);
 
-                if (mysqli_num_rows($result) != 0) { // vuol dire che la password che l'utente ha inserito all'interno della
-                    //casella 'Password Corrente' corrisponde con quella nel database
+                if (mysqli_num_rows($result) != 0) {
+                    $error .= 'L&apos;email inserita &egrave; gi&agrave; presente nel database.';
+                } else {
 
-                    //controllo che la password corrente e quella nuova non siano uguali
-                    if ($new_password != $current_password) {
-                        //se sono diverse allora dovrò salvare la nuova password nel database, se è del formato giusto
-                        if (empty($error)) { //se non ci sono errori precedenti procedo
-                            //controllo il formato della password
-                            if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $_POST['new_password'])) {
+                    //controllo se anche i campi password sono settati e non vuoti
+                    if (!empty($_POST['actual_password']) && !empty($_POST['new_password'])) {
 
-                                //posso salvare anche la nuova password nel database
-                                $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '",
-                            password=MD5("' . $new_password . '"), email="' . $email . '" WHERE id_user="' . $_SESSION['id'] . '"';
+                        //dichiarazione varibili
+                        $current_password = $_POST['actual_password'];
+                        $new_password = $_POST['new_password'];
+
+                        //controllo il formato della password attuale
+                        if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $current_password)) {
+
+                            //controllo il formato della nuova password
+                            if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $new_password)) {
+
+                                // controllo se la 'actual_password' coincide con la password del database
+                                $sql = 'SELECT * FROM utenti WHERE id_user="' . $_SESSION['id'] . '" AND password=MD5("' 
+                                . $current_password . '")';
 
                                 $result = mysqli_query($conn, $sql);
 
-                                //se la query è andata a buon fine
-                                if ($result) {
-                                    setcookie('info', 'Modifica dati avvenuta con successo');
-                                    header('Location: admin_profile.php');
-                                } else { //se non sono riuscito a cambiare dati nel database
-                                    $error = 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
+                                if (mysqli_num_rows($result) != 0) { // vuol dire che la password che l'utente ha inserito all'interno della
+                                    //casella 'Password Corrente' corrisponde con quella nel database
+
+                                    //controllo che la password corrente e quella nuova non siano uguali
+                                    if ($new_password != $current_password) {
+                                        //se sono diverse allora dovrò salvare la nuova password nel database, se è del formato giusto
+                                        if (empty($error)) { //se non ci sono errori precedenti procedo
+
+                                            //posso salvare anche la nuova password nel database
+                                            $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '",
+                                            password=MD5("' . $new_password . '"), email="' . strtolower($email) . '" WHERE id_user="'
+                                                . $_SESSION['id'] . '"';
+
+                                            //se la query è andata a buon fine
+                                            if (mysqli_query($conn, $sql)) {
+                                                setcookie('info', 'Modifica dei dati avvenuta con successo');
+                                                header('Location: admin_profile.php');
+                                            } else { //se non sono riuscito a cambiare dati nel database
+                                                $error = 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
+                                            }
+
+                                        }
+
+                                    } else { // le password erano uguali quindi cambio solo i dati esclusa la password
+
+                                        if (empty($error)) {
+                                            $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '", email="'
+                                            . strtolower($email) . '" WHERE id_user="' . $_SESSION['id'] . '"';
+
+                                            if (mysqli_query($conn, $sql)) { // se c'è stata una modifica allora tutto ok
+                                                setcookie('info', 'Modifica dati avvenuta con successo');
+                                                header('Location: admin_profile.php');
+                                            } else { // se non sono riuscito a cambiare dati nel database
+                                                $error .= 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
+
+                                            }
+                                        }
+                                    }
+
+                                } else {
+                                    $error .= 'La password inserita non &egrave; corretta.<br />';
                                 }
-
                             } else {
-                                $error = 'La nuova password non rispetta il giusto formato. Deve essere lunga almeno 8
-                        caratteri e contenere almeno una lettera maiuscola, almeno una lettera minuscola ed almeno un
-                        numero.<br />';
+                                $error .= 'La nuova password non rispetta il giusto formato. Deve essere lunga almeno 8
+                    caratteri e contenere almeno una lettera maiuscola, almeno una lettera minuscola ed almeno un
+                    numero.<br />';
                             }
+                        } else {
+                            $error .= 'La password attuale non &egrave; corretta.<br />';
+                        }
+                    } else { // salvo solo i dati relativi a username, nome ed email
 
+                        //nel caso in cui solo un campo password sia stato scritto, setto la variabile $error
+                        if (!empty($_POST['new_password']) || !empty($_POST['actual_password'])) {
+                            $error .= 'Entrambi i campi password devono essere compilati.<br />';
                         }
 
-                    } else { // le password erano uguali quindi cambio solo i dati esclusa la password
-
+                        //se la variabile $error è vuota allora procedo all'update nel database
                         if (empty($error)) {
-                            $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '", email="' . $email . '"
-                        WHERE id_user="' . $_SESSION['id'] . '"';
+                            $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '", email="' . strtolower($email)
+                                . '" WHERE id_user="' . $_SESSION['id'] . '"';
 
-                            $result = mysqli_query($conn, $sql);
-
-                            if ($result) { // se c'è stata una modifica allora tutto ok
-                                setcookie('info', 'Modifica dati avvenuta con successo');
+                            //se la query è andata a buon fine
+                            if (mysqli_query($conn, $sql)) {
+                                setcookie('info', 'Modifica dei dati avvenuta con successo');
                                 header('Location: admin_profile.php');
                             } else { // se non sono riuscito a cambiare dati nel database
                                 $error .= 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
 
                             }
+
                         }
                     }
-
-                } else {
-                    $error .= 'La password inserita non &egrave; corretta.<br />';
-                }
-
-            } else { // salvo solo i dati relativi a username, nome ed email
-
-                //nel caso in cui solo un campo password sia stato scritto, setto la variabile $error
-                if (!empty($_POST['new_password']) || !empty($_POST['actual_password'])) {
-                    $error .= 'Entrambi i campi password devono essere compilati.<br />';
-                }
-
-                //se la variabile $error è vuota allora procedo all'update nel database
-                if (empty($error)) {
-                    $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '", email="' . $email . '" WHERE
-                id_user="' . $_SESSION['id'] . '"';
-
-                    $result = mysqli_query($conn, $sql);
-
-                    //se la query è andata a buon fine
-                    if ($result) {
-                        setcookie('info', 'Modifica dati avvenuta con successo');
-                        header('Location: admin_profile.php');
-                    } else { // se non sono riuscito a cambiare dati nel database
-                        $error .= 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
-
-                    }
-
                 }
             }
-
         }
         //nel caso in cui non ci siano modifiche nei dati, controllo solo se i campi password sono settati e non vuoti
         else if (!empty($_POST['actual_password']) && !empty($_POST['new_password'])) {
@@ -150,48 +169,48 @@ if (!empty($_POST['save_profile'])) {
             $current_password = $_POST['actual_password'];
             $new_password = $_POST['new_password'];
 
-            // controllo se la 'actual_password' coincide con la password del database
-            $sql = 'SELECT * FROM utenti WHERE id_user="' . $_SESSION['id'] . '" AND password=MD5("' . $current_password . '")';
+            //controllo il formato della password attuale
+            if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $_POST['actual_password'])) {
 
-            $result = mysqli_query($conn, $sql);
+                //controllo il formato della nuova password
+                if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $_POST['new_password'])) {
 
-            if (mysqli_num_rows($result) != 0) { // vuol dire che la password che l'utente ha inserito all'interno della
-                //casella 'Password Corrente' corrisponde con quella nel database
+                    // controllo se la 'actual_password' coincide con la password del database
+                    $sql = 'SELECT * FROM utenti WHERE id_user="' . $_SESSION['id'] . '" AND password=MD5("' . $current_password . '")';
 
-                //controllo che la password corrente e quella nuova non siano uguali
-                if ($new_password != $current_password) {
-                    //se sono diverse allora dovrò salvare la nuova password nel database, se è del formato giusto
-                    if (empty($error)) { //se non ci sono errori precedenti procedo
-                        //controllo il formato della password
-                        if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $_POST['new_password'])) {
+                    $result = mysqli_query($conn, $sql);
 
-                            //posso salvare anche la nuova password nel database
+                    if (mysqli_num_rows($result) != 0) { // vuol dire che la password che l'utente ha inserito all'interno della
+                        //casella 'Password Corrente' corrisponde con quella nel database
+
+                        //controllo che la password corrente e quella nuova non siano uguali
+                        if ($new_password != $current_password) {
+                            //se sono diverse allora salvo la nuova password nel database
                             $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '",
-                        password=MD5("' . $new_password . '"), email="' . $email . '" WHERE id_user="' . $_SESSION['id'] . '"';
-
-                            $result = mysqli_query($conn, $sql);
+                                password=MD5("' . $new_password . '"), email="' . strtolower($email) . '" WHERE id_user="'
+                                . $_SESSION['id'] . '"';
 
                             //se la query è andata a buon fine
-                            if ($result) {
-                                setcookie('info', 'Modifica dati avvenuta con successo');
+                            if (mysqli_query($conn, $sql)) {
+                                setcookie('info', 'Modifica dei dati avvenuta con successo');
                                 header('Location: admin_profile.php');
                             } else { //se non sono riuscito a cambiare dati nel database
                                 $error .= 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
                             }
 
-                        } else {
-                            $error .= 'La nuova password non rispetta il giusto formato. Deve essere lunga almeno 8
+                        } else { //le password sono uguali quindi non aggiorno il database
+                            $error .= 'La nuova password &egrave; identica alla precedente.<br />';
+                        }
+                    } else {
+                        $error .= 'La password attuale non &egrave; corretta.<br />';
+                    }
+                } else {
+                    $error .= 'La nuova password non rispetta il giusto formato. Deve essere lunga almeno 8
                     caratteri e contenere almeno una lettera maiuscola, almeno una lettera minuscola ed almeno un
                     numero.<br />';
-                        }
-
-                    }
-
-                } else { //le password sono uguali quindi non aggiorno il database
-                    $error .= 'La nuova password &egrave; identica alla precedente.<br />';
                 }
             } else {
-                $error .= 'La password inserita non &egrave; corretta.<br />';
+                $error .= 'La password attuale non &egrave; corretta.<br />';
             }
 
         }

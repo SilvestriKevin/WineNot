@@ -16,7 +16,7 @@ $info_errore = '';
 
 //stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['info'])) {
-    $info_errore .= '<div>' . $_COOKIE['info'] . '</div>';
+    $info_errore .= '<div class="info_sentence">' . $_COOKIE['info'] . '</div>';
     setcookie('info', null);
 }
 if (!empty($_COOKIE['error'])) {
@@ -46,9 +46,9 @@ if (!empty($_POST['save_year'])) {
         !preg_match('/^(\s)+$/', $_POST['descrizione']) && !empty($_POST['qualita']) && !preg_match('/^(\s)+$/', $_POST['qualita'])) {
 
         //dichiarazione variabili
-        $anno = $_POST['anno'];
-        $descrizione = $_POST['descrizione'];
-        $qualita = $_POST['qualita'];
+        $anno = htmlentities($_POST['anno'], ENT_QUOTES);
+        $descrizione = htmlentities($_POST['descrizione'], ENT_QUOTES);
+        $qualita = htmlentities($_POST['qualita'], ENT_QUOTES);
         if ($_POST['migliore'] == false) {
             $migliore = 0;
         } else {
@@ -60,8 +60,8 @@ if (!empty($_POST['save_year'])) {
         if (preg_match('/^\d{4}$/', $anno) && $anno > 1900 && $anno <= date('Y')) {
 
             //controllo che sia stato modificato almeno un campo, altrimenti non serve fare l'update nel database
-            $sql = 'SELECT * FROM annate WHERE anno=' . $anno . ' AND descrizione="' . htmlentities($descrizione, ENT_QUOTES)
-            . '" AND qualita="' . htmlentities($qualita, ENT_QUOTES) . '" AND migliore=' . $migliore;
+            $sql = 'SELECT * FROM annate WHERE anno=' . $anno . ' AND descrizione="' . $descrizione
+                . '" AND qualita="' . $qualita . '" AND migliore=' . $migliore;
 
             $result = mysqli_query($conn, $sql);
 
@@ -78,8 +78,8 @@ if (!empty($_POST['save_year'])) {
                 } else {
 
                     //aggiorno l'annata nel database
-                    $sql = 'UPDATE annate SET anno="' . $anno . '", descrizione="' . htmlentities($descrizione, ENT_QUOTES)
-                    . '", qualita="' . htmlentities($qualita, ENT_QUOTES) . '", migliore=' . $migliore . ' WHERE anno=' . $year;
+                    $sql = 'UPDATE annate SET anno="' . $anno . '", descrizione="' . $descrizione
+                        . '", qualita="' . $qualita . '", migliore=' . $migliore . ' WHERE anno=' . $year;
 
                     //controllo la connessione
                     if (mysqli_query($conn, $sql)) {

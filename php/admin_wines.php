@@ -3,15 +3,17 @@
 session_start();
 
 //inclusione file di connessione
-include_once "../include/config.php";
+include_once '../include/config.php';
 
 //inclusione file per funzioni ausiliarie
-include_once "../include/lib.php";
+include_once '../include/lib.php';
 
+//controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
 if (!isset($_SESSION['id'])) {
-    header("Location: ../index.html");
+    header('Location: ../index.html');
 }
 
+//dichiarazione variabili
 $dati = '';
 $info_errore = '';
 $annata = '';
@@ -30,7 +32,7 @@ if (!empty($_COOKIE['error'])) {
     setcookie('error', null);
 }
 
-//se è stato cliccato "Elimina selezionati"
+//se è stato cliccato 'Elimina selezionati'
 if (isset($_POST['delete_selected'])) {
 
     $wines = isset($_POST['wines']) ? $_POST['wines'] : array();
@@ -42,12 +44,12 @@ if (isset($_POST['delete_selected'])) {
         //per poter passare e poter usare un array tramite url posso ricorrere a due metodi:  
         // serialize/unserialize o l'utilizzo di http_build_query che crea un url molto più lungo perchè inserisce ogni
         // elemento singolarmente in questo modo key[indice]=valore
-        header("Location: delete_wine.php?wines=" . serialize($wines));
+        header('Location: delete_wine.php?wines=' . serialize($wines));
     }
 }
 
 //SELECT ANNATA NEL FORM
-$sql = "SELECT annata FROM vini GROUP BY annata ORDER BY annata";
+$sql = 'SELECT annata FROM vini GROUP BY annata ORDER BY annata';
 $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) != 0) {
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -98,13 +100,13 @@ if (!empty($_POST['annata']) && !empty($_POST['tipologia']) && !empty($_POST['or
         while (!empty($search[$counter])) {
 
             if ($counter > 0) {
-                $text_search = "( SELECT vini.* FROM " . $text_search . " WHERE ( vini.nome LIKE '%" . $search[$counter] .
-                 "%' OR vini.denominazione LIKE '%" . $search[$counter] . "%' OR vini.tipologia LIKE '%" . $search[$counter] . 
-                 "%' OR vini.annata LIKE '%" . $search[$counter] . "%' ) ) AS vini";
+                $text_search = '( SELECT vini.* FROM ' . $text_search . ' WHERE ( vini.nome LIKE "%' . $search[$counter] .
+                 '%" OR vini.denominazione LIKE "%' . $search[$counter] . '%" OR vini.tipologia LIKE "%' . $search[$counter] . 
+                 '%" OR vini.annata LIKE "%' . $search[$counter] . '%" ) ) AS vini';
             } else {
-                $text_search = "( SELECT vini.* FROM vini WHERE ( vini.nome LIKE '%" . $search[$counter] . 
-                "%' OR vini.denominazione LIKE '%" . $search[$counter] . "%' OR vini.tipologia LIKE '%" . 
-                $search[$counter] . "%' OR vini.annata LIKE '%" . $search[$counter] . "%' ) ) AS vini";
+                $text_search = '( SELECT vini.* FROM vini WHERE ( vini.nome LIKE "%' . $search[$counter] . 
+                '%" OR vini.denominazione LIKE "%' . $search[$counter] . '%" OR vini.tipologia LIKE "%' . 
+                $search[$counter] . '%" OR vini.annata LIKE "%' . $search[$counter] . '%" ) ) AS vini';
             }
 
             $counter++;
@@ -113,25 +115,25 @@ if (!empty($_POST['annata']) && !empty($_POST['tipologia']) && !empty($_POST['or
     }
 
     if ($_POST['annata'] != 'All') {
-        $improved_search .= " WHERE annata='" . $_POST['annata'] . "'";
+        $improved_search .= ' WHERE annata="' . $_POST['annata'] . '"';
     }
 
     if ($_POST['tipologia'] != 'All') {
         if (!empty($improved_search)) {
-            $improved_search .= " AND tipologia='" . entityAccentedVowels($_POST['tipologia']) . "'";
+            $improved_search .= ' AND tipologia="' . entityAccentedVowels($_POST['tipologia']) . '"';
         } else {
-            $improved_search .= " WHERE tipologia='" . entityAccentedVowels($_POST['tipologia']) . "'";
+            $improved_search .= ' WHERE tipologia="' . entityAccentedVowels($_POST['tipologia']) . '"';
         }
     }
 
     //STAMPA I VINI
-    $sql = "SELECT vini.* FROM " . $text_search . $improved_search . " ORDER BY " . $_POST['ordine'];
+    $sql = 'SELECT vini.* FROM ' . $text_search . $improved_search . ' ORDER BY ' . $_POST['ordine'];
     $salva_sql = true;
 
 }
 //STAMPA TUTTI I VINI (QUANDO SI APRE LA PAGINA LA PRIMA VOLTA)
 else {
-    $sql = "SELECT vini.* FROM vini";
+    $sql = 'SELECT vini.* FROM vini';
 }
 
 //se è stata salvata in precedenza la query, continuo a preservare la query risettando a true $salva_sql e assegno la query a $sql per eseguirla
@@ -144,7 +146,7 @@ $result = mysqli_query($conn, $sql);
 
 $dati .= '<form onsubmit="return deleteSelected()" action="admin_wines.php" method="post">';
 
-//se è stata salvata in precedenza la query, allora mantengo i dati della query e della ricerca (annat  a, tipologia, ordine)
+//se è stata salvata in precedenza la query, allora mantengo i dati della query e della ricerca (annata, tipologia, ordine)
 if (!empty($salva_sql)) {
     $dati .= '<input type="hidden" name="sql" value="' . htmlentities($sql, ENT_QUOTES) . '" />';
     $dati .= '<input type="hidden" name="annata" value="' . $_POST['annata'] . '" />';
@@ -153,7 +155,7 @@ if (!empty($salva_sql)) {
     if (!empty($_POST['search'])) {
         //utilizzo la funzione htmlentities per ricaricare sul valore search l'input testuale corretto
         $dati .= '<input type="hidden" name="search" value="' . htmlentities($_POST['search'], ENT_QUOTES) . '" />';
-        $dati .= '<div>Hai cercato: "' . $_POST['search'] . '"</div>';
+        $dati .= '<div>Hai cercato: "' . htmlentities($_POST['search'], ENT_QUOTES) . '"</div>';
     }
 }
 
@@ -209,13 +211,15 @@ $dati .= '</form>';
 
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
-$pagina = file_get_contents("../html/admin_panel.html");
-$search_wine = file_get_contents("../html/search_wine.html");
-//rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina
-$pagina = str_replace("[SEARCH_WINE]", $search_wine, $pagina);
-$pagina = str_replace("[ANNATA]", $annata, $pagina);
-$pagina = str_replace("[TIPOLOGIA]", $tipologia, $pagina);
-$pagina = str_replace("[ORDINE]", $ordine, $pagina);
-$pagina = str_replace("[INFO/ERRORE]", $info_errore, $pagina);
-echo str_replace("[DATI]", $dati, $pagina);
+$pagina = file_get_contents('../html/admin_panel.html');
+$search_wine = file_get_contents('../html/search_wine.html');
+//rimpiazzo i segnaposto e stampo in output la pagina
+$pagina = str_replace('[SEARCH_WINE]', $search_wine, $pagina);
+$pagina = str_replace('[ANNATA]', $annata, $pagina);
+$pagina = str_replace('[TIPOLOGIA]', $tipologia, $pagina);
+$pagina = str_replace('[ORDINE]', $ordine, $pagina);
+$pagina = str_replace('[INFO/ERRORE]', $info_errore, $pagina);
+echo str_replace('[DATI]', $dati, $pagina);
+
+//chiudo la connessione
 mysqli_close($conn);

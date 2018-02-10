@@ -102,9 +102,11 @@ $dati.='</form>';
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
 $pagina = file_get_contents('../html/admin_panel.html');
-//rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina  
+//rimpiazzo i segnaposto e stampo in output la pagina  
 $pagina = str_replace('[SEARCH_WINE]', '', $pagina);
 $pagina = str_replace('[INFO/ERRORE]', $info_errore, $pagina);
 echo str_replace('[DATI]', $dati, $pagina);
+
+//chiudo la connessione
 mysqli_close($conn);
 ?>

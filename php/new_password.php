@@ -5,7 +5,7 @@ include_once '../include/config.php';
 //inclusione file per funzioni ausiliarie
 include_once '../include/lib.php';
 
-//il controllo del get evita errori di pagina
+//il controllo del get evita errori di pagina 
 if (isset($_GET['hash'])) {
     $hash = $_GET['hash'];
     $id = substr($hash, 32);

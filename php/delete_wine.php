@@ -5,13 +5,12 @@ session_start();
 //inclusione file di connessione
 include_once '../include/config.php';
 
-//inclusione file per funzioni ausiliarie
-include_once '../include/lib.php';
-
+//controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
 if (!isset($_SESSION['id'])) {
     header('Location: ../index.html');
 }
 
+//dichiarazione variabili
 $dati = '';
 $info_errore = '';
 
@@ -29,9 +28,8 @@ if (!empty($_COOKIE['error'])) {
 if (!empty($_POST['cancel'])) {
     header('Location: admin_wines.php');
 }
-
 //in $_POST['wines'] sono contenuti tutti gli id dei vini che si vogliono eliminare
-//se è settata anche $_GET['delete_elements'] allora procedo all'eliminazione
+//se è settata anche $_POST['confirm'] allora procedo all'eliminazione
 else if (!empty($_POST['wines']) && !empty($_POST['confirm'])) {
     $wines = $_POST['wines'];
     $num_elem = count($wines);
@@ -67,9 +65,9 @@ else if (!empty($_POST['wines']) && !empty($_POST['confirm'])) {
 else if (!empty($_GET['wines'])) {
     $dati .= '<form onsubmit="return finalDeletion()" id="select_admin_buttons" action="delete_wine.php" method="post">';
 
-    $dati .= '<div class="select_admin_buttons"><input type="submit" id="cancel" class="admin_button" name="cancel" 
+    $dati .= '<div class="select_admin_buttons"><input type="submit" id="cancel" class="admin_button" name="cancel"
      value="Annulla Eliminazione" onclick="goBackWines()" tabindex="7" />';
-    $dati .= '<input type="submit" id="confirm" class="admin_button" name="confirm" 
+    $dati .= '<input type="submit" id="confirm" class="admin_button" name="confirm"
      value="Conferma Eliminazione" onclick="confirmDeletion()" tabindex="8" /></div>';
 
     //controllo che nell'url abbia un array serializzato o un singolo dato
@@ -108,7 +106,7 @@ else if (!empty($_GET['wines'])) {
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
             $dati .= '<div class="admin_tr">';
             $dati .= '<div class ="admin_td delete_wine_checkbox_column">
-            <input class="delete_wine_checkbox" type="checkbox" name="wines[]" value="' . $row['id_wine'] . '" checked="checked" onclick="removeErrorMessage()" tabindex="'.$counter_index++.'"/></div>';
+            <input class="delete_wine_checkbox" type="checkbox" name="wines[]" value="' . $row['id_wine'] . '" checked="checked" onclick="removeErrorMessage()" tabindex="' . $counter_index++ . '"/></div>';
             $dati .= '<div class ="admin_td delete_wine_name_column">' . $row['nome'] . '</div>';
             $dati .= '<div class ="admin_td delete_wine_denomination_column">' . $row['denominazione'] . '</div>';
             $dati .= '<div class ="admin_td delete_wine_tipology_column">' . $row['tipologia'] . '</div>';
@@ -136,8 +134,10 @@ else {
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
 $pagina = file_get_contents('../html/admin_panel.html');
-//rimpiazzo il segnaposto con la lista di articoli e stampo in output la pagina
+//rimpiazzo i segnaposto e stampo in output la pagina
 $pagina = str_replace('[SEARCH_WINE]', '', $pagina);
 $pagina = str_replace('[INFO/ERRORE]', $info_errore, $pagina);
 echo str_replace('[DATI]', $dati, $pagina);
+
+//chiudo la connessione
 mysqli_close($conn);

@@ -5,9 +5,6 @@ session_start();
 //inclusione file di connessione
 include_once '../include/config.php';
 
-//inclusione file per funzioni ausiliarie
-include_once '../include/lib.php';
-
 //controllo se è settata la session, altrimenti si viene riportati alla pagina iniziale
 if (!isset($_SESSION['id'])) {
     header('Location: ../index.html');

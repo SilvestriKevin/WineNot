@@ -169,14 +169,14 @@ if (!empty($_POST['save_profile'])) {
         !preg_match('/^(\s)+$/', $_POST['formato']) && !empty($_FILES['wine_img']) && $_FILES['wine_img']['type'] == 'image/png') {
 
         //dichiarazione variabili
-        $nome = $_POST['nome'];
-        $tipologia = $_POST['tipologia'];
-        $descrizione = $_POST['descrizione'];
-        $denominazione = $_POST['denominazione'];
+        $nome = htmlentities($_POST['nome'], ENT_QUOTES);
+        $tipologia = htmlentities($_POST['tipologia'], ENT_QUOTES);
+        $descrizione = htmlentities($_POST['descrizione'], ENT_QUOTES);
+        $denominazione = htmlentities($_POST['denominazione'], ENT_QUOTES);
         $annata = $_POST['annata'];
-        $vitigno = $_POST['vitigno'];
-        $abbinamento = $_POST['abbinamento'];
-        $degustazione = $_POST['degustazione'];
+        $vitigno = htmlentities($_POST['vitigno'], ENT_QUOTES);
+        $abbinamento = htmlentities($_POST['abbinamento'], ENT_QUOTES);
+        $degustazione = htmlentities($_POST['degustazione'], ENT_QUOTES);
         $gradazione = $_POST['gradazione'];
         $formato = $_POST['formato'];
         $file = $_FILES['wine_img'];

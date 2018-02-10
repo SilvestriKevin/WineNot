@@ -2,9 +2,6 @@
 //apro la sessione
 session_start();
 
-//inclusione file di connessione
-include_once '../include/config.php';
-
 //dichiarazione variabili
 $error = '';
 $info = '';

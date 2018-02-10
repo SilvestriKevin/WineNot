@@ -19,7 +19,7 @@ $error = '';
 
 //stampo i messaggi informativi e/o di errore
 if (!empty($_COOKIE['info'])) {
-    $info_errore .= '<div>' . $_COOKIE['info'] . '</div>';
+    $info_errore .= '<div class="info_sentence">' . $_COOKIE['info'] . '</div>';
     setcookie('info', null);
 }
 if (!empty($_COOKIE['error'])) {
@@ -44,9 +44,9 @@ if (!empty($_POST['save_user'])) {
         !preg_match('/^(\s)+$/', $_POST['nome']) && !empty($_POST['email']) && !preg_match('/^(\s)+$/', $_POST['email'])) {
 
         //dichiarazione variabili
-        $username = $_POST['username'];
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
+        $username = htmlentities($_POST['username'], ENT_QUOTES);
+        $nome = htmlentities($_POST['nome'], ENT_QUOTES);
+        $email = htmlentities($_POST['email'], ENT_QUOTES);
 
         //controllo che i dati non siano uguali a quelli già presenti nel database
         $sql = 'SELECT * FROM utenti WHERE id_user="' . $id_user . '" AND username="' . $username . '" AND nome="' . $nome . '"
@@ -81,41 +81,39 @@ if (!empty($_POST['save_user'])) {
                     //controllo se anche i campi password sono settati e non vuoti
                     if (!empty($_POST['new_password']) && !empty($_POST['confirm_password'])) {
 
-                        //dichiarazione varibili
-                        $new_password = $_POST['new_password'];
-                        $confirm_password = $_POST['confirm_password'];
+                        //controllo il formato della nuova password
+                        if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $_POST['new_password'])) {
 
-                        //controllo che la nuova password e quella di conferma siano uguali
-                        if ($confirm_password == $new_password) {
-                            //se non ci sono errori precedenti procedo
-                            if (empty($error)) {
-                                //controllo il formato della nuova password
-                                if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $new_password)) {
+                            //dichiarazione varibili
+                            $new_password = $_POST['new_password'];
+                            $confirm_password = $_POST['confirm_password'];
 
-                                    //posso salvare anche la nuova password nel database
+                            //controllo che la nuova password e quella di conferma siano uguali
+                            if ($confirm_password == $new_password) {
+                                //se non ci sono errori precedenti procedo
+                                if (empty($error)) {
+
+                                    //posso salvare la nuova password nel database
                                     $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '",
-                            password=MD5("' . $new_password . '"), email="' . $email . '" WHERE id_user="' . $id_user . '"';
-
-                                    $result = mysqli_query($conn, $sql);
+                                    password=MD5("' . $new_password . '"), email="' . strtolower($email) . '" WHERE id_user="' . $id_user . '"';
 
                                     //se la query è andata a buon fine
-                                    if ($result) {
-                                        setcookie('info', 'Modifica dati avvenuta con successo');
+                                    if (mysqli_query($conn, $sql)) {
+                                        setcookie('info', 'Modifica dei dati avvenuta con successo');
                                         header('Location: admin_users.php');
                                     } else { //se non sono riuscito a cambiare dati nel database
                                         $error = 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
                                     }
 
-                                } else {
-                                    $error = 'La nuova password non rispetta il giusto formato. Deve essere lunga almeno 8
-                        caratteri e contenere almeno una lettera maiuscola, almeno una lettera minuscola ed almeno un
-                        numero.<br />';
                                 }
 
+                            } else {
+                                $error .= 'Le password non corrispondono.<br />';
                             }
-
                         } else {
-                            $error .= 'Le password non corrispondono.<br />';
+                            $error = 'La nuova password non rispetta il giusto formato. Deve essere lunga almeno 8
+                            caratteri e contenere almeno una lettera maiuscola, almeno una lettera minuscola ed almeno un
+                            numero.<br />';
                         }
 
                     } else { // salvo solo i dati relativi a nome completo, username ed email
@@ -127,13 +125,11 @@ if (!empty($_POST['save_user'])) {
 
                         //se la variabile $error è vuota allora procedo all'update nel database
                         if (empty($error)) {
-                            $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '", email="' . $email . '" WHERE
-                        id_user="' . $id_user . '"';
-
-                            $result = mysqli_query($conn, $sql);
+                            $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '", email="' . 
+                            strtolower($email) . '" WHERE id_user="' . $id_user . '"';
 
                             //se la query è andata a buon fine
-                            if ($result) {
+                            if (mysqli_query($conn, $sql)) {
                                 setcookie('info', 'Modifica dati avvenuta con successo');
                                 header('Location: admin_users.php');
                             } else { // se non sono riuscito a cambiare dati nel database
@@ -149,39 +145,35 @@ if (!empty($_POST['save_user'])) {
         //nel caso in cui non ci siano modifiche nei dati, controllo solo se i campi password sono settati e non vuoti
         else if (!empty($_POST['new_password']) && !empty($_POST['confirm_password'])) {
 
-            //dichiarazione varibili
-            $new_password = $_POST['new_password'];
-            $confirm_password = $_POST['confirm_password'];
+            //controllo il formato della nuova password
+            if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $_POST['new_password'])) {
 
-            //controllo che la nuova password e quella di conferma siano uguali
-            if ($confirm_password == $new_password) {
-                //controllo il formato della nuova password
-                if (preg_match('/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/', $new_password)) {
+                //dichiarazione varibili
+                $new_password = $_POST['new_password'];
+                $confirm_password = $_POST['confirm_password'];
 
-                    //posso salvare anche la nuova password nel database
-                    $sql = 'UPDATE utenti SET nome="' . $nome . '", username="' . $username . '",
-                        password=MD5("' . $new_password . '"), email="' . $email . '" WHERE id_user="' . $id_user . '"';
+                //controllo che la nuova password e quella di conferma siano uguali
+                if ($confirm_password == $new_password) {
 
-                    $result = mysqli_query($conn, $sql);
+                    //posso salvare la nuova password nel database
+                    $sql = 'UPDATE utenti SET password=MD5("' . $new_password . '") WHERE id_user="' . $id_user . '"';
 
                     //se la query è andata a buon fine
-                    if ($result) {
-                        setcookie('info', 'Modifica dati avvenuta con successo');
+                    if (mysqli_query($conn, $sql)) {
+                        setcookie('info', 'Modifica dei dati avvenuta con successo');
                         header('Location: admin_users.php');
                     } else { //se non sono riuscito a cambiare dati nel database
                         $error .= 'Si &egrave; verificato un errore. La preghiamo di riprovare.<br />';
                     }
 
-                } else {
-                    $error .= 'La nuova password non rispetta il giusto formato. Deve essere lunga almeno 8
-                    caratteri e contenere almeno una lettera maiuscola, almeno una lettera minuscola ed almeno un
-                    numero.<br />';
+                } else { //le password sono uguali quindi non aggiorno il database
+                    $error .= 'Le password non corrispondono.<br />';
                 }
-
-            } else { //le password sono uguali quindi non aggiorno il database
-                $error .= 'Le password non corrispondono.<br />';
+            } else {
+                $error .= 'La nuova password non rispetta il giusto formato. Deve essere lunga almeno 8
+                caratteri e contenere almeno una lettera maiuscola, almeno una lettera minuscola ed almeno un
+                numero.<br />';
             }
-
         }
         //nel caso in cui non ci siano modifiche nei dati ma l'utente abbia compilato un solo campo password, setto la variabile $error
         else if (!empty($_POST['confirm_password']) || !empty($_POST['new_password'])) {

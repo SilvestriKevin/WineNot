@@ -25,16 +25,6 @@ if (!empty($_SERVER['QUERY_STRING'])) {
 
 setcookie('indietro', $url);
 
-//stampo i messaggi informativi e/o di errore
-if (!empty($_COOKIE['error'])) {
-    $lista .= '<h1 id="error_message">' . $_COOKIE['error'] . '</h1><br></br>';
-    setcookie('error', null);
-}
-if (!empty($_COOKIE['info'])) {
-    $lista .= '<h1 id="error_message">' . $_COOKIE['info'] . '</h1><br></br>';
-    setcookie('info', null);
-}
-
 //SELECT ANNATA NEL FORM
 $sql = 'SELECT annata FROM vini GROUP BY annata ORDER BY annata';
 $result = mysqli_query($conn, $sql);
@@ -81,7 +71,7 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
 
     if (!empty($_GET['search'])) {
         //assegno il testo cercato nella barra di testo ad una variabile per poi stamparlo successivamente a schermo
-        $text_searched = '<div>Hai cercato: "' . $_GET['search'] . '"</div>';
+        $text_searched = '<div>Hai cercato: "' . htmlentities($_GET['search'], ENT_QUOTES) . '"</div>';
 
         //chiamo la funzione in lib.php che controlla il testo inserito e pulisce la stringa
         $search = cleanInput($_GET['search']);
@@ -105,19 +95,19 @@ if (!empty($_GET['annata']) && !empty($_GET['tipologia']) && !empty($_GET['ordin
     }
 
     if ($_GET['annata'] != 'All') {
-        $improved_search .= ' WHERE annata="' . $_GET['annata'] . '"';
+        $improved_search .= ' WHERE annata="' . htmlentities($_GET['annata'], ENT_QUOTES) . '"';
     }
 
     if ($_GET['tipologia'] != 'All') {
         if (!empty($improved_search)) {
-            $improved_search .= ' AND tipologia="' . entityAccentedVowels($_GET['tipologia']) . '"';
+            $improved_search .= ' AND tipologia="' . htmlentities($_GET['tipologia'], ENT_QUOTES) . '"';
         } else {
-            $improved_search .= ' WHERE tipologia="' . entityAccentedVowels($_GET['tipologia']) . '"';
+            $improved_search .= ' WHERE tipologia="' . htmlentities($_GET['tipologia'], ENT_QUOTES) . '"';
         }
     }
 
     //STAMPA I VINI
-    $sql = 'SELECT vini.* FROM ' . $text_search . $improved_search . ' ORDER BY ' . $_GET['ordine'];
+    $sql = 'SELECT vini.* FROM ' . $text_search . $improved_search . ' ORDER BY ' . htmlentities($_GET['ordine'], ENT_QUOTES);
 
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) != 0) {

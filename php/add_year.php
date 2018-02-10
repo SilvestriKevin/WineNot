@@ -77,11 +77,16 @@ if (isset($_POST['anno']) && isset($_POST['descrizione']) && isset($_POST['quali
     //controllo che non siano stati lasciati campi vuoti
     if (!empty($_POST['anno']) && !preg_match('/^(\s)+$/', $_POST['anno']) && !empty($_POST['descrizione']) &&
         !preg_match('/^(\s)+$/', $_POST['descrizione']) && !empty($_POST['qualita']) && !preg_match('/^(\s)+$/', $_POST['qualita'])) {
-
+            
         //dichiarazione variabili
         $anno = $_POST['anno'];
-        $descrizione = $_POST['descrizione'];
-        $qualita = $_POST['qualita'];
+        $descrizione = htmlentities($_POST['descrizione'], ENT_QUOTES);
+        $qualita = htmlentities($_POST['qualita'], ENT_QUOTES);
+        if ($_POST['migliore'] == false) {
+            $migliore = 0;
+        } else {
+            $migliore = 1;
+        }
 
         //controllo che l'anno sia del formato corretto oltre ad essere maggiore di 1900 e minore uguale dell'anno corrente
         //es. 2004
@@ -96,11 +101,9 @@ if (isset($_POST['anno']) && isset($_POST['descrizione']) && isset($_POST['quali
                 header('Location: add_year.php');
             } else {
                 //inserisco i dati nel database
-                if (!isset($_POST['migliore'])) {
-                    $sql = 'INSERT INTO annate (anno, descrizione,qualita) VALUES ("' . $anno . '","' . $descrizione . '", "' . $qualita . '")';
-                } else {
-                    $sql = 'INSERT INTO annate (anno, descrizione,qualita,migliore) VALUES ("' . $anno . '","' . $descrizione . '", "' . $qualita . '", "1")';
-                }
+                $sql = 'INSERT INTO annate (anno, descrizione,qualita,migliore) VALUES ("' . $anno . '","' . $descrizione 
+                . '", "' . $qualita . '", migliore=' . $migliore . ')';
+                
                 //controllo la connessione
                 if (mysqli_query($conn, $sql)) {
                     setcookie('info', 'Annata inserita con successo.');
