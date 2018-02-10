@@ -119,6 +119,54 @@ if (!empty($_POST['save_year'])) {
             header('Location: modify_year.php?year=' . $year);
         }
 
+    } //controllo che non siano stati lasciati campi vuoti nel caso in cui l'anno non sia modificabile (presenza di vini associati)
+    else if (!empty($_POST['descrizione']) && !preg_match('/^(\s)+$/', $_POST['descrizione']) && !empty($_POST['qualita'])
+        && !preg_match('/^(\s)+$/', $_POST['qualita'])) {
+
+        //dichiarazione variabili
+        $descrizione = htmlentities($_POST['descrizione'], ENT_QUOTES);
+        $qualita = htmlentities($_POST['qualita'], ENT_QUOTES);
+        if ($_POST['migliore'] == false) {
+            $migliore = 0;
+        } else {
+            $migliore = 1;
+        }
+
+        //controllo che sia stato modificato almeno un campo, altrimenti non serve fare l'update nel database
+        $sql = 'SELECT * FROM annate WHERE anno=' . $year . ' AND descrizione="' . $descrizione
+            . '" AND qualita="' . $qualita . '" AND migliore=' . $migliore;
+
+        $result = mysqli_query($conn, $sql);
+
+        if (mysqli_num_rows($result) == 0) {
+
+            //aggiorno l'annata nel database
+            $sql = 'UPDATE annate SET descrizione="' . $descrizione . '", qualita="' . $qualita . '",
+                    migliore=' . $migliore . ' WHERE anno=' . $year;
+
+            //controllo la connessione
+            if (mysqli_query($conn, $sql)) {
+                //se il cookie è settato, lo unsetto
+                if (isset($_COOKIE['modifyYear'])) {
+                    unset($_COOKIE['modifyYear']);
+                    setcookie('modifyYear', '', time() - 3600);
+                }
+
+                setcookie('info', 'Modifica dei dati avvenuta con successo.');
+                //ritorno alla pagina di gestione annate
+                header('Location: admin_years.php ');
+            } else {
+                setcookie('error', 'Si &egrave; verificato un errore. La preghiamo di riprovare.');
+                header('Location: modify_year.php?year=' . $year);
+            }
+
+        } //nel caso in cui l'utente abbia cercato di salvare, non avendo però modificato nessun dato, viene mostrato a video
+        //il messaggio di 'modifica dei dati avvenuta con successo' per evitare il caso di metafora visiva
+        else {
+            setcookie('info', 'Modifica dei dati avvenuta con successo');
+            header('Location: admin_years.php');
+        }
+
     } else {
         setcookie('error', 'Alcuni campi risultano vuoti.');
         header('Location: modify_year.php?year=' . $year);
