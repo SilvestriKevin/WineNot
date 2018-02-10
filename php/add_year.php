@@ -48,7 +48,7 @@ $annata .= '<fieldset>
                         <span id="description_error" class="js_error"></span>
                     </li>
                     <li>
-                        <textarea id="check_description" name="descrizione" title="descrizione" onblur="checkYearDescription()" tabindex="7" rows="4" cols="34"></textarea>
+                        <textarea id="check_description" name="descrizione" title="descrizione" onblur="checkYearDescription()" tabindex="7" rows="7" cols="34"></textarea>
                     </li>
 
                     <li class="label_add">

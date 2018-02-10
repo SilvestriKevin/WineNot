@@ -77,7 +77,7 @@ $vino .= '</li><li><a title="Aggiungi annata" href="./add_year.php" tabindex="7"
 <span id="wine_vitigno_error" class="js_error"></span>
 </li>
 <li>
-<textarea name="vitigno" title="vitigno" onblur="checkVitigno()" tabindex="10" rows="4" cols="34">
+<textarea name="vitigno" title="vitigno" onblur="checkVitigno()" tabindex="10" rows="7" cols="34">
 </textarea>
 </li>
 
@@ -118,7 +118,7 @@ $vino .= '</li><li><a title="Aggiungi annata" href="./add_year.php" tabindex="7"
 <span id="wine_descrizione_error" class="js_error"></span>
 </li>
 <li>
-<textarea name="descrizione" title="descrizione" onblur="checkDescrizione()" tabindex="14" rows="4" cols="34">
+<textarea name="descrizione" title="descrizione" onblur="checkDescrizione()" tabindex="14" rows="7" cols="34">
 </textarea>
 </li>
 
@@ -129,7 +129,7 @@ $vino .= '</li><li><a title="Aggiungi annata" href="./add_year.php" tabindex="7"
 <span id="wine_abbinamento_error" class="js_error"></span>
 </li>
 <li>
-<textarea name="abbinamento" title="abbinamento" onblur="checkAbbinamento()" tabindex="15" rows="4" cols="34">
+<textarea name="abbinamento" title="abbinamento" onblur="checkAbbinamento()" tabindex="15" rows="7" cols="34">
 </textarea>
 </li>
 
@@ -140,7 +140,7 @@ $vino .= '</li><li><a title="Aggiungi annata" href="./add_year.php" tabindex="7"
 <span id="wine_degustazione_error" class="js_error"></span>
 </li>
 <li>
-<textarea name="degustazione" title="degustazione" onblur="checkDegustazione()" tabindex="16" rows="4" cols="34">
+<textarea name="degustazione" title="degustazione" onblur="checkDegustazione()" tabindex="16" rows="7" cols="34">
 </textarea>
 </li>
 

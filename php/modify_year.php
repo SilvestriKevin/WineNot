@@ -166,7 +166,7 @@ if (mysqli_num_rows($result) != 0) {
             <span id="description_error" class="js_error"></span>
         </li>
         <li>
-            <textarea id="check_description" name="descrizione" title="descrizione" onblur="checkYearDescription()" rows="4" cols="34" tabindex="8">'
+            <textarea id="check_description" name="descrizione" title="descrizione" onblur="checkYearDescription()" rows="7" cols="34" tabindex="8">'
         . $row['descrizione'] . '</textarea>
         </li>
 

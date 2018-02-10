@@ -245,7 +245,7 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_vitigno_error" class="js_error"></span>
     </li>
     <li>
-        <textarea name="vitigno" title="vitigno" onblur="checkVitigno()" rows="4" cols="34" tabindex="11">' . $row['vitigno'] . '</textarea>
+        <textarea name="vitigno" title="vitigno" onblur="checkVitigno()" rows="7" cols="34" tabindex="11">' . $row['vitigno'] . '</textarea>
     </li>
 
     <li class="label_add">
@@ -288,7 +288,7 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_descrizione_error" class="js_error"></span>
     </li>
     <li>
-        <textarea name="descrizione" title="descrizione" onblur="checkDescrizione()" rows="4" cols="34" tabindex="15">' . $row['descrizione'] . '
+        <textarea name="descrizione" title="descrizione" onblur="checkDescrizione()" rows="7" cols="34" tabindex="15">' . $row['descrizione'] . '
         </textarea>
     </li>
 
@@ -299,7 +299,7 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_abbinamento_error" class="js_error"></span>
     </li>
     <li>
-        <textarea name="abbinamento" title="abbinamento" onblur="checkAbbinamento()" rows="4" cols="34" tabindex="16">' . $row['abbinamento'] . '
+        <textarea name="abbinamento" title="abbinamento" onblur="checkAbbinamento()" rows="7" cols="34" tabindex="16">' . $row['abbinamento'] . '
         </textarea>
     </li>
 
@@ -310,7 +310,7 @@ if (mysqli_num_rows($result) != 0) {
         <span id="wine_degustazione_error" class="js_error"></span>
     </li>
     <li>
-        <textarea name="degustazione" title="degustazione" onblur="checkDegustazione()" rows="4" cols="34" tabindex="17">' . $row['degustazione'] . '
+        <textarea name="degustazione" title="degustazione" onblur="checkDegustazione()" rows="7" cols="34" tabindex="17">' . $row['degustazione'] . '
         </textarea>
     </li>
 
