@@ -71,6 +71,3 @@ $pagina = file_get_contents('../html/contacts.html');
 //rimpiazzo i segnaposto e stampo in output la pagina
 $pagina = str_replace('[ERRORE]', $error, $pagina);
 echo str_replace('[INFO]', $info, $pagina);
-
-//chiudo la connessione
-mysqli_close($conn);
