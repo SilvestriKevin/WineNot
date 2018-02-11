@@ -3,6 +3,10 @@ User-agent:*
 Disallow: /php/add_user.php
 Disallow: /php/add_wine.php
 Disallow: /php/add_year.php
+Disallow: /php/admin_profile.php
+Disallow: /php/admin_users.php
+Disallow: /php/admin_wines.php
+Disallow: /php/admin_years.php
 Disallow: /php/modify_user.php
 Disallow: /php/modify_wine.php
 Disallow: /php/modify_year.php
@@ -13,6 +17,7 @@ Disallow: /php/login.php
 Disallow: /php/new_password.php
 Disallow: /php/recover.php
 
+Disallow: /404.html
 Disallow: /html/404.html
 Disallow: /html/admin_panel.html
 Disallow: /html/login.html
