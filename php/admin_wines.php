@@ -213,6 +213,11 @@ $dati .= '</form>';
 //leggo il file e lo inserisco in una stringa
 $pagina = file_get_contents('../html/admin_panel.html');
 $search_wine = file_get_contents('../html/search_wine.html');
+
+//tolgo il link della pagina
+$pagina = str_replace('<a title="gestione vini" href="admin_wines.php" tabindex="3" accesskey="v">Gestione Vini</a>', 
+'Gestione Vini', $pagina);
+
 //rimpiazzo i segnaposto e stampo in output la pagina
 $pagina = str_replace('[SEARCH_WINE]', $search_wine, $pagina);
 $pagina = str_replace('[ANNATA]', $annata, $pagina);

@@ -129,7 +129,9 @@ textarea {
     text-align: center;
 }
 
-#header li {
+#header li,
+#horizontal_menu li
+{
     display: inline-block;
     margin-right: 1.2em;
     font-size: 1.2em;
@@ -140,7 +142,7 @@ textarea {
 
 #header li a:hover,
 #footer_link a:hover,
-#horizontal_menu a:hover
+#horizontal_menu li a:hover
  {
     margin: 0em !important;
     color: #fff;

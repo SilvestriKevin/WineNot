@@ -306,6 +306,11 @@ if (mysqli_num_rows($result) != 0) {
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
 $pagina = file_get_contents('../html/admin_panel.html');
+
+//tolgo il link della pagina
+$pagina = str_replace('<a title="dati profilo" href="admin_profile.php" tabindex="6" accesskey="p">Dati Profilo</a>', 
+'Dati Profilo', $pagina);
+
 //rimpiazzo i segnaposto e stampo in output la pagina
 $pagina = str_replace('[SEARCH_WINE]', '', $pagina);
 $pagina = str_replace('[INFO/ERRORE]', $info_errore, $pagina);

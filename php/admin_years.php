@@ -102,6 +102,11 @@ $dati.='</form>';
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
 $pagina = file_get_contents('../html/admin_panel.html');
+
+//tolgo il link della pagina
+$pagina = str_replace('<a title="gestione annate" href="admin_years.php" tabindex="4" accesskey="a">Gestione Annate</a>', 
+'Gestione Annate', $pagina);
+
 //rimpiazzo i segnaposto e stampo in output la pagina  
 $pagina = str_replace('[SEARCH_WINE]', '', $pagina);
 $pagina = str_replace('[INFO/ERRORE]', $info_errore, $pagina);

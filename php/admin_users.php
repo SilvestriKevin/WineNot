@@ -108,6 +108,11 @@ if ($row['admin'] == 1) {
 //creazione della pagina web
 //leggo il file e lo inserisco in una stringa
 $pagina = file_get_contents('../html/admin_panel.html');
+
+//tolgo il link della pagina
+$pagina = str_replace('<a title="gestione utenti" href="admin_users.php" tabindex="5" accesskey="u">Gestione Utenti</a>', 
+'Gestione Utenti', $pagina);
+
 //rimpiazzo i segnaposto e stampo in output la pagina
 $pagina = str_replace('[SEARCH_WINE]', '', $pagina);
 $pagina = str_replace('[INFO/ERRORE]', $info_errore, $pagina);
