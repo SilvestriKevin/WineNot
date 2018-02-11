@@ -87,28 +87,29 @@
 % tabelle con il campo X per riempire lo spazio rimanente sulla riga
 %\usepackage{tabularx}
 
+% TABELLE 
+% tabelle su più pagine
+\usepackage{longtable}
+
+% per avere dei comandi in più da poter usare sulle tabelle
+\usepackage{booktabs}
+
 % multirow per tabelle
 \usepackage{multirow}
 
-% Permette tabelle su più pagine
-\usepackage{longtable}
-
-% colore di sfondo per le celle
-\usepackage[table]{xcolor}
-
-% permette di fare longtable larghe tutta la pagina (parametro x)
-% su Ubuntu non si può installare il pacchetto, deve essere in modello/
-%\usepackage{../../modello/tabu}
-
-% imposta lo spazio tra le righe di una tabella
-%\setlength{\tabulinesep}{6pt}
-
-% definisci un nuovo tipo di colonna P che permette di andare a capo con 
-%\newline
-% e giustificata a sinistra
+% definisci un nuovo tipo di colonna C che permette di andare a capo con \newline
+% e centrata
 \usepackage{array}
 \usepackage{ragged2e}
-\newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
+%\newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% colore di sfondo per le celle
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+% tabelle con il campo X per riempire lo spazio rimanente sulla riga
+\usepackage{tabularx}
+
 
 % personalizza l'intestazione e piè di pagina
 \usepackage{fancyhdr}

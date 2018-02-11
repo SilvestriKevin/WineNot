@@ -1,21 +1,21 @@
 \select@language {italian}
 \select@language {italian}
 \contentsline {section}{\numberline {1}Abstract}{2}{section.1}
-\contentsline {subsection}{\numberline {1.1}Utenti destinatari}{2}{subsection.1.1}
-\contentsline {subsection}{\numberline {1.2}Gestione dei dati}{2}{subsection.1.2}
-\contentsline {subsubsection}{\numberline {1.2.1}Collaboratore}{2}{subsubsection.1.2.1}
-\contentsline {subsubsection}{\numberline {1.2.2}Amministratore}{2}{subsubsection.1.2.2}
-\contentsline {section}{\numberline {2}Fasi di progettazione}{2}{section.2}
-\contentsline {subsection}{\numberline {2.1}Analisi dei requisiti}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Realizzazione ed implementazione delle funzionalit\IeC {\`a}}{3}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Fase di test}{3}{subsection.2.3}
-\contentsline {section}{\numberline {3}Struttura del progetto}{3}{section.3}
-\contentsline {section}{\numberline {4}Gestione dei dati}{3}{section.4}
-\contentsline {section}{\numberline {5}Struttura sito}{4}{section.5}
-\contentsline {subsection}{\numberline {5.1}Funzionalit\IeC {\`a} utenza usufruibile}{5}{subsection.5.1}
-\contentsline {section}{\numberline {6}Adattabilit\IeC {\`a} ed usabilit\IeC {\`a} del sito}{5}{section.6}
-\contentsline {section}{\numberline {7}Compatibilit\IeC {\`a} browser}{5}{section.7}
-\contentsline {section}{\numberline {8}Organizzazione del gruppo di lavoro}{5}{section.8}
-\contentsline {subsection}{\numberline {8.1}Pirlog Cristian}{5}{subsection.8.1}
-\contentsline {subsection}{\numberline {8.2}Silvestri Kevin}{6}{subsection.8.2}
-\contentsline {subsection}{\numberline {8.3}Thiella Eleonora}{6}{subsection.8.3}
+\contentsline {subsection}{\numberline {1.1}Utenti destinatari}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Gestione dei dati}{3}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Collaboratore}{4}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}Amministratore}{4}{subsubsection.1.2.2}
+\contentsline {section}{\numberline {2}Fasi di progettazione}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Analisi dei requisiti}{4}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Realizzazione ed implementazione delle funzionalit\IeC {\`a}}{4}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Fase di test}{4}{subsection.2.3}
+\contentsline {section}{\numberline {3}Struttura del progetto}{4}{section.3}
+\contentsline {section}{\numberline {4}Gestione dei dati}{5}{section.4}
+\contentsline {section}{\numberline {5}Struttura sito}{6}{section.5}
+\contentsline {subsection}{\numberline {5.1}Funzionalit\IeC {\`a}}{6}{subsection.5.1}
+\contentsline {section}{\numberline {6}Adattabilit\IeC {\`a} ed usabilit\IeC {\`a} del sito}{6}{section.6}
+\contentsline {section}{\numberline {7}Compatibilit\IeC {\`a} browser}{6}{section.7}
+\contentsline {section}{\numberline {8}Organizzazione del gruppo di lavoro}{7}{section.8}
+\contentsline {subsection}{\numberline {8.1}Pirlog Cristian}{7}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Silvestri Kevin}{7}{subsection.8.2}
+\contentsline {subsection}{\numberline {8.3}Thiella Eleonora}{7}{subsection.8.3}
