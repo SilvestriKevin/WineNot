@@ -176,7 +176,7 @@ if ($row['admin'] == 1) {
                 </fieldset>
                 </form>';
 } else {
-    $user .= '<h2>Non hai diritti di accesso a questa pagina.</h2>';
+    $user .= '<h2 id="error_admin_users">Non hai diritti di accesso a questa pagina.</h2>';
 }
 
 //creazione della pagina web
